@@ -343,37 +343,19 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
 }
 .hero-cta .demo-link:hover { color: #fff; }
 
-.hero-trust {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  background: rgba(255,255,255,0.06);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 60px;
-  padding: 10px 24px 10px 14px;
-  width: fit-content;
-  margin: 0 auto;
+.hero-stars-link {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; margin: 0 auto; text-decoration: none;
+  opacity: 0.85; transition: opacity 0.3s ease;
 }
-.trust-avatars { display: flex; }
-.trust-avatar {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 2.5px solid #111; object-fit: cover;
-  margin-left: -10px;
+.hero-stars-link:hover { opacity: 1; }
+.hero-stars {
+  font-size: 20px; color: #F59E0B; letter-spacing: 2px;
 }
-.trust-avatar:first-child { margin-left: 0; }
-.trust-rating {
-  font-size: 14px; color: #bbb; font-weight: 500;
+.hero-stars-text {
+  font-size: 14px; color: #999; font-weight: 500;
 }
-.trust-rating strong { color: #fff; font-weight: 700; }
-.trust-verified {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 18px; height: 18px; border-radius: 50%;
-  background: #3B82F6; color: #fff; font-size: 10px;
-  margin-left: 4px; vertical-align: middle; font-weight: 700;
-}
+.hero-stars-text strong { color: #fff; font-weight: 700; }
 
 /* Hero badge image */
 .hero-badge-img {
