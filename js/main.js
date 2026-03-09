@@ -414,6 +414,114 @@ document.addEventListener('DOMContentLoaded', function () {
   obs.observe(tl);
 })();
 
+// ========== EVO PATH — animated connecting line ==========
+(function() {
+  var grid = document.querySelector('.evo-grid');
+  var svg = grid ? grid.querySelector('.evo-path-svg') : null;
+  if (!grid || !svg) return;
+
+  var pathLine = svg.querySelector('.evo-path-line');
+  var pathBg = svg.querySelector('.evo-path-bg');
+  var pathDot = svg.querySelector('.evo-path-dot');
+
+  function buildPath() {
+    var cards = grid.querySelectorAll('.evo-card');
+    if (cards.length < 2) return;
+
+    var gridRect = grid.getBoundingClientRect();
+    var points = [];
+    var numCols = Math.round(gridRect.width / cards[0].getBoundingClientRect().width);
+
+    cards.forEach(function(card, i) {
+      var rect = card.getBoundingClientRect();
+      var col = i % numCols;
+      var row = Math.floor(i / numCols);
+      var nextCol = (i + 1) < cards.length ? (i + 1) % numCols : col;
+
+      // Anchor at bottom of card
+      var x, y;
+      y = rect.top + rect.height * 0.85 - gridRect.top;
+
+      if (i === 0) {
+        x = rect.left + rect.width * 0.8 - gridRect.left;
+      } else if (i === cards.length - 1) {
+        x = rect.left + rect.width * 0.5 - gridRect.left;
+      } else if (nextCol > col || numCols >= 4) {
+        // Next card is to the right
+        x = rect.left + rect.width * 0.8 - gridRect.left;
+      } else {
+        // Next card wraps to next row
+        x = rect.left + rect.width * 0.2 - gridRect.left;
+      }
+
+      points.push({ x: x, y: y });
+    });
+
+    // Build smooth cubic bezier path
+    var d = 'M ' + points[0].x + ' ' + points[0].y;
+    for (var i = 1; i < points.length; i++) {
+      var prev = points[i - 1];
+      var curr = points[i];
+      // Control points for smooth S-curve
+      var midX = (prev.x + curr.x) / 2;
+      var midY = (prev.y + curr.y) / 2;
+      var dx = Math.abs(curr.x - prev.x);
+      var dy = Math.abs(curr.y - prev.y);
+
+      if (dy > dx) {
+        // Vertical movement — curve horizontally
+        d += ' C ' + prev.x + ' ' + midY + ', ' + curr.x + ' ' + midY + ', ' + curr.x + ' ' + curr.y;
+      } else {
+        // Horizontal movement — curve vertically
+        d += ' C ' + midX + ' ' + prev.y + ', ' + midX + ' ' + curr.y + ', ' + curr.x + ' ' + curr.y;
+      }
+    }
+
+    pathLine.setAttribute('d', d);
+    pathBg.setAttribute('d', d);
+
+    // Set up dash animation
+    var length = pathLine.getTotalLength();
+    pathLine.style.strokeDasharray = length;
+    pathLine.style.strokeDashoffset = length;
+    pathLine.style.setProperty('--path-length', length);
+
+    // Animate dot along path
+    var dotStyle = document.createElement('style');
+    dotStyle.textContent = '@keyframes evoPathDotMove { from { offset-distance: 0%; } to { offset-distance: 100%; } }';
+    document.head.appendChild(dotStyle);
+    pathDot.style.offsetPath = "path('" + d + "')";
+    pathDot.style.offsetDistance = '0%';
+
+    return length;
+  }
+
+  // Build on load + resize
+  var pathLength = 0;
+  function init() { pathLength = buildPath(); }
+  init();
+  window.addEventListener('resize', function() {
+    grid.classList.remove('path-animated');
+    init();
+    // Re-trigger if already was animated
+    if (grid.dataset.wasAnimated) {
+      requestAnimationFrame(function() { grid.classList.add('path-animated'); });
+    }
+  });
+
+  // Trigger on scroll
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        grid.classList.add('path-animated');
+        grid.dataset.wasAnimated = '1';
+        obs.unobserve(grid);
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(grid);
+})();
+
 // ========== REVEAL-UP SCROLL ANIMATION ==========
 (function() {
   var revealEls = document.querySelectorAll('.reveal-up');
