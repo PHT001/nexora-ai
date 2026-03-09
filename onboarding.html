@@ -326,6 +326,119 @@
       line-height: 1.6;
     }
 
+    /* Site Preview */
+    .site-preview {
+      display: none;
+      margin-top: 20px;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      animation: stepIn 0.4s ease;
+    }
+    .site-preview.show { display: block; }
+    .site-preview-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: top;
+      background: #f5f5f5;
+      display: block;
+    }
+    .site-preview-body {
+      padding: 16px 20px;
+    }
+    .site-preview-url {
+      font-size: 12px;
+      color: #E8562A;
+      font-weight: 500;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .site-preview-url .green-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0;
+    }
+    .site-preview-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .site-preview-desc {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .site-preview-question {
+      padding: 14px 20px;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-preview-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-confirm-site {
+      padding: 8px 20px;
+      border-radius: 8px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .btn-confirm-site.yes {
+      background: #E8562A;
+      color: #fff;
+    }
+    .btn-confirm-site.yes:hover { background: #d14a22; }
+    .btn-confirm-site.no {
+      background: #f0f0f0;
+      color: #666;
+    }
+    .btn-confirm-site.no:hover { background: #e5e5e5; }
+
+    /* Loading animation */
+    .site-loading {
+      display: none;
+      margin-top: 20px;
+      padding: 32px;
+      text-align: center;
+    }
+    .site-loading.show { display: block; }
+    .site-loading-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #eee;
+      border-top-color: #E8562A;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .site-loading p {
+      font-size: 14px;
+      color: #888;
+    }
+    .site-loading p strong {
+      color: #333;
+    }
+
     /* Field error */
     .field-error {
       font-size: 13px;
@@ -395,7 +508,38 @@
           <input type="url" id="site-url" placeholder="https://www.votresite.com">
         </div>
         <div id="err-1" class="field-error" style="display:none;"></div>
-        <button class="auth-submit" onclick="nextStep(1)">Continuer &rarr;</button>
+
+        <!-- Search button (before preview) -->
+        <button class="auth-submit" id="btn-search-site" onclick="searchSite()">Rechercher mon site &#128270;</button>
+
+        <!-- Loading state -->
+        <div class="site-loading" id="site-loading">
+          <div class="site-loading-spinner"></div>
+          <p>Analyse de <strong id="loading-url">votre site</strong>...</p>
+        </div>
+
+        <!-- Site preview card -->
+        <div class="site-preview" id="site-preview">
+          <img class="site-preview-img" id="preview-img" src="" alt="Apercu du site">
+          <div class="site-preview-body">
+            <div class="site-preview-url">
+              <span class="green-dot"></span>
+              <span id="preview-url">—</span>
+            </div>
+            <div class="site-preview-title" id="preview-title">—</div>
+            <div class="site-preview-desc" id="preview-desc">—</div>
+          </div>
+          <div class="site-preview-question">
+            <span>C'est votre site ?</span>
+            <div class="site-preview-btns">
+              <button class="btn-confirm-site no" onclick="rejectSite()">Non, modifier</button>
+              <button class="btn-confirm-site yes" onclick="confirmSite()">Oui, c'est le mien &#10003;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Continue button (hidden until confirmed) -->
+        <button class="auth-submit" id="btn-continue-1" style="display:none;" onclick="nextStep(1)">Continuer &rarr;</button>
       </div>
 
       <!-- Step 2: Language -->
@@ -595,11 +739,104 @@
       }, 200);
     }
 
+    // --- Site Search & Preview ---
+    var siteConfirmed = false;
+
+    function searchSite() {
+      hideErr(1);
+      var u = document.getElementById('site-url').value.trim();
+      if (!u) { showErr(1, 'Veuillez entrer l\'URL de votre site.'); shakeEl('site-url'); return; }
+
+      // Normalize URL
+      if (!u.startsWith('http')) u = 'https://' + u;
+
+      // Show loading, hide preview & search btn
+      document.getElementById('btn-search-site').style.display = 'none';
+      document.getElementById('site-preview').classList.remove('show');
+      document.getElementById('site-loading').classList.add('show');
+      document.getElementById('loading-url').textContent = u.replace(/^https?:\/\//, '');
+
+      // Fetch site metadata via microlink
+      fetch('https://api.microlink.io/?url=' + encodeURIComponent(u) + '&screenshot=true&meta=true&embed=screenshot.url')
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          document.getElementById('site-loading').classList.remove('show');
+
+          if (res.status === 'success' && res.data) {
+            var d = res.data;
+            // Screenshot
+            var imgUrl = (d.screenshot && d.screenshot.url) || (d.image && d.image.url) || '';
+            document.getElementById('preview-img').src = imgUrl || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect fill="%23f0f0f0" width="400" height="180"/><text x="50%" y="50%" text-anchor="middle" fill="%23aaa" font-size="14">Apercu non disponible</text></svg>';
+            document.getElementById('preview-img').onerror = function() {
+              this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect fill="%23f0f0f0" width="400" height="180"/><text x="50%" y="50%" text-anchor="middle" fill="%23aaa" font-size="14">Apercu non disponible</text></svg>';
+            };
+            // Meta
+            document.getElementById('preview-url').textContent = u.replace(/^https?:\/\//, '');
+            document.getElementById('preview-title').textContent = d.title || u.replace(/^https?:\/\//, '');
+            document.getElementById('preview-desc').textContent = d.description || 'Aucune description disponible pour ce site.';
+            document.getElementById('site-preview').classList.add('show');
+          } else {
+            // Fallback: show preview with just URL info
+            showFallbackPreview(u);
+          }
+        })
+        .catch(function() {
+          document.getElementById('site-loading').classList.remove('show');
+          showFallbackPreview(u);
+        });
+    }
+
+    function showFallbackPreview(u) {
+      var domain = u.replace(/^https?:\/\//, '').split('/')[0];
+      document.getElementById('preview-img').src = 'https://image.thum.io/get/width/600/' + u;
+      document.getElementById('preview-img').onerror = function() {
+        this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect fill="%23f0f0f0" width="400" height="180"/><text x="50%" y="50%" text-anchor="middle" fill="%23aaa" font-size="14">Apercu non disponible</text></svg>';
+      };
+      document.getElementById('preview-url').textContent = domain;
+      document.getElementById('preview-title').textContent = domain;
+      document.getElementById('preview-desc').textContent = 'Nous avons trouve ce site. Confirmez qu\'il s\'agit bien du votre.';
+      document.getElementById('site-preview').classList.add('show');
+    }
+
+    function confirmSite() {
+      siteConfirmed = true;
+      var u = document.getElementById('site-url').value.trim();
+      if (!u.startsWith('http')) u = 'https://' + u;
+      data.url = u;
+      // Store site title/desc for later use
+      data.siteTitle = document.getElementById('preview-title').textContent;
+      data.siteDesc = document.getElementById('preview-desc').textContent;
+      // Update right card
+      var card = document.getElementById('ob-card');
+      card.innerHTML = '<div class="ob-card-icon">&#9989;</div><h3>Site confirme !</h3><p>' + u.replace(/^https?:\/\//, '') + '</p>';
+      // Show continue, hide preview question
+      document.getElementById('site-preview').querySelector('.site-preview-question').innerHTML = '<span style="color:#22c55e;font-weight:600;">&#10003; Site confirme</span><span></span>';
+      document.getElementById('btn-continue-1').style.display = 'block';
+      document.getElementById('btn-continue-1').focus();
+    }
+
+    function rejectSite() {
+      siteConfirmed = false;
+      document.getElementById('site-preview').classList.remove('show');
+      document.getElementById('btn-search-site').style.display = 'block';
+      document.getElementById('btn-continue-1').style.display = 'none';
+      document.getElementById('site-url').value = '';
+      document.getElementById('site-url').focus();
+      // Reset right card
+      var c = cards[0];
+      var card = document.getElementById('ob-card');
+      card.innerHTML = '<div class="ob-card-icon">' + c.icon + '</div><h3>' + c.t + '</h3><p>' + c.d + '</p>';
+    }
+
     function nextStep(from) {
       hideErr(from);
       if (from === 1) {
+        if (!siteConfirmed) {
+          showErr(1, 'Veuillez rechercher et confirmer votre site.');
+          return;
+        }
         var u = document.getElementById('site-url').value.trim();
-        if (!u) { showErr(1, 'Veuillez entrer l\'URL de votre site.'); shakeEl('site-url'); return; }
+        if (!u.startsWith('http')) u = 'https://' + u;
         data.url = u;
       }
       if (from === 2) {
