@@ -447,6 +447,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 })();
 
+// ========== NOWORRY WORDS — staggered pop ==========
+(function() {
+  var words = document.querySelectorAll('.nw-word');
+  if (!words.length) return;
+  var container = document.querySelector('.noworry-words');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        words.forEach(function(w, i) {
+          setTimeout(function() { w.classList.add('nw-word-visible'); }, i * 180);
+        });
+        obs.unobserve(container);
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(container);
+})();
+
 // ========== NOWORRY CARDS — staggered reveal ==========
 (function() {
   var cards = document.querySelectorAll('.noworry-card');
