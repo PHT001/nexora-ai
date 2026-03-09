@@ -4,168 +4,898 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard — Nexora.ai</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .dashboard-page {
-      min-height: 100vh;
-      background: #f8f9fa;
-    }
-    .dashboard-nav {
-      background: #fff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 16px 32px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #0f1117; color: #e1e1e6; min-height: 100vh; }
+
+    /* ===== LAYOUT ===== */
+    .app { display: flex; min-height: 100vh; }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 240px;
+      background: #16171d;
+      border-right: 1px solid #23252e;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+      transition: transform 0.3s;
     }
-    .dashboard-nav .navbar-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .sidebar-logo {
+      display: flex; align-items: center; gap: 10px;
+      padding: 20px 20px 28px;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 18px;
-      color: #111;
+      font-weight: 700; font-size: 17px; color: #fff;
     }
-    .dashboard-nav .navbar-logo svg {
-      width: 28px;
-      height: 28px;
-    }
-    .dashboard-user {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .dashboard-user-info {
-      text-align: right;
-    }
-    .dashboard-user-name {
-      font-weight: 600;
-      font-size: 14px;
-      color: #111;
-    }
-    .dashboard-user-email {
-      font-size: 12px;
-      color: #666;
-    }
-    .dashboard-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #E8562A;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .btn-logout {
-      padding: 8px 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #fff;
+    .sidebar-logo svg { width: 30px; height: 30px; flex-shrink: 0; }
+
+    .sidebar-site-selector {
+      margin: 0 14px 20px;
+      padding: 10px 12px;
+      background: #1e2029;
+      border: 1px solid #2a2c37;
+      border-radius: 10px;
+      color: #c0c0c8;
+      font-size: 13px;
       cursor: pointer;
-      font-size: 13px;
-      color: #666;
-      transition: all 0.2s;
+      display: flex; align-items: center; gap: 8px;
+      transition: border-color 0.2s;
     }
-    .btn-logout:hover {
-      background: #f5f5f5;
-      border-color: #ccc;
+    .sidebar-site-selector:hover { border-color: #E8562A; }
+    .sidebar-site-selector .site-icon {
+      width: 20px; height: 20px; border-radius: 4px;
+      background: #E8562A; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; flex-shrink: 0;
     }
-    .dashboard-content {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 0 24px;
+    .sidebar-site-selector .site-url {
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;
+    }
+    .sidebar-site-selector .site-arrow { color: #666; font-size: 10px; }
+
+    .sidebar-section { padding: 0 10px; margin-bottom: 24px; }
+    .sidebar-section-label {
+      font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; color: #555; padding: 0 10px; margin-bottom: 6px;
+    }
+
+    .sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 8px;
+      cursor: pointer; transition: all 0.15s;
+      font-size: 13.5px; font-weight: 500; color: #8a8a96;
+      text-decoration: none; position: relative;
+    }
+    .sidebar-item:hover { background: #1e2029; color: #c8c8d0; }
+    .sidebar-item.active { background: #E8562A15; color: #E8562A; }
+    .sidebar-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .sidebar-item .badge-new {
+      font-size: 9px; font-weight: 700; background: #E8562A;
+      color: #fff; padding: 1px 5px; border-radius: 4px;
+      margin-left: auto; text-transform: uppercase;
+    }
+    .sidebar-item .badge-count {
+      font-size: 11px; font-weight: 600; background: #2a2c37;
+      color: #aaa; padding: 1px 7px; border-radius: 10px;
+      margin-left: auto;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      padding: 16px 14px;
+      border-top: 1px solid #23252e;
+    }
+    .sidebar-user {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 6px; border-radius: 8px; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .sidebar-user:hover { background: #1e2029; }
+    .sidebar-user-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #E8562A; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
+    }
+    .sidebar-user-info { flex: 1; overflow: hidden; }
+    .sidebar-user-name { font-size: 13px; font-weight: 600; color: #e1e1e6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sidebar-user-plan { font-size: 11px; color: #666; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main { margin-left: 240px; flex: 1; min-height: 100vh; }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px;
+      border-bottom: 1px solid #1e2029;
+      background: #0f1117;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-title { font-size: 18px; font-weight: 700; color: #fff; }
+    .topbar-actions { display: flex; align-items: center; gap: 12px; }
+    .btn-upgrade {
+      padding: 8px 18px; border-radius: 8px; border: none;
+      background: #E8562A; color: #fff; font-size: 13px;
+      font-weight: 600; cursor: pointer; transition: background 0.2s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-upgrade:hover { background: #d14a22; }
+    .btn-icon {
+      width: 36px; height: 36px; border-radius: 8px; border: 1px solid #23252e;
+      background: transparent; color: #888; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .btn-icon:hover { background: #1e2029; color: #ccc; border-color: #333; }
+
+    .content { padding: 28px 32px; }
+
+    /* ===== SECTIONS (show/hide) ===== */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ===== OVERVIEW ===== */
+    .welcome-banner {
+      background: linear-gradient(135deg, #1a1b24 0%, #1e1f2b 100%);
+      border: 1px solid #23252e; border-radius: 16px;
+      padding: 28px 32px; margin-bottom: 24px;
+    }
+    .welcome-banner h2 { font-size: 22px; color: #fff; margin-bottom: 6px; }
+    .welcome-banner p { font-size: 14px; color: #8a8a96; line-height: 1.6; }
+
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-bottom: 28px;
+    }
+    .stat-card {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 14px; padding: 22px 24px;
+      transition: border-color 0.2s;
+    }
+    .stat-card:hover { border-color: #333; }
+    .stat-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .stat-card-label { font-size: 13px; color: #8a8a96; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .stat-card-label .info-icon { width: 14px; height: 14px; color: #555; cursor: help; }
+    .stat-card-badge { font-size: 9px; font-weight: 700; background: #E8562A; color: #fff; padding: 2px 6px; border-radius: 4px; }
+    .stat-card-value { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .stat-card-value span { font-size: 16px; font-weight: 500; color: #555; }
+    .stat-card-sub {
+      font-size: 12px; padding: 8px 12px; border-radius: 8px;
       text-align: center;
     }
-    .dashboard-content h1 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      color: #111;
+    .stat-sub-empty { background: #1a2332; color: #4a9eff; }
+    .stat-sub-success { background: #1a2e1a; color: #4ade80; }
+    .stat-sub-warning { background: #2e2a1a; color: #fbbf24; }
+    .stat-card-link {
+      display: block; text-align: right; font-size: 12px;
+      color: #555; margin-top: 10px; cursor: pointer;
+      text-decoration: none; transition: color 0.15s;
     }
-    .dashboard-content p {
-      font-size: 16px;
-      color: #666;
-      line-height: 1.6;
+    .stat-card-link:hover { color: #E8562A; }
+
+    /* Potential Reach */
+    .reach-section {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 14px; padding: 24px 28px; margin-bottom: 24px;
     }
-    .dashboard-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 40px;
-      margin-top: 32px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      text-align: left;
+    .reach-section h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .reach-section .reach-sub { font-size: 13px; color: #666; margin-bottom: 20px; }
+    .reach-languages {
+      display: flex; flex-direction: column; gap: 10px;
     }
-    .dashboard-card h2 {
-      font-size: 20px;
-      margin-bottom: 20px;
+    .reach-lang {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px; background: #1a1b24;
+      border-radius: 10px; border: 1px solid #23252e;
     }
-    .dashboard-stat {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
+    .reach-flag { font-size: 20px; }
+    .reach-lang-code { font-size: 13px; font-weight: 600; color: #fff; width: 24px; }
+    .reach-lang-bar { flex: 1; height: 6px; background: #23252e; border-radius: 3px; overflow: hidden; }
+    .reach-lang-bar-fill { height: 100%; border-radius: 3px; background: #E8562A; }
+    .reach-lang-value { font-size: 12px; color: #8a8a96; font-weight: 500; min-width: 80px; text-align: right; }
+    .reach-cta {
+      margin-top: 16px; padding: 12px;
+      background: linear-gradient(135deg, #E8562A20, #E8562A10);
+      border: 1px solid #E8562A40; border-radius: 10px;
+      text-align: center; font-size: 13px; color: #E8562A;
+      font-weight: 600; cursor: pointer; transition: background 0.2s;
     }
-    .stat-box {
-      flex: 1;
-      min-width: 140px;
-      background: #f8f9fa;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
+    .reach-cta:hover { background: linear-gradient(135deg, #E8562A30, #E8562A20); }
+
+    /* Publish CTA */
+    .publish-cta {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 14px; padding: 24px 28px;
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 24px;
     }
-    .stat-box .stat-value {
-      font-size: 28px;
-      font-weight: 700;
-      color: #E8562A;
+    .publish-cta-icon { font-size: 28px; }
+    .publish-cta-text { flex: 1; }
+    .publish-cta-text h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .publish-cta-text p { font-size: 12px; color: #666; }
+    .publish-cta-platforms { display: flex; gap: 8px; }
+    .platform-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #1e2029; border: 1px solid #2a2c37;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; cursor: pointer; transition: border-color 0.2s;
     }
-    .stat-box .stat-label {
-      font-size: 13px;
-      color: #666;
-      margin-top: 4px;
+    .platform-icon:hover { border-color: #E8562A; }
+
+    /* ===== CONTENT PLAN ===== */
+    .cp-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .cp-header h3 { font-size: 18px; font-weight: 700; color: #fff; }
+    .btn-generate {
+      padding: 10px 20px; border-radius: 10px; border: none;
+      background: #E8562A; color: #fff; font-size: 13px;
+      font-weight: 600; cursor: pointer; display: flex;
+      align-items: center; gap: 8px; transition: background 0.2s;
+    }
+    .btn-generate:hover { background: #d14a22; }
+
+    .cp-filters {
+      display: flex; gap: 8px; margin-bottom: 20px;
+    }
+    .cp-filter {
+      padding: 7px 14px; border-radius: 8px; border: 1px solid #23252e;
+      background: transparent; color: #8a8a96; font-size: 12px;
+      font-weight: 500; cursor: pointer; transition: all 0.15s;
+    }
+    .cp-filter:hover { border-color: #444; color: #ccc; }
+    .cp-filter.active { background: #E8562A15; border-color: #E8562A50; color: #E8562A; }
+
+    .cp-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      background: #16171d; border: 1px solid #23252e; border-radius: 14px;
+      overflow: hidden;
+    }
+    .cp-table thead th {
+      text-align: left; padding: 14px 18px; font-size: 11px;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      color: #555; border-bottom: 1px solid #23252e; background: #1a1b24;
+    }
+    .cp-table tbody td {
+      padding: 16px 18px; font-size: 13px; color: #c0c0c8;
+      border-bottom: 1px solid #1e2029;
+    }
+    .cp-table tbody tr:last-child td { border-bottom: none; }
+    .cp-table tbody tr { transition: background 0.1s; }
+    .cp-table tbody tr:hover { background: #1a1b24; }
+
+    .cp-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    }
+    .cp-status.draft { background: #2a2c37; color: #8a8a96; }
+    .cp-status.ready { background: #1a2e1a; color: #4ade80; }
+    .cp-status.scheduled { background: #1a2332; color: #4a9eff; }
+    .cp-status.published { background: #2e1a2e; color: #c084fc; }
+
+    .cp-score {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      font-size: 11px; font-weight: 700;
+    }
+    .cp-score.high { background: #1a2e1a; color: #4ade80; }
+    .cp-score.mid { background: #2e2a1a; color: #fbbf24; }
+    .cp-score.low { background: #2e1a1a; color: #f87171; }
+
+    .cp-keyword { color: #E8562A; font-weight: 500; }
+
+    /* ===== ANALYTICS ===== */
+    .analytics-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-bottom: 28px;
+    }
+    .analytics-card {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 12px; padding: 18px 20px;
+    }
+    .analytics-card-label { font-size: 12px; color: #666; margin-bottom: 8px; }
+    .analytics-card-value { font-size: 24px; font-weight: 700; color: #fff; }
+    .analytics-card-change { font-size: 11px; font-weight: 600; margin-top: 6px; }
+    .analytics-card-change.up { color: #4ade80; }
+    .analytics-card-change.down { color: #f87171; }
+    .analytics-card-change.neutral { color: #666; }
+
+    .chart-placeholder {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 14px; padding: 28px;
+      min-height: 300px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; margin-bottom: 24px;
+    }
+    .chart-placeholder svg { width: 48px; height: 48px; color: #333; margin-bottom: 12px; }
+    .chart-placeholder p { font-size: 13px; color: #555; }
+    .chart-placeholder .chart-bars {
+      display: flex; align-items: flex-end; gap: 8px;
+      height: 160px; margin-top: 20px;
+    }
+    .chart-bar {
+      width: 40px; border-radius: 6px 6px 0 0;
+      background: linear-gradient(to top, #E8562A40, #E8562A);
+      transition: height 0.5s;
+    }
+
+    /* ===== AUDIT ===== */
+    .audit-score-card {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 16px; padding: 32px; text-align: center;
+      margin-bottom: 24px;
+    }
+    .audit-score-circle {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 6px solid #23252e; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; margin: 0 auto 16px;
+      position: relative;
+    }
+    .audit-score-circle::after {
+      content: ''; position: absolute; inset: -6px;
+      border-radius: 50%; border: 6px solid transparent;
+      border-top-color: #E8562A; border-right-color: #E8562A;
+      transform: rotate(45deg);
+    }
+    .audit-score-number { font-size: 36px; font-weight: 800; color: #fff; }
+    .audit-score-max { font-size: 14px; color: #555; }
+    .audit-score-label { font-size: 14px; color: #fbbf24; font-weight: 600; }
+
+    .audit-categories {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 16px; margin-bottom: 24px;
+    }
+    .audit-cat {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 12px; padding: 20px;
+    }
+    .audit-cat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .audit-cat-title { font-size: 14px; font-weight: 600; color: #fff; }
+    .audit-cat-score { font-size: 13px; font-weight: 700; }
+    .audit-cat-score.good { color: #4ade80; }
+    .audit-cat-score.avg { color: #fbbf24; }
+    .audit-cat-score.bad { color: #f87171; }
+    .audit-bar { height: 6px; background: #23252e; border-radius: 3px; overflow: hidden; }
+    .audit-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+    .audit-bar-fill.good { background: #4ade80; }
+    .audit-bar-fill.avg { background: #fbbf24; }
+    .audit-bar-fill.bad { background: #f87171; }
+
+    .audit-issues {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 14px; overflow: hidden;
+    }
+    .audit-issue {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px; border-bottom: 1px solid #1e2029;
+      transition: background 0.1s;
+    }
+    .audit-issue:last-child { border-bottom: none; }
+    .audit-issue:hover { background: #1a1b24; }
+    .audit-issue-icon { font-size: 18px; }
+    .audit-issue-text { flex: 1; }
+    .audit-issue-title { font-size: 13px; font-weight: 500; color: #e1e1e6; }
+    .audit-issue-desc { font-size: 11px; color: #666; margin-top: 2px; }
+    .audit-issue-severity {
+      padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 600;
+    }
+    .severity-high { background: #2e1a1a; color: #f87171; }
+    .severity-medium { background: #2e2a1a; color: #fbbf24; }
+    .severity-low { background: #1a2332; color: #4a9eff; }
+
+    /* ===== SETTINGS ===== */
+    .settings-card {
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 14px; padding: 28px; margin-bottom: 20px;
+    }
+    .settings-card h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 20px; }
+    .settings-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; border-bottom: 1px solid #1e2029;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-label { font-size: 13px; color: #c0c0c8; }
+    .settings-value { font-size: 13px; color: #888; }
+    .btn-settings {
+      padding: 6px 14px; border-radius: 6px; border: 1px solid #23252e;
+      background: transparent; color: #ccc; font-size: 12px;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .btn-settings:hover { border-color: #E8562A; color: #E8562A; }
+    .btn-danger {
+      padding: 8px 18px; border-radius: 8px; border: 1px solid #f8717140;
+      background: #2e1a1a; color: #f87171; font-size: 12px;
+      font-weight: 600; cursor: pointer; transition: all 0.15s;
+    }
+    .btn-danger:hover { background: #3e1a1a; }
+
+    /* ===== EMPTY STATES ===== */
+    .empty-state {
+      text-align: center; padding: 60px 20px;
+      background: #16171d; border: 1px solid #23252e;
+      border-radius: 14px;
+    }
+    .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-state h3 { font-size: 16px; color: #fff; margin-bottom: 8px; }
+    .empty-state p { font-size: 13px; color: #666; max-width: 320px; margin: 0 auto 20px; }
+
+    /* ===== MOBILE ===== */
+    .mobile-topbar {
+      display: none; padding: 14px 16px;
+      background: #16171d; border-bottom: 1px solid #23252e;
+      align-items: center; justify-content: space-between;
+    }
+    .mobile-menu-btn {
+      width: 36px; height: 36px; border: none; background: transparent;
+      color: #fff; font-size: 20px; cursor: pointer;
+    }
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: #00000080; z-index: 99;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .mobile-topbar { display: flex; }
+      .main { margin-left: 0; }
+      .content { padding: 20px 16px; }
+      .topbar { padding: 12px 16px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .analytics-grid { grid-template-columns: repeat(2, 1fr); }
+      .audit-categories { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="dashboard-page">
-    <nav class="dashboard-nav">
-      <a href="index.html" class="navbar-logo">
-        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="28" height="28" rx="8" fill="#E8562A"/>
-          <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
-        </svg>
+  <div class="app">
+    <!-- Mobile top bar -->
+    <div class="mobile-topbar">
+      <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
+      <a href="index.html" class="sidebar-logo" style="padding:0">
+        <svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="#E8562A"/><path d="M8.5 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg>
         Nexora.ai
       </a>
-      <div class="dashboard-user">
-        <div class="dashboard-user-info">
-          <div class="dashboard-user-name" id="user-name">Chargement...</div>
-          <div class="dashboard-user-email" id="user-email"></div>
-        </div>
-        <div class="dashboard-avatar" id="user-avatar">?</div>
-        <button class="btn-logout" onclick="signOut()">Deconnexion</button>
+      <div style="width:36px"></div>
+    </div>
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo">
+        <svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="#E8562A"/><path d="M8.5 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg>
+        Nexora.ai
+      </a>
+
+      <div class="sidebar-site-selector" id="site-selector">
+        <div class="site-icon" id="site-icon">N</div>
+        <span class="site-url" id="site-url">Aucun site</span>
+        <span class="site-arrow">&#9662;</span>
       </div>
-    </nav>
 
-    <div class="dashboard-content">
-      <h1>Bienvenue sur Nexora</h1>
-      <p>Votre compte est actif. Votre visibilite en ligne va bientot decoller.</p>
+      <div class="sidebar-section">
+        <div class="sidebar-item active" data-section="overview" onclick="showSection('overview')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Vue d'ensemble
+        </div>
+        <div class="sidebar-item" data-section="content-plan" onclick="showSection('content-plan')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+          Plan de contenu
+          <span class="badge-count">5</span>
+        </div>
+        <div class="sidebar-item" data-section="analytics" onclick="showSection('analytics')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Analytics
+        </div>
+        <div class="sidebar-item" data-section="audit" onclick="showSection('audit')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Audit technique
+          <span class="badge-new">New</span>
+        </div>
+        <div class="sidebar-item" data-section="backlinks" onclick="showSection('backlinks')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          Backlinks
+        </div>
+      </div>
 
-      <div class="dashboard-card">
-        <h2>Votre activite</h2>
-        <div class="dashboard-stat">
-          <div class="stat-box">
-            <div class="stat-value">0</div>
-            <div class="stat-label">Pages publiees</div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Autre</div>
+        <div class="sidebar-item" data-section="settings" onclick="showSection('settings')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Parametres
+        </div>
+        <div class="sidebar-item" onclick="window.open('https://nexora.ai/help','_blank')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Centre d'aide
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user" onclick="showSection('settings')">
+          <div class="sidebar-user-avatar" id="sidebar-avatar">?</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name" id="sidebar-name">Chargement...</div>
+            <div class="sidebar-user-plan" id="sidebar-plan">Plan Free</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-value">0</div>
-            <div class="stat-label">Visiteurs</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <div class="topbar">
+        <div class="topbar-title" id="topbar-title">Vue d'ensemble</div>
+        <div class="topbar-actions">
+          <a href="select-plan.html" class="btn-upgrade">&#9889; Upgrade Pro</a>
+          <button class="btn-icon" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          </button>
+          <button class="btn-icon" title="Deconnexion" onclick="signOut()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- ===== OVERVIEW ===== -->
+        <div class="section active" id="section-overview">
+          <div class="welcome-banner">
+            <h2 id="welcome-msg">Bienvenue ! 👋</h2>
+            <p>Votre espace Nexora est pret. Consultez vos metriques, planifiez votre contenu et optimisez votre SEO.</p>
           </div>
-          <div class="stat-box">
-            <div class="stat-value">0</div>
-            <div class="stat-label">Recommandations</div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">LLM Visibility <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+                <span class="stat-card-badge">NEW</span>
+              </div>
+              <div class="stat-card-value">—— <span>%</span></div>
+              <div class="stat-card-sub stat-sub-empty">Pas encore de donnees</div>
+              <a class="stat-card-link">Plus de details &rarr;</a>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">Domain Rating</span>
+              </div>
+              <div class="stat-card-value">—— </div>
+              <div class="stat-card-sub stat-sub-empty">Analyse en cours...</div>
+              <a class="stat-card-link">Plus de details &rarr;</a>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">Health Score</span>
+              </div>
+              <div class="stat-card-value">0 <span>/100</span></div>
+              <div class="stat-card-sub stat-sub-success">Aucun probleme detecte</div>
+              <a class="stat-card-link">Plus de details &rarr;</a>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div class="reach-section">
+              <h3>Portee potentielle</h3>
+              <p class="reach-sub">Vos articles peuvent toucher des millions de personnes</p>
+              <div class="reach-languages" id="reach-languages">
+                <div class="reach-lang">
+                  <span class="reach-flag">🇫🇷</span>
+                  <span class="reach-lang-code">FR</span>
+                  <div class="reach-lang-bar"><div class="reach-lang-bar-fill" style="width:60%"></div></div>
+                  <span class="reach-lang-value">Portee : 430M</span>
+                </div>
+                <div class="reach-lang">
+                  <span class="reach-flag">🇺🇸</span>
+                  <span class="reach-lang-code">US</span>
+                  <div class="reach-lang-bar"><div class="reach-lang-bar-fill" style="width:95%"></div></div>
+                  <span class="reach-lang-value">Portee : 2.3B</span>
+                </div>
+                <div class="reach-lang">
+                  <span class="reach-flag">🇪🇸</span>
+                  <span class="reach-lang-code">ES</span>
+                  <div class="reach-lang-bar"><div class="reach-lang-bar-fill" style="width:50%"></div></div>
+                  <span class="reach-lang-value">Portee : 800M</span>
+                </div>
+                <div class="reach-lang">
+                  <span class="reach-flag">🇩🇪</span>
+                  <span class="reach-lang-code">DE</span>
+                  <div class="reach-lang-bar"><div class="reach-lang-bar-fill" style="width:25%"></div></div>
+                  <span class="reach-lang-value">Portee : 230M</span>
+                </div>
+              </div>
+              <div class="reach-cta">+ Ajouter 3 langues et augmenter votre portee de 3.3B</div>
+            </div>
+
+            <div>
+              <div class="publish-cta">
+                <div class="publish-cta-icon">✨</div>
+                <div class="publish-cta-text">
+                  <h4>Publiez vos articles en autopilote</h4>
+                  <p>Connectez votre site pour publier automatiquement</p>
+                </div>
+                <div class="publish-cta-platforms">
+                  <div class="platform-icon" title="WordPress">&#127760;</div>
+                  <div class="platform-icon" title="Shopify">&#128722;</div>
+                  <div class="platform-icon" title="Wix">&#9998;</div>
+                </div>
+              </div>
+              <div class="stat-card" style="margin-top:16px">
+                <div class="stat-card-header">
+                  <span class="stat-card-label">Articles publies</span>
+                </div>
+                <div class="stat-card-value">0</div>
+                <div class="stat-card-sub stat-sub-warning">Commencez a publier pour gagner en visibilite</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== CONTENT PLAN ===== -->
+        <div class="section" id="section-content-plan">
+          <div class="cp-header">
+            <h3>Plan de contenu</h3>
+            <button class="btn-generate">&#10024; Generer des articles</button>
+          </div>
+
+          <div class="cp-filters">
+            <button class="cp-filter active">Tous (5)</button>
+            <button class="cp-filter">Brouillons (2)</button>
+            <button class="cp-filter">Prets (1)</button>
+            <button class="cp-filter">Planifies (1)</button>
+            <button class="cp-filter">Publies (1)</button>
+          </div>
+
+          <table class="cp-table">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Mot-cle</th>
+                <th>Score SEO</th>
+                <th>Statut</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:500;color:#fff;">10 strategies SEO pour booster votre trafic en 2026</td>
+                <td><span class="cp-keyword">strategie SEO 2026</span></td>
+                <td><span class="cp-score high">92</span></td>
+                <td><span class="cp-status published">&#9679; Publie</span></td>
+                <td style="color:#666">5 mar</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;color:#fff;">Comment optimiser vos meta descriptions</td>
+                <td><span class="cp-keyword">meta description SEO</span></td>
+                <td><span class="cp-score high">87</span></td>
+                <td><span class="cp-status ready">&#9679; Pret</span></td>
+                <td style="color:#666">8 mar</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;color:#fff;">Guide complet du maillage interne</td>
+                <td><span class="cp-keyword">maillage interne</span></td>
+                <td><span class="cp-score mid">74</span></td>
+                <td><span class="cp-status scheduled">&#9679; Planifie</span></td>
+                <td style="color:#666">12 mar</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;color:#fff;">Intelligence artificielle et creation de contenu</td>
+                <td><span class="cp-keyword">IA creation contenu</span></td>
+                <td><span class="cp-score mid">68</span></td>
+                <td><span class="cp-status draft">&#9679; Brouillon</span></td>
+                <td style="color:#666">—</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;color:#fff;">Les meilleurs outils d'analyse de backlinks</td>
+                <td><span class="cp-keyword">outils backlinks</span></td>
+                <td><span class="cp-score low">45</span></td>
+                <td><span class="cp-status draft">&#9679; Brouillon</span></td>
+                <td style="color:#666">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== ANALYTICS ===== -->
+        <div class="section" id="section-analytics">
+          <div class="analytics-grid">
+            <div class="analytics-card">
+              <div class="analytics-card-label">Visiteurs (30j)</div>
+              <div class="analytics-card-value">0</div>
+              <div class="analytics-card-change neutral">— Pas encore de donnees</div>
+            </div>
+            <div class="analytics-card">
+              <div class="analytics-card-label">Impressions Google</div>
+              <div class="analytics-card-value">0</div>
+              <div class="analytics-card-change neutral">— Connectez Search Console</div>
+            </div>
+            <div class="analytics-card">
+              <div class="analytics-card-label">Mots-cles positionnes</div>
+              <div class="analytics-card-value">0</div>
+              <div class="analytics-card-change neutral">— Analyse en attente</div>
+            </div>
+            <div class="analytics-card">
+              <div class="analytics-card-label">CTR moyen</div>
+              <div class="analytics-card-value">— %</div>
+              <div class="analytics-card-change neutral">— Pas de donnees</div>
+            </div>
+          </div>
+
+          <div class="chart-placeholder">
+            <p style="font-size:15px;color:#fff;font-weight:600;margin-bottom:8px;">Trafic organique</p>
+            <p>Les donnees apparaitront une fois votre site connecte</p>
+            <div class="chart-bars">
+              <div class="chart-bar" style="height:20%"></div>
+              <div class="chart-bar" style="height:35%"></div>
+              <div class="chart-bar" style="height:25%"></div>
+              <div class="chart-bar" style="height:50%"></div>
+              <div class="chart-bar" style="height:40%"></div>
+              <div class="chart-bar" style="height:65%"></div>
+              <div class="chart-bar" style="height:55%"></div>
+              <div class="chart-bar" style="height:80%"></div>
+              <div class="chart-bar" style="height:70%"></div>
+              <div class="chart-bar" style="height:90%"></div>
+              <div class="chart-bar" style="height:85%"></div>
+              <div class="chart-bar" style="height:100%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== AUDIT ===== -->
+        <div class="section" id="section-audit">
+          <div class="audit-score-card">
+            <div class="audit-score-circle">
+              <div class="audit-score-number">0</div>
+              <div class="audit-score-max">/100</div>
+            </div>
+            <div class="audit-score-label">En attente d'analyse</div>
+            <p style="font-size:13px;color:#666;margin-top:8px;">Lancez un audit pour analyser votre site</p>
+            <button class="btn-generate" style="margin:20px auto 0;display:inline-flex;">&#128269; Lancer l'audit SEO</button>
+          </div>
+
+          <div class="audit-categories">
+            <div class="audit-cat">
+              <div class="audit-cat-header">
+                <span class="audit-cat-title">Performance</span>
+                <span class="audit-cat-score avg">—</span>
+              </div>
+              <div class="audit-bar"><div class="audit-bar-fill avg" style="width:0%"></div></div>
+            </div>
+            <div class="audit-cat">
+              <div class="audit-cat-header">
+                <span class="audit-cat-title">SEO On-page</span>
+                <span class="audit-cat-score avg">—</span>
+              </div>
+              <div class="audit-bar"><div class="audit-bar-fill avg" style="width:0%"></div></div>
+            </div>
+            <div class="audit-cat">
+              <div class="audit-cat-header">
+                <span class="audit-cat-title">Accessibilite</span>
+                <span class="audit-cat-score avg">—</span>
+              </div>
+              <div class="audit-bar"><div class="audit-bar-fill avg" style="width:0%"></div></div>
+            </div>
+            <div class="audit-cat">
+              <div class="audit-cat-header">
+                <span class="audit-cat-title">Contenu</span>
+                <span class="audit-cat-score avg">—</span>
+              </div>
+              <div class="audit-bar"><div class="audit-bar-fill avg" style="width:0%"></div></div>
+            </div>
+          </div>
+
+          <div class="audit-issues">
+            <div class="audit-issue">
+              <span class="audit-issue-icon">&#9888;&#65039;</span>
+              <div class="audit-issue-text">
+                <div class="audit-issue-title">Meta descriptions manquantes</div>
+                <div class="audit-issue-desc">3 pages n'ont pas de meta description definie</div>
+              </div>
+              <span class="audit-issue-severity severity-high">Critique</span>
+            </div>
+            <div class="audit-issue">
+              <span class="audit-issue-icon">&#9888;&#65039;</span>
+              <div class="audit-issue-text">
+                <div class="audit-issue-title">Images sans attribut alt</div>
+                <div class="audit-issue-desc">12 images n'ont pas de texte alternatif</div>
+              </div>
+              <span class="audit-issue-severity severity-medium">Moyen</span>
+            </div>
+            <div class="audit-issue">
+              <span class="audit-issue-icon">&#128712;</span>
+              <div class="audit-issue-text">
+                <div class="audit-issue-title">Temps de chargement lent</div>
+                <div class="audit-issue-desc">2 pages chargent en plus de 3 secondes</div>
+              </div>
+              <span class="audit-issue-severity severity-medium">Moyen</span>
+            </div>
+            <div class="audit-issue">
+              <span class="audit-issue-icon">&#128161;</span>
+              <div class="audit-issue-text">
+                <div class="audit-issue-title">Sitemap.xml absent</div>
+                <div class="audit-issue-desc">Aucun sitemap detecte sur votre site</div>
+              </div>
+              <span class="audit-issue-severity severity-low">Info</span>
+            </div>
+            <div class="audit-issue">
+              <span class="audit-issue-icon">&#128161;</span>
+              <div class="audit-issue-text">
+                <div class="audit-issue-title">Robots.txt a optimiser</div>
+                <div class="audit-issue-desc">Le fichier robots.txt pourrait etre ameliore</div>
+              </div>
+              <span class="audit-issue-severity severity-low">Info</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== BACKLINKS ===== -->
+        <div class="section" id="section-backlinks">
+          <div class="empty-state">
+            <div class="empty-state-icon">&#128279;</div>
+            <h3>Backlinks</h3>
+            <p>Analysez le profil de liens de votre site et decouvrez de nouvelles opportunites</p>
+            <button class="btn-generate">&#128270; Analyser les backlinks</button>
+          </div>
+        </div>
+
+        <!-- ===== SETTINGS ===== -->
+        <div class="section" id="section-settings">
+          <div class="settings-card">
+            <h3>&#128100; Compte</h3>
+            <div class="settings-row">
+              <span class="settings-label">Email</span>
+              <span class="settings-value" id="settings-email">—</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Nom</span>
+              <span class="settings-value" id="settings-name">—</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Plan actuel</span>
+              <span class="settings-value" id="settings-plan-display">
+                <a href="select-plan.html" class="btn-upgrade" style="font-size:11px;padding:5px 12px;">Upgrade</a>
+              </span>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3>&#127760; Site web</h3>
+            <div class="settings-row">
+              <span class="settings-label">URL du site</span>
+              <span class="settings-value" id="settings-site-url">—</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Langue principale</span>
+              <span class="settings-value" id="settings-lang">—</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Secteur</span>
+              <span class="settings-value" id="settings-sector">—</span>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3>&#127912; Marque</h3>
+            <div class="settings-row">
+              <span class="settings-label">Couleur primaire</span>
+              <span class="settings-value" id="settings-color">
+                <span style="display:inline-block;width:20px;height:20px;border-radius:4px;background:#E8562A;vertical-align:middle;"></span>
+              </span>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <h3>&#9888;&#65039; Zone dangereuse</h3>
+            <div class="settings-row">
+              <span class="settings-label">Deconnexion</span>
+              <button class="btn-danger" onclick="signOut()">Se deconnecter</button>
+            </div>
           </div>
         </div>
       </div>
@@ -175,14 +905,76 @@
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="js/auth.js"></script>
   <script>
+    // === Auth & User Data ===
     requireAuth().then(function(user) {
-      if (user) {
-        var name = user.user_metadata.full_name || user.email.split('@')[0];
-        document.getElementById('user-name').textContent = name;
-        document.getElementById('user-email').textContent = user.email;
-        document.getElementById('user-avatar').textContent = name.charAt(0).toUpperCase();
+      if (!user) return;
+      var name = user.user_metadata.full_name || user.email.split('@')[0];
+      document.getElementById('welcome-msg').textContent = 'Bienvenue, ' + name + ' ! \uD83D\uDC4B';
+      document.getElementById('sidebar-name').textContent = name;
+      document.getElementById('sidebar-avatar').textContent = name.charAt(0).toUpperCase();
+      document.getElementById('settings-email').textContent = user.email;
+      document.getElementById('settings-name').textContent = name;
+
+      // Load onboarding data
+      var raw = localStorage.getItem('nexora_onboarding_data');
+      if (raw) {
+        try {
+          var data = JSON.parse(raw);
+          if (data.siteUrl) {
+            document.getElementById('site-url').textContent = data.siteUrl.replace(/^https?:\/\//, '');
+            document.getElementById('site-icon').textContent = data.siteUrl.replace(/^https?:\/\//, '').charAt(0).toUpperCase();
+            document.getElementById('settings-site-url').textContent = data.siteUrl;
+          }
+          if (data.language) document.getElementById('settings-lang').textContent = data.language;
+          if (data.description) document.getElementById('settings-sector').textContent = data.description.substring(0, 60) + '...';
+          if (data.brandColor) {
+            document.querySelector('#settings-color span').style.background = data.brandColor;
+          }
+        } catch(e) {}
+      }
+
+      // Load plan
+      var plan = localStorage.getItem('nexora_selected_plan');
+      if (plan) {
+        document.getElementById('sidebar-plan').textContent = 'Plan ' + plan.charAt(0).toUpperCase() + plan.slice(1);
+        if (plan !== 'free') {
+          var upgradeBtn = document.querySelector('.btn-upgrade');
+          if (upgradeBtn) upgradeBtn.style.display = 'none';
+        }
       }
     });
+
+    // === Section Navigation ===
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+      document.querySelectorAll('.sidebar-item').forEach(function(s) { s.classList.remove('active'); });
+
+      var section = document.getElementById('section-' + id);
+      if (section) section.classList.add('active');
+
+      var item = document.querySelector('.sidebar-item[data-section="' + id + '"]');
+      if (item) item.classList.add('active');
+
+      var titles = {
+        'overview': 'Vue d\'ensemble',
+        'content-plan': 'Plan de contenu',
+        'analytics': 'Analytics',
+        'audit': 'Audit technique',
+        'backlinks': 'Backlinks',
+        'settings': 'Parametres'
+      };
+      document.getElementById('topbar-title').textContent = titles[id] || id;
+
+      // Close mobile sidebar
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('open');
+    }
+
+    // === Mobile Sidebar ===
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('open');
+    }
   </script>
 </body>
 </html>
