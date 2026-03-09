@@ -375,24 +375,29 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
   margin-left: 4px; vertical-align: middle; font-weight: 700;
 }
 
-/* Hero badge */
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  margin: 0 auto 24px;
-  padding: 8px 20px 8px 12px;
-  border-radius: 50px;
-  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+/* Hero proof */
+.hero-proof {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 auto 28px;
   width: fit-content;
 }
-.hero-badge-stars {
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: #FBBF24;
-  line-height: 1;
+.hero-proof-avatars {
+  display: flex;
+}
+.hero-proof-avatars img {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid rgba(20,20,20,0.9);
+  margin-left: -10px;
+  object-fit: cover;
+}
+.hero-proof-avatars img:first-child { margin-left: 0; }
+.hero-proof-text {
+  display: flex; flex-direction: column; gap: 2px;
+  font-size: 13px; color: rgba(255,255,255,0.55);
+}
+.hero-proof-text strong { color: rgba(255,255,255,0.9); }
+.hero-proof-stars {
+  font-size: 11px; letter-spacing: 1px; color: #FBBF24; line-height: 1;
 }
 
 /* ========== TESTIMONIALS V2 — MARQUEE ========== */
