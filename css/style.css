@@ -3212,6 +3212,20 @@ body {
 
 /* ========== PRODUCT DEMO ========== */
 .demo-wrapper { max-width: 800px; margin: 0 auto; }
+/* Demo tabs with hand pointer */
+.demo-tabs-wrap { position: relative; display: inline-block; width: 100%; }
+.demo-hand {
+  position: absolute; top: 46px; left: 12px;
+  font-size: 20px; z-index: 10; pointer-events: none;
+  animation: handPoint 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+  transition: opacity 0.4s ease;
+}
+.demo-tabs-wrap.hand-hidden .demo-hand { opacity: 0; pointer-events: none; }
+@keyframes handPoint {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(8px) rotate(5deg); }
+}
 .demo-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
 .demo-tab {
   display: flex; align-items: center; gap: 8px; padding: 10px 20px;

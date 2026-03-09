@@ -363,6 +363,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var tabs = document.querySelectorAll('.demo-tab');
   var panels = document.querySelectorAll('.demo-panel');
   if (!tabs.length) return;
+  var handWrap = document.querySelector('.demo-tabs-wrap');
   tabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
       var target = this.getAttribute('data-tab');
@@ -371,6 +372,8 @@ document.addEventListener('DOMContentLoaded', function () {
       panels.forEach(function(p) { p.classList.remove('active'); });
       var targetPanel = document.querySelector('.demo-panel[data-panel="' + target + '"]');
       if (targetPanel) targetPanel.classList.add('active');
+      // Hide the pointing hand after first click
+      if (handWrap) handWrap.classList.add('hand-hidden');
     });
   });
 })();
