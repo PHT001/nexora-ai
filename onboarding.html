@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuration — Nexora.ai</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .onboarding-topbar {
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Progress */
+    .onboarding-progress {
+      margin-bottom: 40px;
+    }
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .progress-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #999;
+      background: #fff;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .progress-dot.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #FFF0EB;
+    }
+    .progress-dot.completed {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+    .progress-line {
+      flex: 1;
+      height: 2px;
+      background: #eee;
+      transition: background 0.3s;
+    }
+    .progress-line.completed {
+      background: var(--accent);
+    }
+    .progress-label {
+      font-size: 13px;
+      color: #999;
+    }
+
+    /* Steps */
+    .onboarding-step {
+      display: none;
+    }
+    .onboarding-step.active {
+      display: block;
+      animation: stepIn 0.4s ease;
+    }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .step-num {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    .optional-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: #999;
+      background: #f5f5f5;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .onboarding-step h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+    }
+    .step-desc {
+      font-size: 15px;
+      color: #888;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #555; }
+
+    /* Textarea */
+    .ob-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      box-sizing: border-box;
+      min-height: 100px;
+    }
+    .ob-textarea:focus { border-color: var(--accent); }
+
+    /* Select */
+    .ob-select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      background: #fff;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .ob-select:focus { border-color: var(--accent); }
+
+    /* Audience badge */
+    .audience-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #FFF0EB;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #333;
+      margin-top: 12px;
+      margin-bottom: 24px;
+    }
+    .audience-badge strong { color: var(--accent); }
+
+    /* Tags input */
+    .tags-wrapper {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px 12px;
+      transition: border-color 0.2s;
+    }
+    .tags-wrapper:focus-within { border-color: var(--accent); }
+    .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .tags-list:empty { margin-bottom: 0; }
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0f0f0;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .tag-x {
+      cursor: pointer;
+      color: #999;
+      font-size: 15px;
+      line-height: 1;
+    }
+    .tag-x:hover { color: #e53e3e; }
+    .tags-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .tags-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      padding: 6px 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .tag-add {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
+    }
+    .tag-add:hover { opacity: 0.85; }
+
+    /* AI generate button */
+    .ai-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: #FFF0EB;
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .ai-btn:hover { background: #ffe5dc; }
+
+    /* Color picker row */
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .color-row input[type="color"] {
+      width: 48px;
+      height: 48px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 4px;
+      cursor: pointer;
+      background: #fff;
+    }
+    .color-hex {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: monospace;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .color-hex:focus { border-color: var(--accent); }
+
+    /* Skip button */
+    .skip-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      background: none;
+      border: none;
+      color: #999;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.2s;
+    }
+    .skip-btn:hover { color: #555; }
+
+    /* Right side illustration card */
+    .ob-card {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 340px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: opacity 0.3s;
+    }
+    .ob-card-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .ob-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+    .ob-card p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* Field error */
+    .field-error {
+      font-size: 13px;
+      color: #e53e3e;
+      margin-top: 6px;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    .shake { animation: shake 0.4s ease; }
+
+    @media (max-width: 768px) {
+      .onboarding-topbar { padding: 16px 20px; }
+      .progress-dot { width: 26px; height: 26px; font-size: 11px; }
+      .onboarding-step h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal top bar -->
+  <div class="onboarding-topbar">
+    <a href="index.html" class="navbar-logo">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="8" fill="#E8562A"/>
+        <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+      </svg>
+      Nexora.ai
+    </a>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="auth-page" style="display:none;">
+
+    <!-- Left: Form -->
+    <div class="auth-left" style="max-width:640px;">
+
+      <!-- Progress bar -->
+      <div class="onboarding-progress">
+        <div class="progress-steps">
+          <div class="progress-dot active">1</div>
+          <div class="progress-line"></div>
+          <div class="progress-dot">2</div>
+          <div class="progress-line"></div>
+          <div class="progress-dot">3</div>
+          <div class="progress-line"></div>
+          <div class="progress-dot">4</div>
+          <div class="progress-line"></div>
+          <div class="progress-dot">5</div>
+        </div>
+        <div class="progress-label">Etape <span id="step-cur">1</span> sur 5</div>
+      </div>
+
+      <!-- Step 1: Website URL -->
+      <div class="onboarding-step active" data-step="1">
+        <div class="step-badge"><span class="step-num">ETAPE 1</span></div>
+        <h1>Entrez l'URL de votre site</h1>
+        <p class="step-desc">Nous allons analyser votre site pour personnaliser votre experience.</p>
+        <div class="auth-field">
+          <label for="site-url">URL du site</label>
+          <input type="url" id="site-url" placeholder="https://www.votresite.com">
+        </div>
+        <div id="err-1" class="field-error" style="display:none;"></div>
+        <button class="auth-submit" onclick="nextStep(1)">Continuer &rarr;</button>
+      </div>
+
+      <!-- Step 2: Language -->
+      <div class="onboarding-step" data-step="2">
+        <span class="back-link" onclick="goBack(2)">&larr; Retour</span>
+        <div class="step-badge"><span class="step-num">ETAPE 2</span></div>
+        <h1>Choisissez votre langue</h1>
+        <p class="step-desc">Selectionnez la langue de vos articles selon votre audience cible.</p>
+        <div class="auth-field">
+          <label for="lang">Langue</label>
+          <select id="lang" class="ob-select" onchange="updateAudience()">
+            <option value="fr" data-audience="67">&#127467;&#127479; Francais</option>
+            <option value="en" data-audience="400">&#127468;&#127463; Anglais</option>
+            <option value="es" data-audience="500">&#127466;&#127480; Espagnol</option>
+            <option value="de" data-audience="100">&#127465;&#127466; Allemand</option>
+            <option value="it" data-audience="60">&#127470;&#127481; Italien</option>
+            <option value="pt" data-audience="250">&#127477;&#127481; Portugais</option>
+            <option value="nl" data-audience="25">&#127475;&#127473; Neerlandais</option>
+            <option value="ar" data-audience="420">&#127480;&#127462; Arabe</option>
+          </select>
+        </div>
+        <div class="audience-badge">
+          &#10004; Audience potentielle : <strong><span id="aud-count">67</span> millions</strong>
+        </div>
+        <button class="auth-submit" onclick="nextStep(2)">Continuer &rarr;</button>
+      </div>
+
+      <!-- Step 3: Business description -->
+      <div class="onboarding-step" data-step="3">
+        <span class="back-link" onclick="goBack(3)">&larr; Retour</span>
+        <div class="step-badge"><span class="step-num">ETAPE 3</span></div>
+        <h1>Decrivez votre activite</h1>
+        <p class="step-desc">Aidez-nous a comprendre votre entreprise pour generer du contenu pertinent.</p>
+        <div class="auth-field">
+          <label>Description</label>
+          <textarea id="biz-desc" class="ob-textarea" placeholder="Ex: Nous sommes un salon de coiffure a Lyon, specialise dans la coloration bio..."></textarea>
+          <button class="ai-btn" onclick="aiGenerate()">&#10024; Generer avec l'IA</button>
+        </div>
+        <div class="auth-field">
+          <label>Audience cible <span style="color:#999;font-weight:400;">(minimum 2)</span></label>
+          <div class="tags-wrapper">
+            <div class="tags-list" id="aud-tags"></div>
+            <div class="tags-row">
+              <input type="text" id="aud-input" class="tags-input" placeholder="Ex: Entrepreneurs, PME en France...">
+              <button class="tag-add" onclick="addTag('aud')">+</button>
+            </div>
+          </div>
+        </div>
+        <div id="err-3" class="field-error" style="display:none;"></div>
+        <button class="auth-submit" onclick="nextStep(3)">Continuer &rarr;</button>
+      </div>
+
+      <!-- Step 4: Competitors (Optional) -->
+      <div class="onboarding-step" data-step="4">
+        <span class="back-link" onclick="goBack(4)">&larr; Retour</span>
+        <div class="step-badge">
+          <span class="step-num">ETAPE 4</span>
+          <span class="optional-tag">Optionnel</span>
+        </div>
+        <h1>Selectionnez vos concurrents</h1>
+        <p class="step-desc">Ajoutez les domaines de vos concurrents pour une analyse comparative.</p>
+        <div class="auth-field">
+          <label>Domaines concurrents</label>
+          <div class="tags-wrapper">
+            <div class="tags-list" id="comp-tags"></div>
+            <div class="tags-row">
+              <input type="text" id="comp-input" class="tags-input" placeholder="Ex: concurrent.com">
+              <button class="tag-add" onclick="addTag('comp')">+</button>
+            </div>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="nextStep(4)">Continuer &rarr;</button>
+        <button class="skip-btn" onclick="skipTo(5)">Passer cette etape</button>
+      </div>
+
+      <!-- Step 5: Brand (Optional) -->
+      <div class="onboarding-step" data-step="5">
+        <span class="back-link" onclick="goBack(5)">&larr; Retour</span>
+        <div class="step-badge">
+          <span class="step-num">ETAPE 5</span>
+          <span class="optional-tag">Optionnel</span>
+        </div>
+        <h1>Parametres de marque</h1>
+        <p class="step-desc">Personnalisez l'apparence de votre contenu genere.</p>
+        <div class="auth-field">
+          <label for="brand-hex">Couleur de marque</label>
+          <div class="color-row">
+            <input type="color" id="brand-picker" value="#000000">
+            <span style="font-size:18px;color:#999;">#</span>
+            <input type="text" id="brand-hex" class="color-hex" placeholder="000000" value="000000" maxlength="6">
+          </div>
+        </div>
+        <div class="auth-field">
+          <label for="article-url">URL d'un article exemple <span style="color:#999;font-weight:400;">(optionnel)</span></label>
+          <input type="url" id="article-url" placeholder="https://www.votresite.com/blog/article">
+        </div>
+        <button class="auth-submit" onclick="finish()">Terminer la configuration &rarr;</button>
+        <button class="skip-btn" onclick="finish()">Passer et terminer</button>
+      </div>
+
+    </div>
+
+    <!-- Right: Decorative -->
+    <div class="auth-right">
+      <div class="network-bg">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="net" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="4" fill="#ddd"/><circle cx="100" cy="40" r="3" fill="#ccc"/>
+              <circle cx="180" cy="20" r="5" fill="#ddd"/><circle cx="60" cy="100" r="3" fill="#ccc"/>
+              <circle cx="140" cy="90" r="4" fill="#ddd"/><circle cx="40" cy="170" r="5" fill="#ddd"/>
+              <circle cx="120" cy="160" r="3" fill="#ccc"/><circle cx="180" cy="140" r="4" fill="#ddd"/>
+              <circle cx="160" cy="180" r="3" fill="#ccc"/><circle cx="80" cy="60" r="3" fill="#ddd"/>
+              <line x1="20" y1="20" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="100" y1="40" x2="180" y2="20" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="100" y1="40" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="20" y1="20" x2="60" y2="100" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="60" y1="100" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="140" y1="90" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="60" y1="100" x2="40" y2="170" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="40" y1="170" x2="120" y2="160" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="120" y1="160" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="120" y1="160" x2="160" y2="180" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="80" y1="60" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="80" y1="60" x2="20" y2="20" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="80" y1="60" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="180" y1="20" x2="180" y2="140" stroke="#ddd" stroke-width="0.5"/>
+              <line x1="40" y1="170" x2="160" y2="180" stroke="#ddd" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#net)"/>
+        </svg>
+      </div>
+      <div class="ob-card" id="ob-card">
+        <div class="ob-card-icon">&#127760;</div>
+        <h3>Analyse de votre site</h3>
+        <p>Nous allons scanner votre site pour comprendre votre positionnement actuel.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // --- Auth Guard ---
+    requireAuth().then(function(user) {
+      if (!user) return;
+      if (localStorage.getItem('nexora_onboarding_complete') === 'true') {
+        window.location.href = 'dashboard.html';
+        return;
+      }
+      document.querySelector('.auth-page').style.display = 'flex';
+    });
+
+    // --- State ---
+    var cur = 1;
+    var data = {
+      url: '', lang: 'fr', desc: '',
+      audience: [], competitors: [],
+      color: '#000000', articleUrl: ''
+    };
+
+    var cards = [
+      { icon: '&#127760;', t: 'Analyse de votre site', d: 'Nous allons scanner votre site pour comprendre votre positionnement actuel.' },
+      { icon: '&#127758;', t: 'Portee internationale', d: 'Ciblez l\'audience dans la langue de votre choix.' },
+      { icon: '&#9997;&#65039;', t: 'Contenu sur mesure', d: 'Notre IA generera du contenu adapte a votre activite.' },
+      { icon: '&#128269;', t: 'Analyse concurrentielle', d: 'Comprenez ce que font vos concurrents pour les depasser.' },
+      { icon: '&#127912;', t: 'Votre identite', d: 'Chaque contenu refletera l\'image de votre marque.' }
+    ];
+
+    // --- Navigation ---
+    function showStep(n) {
+      document.querySelectorAll('.onboarding-step').forEach(function(el) { el.classList.remove('active'); });
+      var s = document.querySelector('[data-step="' + n + '"]');
+      if (s) s.classList.add('active');
+      cur = n;
+      document.getElementById('step-cur').textContent = n;
+
+      var dots = document.querySelectorAll('.progress-dot');
+      var lines = document.querySelectorAll('.progress-line');
+      dots.forEach(function(d, i) {
+        d.classList.remove('active', 'completed');
+        if (i + 1 < n) d.classList.add('completed');
+        else if (i + 1 === n) d.classList.add('active');
+      });
+      lines.forEach(function(l, i) {
+        l.classList.toggle('completed', i + 1 < n);
+      });
+
+      var c = cards[n - 1];
+      var card = document.getElementById('ob-card');
+      card.style.opacity = '0';
+      setTimeout(function() {
+        card.innerHTML = '<div class="ob-card-icon">' + c.icon + '</div><h3>' + c.t + '</h3><p>' + c.d + '</p>';
+        card.style.opacity = '1';
+      }, 200);
+    }
+
+    function nextStep(from) {
+      hideErr(from);
+      if (from === 1) {
+        var u = document.getElementById('site-url').value.trim();
+        if (!u) { showErr(1, 'Veuillez entrer l\'URL de votre site.'); shakeEl('site-url'); return; }
+        data.url = u;
+      }
+      if (from === 2) {
+        data.lang = document.getElementById('lang').value;
+      }
+      if (from === 3) {
+        var d = document.getElementById('biz-desc').value.trim();
+        if (!d) { showErr(3, 'Veuillez decrire votre activite.'); shakeEl('biz-desc'); return; }
+        if (data.audience.length < 2) { showErr(3, 'Ajoutez au moins 2 audiences cibles.'); return; }
+        data.desc = d;
+      }
+      showStep(from + 1);
+    }
+
+    function goBack(from) { showStep(from - 1); }
+    function skipTo(n) { showStep(n); }
+
+    function finish() {
+      data.color = '#' + document.getElementById('brand-hex').value;
+      data.articleUrl = document.getElementById('article-url').value.trim();
+      localStorage.setItem('nexora_onboarding_data', JSON.stringify(data));
+      localStorage.setItem('nexora_onboarding_complete', 'true');
+      window.location.href = 'dashboard.html';
+    }
+
+    // --- Errors ---
+    function showErr(step, msg) {
+      var el = document.getElementById('err-' + step);
+      if (el) { el.textContent = msg; el.style.display = 'block'; }
+    }
+    function hideErr(step) {
+      var el = document.getElementById('err-' + step);
+      if (el) { el.textContent = ''; el.style.display = 'none'; }
+    }
+    function shakeEl(id) {
+      var el = document.getElementById(id);
+      el.style.borderColor = '#e53e3e';
+      el.classList.add('shake');
+      setTimeout(function() { el.classList.remove('shake'); el.style.borderColor = ''; }, 500);
+      el.focus();
+    }
+
+    // --- Tags ---
+    function addTag(type) {
+      var inputId = type === 'aud' ? 'aud-input' : 'comp-input';
+      var key = type === 'aud' ? 'audience' : 'competitors';
+      var input = document.getElementById(inputId);
+      var v = input.value.trim();
+      if (!v) return;
+      if (data[key].indexOf(v) !== -1) return;
+      data[key].push(v);
+      renderTags(type);
+      input.value = '';
+      input.focus();
+    }
+
+    function removeTag(type, i) {
+      var key = type === 'aud' ? 'audience' : 'competitors';
+      data[key].splice(i, 1);
+      renderTags(type);
+    }
+
+    function renderTags(type) {
+      var key = type === 'aud' ? 'audience' : 'competitors';
+      var cId = type === 'aud' ? 'aud-tags' : 'comp-tags';
+      var container = document.getElementById(cId);
+      container.innerHTML = data[key].map(function(t, i) {
+        return '<span class="tag-pill">' + t + ' <span class="tag-x" onclick="removeTag(\'' + type + '\',' + i + ')">&times;</span></span>';
+      }).join('');
+    }
+
+    // Enter key on tag inputs
+    document.getElementById('aud-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); addTag('aud'); }
+    });
+    document.getElementById('comp-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); addTag('comp'); }
+    });
+
+    // --- Language audience ---
+    function updateAudience() {
+      var sel = document.getElementById('lang');
+      var aud = sel.options[sel.selectedIndex].getAttribute('data-audience');
+      document.getElementById('aud-count').textContent = aud;
+    }
+
+    // --- Color sync ---
+    document.getElementById('brand-picker').addEventListener('input', function() {
+      document.getElementById('brand-hex').value = this.value.replace('#', '');
+    });
+    document.getElementById('brand-hex').addEventListener('input', function() {
+      var v = this.value;
+      if (/^[0-9A-Fa-f]{6}$/.test(v)) {
+        document.getElementById('brand-picker').value = '#' + v;
+      }
+    });
+
+    // --- AI Generate (placeholder) ---
+    function aiGenerate() {
+      var btn = document.querySelector('.ai-btn');
+      btn.textContent = '⏳ Generation en cours...';
+      btn.disabled = true;
+      setTimeout(function() {
+        btn.innerHTML = '&#10024; Generer avec l\'IA';
+        btn.disabled = false;
+        document.getElementById('biz-desc').focus();
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

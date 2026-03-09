@@ -9,7 +9,7 @@ var _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 async function signInWithGoogle() {
   var { error } = await _sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: window.location.origin + '/dashboard.html' }
+    options: { redirectTo: window.location.origin + '/onboarding.html' }
   });
   if (error) {
     console.error('Google sign-in error:', error.message);
@@ -21,7 +21,7 @@ async function signUpWithEmail(email, password) {
   var { data, error } = await _sb.auth.signUp({
     email: email,
     password: password,
-    options: { emailRedirectTo: window.location.origin + '/dashboard.html' }
+    options: { emailRedirectTo: window.location.origin + '/onboarding.html' }
   });
   if (error) {
     console.error('Email sign-up error:', error.message);
@@ -41,7 +41,8 @@ async function signInWithEmail(email, password) {
     showAuthError(error.message);
     return false;
   }
-  window.location.href = 'dashboard.html';
+  var dest = localStorage.getItem('nexora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
+  window.location.href = dest;
   return data;
 }
 
@@ -83,7 +84,8 @@ _sb.auth.onAuthStateChange(function(event, session) {
   if (event === 'SIGNED_IN' && session) {
     var page = window.location.pathname;
     if (page.includes('signup.html') || page.includes('signin.html')) {
-      window.location.href = 'dashboard.html';
+      var dest = localStorage.getItem('nexora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
+      window.location.href = dest;
     }
   }
 });
