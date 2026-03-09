@@ -271,6 +271,41 @@
     .ai-gen-info.show { display: flex; }
     .ai-gen-info.error { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 
+    /* Audience suggestions */
+    .suggestions-wrap {
+      display: none;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #eee;
+      animation: stepIn 0.3s ease;
+    }
+    .suggestions-wrap.show { display: flex; }
+    .suggestions-label {
+      width: 100%;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 2px;
+      font-weight: 500;
+    }
+    .suggestion-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .suggestion-pill:hover { border-color: var(--accent); color: var(--accent); background: #FFF0EB; }
+    .suggestion-pill .s-plus { color: var(--accent); font-weight: 600; font-size: 14px; }
+
     /* Color picker row */
     .color-row {
       display: flex;
@@ -603,8 +638,9 @@
             <div class="tags-list" id="aud-tags"></div>
             <div class="tags-row">
               <input type="text" id="aud-input" class="tags-input" placeholder="Ex: Entrepreneurs, PME en France...">
-              <button class="tag-add" onclick="addTag('aud')">+</button>
+              <button class="tag-add" onclick="handleAudAdd()">+</button>
             </div>
+            <div class="suggestions-wrap" id="aud-suggestions"></div>
           </div>
         </div>
         <div id="err-3" class="field-error" style="display:none;"></div>
@@ -923,12 +959,117 @@
       renderTags(type);
       input.value = '';
       input.focus();
+      // Refresh suggestions after adding a tag
+      if (type === 'aud') refreshSuggestions();
     }
 
     function removeTag(type, i) {
       var key = type === 'aud' ? 'audience' : 'competitors';
       data[key].splice(i, 1);
       renderTags(type);
+      if (type === 'aud') refreshSuggestions();
+    }
+
+    // --- Audience "+" button: add text OR show suggestions ---
+    function handleAudAdd() {
+      var input = document.getElementById('aud-input');
+      if (input.value.trim()) {
+        addTag('aud');
+      } else {
+        generateSuggestions();
+      }
+    }
+
+    function generateSuggestions() {
+      var wrap = document.getElementById('aud-suggestions');
+
+      // Build suggestions from site data + business description
+      var suggestions = [];
+      var desc = (document.getElementById('biz-desc').value || '').toLowerCase();
+      var siteTitle = (data.siteTitle || '').toLowerCase();
+      var siteDesc = (data.siteDesc || '').toLowerCase();
+      var combined = desc + ' ' + siteTitle + ' ' + siteDesc;
+
+      // Keyword-based audience mapping
+      var keywordMap = [
+        { kw: ['saas', 'logiciel', 'software', 'app', 'plateforme', 'platform', 'tool', 'outil'], tags: ['Startups SaaS', 'Product Managers', 'Equipes tech', 'Developpeurs'] },
+        { kw: ['ecommerce', 'e-commerce', 'boutique', 'shop', 'vente', 'produit', 'magasin', 'store'], tags: ['E-commercants', 'Proprietaires de boutiques', 'Acheteurs en ligne', 'Retailers'] },
+        { kw: ['sante', 'health', 'medical', 'docteur', 'patient', 'clinique', 'bien-etre', 'wellness'], tags: ['Professionnels de sante', 'Patients', 'Cliniques', 'Amateurs de bien-etre'] },
+        { kw: ['immobilier', 'real estate', 'logement', 'maison', 'appartement', 'property'], tags: ['Agents immobiliers', 'Investisseurs immobiliers', 'Acheteurs', 'Proprietaires'] },
+        { kw: ['restaurant', 'food', 'cuisine', 'traiteur', 'chef', 'repas', 'livraison'], tags: ['Restaurateurs', 'Foodies', 'Amateurs de cuisine', 'Gourmets'] },
+        { kw: ['fitness', 'sport', 'gym', 'coaching', 'entrainement', 'musculation', 'yoga'], tags: ['Sportifs', 'Coachs fitness', 'Salles de sport', 'Passionnes de bien-etre'] },
+        { kw: ['formation', 'cours', 'education', 'apprendre', 'learning', 'teach', 'school', 'universite'], tags: ['Etudiants', 'Formateurs', 'Professionnels en reconversion', 'Ecoles'] },
+        { kw: ['marketing', 'seo', 'publicite', 'ads', 'growth', 'contenu', 'content', 'digital'], tags: ['Marketeurs digitaux', 'Responsables SEO', 'Growth Hackers', 'Agences marketing'] },
+        { kw: ['finance', 'banque', 'investir', 'crypto', 'trading', 'comptable', 'argent'], tags: ['Investisseurs', 'Entrepreneurs', 'Comptables', 'Particuliers'] },
+        { kw: ['mode', 'fashion', 'vetement', 'style', 'textile', 'luxe', 'bijou'], tags: ['Passionnes de mode', 'Stylistes', 'Marques de vetements', 'Acheteurs premium'] },
+        { kw: ['voyage', 'travel', 'tourisme', 'hotel', 'vol', 'vacance', 'destination'], tags: ['Voyageurs', 'Tour-operateurs', 'Hotels', 'Digital nomads'] },
+        { kw: ['beauty', 'beaute', 'cosmetique', 'maquillage', 'skincare', 'cheveux', 'coiffure'], tags: ['Amateurs de beaute', 'Salons de coiffure', 'Estheticiennes', 'Influenceurs beaute'] },
+        { kw: ['baby', 'bebe', 'enfant', 'parent', 'maternite', 'famille', 'kid'], tags: ['Jeunes parents', 'Futurs parents', 'Familles', 'Professionnels de la petite enfance'] },
+        { kw: ['tech', 'ia', 'ai', 'intelligence artificielle', 'automation', 'robot', 'data'], tags: ['Entreprises tech', 'CTOs', 'Data Scientists', 'Early adopters'] },
+        { kw: ['juridique', 'avocat', 'droit', 'legal', 'contrat', 'loi'], tags: ['Avocats', 'Juristes', 'PME', 'Particuliers'] },
+        { kw: ['agence', 'agency', 'freelance', 'consultant', 'prestataire', 'service'], tags: ['PME et TPE', 'Directeurs marketing', 'Entrepreneurs solo', 'Freelances'] }
+      ];
+
+      // Match keywords
+      keywordMap.forEach(function(entry) {
+        entry.kw.forEach(function(k) {
+          if (combined.indexOf(k) !== -1) {
+            entry.tags.forEach(function(t) {
+              if (suggestions.indexOf(t) === -1 && data.audience.indexOf(t) === -1) {
+                suggestions.push(t);
+              }
+            });
+          }
+        });
+      });
+
+      // Fallback generic suggestions if nothing matched
+      if (suggestions.length === 0) {
+        var fallback = ['PME et startups', 'Entrepreneurs', 'Directeurs marketing', 'Freelances', 'E-commercants', 'Responsables digitaux'];
+        fallback.forEach(function(t) {
+          if (data.audience.indexOf(t) === -1) suggestions.push(t);
+        });
+      }
+
+      // Limit to 6 max
+      suggestions = suggestions.slice(0, 6);
+
+      // Render
+      if (suggestions.length === 0) {
+        wrap.classList.remove('show');
+        return;
+      }
+
+      wrap.innerHTML = '<div class="suggestions-label">&#128161; Suggestions basees sur votre site :</div>' +
+        suggestions.map(function(s) {
+          return '<span class="suggestion-pill" onclick="pickSuggestion(this, \'' + s.replace(/'/g, "\\'") + '\')"><span class="s-plus">+</span> ' + s + '</span>';
+        }).join('');
+      wrap.classList.add('show');
+    }
+
+    function pickSuggestion(el, value) {
+      if (data.audience.indexOf(value) !== -1) return;
+      data.audience.push(value);
+      renderTags('aud');
+      // Remove picked suggestion with animation
+      el.style.opacity = '0';
+      el.style.transform = 'scale(0.8)';
+      el.style.transition = 'all 0.2s';
+      setTimeout(function() {
+        el.remove();
+        // Hide wrap if no suggestions left
+        var wrap = document.getElementById('aud-suggestions');
+        if (!wrap.querySelector('.suggestion-pill')) {
+          wrap.classList.remove('show');
+        }
+      }, 200);
+    }
+
+    function refreshSuggestions() {
+      var wrap = document.getElementById('aud-suggestions');
+      if (wrap.classList.contains('show')) {
+        generateSuggestions();
+      }
     }
 
     function renderTags(type) {
