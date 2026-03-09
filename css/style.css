@@ -375,29 +375,26 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
   margin-left: 4px; vertical-align: middle; font-weight: 700;
 }
 
-/* Hero proof */
-.hero-proof {
-  display: flex; align-items: center; gap: 12px;
+/* Hero laurel badge */
+.hero-laurel {
+  display: flex; align-items: center; gap: 6px;
   margin: 0 auto 28px;
   width: fit-content;
+  color: rgba(255,255,255,0.4);
 }
-.hero-proof-avatars {
-  display: flex;
+.laurel-left, .laurel-right {
+  width: 24px; height: 48px; flex-shrink: 0;
 }
-.hero-proof-avatars img {
-  width: 32px; height: 32px; border-radius: 50%;
-  border: 2px solid rgba(20,20,20,0.9);
-  margin-left: -10px;
-  object-fit: cover;
+.laurel-content {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  white-space: nowrap;
 }
-.hero-proof-avatars img:first-child { margin-left: 0; }
-.hero-proof-text {
-  display: flex; flex-direction: column; gap: 2px;
-  font-size: 13px; color: rgba(255,255,255,0.55);
+.laurel-title {
+  font-size: 14px; font-weight: 800; color: #fff;
+  letter-spacing: 0.5px;
 }
-.hero-proof-text strong { color: rgba(255,255,255,0.9); }
-.hero-proof-stars {
-  font-size: 11px; letter-spacing: 1px; color: #FBBF24; line-height: 1;
+.laurel-stars {
+  font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.35);
 }
 
 /* ========== TESTIMONIALS V2 — MARQUEE ========== */
