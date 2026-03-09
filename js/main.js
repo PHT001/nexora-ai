@@ -399,6 +399,21 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 })();
 
+// ========== TIMELINE V2 — progress bar + step reveal ==========
+(function() {
+  var tl = document.querySelector('.tl-v2');
+  if (!tl) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        tl.classList.add('animated');
+        obs.unobserve(tl);
+      }
+    });
+  }, { threshold: 0.2 });
+  obs.observe(tl);
+})();
+
 // ========== REVEAL-UP SCROLL ANIMATION ==========
 (function() {
   var revealEls = document.querySelectorAll('.reveal-up');
