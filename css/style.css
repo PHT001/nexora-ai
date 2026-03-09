@@ -383,6 +383,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
   height: 64px; width: auto;
   filter: invert(1) brightness(2);
   opacity: 0.85;
+  display: inline-block;
 }
 
 /* ========== TESTIMONIALS V2 — MARQUEE ========== */
