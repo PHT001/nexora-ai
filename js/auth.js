@@ -2,12 +2,12 @@
 const SUPABASE_URL = 'https://lzqnbsgxqecnwecksfuc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6cW5ic2d4cWVjbndlY2tzZnVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTE4MjIsImV4cCI6MjA4ODYyNzgyMn0.STBKjwoDY8Ci1w3u8xxuL2DRwqGAbVLMvI8t3x1Wa40';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+var _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // --- Auth Functions ---
 
 async function signInWithGoogle() {
-  var { error } = await supabase.auth.signInWithOAuth({
+  var { error } = await _sb.auth.signInWithOAuth({
     provider: 'google',
     options: { redirectTo: window.location.origin + '/dashboard.html' }
   });
@@ -18,7 +18,7 @@ async function signInWithGoogle() {
 }
 
 async function signUpWithEmail(email, password) {
-  var { data, error } = await supabase.auth.signUp({
+  var { data, error } = await _sb.auth.signUp({
     email: email,
     password: password,
     options: { emailRedirectTo: window.location.origin + '/dashboard.html' }
@@ -32,7 +32,7 @@ async function signUpWithEmail(email, password) {
 }
 
 async function signInWithEmail(email, password) {
-  var { data, error } = await supabase.auth.signInWithPassword({
+  var { data, error } = await _sb.auth.signInWithPassword({
     email: email,
     password: password
   });
@@ -46,7 +46,7 @@ async function signInWithEmail(email, password) {
 }
 
 async function signOut() {
-  var { error } = await supabase.auth.signOut();
+  var { error } = await _sb.auth.signOut();
   if (error) {
     console.error('Sign-out error:', error.message);
   }
@@ -54,7 +54,7 @@ async function signOut() {
 }
 
 async function getUser() {
-  var { data: { user } } = await supabase.auth.getUser();
+  var { data: { user } } = await _sb.auth.getUser();
   return user;
 }
 
@@ -79,7 +79,7 @@ function hideAuthError() {
 
 // --- Auth State Listener ---
 
-supabase.auth.onAuthStateChange(function(event, session) {
+_sb.auth.onAuthStateChange(function(event, session) {
   if (event === 'SIGNED_IN' && session) {
     var page = window.location.pathname;
     if (page.includes('signup.html') || page.includes('signin.html')) {
