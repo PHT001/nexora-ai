@@ -7,7 +7,7 @@
 /* ---- Reset & Base ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -156,8 +156,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
 
 /* ---- Navbar ---- */
 .navbar {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 1000;
   background: var(--white);
   border-bottom: 1px solid transparent;
@@ -278,7 +278,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
   background: var(--dark);
   color: var(--white);
   text-align: center;
-  padding: 80px 24px 60px;
+  padding: 140px 24px 60px;
   position: relative;
   overflow: hidden;
 }
