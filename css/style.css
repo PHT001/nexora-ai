@@ -3918,3 +3918,39 @@ body {
   .rt-content { padding: 18px; }
   .midpage-cta-inner h2 { font-size: 20px; }
 }
+
+/* ========== GLOBAL MOBILE FIXES (375px) ========== */
+@media (max-width: 480px) {
+  /* Midpage CTA — add padding, stack checks */
+  .midpage-cta { padding: 40px 0; }
+  .midpage-cta-inner { padding: 40px 20px; }
+  .midpage-cta-inner .btn { width: 100%; text-align: center; }
+  .midpage-cta-checks { flex-direction: column; gap: 6px; }
+  .midpage-dot { display: none; }
+
+  /* Pricing V2 — features single col, smaller text */
+  .pricing-v2 { padding: 20px 16px; }
+  .pricing-v2-inner { gap: 32px; }
+  .pricing-v2-left { flex: auto; }
+  .pricing-v2-name { font-size: 32px; }
+  .pv2-current { font-size: 40px; }
+  .pricing-v2-features { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Agency V2 — stack buttons */
+  .agency-v2 { flex-direction: column; text-align: center; padding: 24px 20px; }
+  .agency-v2-btns { flex-direction: column; width: 100%; }
+  .agency-v2-btns .btn { width: 100%; text-align: center; }
+
+  /* Footer CTA — smaller button text */
+  .footer-cta-banner h2 { font-size: 24px; }
+  .footer-cta-banner .footer-cta-btn .btn { font-size: 14px; padding: 14px 24px; white-space: normal; }
+  .footer-cta-banner .footer-checks { flex-direction: column; gap: 8px; align-items: center; }
+  .footer-cta-banner { padding: 32px 20px; }
+
+  /* Compare cards */
+  .compare-cards { gap: 16px; }
+  .compare-card { padding: 24px 20px; }
+
+  /* Section titles */
+  .section-title { font-size: 24px; }
+}
