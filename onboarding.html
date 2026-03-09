@@ -236,7 +236,7 @@
 
     /* AI generate button */
     .ai-btn {
-      display: inline-flex;
+      display: none;
       align-items: center;
       gap: 6px;
       margin-top: 8px;
@@ -251,7 +251,25 @@
       font-family: 'Inter', sans-serif;
       transition: background 0.2s;
     }
+    .ai-btn.visible { display: inline-flex; }
     .ai-btn:hover { background: #ffe5dc; }
+    .ai-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    /* AI generation feedback */
+    .ai-gen-info {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 10px 16px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #166534;
+    }
+    .ai-gen-info.show { display: flex; }
+    .ai-gen-info.error { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 
     /* Color picker row */
     .color-row {
@@ -576,7 +594,8 @@
         <div class="auth-field">
           <label>Description</label>
           <textarea id="biz-desc" class="ob-textarea" placeholder="Ex: Nous sommes un salon de coiffure a Lyon, specialise dans la coloration bio..."></textarea>
-          <button class="ai-btn" onclick="aiGenerate()">&#10024; Generer avec l'IA</button>
+          <button class="ai-btn" id="ai-gen-btn" onclick="aiGenerate()">&#10024; Generer avec l'IA</button>
+          <div class="ai-gen-info" id="ai-gen-info"></div>
         </div>
         <div class="auth-field">
           <label>Audience cible <span style="color:#999;font-weight:400;">(minimum 2)</span></label>
@@ -737,6 +756,20 @@
         card.innerHTML = '<div class="ob-card-icon">' + c.icon + '</div><h3>' + c.t + '</h3><p>' + c.d + '</p>';
         card.style.opacity = '1';
       }, 200);
+
+      // Step 3: show AI button only if we have site metadata
+      if (n === 3) {
+        var aiBtn = document.getElementById('ai-gen-btn');
+        var hasData = data.siteTitle && data.siteTitle !== '—' && data.siteDesc && data.siteDesc !== '—' && data.siteDesc !== 'Aucune description disponible pour ce site.' && data.siteDesc !== 'Nous avons trouve ce site. Confirmez qu\'il s\'agit bien du votre.';
+        if (hasData) {
+          aiBtn.classList.add('visible');
+        } else {
+          aiBtn.classList.remove('visible');
+        }
+        // Reset info message
+        document.getElementById('ai-gen-info').classList.remove('show');
+        document.getElementById('ai-gen-info').classList.remove('error');
+      }
     }
 
     // --- Site Search & Preview ---
@@ -934,16 +967,126 @@
       }
     });
 
-    // --- AI Generate (placeholder) ---
+    // --- AI Generate from site data ---
     function aiGenerate() {
-      var btn = document.querySelector('.ai-btn');
-      btn.textContent = '⏳ Generation en cours...';
+      var btn = document.getElementById('ai-gen-btn');
+      var textarea = document.getElementById('biz-desc');
+      var info = document.getElementById('ai-gen-info');
+
+      // Check if we have site data
+      if (!data.url) {
+        info.textContent = '❌ Aucun site detecte. Retournez a l\'etape 1.';
+        info.classList.add('show', 'error');
+        return;
+      }
+
+      btn.innerHTML = '&#9203; Analyse du site en cours...';
       btn.disabled = true;
-      setTimeout(function() {
-        btn.innerHTML = '&#10024; Generer avec l\'IA';
-        btn.disabled = false;
-        document.getElementById('biz-desc').focus();
-      }, 1500);
+      info.classList.remove('show', 'error');
+
+      // Fetch deeper site content via Microlink
+      fetch('https://api.microlink.io/?url=' + encodeURIComponent(data.url) + '&meta=true&audio=false&video=false&iframe=false')
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          var title = data.siteTitle || '';
+          var desc = data.siteDesc || '';
+          var lang = data.lang || 'fr';
+          var domain = data.url.replace(/^https?:\/\//, '').split('/')[0];
+          var publisher = '';
+
+          // Enrich with fresh API data
+          if (res.status === 'success' && res.data) {
+            var d = res.data;
+            if (d.title) title = d.title;
+            if (d.description) desc = d.description;
+            if (d.publisher) publisher = d.publisher;
+          }
+
+          // Generate a smart description
+          var generated = buildDescription(title, desc, domain, publisher, lang);
+
+          if (!generated) {
+            btn.innerHTML = '&#10024; Generer avec l\'IA';
+            btn.disabled = false;
+            info.textContent = '❌ Pas assez d\'informations sur votre site pour generer une description.';
+            info.classList.add('show', 'error');
+            return;
+          }
+
+          // Typing animation
+          info.innerHTML = '&#9989; Description generee a partir de <strong>' + domain + '</strong>';
+          info.classList.add('show');
+          info.classList.remove('error');
+          typeText(textarea, generated, function() {
+            btn.innerHTML = '&#10024; Regenerer avec l\'IA';
+            btn.disabled = false;
+          });
+        })
+        .catch(function() {
+          // Fallback: use stored data from step 1
+          var domain = data.url.replace(/^https?:\/\//, '').split('/')[0];
+          var generated = buildDescription(data.siteTitle, data.siteDesc, domain, '', data.lang);
+
+          if (generated) {
+            info.innerHTML = '&#9989; Description generee a partir de <strong>' + domain + '</strong>';
+            info.classList.add('show');
+            info.classList.remove('error');
+            typeText(textarea, generated, function() {
+              btn.innerHTML = '&#10024; Regenerer avec l\'IA';
+              btn.disabled = false;
+            });
+          } else {
+            btn.innerHTML = '&#10024; Generer avec l\'IA';
+            btn.disabled = false;
+            info.textContent = '❌ Impossible de recuperer les informations du site.';
+            info.classList.add('show', 'error');
+          }
+        });
+    }
+
+    function buildDescription(title, desc, domain, publisher, lang) {
+      // Clean up useless placeholders
+      var badDescs = ['—', 'Aucune description disponible pour ce site.', 'Nous avons trouve ce site. Confirmez qu\'il s\'agit bien du votre.', ''];
+      var cleanTitle = (title && title !== '—' && title !== domain) ? title.trim() : '';
+      var cleanDesc = (desc && badDescs.indexOf(desc) === -1) ? desc.trim() : '';
+
+      if (!cleanTitle && !cleanDesc) return '';
+
+      // Build a natural-sounding description in French
+      var parts = [];
+      var siteName = publisher || cleanTitle || domain;
+
+      // Opening with site identity
+      if (cleanTitle && cleanDesc) {
+        parts.push(siteName + ' — ' + cleanDesc);
+      } else if (cleanTitle) {
+        parts.push(siteName + ' est une entreprise presente en ligne sur ' + domain + '.');
+      } else if (cleanDesc) {
+        parts.push(domain + ' : ' + cleanDesc);
+      }
+
+      var result = parts.join(' ');
+      if (!result.endsWith('.')) result += '.';
+      return result;
+    }
+
+    function typeText(textarea, text, callback) {
+      textarea.value = '';
+      textarea.focus();
+      var i = 0;
+      var speed = 18;
+      function type() {
+        if (i < text.length) {
+          textarea.value += text.charAt(i);
+          i++;
+          // Scroll textarea to bottom as we type
+          textarea.scrollTop = textarea.scrollHeight;
+          setTimeout(type, speed);
+        } else {
+          if (callback) callback();
+        }
+      }
+      type();
     }
   </script>
 </body>
