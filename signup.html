@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S'inscrire — Nexora.ai</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="8" fill="#E8562A"/>
+          <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+        </svg>
+        Nexora.ai
+      </a>
+      <div class="navbar-links">
+        <a href="success-story.html">Success Stories</a>
+        <a href="pricing.html">Tarifs</a>
+        <a href="affiliate.html">Gagner en Affiliation</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="signin.html" class="signin-link">Se connecter</a>
+        <a href="signup.html" class="btn btn-primary btn-pill">Essai gratuit 3 jours</a>
+      </div>
+      <div class="burger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="success-story.html">Success Stories</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="affiliate.html">Gagner en Affiliation</a>
+      <a href="signin.html">Se connecter</a>
+      <a href="signup.html" class="btn btn-primary btn-pill">Essai gratuit 3 jours</a>
+    </div>
+  </nav>
+
+  <!-- Auth Page -->
+  <div class="auth-page">
+
+    <!-- Left Side -->
+    <div class="auth-left">
+      <h1>S'inscrire</h1>
+      <p class="auth-switch">Vous avez d&eacute;j&agrave; un compte ? <a href="signin.html"><strong>Se connecter</strong></a></p>
+
+      <button class="auth-google-btn">
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 0 1 0-9.18l-7.98-6.19a24.0 24.0 0 0 0 0 21.56l7.98-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        S'inscrire avec Google
+      </button>
+
+      <div class="auth-divider">or</div>
+
+      <button class="auth-submit">S'inscrire avec l'email</button>
+
+      <p class="auth-terms">En cr&eacute;ant un compte, vous acceptez les <a href="terms.html">Conditions d'utilisation</a> et <a href="privacy.html">Politique de confidentialit&eacute;</a>.</p>
+    </div>
+
+    <!-- Right Side -->
+    <div class="auth-right">
+      <div class="network-bg">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="net" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="4" fill="#ddd"/>
+              <circle cx="100" cy="40" r="3" fill="#ccc"/>
+              <circle cx="180" cy="20" r="5" fill="#ddd"/>
+              <circle cx="60" cy="100" r="3" fill="#ccc"/>
+              <circle cx="140" cy="90" r="4" fill="#ddd"/>
+              <circle cx="40" cy="170" r="5" fill="#ddd"/>
+              <circle cx="120" cy="160" r="3" fill="#ccc"/>
+              <circle cx="180" cy="140" r="4" fill="#ddd"/>
+              <circle cx="160" cy="180" r="3" fill="#ccc"/>
+              <circle cx="80" cy="60" r="3" fill="#ddd"/>
+              <line x1="20" y1="20" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="100" y1="40" x2="180" y2="20" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="100" y1="40" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="20" y1="20" x2="60" y2="100" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="60" y1="100" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="140" y1="90" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="60" y1="100" x2="40" y2="170" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="40" y1="170" x2="120" y2="160" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="120" y1="160" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="120" y1="160" x2="160" y2="180" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="80" y1="60" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="80" y1="60" x2="20" y2="20" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="80" y1="60" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
+              <line x1="180" y1="20" x2="180" y2="140" stroke="#ddd" stroke-width="0.5"/>
+              <line x1="40" y1="170" x2="160" y2="180" stroke="#ddd" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#net)"/>
+        </svg>
+      </div>
+      <div class="auth-testimonial">
+        <div class="at-header">
+          <div class="at-avatar">AB</div>
+          <div>
+            <div class="at-name">Anis Bennaceur</div>
+            <div class="at-role">CEO @ Attention</div>
+          </div>
+        </div>
+        <p class="at-quote">"I'm amazed at how Nexora takes care of everything for us. From keyword research and content writing to generating backlinks. It's a truly awesome solution that saves us so much time!"</p>
+        <p class="at-desc">"The 30-day content plan they generated was spot on. Every article is topically relevant and fully SEO-optimized, cited, has internal links, infographics and branded images."</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <section class="footer-cta">
+    <div class="container">
+      <div class="footer-cta-banner">
+        <div class="grow-label">Croissance</div>
+        <h2>SEO intelligent, <span class="accent">croissance rapide</span> !</h2>
+        <a href="signup.html" class="btn btn-primary btn-pill footer-cta-btn">Commencer l'essai de 3 jours</a>
+        <div class="footer-checks">
+          <span><span class="check-icon">&#10003;</span> Aucune carte requise</span>
+          <span><span class="check-icon">&#10003;</span> Articles quotidiens</span>
+          <span><span class="check-icon">&#10003;</span> Annulez quand vous voulez</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="pricing.html">Tarifs</a>
+        <a href="blog.html">Blog</a>
+        <a href="success-story.html">Success Stories</a>
+        <a href="affiliate.html">Affiliation</a>
+        <a href="ai-audit.html">Audit IA</a>
+        <a href="terms.html">Conditions d'utilisation</a>
+        <a href="privacy.html">Politique de confidentialit&eacute;</a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <div class="footer-logo">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="28" height="28" rx="8" fill="#E8562A"/>
+              <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+            </svg>
+            Nexora.ai
+          </div>
+          <div class="footer-address">NEXORA INC. &middot; 835 Fifth Avenue, San Rafael CA 94901</div>
+        </div>
+        <div class="footer-bottom-right">
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77A1.75 1.75 0 0 0 0 1.73v20.54A1.75 1.75 0 0 0 1.77 24h20.45A1.75 1.75 0 0 0 24 22.27V1.73A1.75 1.75 0 0 0 22.22 0z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+          <div class="footer-copy">&copy; 2024 NEXORA INC. Tous droits r&eacute;serv&eacute;s.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
