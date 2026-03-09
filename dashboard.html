@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Nexora.ai</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .dashboard-page {
+      min-height: 100vh;
+      background: #f8f9fa;
+    }
+    .dashboard-nav {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dashboard-nav .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      color: #111;
+    }
+    .dashboard-nav .navbar-logo svg {
+      width: 28px;
+      height: 28px;
+    }
+    .dashboard-user {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dashboard-user-info {
+      text-align: right;
+    }
+    .dashboard-user-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #111;
+    }
+    .dashboard-user-email {
+      font-size: 12px;
+      color: #666;
+    }
+    .dashboard-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #E8562A;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .btn-logout {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      color: #666;
+      transition: all 0.2s;
+    }
+    .btn-logout:hover {
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+    .dashboard-content {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .dashboard-content h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #111;
+    }
+    .dashboard-content p {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .dashboard-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      margin-top: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+    .dashboard-card h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .dashboard-stat {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      flex: 1;
+      min-width: 140px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-box .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #E8562A;
+    }
+    .stat-box .stat-label {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-page">
+    <nav class="dashboard-nav">
+      <a href="index.html" class="navbar-logo">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="8" fill="#E8562A"/>
+          <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+        </svg>
+        Nexora.ai
+      </a>
+      <div class="dashboard-user">
+        <div class="dashboard-user-info">
+          <div class="dashboard-user-name" id="user-name">Chargement...</div>
+          <div class="dashboard-user-email" id="user-email"></div>
+        </div>
+        <div class="dashboard-avatar" id="user-avatar">?</div>
+        <button class="btn-logout" onclick="signOut()">Deconnexion</button>
+      </div>
+    </nav>
+
+    <div class="dashboard-content">
+      <h1>Bienvenue sur Nexora</h1>
+      <p>Votre compte est actif. Votre visibilite en ligne va bientot decoller.</p>
+
+      <div class="dashboard-card">
+        <h2>Votre activite</h2>
+        <div class="dashboard-stat">
+          <div class="stat-box">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Pages publiees</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Visiteurs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Recommandations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    requireAuth().then(function(user) {
+      if (user) {
+        var name = user.user_metadata.full_name || user.email.split('@')[0];
+        document.getElementById('user-name').textContent = name;
+        document.getElementById('user-email').textContent = user.email;
+        document.getElementById('user-avatar').textContent = name.charAt(0).toUpperCase();
+      }
+    });
+  </script>
+</body>
+</html>
