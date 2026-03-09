@@ -278,7 +278,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
   background: var(--dark);
   color: var(--white);
   text-align: center;
-  padding: 140px 24px 60px;
+  padding: 100px 24px 48px;
   position: relative;
   overflow: hidden;
 }
@@ -2519,8 +2519,11 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
   .navbar-logo { font-size: 16px; }
   .navbar-logo svg { width: 24px; height: 24px; }
 
-  .hero h1 { font-size: 36px; }
-  .hero-rotating { font-size: 22px; }
+  .hero { padding: 72px 20px 32px; }
+  .hero h1 { font-size: 32px; margin-bottom: 4px; }
+  .hero-rotating { font-size: 20px; margin-bottom: 12px; min-height: 36px; }
+  .hero p { font-size: 14px; margin-bottom: 20px; }
+  .hero-cta { margin-bottom: 24px; }
   .section-title { font-size: 32px; }
 
   .testi-card { width: 280px; padding: 20px; }
