@@ -3549,6 +3549,24 @@ body {
   transition: width 2s cubic-bezier(0.16,1,0.3,1);
 }
 
+/* Section arrow transition */
+.section-arrow {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  margin: 12px auto 32px; color: #bbb;
+}
+.section-arrow-text {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+  text-transform: uppercase; color: #999;
+}
+.section-arrow-icon {
+  width: 28px; height: 28px; color: var(--accent); opacity: 0.6;
+  animation: arrowBounce 2s ease-in-out infinite;
+}
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
 /* Stats row */
 .urgency-stats-row {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
