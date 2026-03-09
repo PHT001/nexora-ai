@@ -757,11 +757,10 @@
         card.style.opacity = '1';
       }, 200);
 
-      // Step 3: show AI button only if we have site metadata
+      // Step 3: show AI button if user confirmed a site in step 1
       if (n === 3) {
         var aiBtn = document.getElementById('ai-gen-btn');
-        var hasData = data.siteTitle && data.siteTitle !== '—' && data.siteDesc && data.siteDesc !== '—' && data.siteDesc !== 'Aucune description disponible pour ce site.' && data.siteDesc !== 'Nous avons trouve ce site. Confirmez qu\'il s\'agit bien du votre.';
-        if (hasData) {
+        if (data.url && siteConfirmed) {
           aiBtn.classList.add('visible');
         } else {
           aiBtn.classList.remove('visible');
