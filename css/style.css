@@ -2523,6 +2523,14 @@ h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; }
   .navbar-actions .signin-link { display: none; }
   .burger { display: flex; }
 
+  /* Compact mobile header */
+  .navbar { height: 60px; }
+  .navbar-inner { height: 60px; padding: 0 16px; }
+  .navbar-actions { gap: 12px; }
+  .navbar-actions .btn { padding: 8px 16px; font-size: 13px; }
+  .navbar-logo { font-size: 16px; }
+  .navbar-logo svg { width: 24px; height: 24px; }
+
   .hero h1 { font-size: 36px; }
   .hero-rotating { font-size: 22px; }
   .section-title { font-size: 32px; }
@@ -3980,4 +3988,13 @@ body {
 
   /* Section titles */
   .section-title { font-size: 24px; }
+
+  /* Extra compact header on small phones */
+  .navbar { height: 56px; }
+  .navbar-inner { height: 56px; padding: 0 14px; }
+  .navbar-actions .btn { padding: 7px 14px; font-size: 12px; }
+  .navbar-logo { font-size: 15px; gap: 6px; }
+  .navbar-logo svg { width: 22px; height: 22px; }
+  .burger span { width: 20px; height: 2px; }
+  .burger { gap: 4px; }
 }
