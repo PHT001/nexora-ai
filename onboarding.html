@@ -545,10 +545,8 @@
           <div class="progress-dot">3</div>
           <div class="progress-line"></div>
           <div class="progress-dot">4</div>
-          <div class="progress-line"></div>
-          <div class="progress-dot">5</div>
         </div>
-        <div class="progress-label">Etape <span id="step-cur">1</span> sur 5</div>
+        <div class="progress-label">Etape <span id="step-cur">1</span> sur 4</div>
       </div>
 
       <!-- Step 1: Website URL -->
@@ -647,34 +645,11 @@
         <button class="auth-submit" onclick="nextStep(3)">Continuer &rarr;</button>
       </div>
 
-      <!-- Step 4: Competitors (Optional) -->
+      <!-- Step 4: Brand (Optional) -->
       <div class="onboarding-step" data-step="4">
         <span class="back-link" onclick="goBack(4)">&larr; Retour</span>
         <div class="step-badge">
           <span class="step-num">ETAPE 4</span>
-          <span class="optional-tag">Optionnel</span>
-        </div>
-        <h1>Selectionnez vos concurrents</h1>
-        <p class="step-desc">Ajoutez les domaines de vos concurrents pour une analyse comparative.</p>
-        <div class="auth-field">
-          <label>Domaines concurrents</label>
-          <div class="tags-wrapper">
-            <div class="tags-list" id="comp-tags"></div>
-            <div class="tags-row">
-              <input type="text" id="comp-input" class="tags-input" placeholder="Ex: concurrent.com">
-              <button class="tag-add" onclick="addTag('comp')">+</button>
-            </div>
-          </div>
-        </div>
-        <button class="auth-submit" onclick="nextStep(4)">Continuer &rarr;</button>
-        <button class="skip-btn" onclick="skipTo(5)">Passer cette etape</button>
-      </div>
-
-      <!-- Step 5: Brand (Optional) -->
-      <div class="onboarding-step" data-step="5">
-        <span class="back-link" onclick="goBack(5)">&larr; Retour</span>
-        <div class="step-badge">
-          <span class="step-num">ETAPE 5</span>
           <span class="optional-tag">Optionnel</span>
         </div>
         <h1>Parametres de marque</h1>
@@ -754,7 +729,7 @@
     var cur = 1;
     var data = {
       url: '', lang: 'fr', desc: '',
-      audience: [], competitors: [],
+      audience: [],
       color: '#000000', articleUrl: ''
     };
 
@@ -762,7 +737,6 @@
       { icon: '&#127760;', t: 'Analyse de votre site', d: 'Nous allons scanner votre site pour comprendre votre positionnement actuel.' },
       { icon: '&#127758;', t: 'Portee internationale', d: 'Ciblez l\'audience dans la langue de votre choix.' },
       { icon: '&#9997;&#65039;', t: 'Contenu sur mesure', d: 'Notre IA generera du contenu adapte a votre activite.' },
-      { icon: '&#128269;', t: 'Analyse concurrentielle', d: 'Comprenez ce que font vos concurrents pour les depasser.' },
       { icon: '&#127912;', t: 'Votre identite', d: 'Chaque contenu refletera l\'image de votre marque.' }
     ];
 
@@ -949,25 +923,21 @@
 
     // --- Tags ---
     function addTag(type) {
-      var inputId = type === 'aud' ? 'aud-input' : 'comp-input';
-      var key = type === 'aud' ? 'audience' : 'competitors';
-      var input = document.getElementById(inputId);
+      var input = document.getElementById('aud-input');
       var v = input.value.trim();
       if (!v) return;
-      if (data[key].indexOf(v) !== -1) return;
-      data[key].push(v);
-      renderTags(type);
+      if (data.audience.indexOf(v) !== -1) return;
+      data.audience.push(v);
+      renderTags();
       input.value = '';
       input.focus();
-      // Refresh suggestions after adding a tag
-      if (type === 'aud') refreshSuggestions();
+      refreshSuggestions();
     }
 
     function removeTag(type, i) {
-      var key = type === 'aud' ? 'audience' : 'competitors';
-      data[key].splice(i, 1);
-      renderTags(type);
-      if (type === 'aud') refreshSuggestions();
+      data.audience.splice(i, 1);
+      renderTags();
+      refreshSuggestions();
     }
 
     // --- Audience "+" button: add text OR show suggestions ---
@@ -1072,21 +1042,16 @@
       }
     }
 
-    function renderTags(type) {
-      var key = type === 'aud' ? 'audience' : 'competitors';
-      var cId = type === 'aud' ? 'aud-tags' : 'comp-tags';
-      var container = document.getElementById(cId);
-      container.innerHTML = data[key].map(function(t, i) {
-        return '<span class="tag-pill">' + t + ' <span class="tag-x" onclick="removeTag(\'' + type + '\',' + i + ')">&times;</span></span>';
+    function renderTags() {
+      var container = document.getElementById('aud-tags');
+      container.innerHTML = data.audience.map(function(t, i) {
+        return '<span class="tag-pill">' + t + ' <span class="tag-x" onclick="removeTag(\'aud\',' + i + ')">&times;</span></span>';
       }).join('');
     }
 
-    // Enter key on tag inputs
+    // Enter key on tag input
     document.getElementById('aud-input').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); addTag('aud'); }
-    });
-    document.getElementById('comp-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') { e.preventDefault(); addTag('comp'); }
     });
 
     // --- Language audience ---
