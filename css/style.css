@@ -3296,9 +3296,22 @@ body {
   .demo-panel-split { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .hero-dashboard { margin: 24px auto 24px; }
-  .dash-grid { grid-template-columns: 1fr; gap: 20px; }
-  .dash-stats { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .hero-dashboard { margin: 24px auto 16px; max-width: 340px; }
+  .browser-content { padding: 16px; }
+  .dash-grid { grid-template-columns: 100px 1fr; gap: 12px; align-items: start; }
+  .dash-gauge { max-width: 90px; }
+  .dash-gauge-label { font-size: 9px; margin-top: 4px; }
+  .dash-chart-wrap { grid-column: auto; }
+  .dash-chart-title { font-size: 10px; }
+  .dash-chart-stat { font-size: 11px; }
+  .dash-stats { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .dash-stat-pill { padding: 6px 10px; gap: 8px; }
+  .dash-stat-icon { font-size: 14px; }
+  .dash-stat-num { font-size: 14px; }
+  .dash-stat-label { font-size: 8px; }
+  .browser-bar { padding: 8px 12px; }
+  .browser-dots span { width: 8px; height: 8px; }
+  .browser-url { font-size: 10px; }
   .hero-float-badge { display: none; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .stat-number { font-size: 28px; }
@@ -3310,6 +3323,10 @@ body {
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-subtitle { font-size: 15px; }
+  .hero-dashboard { max-width: 300px; }
+  .dash-grid { grid-template-columns: 80px 1fr; gap: 10px; }
+  .dash-gauge { max-width: 75px; }
+  .browser-content { padding: 12px; }
 }
 
 /* ========== PROBLEM SECTION ========== */
