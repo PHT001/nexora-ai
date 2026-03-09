@@ -447,6 +447,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 })();
 
+// ========== NOWORRY CARDS — staggered reveal ==========
+(function() {
+  var cards = document.querySelectorAll('.noworry-card');
+  if (!cards.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var idx = Array.prototype.indexOf.call(cards, entry.target);
+        setTimeout(function() {
+          entry.target.classList.add('nw-visible');
+        }, idx * 120);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(function(c) { obs.observe(c); });
+})();
+
 // ========== ANIMATED GOOGLE MOCKUP ==========
 (function() {
   var googleMockup = document.querySelector('[data-mockup="google"]');
