@@ -2320,11 +2320,11 @@
       if (typeof apiCall === 'function') {
         apiCall('POST', 'onboarding', {
           url: data.url || data.siteUrl,
-          description: data.description,
-          audiences: data.audiences || [],
+          description: data.desc,
+          audiences: data.audience || [],
           goals: data.goals || [],
-          language: data.language || 'fr',
-          niche: data.niche || data.description
+          language: data.lang || 'fr',
+          niche: data.niche || data.desc
         }).then(function(res) {
           console.log('Onboarding saved to DB, keywords:', res.keywords_count);
         }).catch(function(err) {
