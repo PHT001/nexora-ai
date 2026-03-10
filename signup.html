@@ -46,36 +46,65 @@
 
     <!-- Left Side -->
     <div class="auth-left">
-      <h1>S'inscrire</h1>
-      <p class="auth-switch">Vous avez d&eacute;j&agrave; un compte ? <a href="signin.html"><strong>Se connecter</strong></a></p>
 
       <div id="auth-error" style="display:none;color:#e53e3e;background:#fee;padding:10px 14px;border-radius:8px;margin-bottom:16px;font-size:14px;"></div>
 
-      <button class="auth-google-btn" onclick="signInWithGoogle()">
-        <svg width="20" height="20" viewBox="0 0 48 48">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 0 1 0-9.18l-7.98-6.19a24.0 24.0 0 0 0 0 21.56l7.98-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
-        S'inscrire avec Google
-      </button>
+      <!-- Signup Form -->
+      <div class="signup-section">
+        <h1>S'inscrire</h1>
+        <p class="auth-switch">Vous avez d&eacute;j&agrave; un compte ? <a href="signin.html"><strong>Se connecter</strong></a></p>
 
-      <div class="auth-divider">ou</div>
+        <button class="auth-google-btn" onclick="signInWithGoogle()">
+          <svg width="20" height="20" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 0 1 0-9.18l-7.98-6.19a24.0 24.0 0 0 0 0 21.56l7.98-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          S'inscrire avec Google
+        </button>
 
-      <form id="signup-form" onsubmit="handleSignup(event)">
-        <div class="auth-field">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="votre@email.com" required>
+        <div class="auth-divider">ou</div>
+
+        <form id="signup-form" onsubmit="handleSignup(event)">
+          <div class="auth-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="votre@email.com" required>
+          </div>
+          <div class="auth-field">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="6 caracteres minimum" required minlength="6">
+          </div>
+          <button type="submit" class="auth-submit">S'inscrire avec l'email</button>
+        </form>
+
+        <p class="auth-terms">En cr&eacute;ant un compte, vous acceptez les <a href="terms.html">Conditions d'utilisation</a> et <a href="privacy.html">Politique de confidentialit&eacute;</a>.</p>
+      </div>
+
+      <!-- OTP Verification -->
+      <div class="otp-section">
+        <a class="otp-back" onclick="hideOtpScreen()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          Retour
+        </a>
+        <div class="otp-icon">&#128233;</div>
+        <h1>Verifiez votre email</h1>
+        <p style="color:#666;font-size:15px;line-height:1.6;margin:0 0 8px;">Un code de verification a ete envoye a :</p>
+        <div class="otp-email-badge" id="otp-email-display"></div>
+
+        <div class="otp-single-wrap">
+          <input type="text" id="otp-code" class="otp-single-input" maxlength="8" inputmode="numeric" autocomplete="one-time-code" placeholder="Entrez le code" oninput="handleCodeInput(this)">
         </div>
-        <div class="auth-field">
-          <label for="password">Mot de passe</label>
-          <input type="password" id="password" placeholder="6 caracteres minimum" required minlength="6">
-        </div>
-        <button type="submit" class="auth-submit">S'inscrire avec l'email</button>
-      </form>
 
-      <p class="auth-terms">En cr&eacute;ant un compte, vous acceptez les <a href="terms.html">Conditions d'utilisation</a> et <a href="privacy.html">Politique de confidentialit&eacute;</a>.</p>
+        <button id="otp-verify-btn" class="otp-verify-btn" disabled onclick="handleVerifyCode()">Verifier mon code</button>
+
+        <div class="otp-resend">
+          Vous n'avez pas recu le code ?
+          <a id="resend-link" onclick="handleResend()">Renvoyer</a>
+          <span id="resend-timer" class="otp-timer">(60s)</span>
+        </div>
+      </div>
+
     </div>
 
     <!-- Right Side -->
@@ -129,17 +158,197 @@
 
   </div>
 
+  <style>
+    /* OTP Verification Styles */
+    .otp-section { display: none; }
+    .otp-section.active { display: block; }
+    .signup-section { display: block; }
+    .signup-section.hidden { display: none; }
+
+    .otp-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: linear-gradient(135deg, #FFF3ED, #FFE0D0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin-bottom: 20px;
+    }
+    .otp-email-badge {
+      display: inline-block; background: #f5f5f5; padding: 6px 14px;
+      border-radius: 20px; font-size: 13px; color: #555;
+      font-weight: 500; margin-bottom: 24px;
+    }
+    .otp-single-wrap {
+      margin: 24px 0;
+    }
+    .otp-single-input {
+      width: 100%; height: 60px; border: 2px solid #e0e0e0;
+      border-radius: 12px; text-align: center; font-size: 28px;
+      font-weight: 700; color: #1a1a1a; background: #fafafa;
+      outline: none; transition: all 0.2s ease;
+      caret-color: #E8562A; letter-spacing: 12px;
+      padding: 0 20px; box-sizing: border-box;
+    }
+    .otp-single-input::placeholder {
+      font-size: 15px; font-weight: 400; letter-spacing: 0; color: #bbb;
+    }
+    .otp-single-input:focus {
+      border-color: #E8562A; background: #fff;
+      box-shadow: 0 0 0 3px rgba(232,86,42,0.12);
+    }
+    .otp-single-input.error {
+      border-color: #e53e3e; background: #fff5f5;
+      animation: shake 0.4s ease;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .otp-verify-btn {
+      width: 100%; padding: 14px; border: none; border-radius: 12px;
+      background: #E8562A; color: #fff; font-size: 16px;
+      font-weight: 600; cursor: pointer; transition: all 0.2s;
+      margin-top: 8px;
+    }
+    .otp-verify-btn:hover { background: #d14a22; }
+    .otp-verify-btn:disabled {
+      background: #ccc; cursor: not-allowed;
+    }
+    .otp-verify-btn .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .otp-resend {
+      text-align: center; margin-top: 20px; font-size: 14px; color: #888;
+    }
+    .otp-resend a {
+      color: #E8562A; font-weight: 600; cursor: pointer;
+      text-decoration: none;
+    }
+    .otp-resend a:hover { text-decoration: underline; }
+    .otp-resend a.disabled {
+      color: #bbb; pointer-events: none;
+    }
+    .otp-timer {
+      display: inline; color: #999; font-size: 13px;
+    }
+    .otp-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: #888; font-size: 14px; text-decoration: none;
+      margin-bottom: 20px; cursor: pointer;
+    }
+    .otp-back:hover { color: #555; }
+  </style>
+
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="js/auth.js"></script>
   <script>
+    var _signupEmail = '';
+    var _resendTimer = 0;
+    var _resendInterval = null;
+
     function handleSignup(e) {
       e.preventDefault();
       hideAuthError();
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
+      var btn = document.querySelector('.auth-submit');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner" style="display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:8px;"></span>Envoi...';
+
       signUpWithEmail(email, password).then(function(data) {
         if (data) {
-          document.querySelector('.auth-left').innerHTML = '<h1>Verifiez votre email</h1><p style="color:#666;font-size:16px;line-height:1.6;">Un email de confirmation a ete envoye a <strong>' + email + '</strong>. Cliquez sur le lien pour activer votre compte.</p><a href="signin.html" class="auth-submit" style="display:inline-block;text-align:center;margin-top:24px;">Aller a la connexion</a>';
+          localStorage.removeItem('nexora_onboarding_complete');
+          localStorage.removeItem('nexora_onboarding_data');
+          window.location.href = 'onboarding.html';
+        } else {
+          btn.disabled = false;
+          btn.textContent = "S'inscrire avec l'email";
+        }
+      });
+    }
+
+    function showOtpScreen(email) {
+      document.querySelector('.signup-section').classList.add('hidden');
+      document.querySelector('.otp-section').classList.add('active');
+      document.getElementById('otp-email-display').textContent = email;
+      document.getElementById('otp-code').focus();
+      startResendTimer();
+    }
+
+    function hideOtpScreen() {
+      document.querySelector('.signup-section').classList.remove('hidden');
+      document.querySelector('.otp-section').classList.remove('active');
+      hideAuthError();
+      _skipAuthRedirect = false;
+    }
+
+    function startResendTimer() {
+      _resendTimer = 60;
+      var link = document.getElementById('resend-link');
+      var timer = document.getElementById('resend-timer');
+      link.classList.add('disabled');
+      timer.style.display = 'inline';
+      if (_resendInterval) clearInterval(_resendInterval);
+      _resendInterval = setInterval(function() {
+        _resendTimer--;
+        timer.textContent = '(' + _resendTimer + 's)';
+        if (_resendTimer <= 0) {
+          clearInterval(_resendInterval);
+          link.classList.remove('disabled');
+          timer.style.display = 'none';
+        }
+      }, 1000);
+    }
+
+    function handleResend() {
+      hideAuthError();
+      resendOtp(_signupEmail).then(function(ok) {
+        if (ok) {
+          startResendTimer();
+          var resendArea = document.querySelector('.otp-resend');
+          var orig = resendArea.innerHTML;
+          resendArea.innerHTML = '<span style="color:#22c55e;font-weight:600;">Code renvoye !</span>';
+          setTimeout(function() { resendArea.innerHTML = orig; }, 2500);
+        }
+      });
+    }
+
+    function handleCodeInput(el) {
+      el.value = el.value.replace(/[^0-9]/g, '');
+      document.getElementById('otp-verify-btn').disabled = el.value.length < 6;
+    }
+
+    function handleVerifyCode() {
+      hideAuthError();
+      var inp = document.getElementById('otp-code');
+      var code = inp.value.trim();
+      if (code.length < 6) return;
+
+      var btn = document.getElementById('otp-verify-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Verification...';
+
+      verifyEmailOtp(_signupEmail, code).then(function(data) {
+        if (data) {
+          btn.innerHTML = 'Compte verifie !';
+          btn.style.background = '#22c55e';
+          setTimeout(function() {
+            localStorage.removeItem('nexora_onboarding_complete');
+            localStorage.removeItem('nexora_onboarding_data');
+            window.location.href = 'onboarding.html';
+          }, 800);
+        } else {
+          btn.disabled = false;
+          btn.innerHTML = 'Verifier mon code';
+          inp.classList.add('error');
+          inp.value = '';
+          setTimeout(function() {
+            inp.classList.remove('error');
+            inp.focus();
+          }, 500);
         }
       });
     }

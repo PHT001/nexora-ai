@@ -234,6 +234,32 @@
     }
     .tag-add:hover { opacity: 0.85; }
 
+    .tags-hint {
+      display: none;
+      font-size: 12px;
+      color: #bbb;
+      margin-top: 6px;
+      padding-left: 2px;
+    }
+    .tags-hint.show { display: block; }
+    .tags-hint kbd {
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      color: #666;
+    }
+    .tag-pill {
+      animation: tagPop 0.25s ease;
+    }
+    @keyframes tagPop {
+      0% { transform: scale(0.7); opacity: 0; }
+      70% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     /* AI generate button */
     .ai-btn {
       display: none;
@@ -306,32 +332,1023 @@
     .suggestion-pill:hover { border-color: var(--accent); color: var(--accent); background: #FFF0EB; }
     .suggestion-pill .s-plus { color: var(--accent); font-weight: 600; font-size: 14px; }
 
-    /* Color picker row */
-    .color-row {
+    /* Goals grid */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .goal-card {
       display: flex;
       align-items: center;
-      gap: 12px;
-    }
-    .color-row input[type="color"] {
-      width: 48px;
-      height: 48px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 4px;
+      gap: 10px;
+      padding: 14px 16px;
+      border: 2px solid #eee;
+      border-radius: 12px;
       cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
       background: #fff;
     }
-    .color-hex {
-      flex: 1;
-      padding: 12px 16px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 15px;
-      font-family: monospace;
-      outline: none;
-      box-sizing: border-box;
+    .goal-card:hover { border-color: #ddd; background: #fafafa; }
+    .goal-card.selected {
+      border-color: #E8562A;
+      background: #FFF6F3;
     }
-    .color-hex:focus { border-color: var(--accent); }
+    .goal-icon { font-size: 20px; flex-shrink: 0; }
+    .goal-label { font-size: 14px; font-weight: 500; color: #333; line-height: 1.3; }
+    .goal-check {
+      display: none;
+      margin-left: auto;
+      color: #E8562A;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .goal-card.selected .goal-check { display: block; }
+
+    @media (max-width: 500px) {
+      .goals-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Analysis Screen */
+    .analysis-header { text-align: center; margin-bottom: 36px; }
+    .analysis-icon { font-size: 52px; display: block; margin-bottom: 10px; }
+    .analysis-checklist { max-width: 420px; margin: 0 auto; }
+    .check-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 0; border-bottom: 1px solid #f5f5f5;
+      font-size: 15px; color: #bbb; transition: all 0.4s;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item.active { color: #555; }
+    .check-item.done { color: #1a1a1a; font-weight: 500; }
+    .check-icon {
+      width: 28px; height: 28px; border-radius: 50%; border: 2px solid #eee;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0; transition: all 0.3s;
+    }
+    .check-item.active .check-icon {
+      border-color: var(--accent); border-top-color: transparent;
+      animation: spin 0.8s linear infinite;
+    }
+    .check-item.done .check-icon {
+      border-color: #22c55e; background: #22c55e; color: #fff;
+      animation: checkPop 0.3s ease;
+    }
+    @keyframes checkPop {
+      0% { transform: scale(0.5); } 50% { transform: scale(1.2); } 100% { transform: scale(1); }
+    }
+
+    /* Result stats */
+    .result-stats {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 28px;
+    }
+    .result-stat {
+      background: #f9f9f9; border-radius: 12px; padding: 20px 16px; text-align: center;
+    }
+    .stat-value {
+      display: block; font-size: 28px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px;
+    }
+    .stat-value.accent { color: var(--accent); }
+    .stat-label { font-size: 12px; color: #999; font-weight: 500; }
+
+    /* Projection */
+    .projection-section {
+      background: #fafafa; border: 1px solid #eee; border-radius: 14px;
+      padding: 24px; margin-bottom: 28px;
+    }
+    .projection-section h3 { font-size: 16px; font-weight: 600; margin-bottom: 20px; color: #1a1a1a; }
+    .proj-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .proj-row:last-child { margin-bottom: 0; }
+    .proj-label { width: 80px; font-size: 13px; color: #888; font-weight: 500; flex-shrink: 0; }
+    .proj-track { flex: 1; height: 28px; background: #eee; border-radius: 8px; overflow: hidden; }
+    .proj-fill {
+      height: 100%; border-radius: 8px; width: 0;
+      transition: width 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .proj-fill.current { background: #ccc; }
+    .proj-fill.m1 { background: #ffb89a; }
+    .proj-fill.m2 { background: #f08060; }
+    .proj-fill.m3 { background: var(--accent); }
+    .proj-value { width: 70px; text-align: right; font-size: 14px; font-weight: 700; color: #1a1a1a; flex-shrink: 0; }
+    .proj-value.highlight { color: var(--accent); font-size: 16px; }
+    .growth-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; background: #f0fdf4; border: 1px solid #bbf7d0;
+      border-radius: 20px; font-size: 14px; font-weight: 600; color: #166534; margin-top: 16px;
+    }
+
+    /* ===== Comparison Cards ===== */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .comparison-card {
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .comparison-card.bad {
+      background: linear-gradient(160deg, #fff5f5 0%, #fee2e2 100%);
+      border: 2px solid #fca5a5;
+    }
+    .comparison-card.good {
+      background: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 2px solid #86efac;
+      box-shadow: 0 8px 32px rgba(34,197,94,0.15);
+    }
+    .comparison-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .comparison-card.bad .comparison-label { color: #b91c1c; }
+    .comparison-card.good .comparison-label { color: #15803d; }
+    .comparison-period {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      background: #bbf7d0;
+      color: #15803d;
+      letter-spacing: 0.5px;
+      margin-left: auto;
+    }
+
+    .comp-metric { margin-bottom: 24px; }
+    .comp-metric:last-child { margin-bottom: 0; }
+    .comp-metric-label {
+      font-size: 11px;
+      color: #888;
+      font-weight: 600;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .comp-metric-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .comp-metric-value {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .comparison-card.bad .comp-metric-value { color: #dc2626; }
+    .comparison-card.good .comp-metric-value { color: #16a34a; }
+
+    .comp-uplift {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: #bbf7d0;
+      color: #15803d;
+      white-space: nowrap;
+    }
+    .comp-bar {
+      height: 8px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 4px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+    .comp-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .comparison-card.bad .comp-bar-fill { background: linear-gradient(90deg, #ef4444, #f87171); }
+    .comparison-card.good .comp-bar-fill { background: linear-gradient(90deg, #22c55e, #4ade80); }
+
+    .growth-badge-wrap { text-align: center; margin-bottom: 8px; }
+
+    @media (max-width: 600px) {
+      .comparison-grid { grid-template-columns: 1fr; gap: 16px; }
+      .comp-metric-value { font-size: 28px; }
+      .comparison-card { padding: 24px 20px; }
+    }
+
+    /* Pricing section */
+    .pricing-header { text-align: left; margin-bottom: 28px; padding-top: 8px; }
+    .pricing-ready { color: var(--accent); font-size: 15px; font-weight: 600; display: block; margin-bottom: 6px; }
+    .pricing-header h2 { font-size: 34px; font-weight: 800; color: #1a1a1a; margin: 0 0 8px; line-height: 1.2; }
+    .pricing-header p { font-size: 15px; color: #888; line-height: 1.5; margin: 0; }
+
+    .pricing-card {
+      border: 1.5px solid #e5e7eb; border-radius: 16px;
+      overflow: hidden; margin-bottom: 20px; background: #fff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* Kill the orange overlay from style.css */
+    .pricing-card::before { display: none !important; }
+    .pricing-card:hover {
+      border-color: #d1d5db;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    .pricing-card-top { text-align: center; padding: 28px 24px 20px; }
+    .pricing-badge {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      color: #333; text-transform: uppercase;
+    }
+    .pricing-plan-name {
+      font-size: 26px; font-weight: 700; color: var(--accent); margin: 8px 0 14px;
+    }
+    .pricing-row { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-bottom: 18px; }
+    .pricing-old { font-size: 16px; color: #999; text-decoration: line-through; }
+    .pricing-current { font-size: 46px; font-weight: 800; color: #1a1a1a; }
+    .pricing-period { font-size: 16px; color: #888; font-weight: 500; }
+
+    .pricing-cta-btn {
+      display: block; width: 100%; box-sizing: border-box;
+      padding: 18px; background: var(--accent); color: #fff;
+      border: none; border-radius: 12px; font-size: 17px; font-weight: 700;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; box-shadow: 0 4px 16px rgba(232,86,42,0.3);
+      text-align: center;
+    }
+    .pricing-cta-btn:hover { background: #d14a22; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,86,42,0.4); }
+    .pricing-cta-btn.pulse { animation: ctaPulseGlow 2s ease-in-out infinite; }
+
+    .pricing-cancel { font-size: 13px; color: #666; margin-top: 12px; }
+
+    .pricing-divider { height: 1px; background: #eee; margin: 0 24px; }
+
+    .pricing-features { padding: 18px 24px 20px; }
+    .pricing-features-title { font-size: 13px; font-weight: 600; color: #888; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .pricing-features-grid {
+      display: flex; flex-wrap: wrap; gap: 8px 16px;
+    }
+    .pricing-feature {
+      display: flex; align-items: center; gap: 6px; font-size: 13px; color: #444; line-height: 1;
+      white-space: nowrap;
+    }
+    .feature-check {
+      width: 15px; height: 15px; min-width: 15px; border-radius: 50%; background: #dcfce7;
+      display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .feature-check svg { width: 8px; height: 8px; }
+
+    .guarantee-card {
+      background: #f8f9fa; border: none; border-radius: 12px;
+      padding: 16px 24px; display: flex; flex-direction: column;
+      align-items: center; text-align: center; gap: 4px;
+    }
+    .guarantee-card .guarantee-shield { display: none; }
+    .guarantee-title { font-size: 14px; font-weight: 700; color: #1a1a1a; display: flex; align-items: center; gap: 8px; }
+    .guarantee-text p { font-size: 13px; color: #888; margin: 0; line-height: 1.4; }
+    .guarantee-text strong { font-size: 14px; color: #1a1a1a; display: flex; align-items: center; gap: 8px; justify-content: center; margin-bottom: 2px; }
+
+    /* ===== Pricing Card V2 — Two column layout ===== */
+    .pricing-card-v2 {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s ease;
+    }
+    .pricing-card-v2:hover {
+      transform: translateY(-4px) scale(1.005);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .pc2-left {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #f0f0f0;
+    }
+    .pc2-badge {
+      display: inline-block;
+      width: fit-content;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #FFF0EB;
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .pc2-plan {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0 0 12px;
+      line-height: 1.1;
+    }
+    .pc2-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .pc2-old {
+      font-size: 14px;
+      color: #999;
+      text-decoration: line-through;
+    }
+    .pc2-current {
+      font-size: 44px;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+    .pc2-period {
+      font-size: 15px;
+      color: #888;
+      font-weight: 500;
+    }
+    .pc2-urgency {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #FFF7F5;
+      border: 1px solid #ffe0d6;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+    }
+    .pc2-urgency svg { flex-shrink: 0; margin-top: 1px; }
+    .pc2-urgency strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .pc2-urgency span {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+    }
+    .pc2-left .pricing-cta-btn { margin-top: auto; }
+    .pc2-right {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    .pc2-includes-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .pc2-features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 16px;
+    }
+    .pc2-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.45;
+    }
+    .pc2-check {
+      color: #16a34a;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-card-v2 { grid-template-columns: 1fr; }
+      .pc2-left { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 28px 24px; }
+      .pc2-right { padding: 24px; }
+      .pc2-features-grid { grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+    }
+    @media (max-width: 500px) {
+      .pc2-left { padding: 24px 20px; }
+      .pc2-right { padding: 20px; }
+      .pc2-features-grid { grid-template-columns: 1fr; gap: 10px; }
+      .pc2-plan { font-size: 24px; }
+      .pc2-current { font-size: 36px; }
+      .pc2-feature { font-size: 12px; }
+    }
+
+    /* Guarantee V2 — green card */
+    .guarantee-card-v2 {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 16px;
+      padding: 24px 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .guarantee-v2-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #15803d;
+    }
+    .guarantee-v2-title svg { flex-shrink: 0; }
+    .guarantee-v2-text {
+      font-size: 15px;
+      color: #166534;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .result-stats { grid-template-columns: 1fr; }
+      .proj-label { width: 65px; font-size: 12px; }
+      .proj-value { width: 60px; font-size: 13px; }
+      .pricing-header h2 { font-size: 26px; }
+      .pricing-current { font-size: 38px; }
+      .pricing-features-grid { grid-template-columns: 1fr; }
+      .pricing-cta-btn { padding: 14px 28px; font-size: 15px; }
+    }
+
+    /* ===== Trust Section ===== */
+    .trust-section {
+      width: 100%;
+      text-align: center;
+      padding: 24px 0 8px;
+    }
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 16px;
+    }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 22px; margin-bottom: 6px; }
+    .trust-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .trust-sub {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+    .trust-logos {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .trust-logo-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #aaa;
+      background: #f3f4f6;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    @media (max-width: 500px) {
+      .trust-row { gap: 16px; flex-wrap: wrap; }
+    }
+
+    /* ===== Analysis full-page centered mode ===== */
+    .auth-page.analysis-mode {
+      display: block !important;
+      padding: 0 32px 80px;
+      min-height: auto;
+    }
+    .auth-page.analysis-mode .auth-left {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+    }
+    .auth-page.analysis-mode .auth-right {
+      display: none !important;
+    }
+
+    /* Loading phase centered */
+    .analysis-mode .analysis-header { padding-top: 60px; }
+
+    /* Results hero */
+    .analysis-mode #analysis-results > h1 {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+    .analysis-mode #analysis-results > .step-desc {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 44px;
+    }
+
+    /* Comparison grid centered */
+    .analysis-mode .comparison-grid {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .analysis-mode .growth-badge-wrap {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Divider between sections */
+    .results-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ddd, transparent);
+      max-width: 400px;
+      margin: 52px auto;
+    }
+
+    /* Pricing centered */
+    .analysis-mode .pricing-header {
+      text-align: center;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 32px;
+    }
+    .analysis-mode .pricing-card {
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border-color: #e8e8e8;
+    }
+    .analysis-mode .guarantee-card {
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 600px) {
+      .auth-page.analysis-mode { padding: 0 16px 60px; }
+      .analysis-mode #analysis-results > h1 { font-size: 26px; }
+      .analysis-mode .result-stat { padding: 20px 14px; }
+      .analysis-mode .stat-value { font-size: 26px; }
+    }
+
+    /* ===== Results vertical funnel mode ===== */
+    .auth-page.results-mode {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: #f0f1f3;
+      padding: 48px 24px 80px;
+      gap: 0;
+      position: relative;
+    }
+    #network-bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .auth-page.results-mode .auth-left,
+    .auth-page.results-mode .auth-right,
+    .auth-page.results-mode #results-right-panel {
+      position: relative;
+      z-index: 1;
+    }
+    .auth-page.results-mode .auth-left {
+      padding: 0 !important;
+      flex: none !important;
+      width: 100% !important;
+      max-width: 900px !important;
+      background: transparent !important;
+      order: 2;
+    }
+    .auth-page.results-mode .auth-right {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: transparent;
+      padding: 0;
+      flex: none;
+      width: 100%;
+      max-width: 640px;
+      position: relative;
+      overflow: visible;
+      order: 1;
+      margin-bottom: 40px;
+    }
+    .auth-page.results-mode .auth-right::before,
+    .auth-page.results-mode .auth-right::after { display: none; }
+    .auth-page.results-mode .auth-right .network-bg,
+    .auth-page.results-mode .auth-right .ob-card { display: none !important; }
+    .auth-page.results-mode .onboarding-progress { display: none; }
+    .auth-page.results-mode .pricing-header { max-width: none; margin-bottom: 20px; }
+    .auth-page.results-mode .pricing-header h2 { font-size: 26px; }
+    .auth-page.results-mode .pricing-header p { font-size: 14px; margin-top: 8px; }
+    .auth-page.results-mode .pricing-card,
+    .auth-page.results-mode .guarantee-card { max-width: none; }
+
+    /* Funnel hero */
+    .funnel-hero {
+      text-align: center;
+      margin-bottom: 28px;
+      width: 100%;
+    }
+    .funnel-hero .funnel-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #FFF0EB 0%, #ffe0d4 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 26px;
+    }
+    .funnel-hero h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .funnel-hero h2 .domain-highlight { color: var(--accent); }
+    .funnel-hero p {
+      font-size: 14px;
+      color: #888;
+      margin: 0;
+    }
+
+    /* Funnel section dividers */
+    .funnel-section {
+      text-align: center;
+      margin: 28px 0 18px;
+      width: 100%;
+    }
+    .funnel-section h4 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #bbb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 0;
+    }
+    .funnel-section h4::before,
+    .funnel-section h4::after {
+      content: '';
+      height: 1px;
+      width: 48px;
+      background: #e5e7eb;
+    }
+
+    #results-right-panel {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+    .results-stats-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .r-stat {
+      flex: 1;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 14px 8px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .r-stat-value {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .r-stat-label {
+      font-size: 9px;
+      color: #888;
+      font-weight: 600;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    /* (results-right-title replaced by funnel-hero) */
+    /* ===== Growth Curve Chart ===== */
+    .curve-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 28px 24px 20px;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      margin-bottom: 20px;
+      transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s ease;
+    }
+    .curve-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .curve-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .curve-subtitle {
+      font-size: 13px;
+      color: #999;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .curve-svg-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2.2 / 1;
+    }
+    .curve-svg-wrap svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* Grid lines */
+    .curve-grid { stroke: #f0f0f0; stroke-width: 1; }
+    /* Axis labels */
+    .curve-axis-label {
+      font-size: 11px;
+      fill: #bbb;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    /* Y-axis values */
+    .curve-y-label {
+      font-size: 10px;
+      fill: #ccc;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    /* Lines */
+    .curve-line-red {
+      fill: none;
+      stroke: #ef4444;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .curve-line-green {
+      fill: none;
+      stroke: #22c55e;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    /* Area fills */
+    .curve-area-red {
+      fill: url(#grad-red);
+      opacity: 0;
+      transition: opacity 1.8s ease 0.5s;
+    }
+    .curve-area-green {
+      fill: url(#grad-green);
+      opacity: 0;
+      transition: opacity 1.8s ease 0.7s;
+    }
+    .curve-card.animated .curve-line-red { stroke-dashoffset: 0; }
+    .curve-card.animated .curve-line-green { stroke-dashoffset: 0; }
+    .curve-card.animated .curve-area-red { opacity: 1; }
+    .curve-card.animated .curve-area-green { opacity: 1; }
+    /* Endpoint dots */
+    .curve-dot-red {
+      fill: #ef4444;
+      opacity: 0;
+      transition: opacity 0.4s ease 1.8s;
+    }
+    .curve-dot-green {
+      fill: #22c55e;
+      opacity: 0;
+      transition: opacity 0.4s ease 2s;
+    }
+    .curve-card.animated .curve-dot-red,
+    .curve-card.animated .curve-dot-green { opacity: 1; }
+    /* End value labels */
+    .curve-end-label {
+      font-size: 12px;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      opacity: 0;
+      transition: opacity 0.5s ease 2s;
+    }
+    .curve-card.animated .curve-end-label { opacity: 1; }
+    .curve-end-red { fill: #dc2626; }
+    .curve-end-green { fill: #16a34a; }
+    /* Legend */
+    .curve-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .curve-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+    }
+    .curve-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .curve-legend-dot.red { background: #ef4444; }
+    .curve-legend-dot.green { background: #22c55e; }
+    /* Bottom stats row */
+    .curve-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .curve-stat {
+      text-align: center;
+    }
+    .curve-stat-val {
+      font-size: 22px;
+      font-weight: 800;
+      display: block;
+    }
+    .curve-stat-val.bad { color: #dc2626; }
+    .curve-stat-val.good { color: #16a34a; }
+    .curve-stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .curve-stat-unit {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: #bbb;
+      margin-top: 2px;
+    }
+    .curve-stat-uplift {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #dcfce7;
+      color: #15803d;
+      margin-top: 4px;
+    }
+
+    /* Growth badge */
+    #results-right-panel .growth-badge {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #15803d;
+      margin-bottom: 12px;
+    }
+
+    /* Rating bar */
+    .results-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .results-rating-stars { color: #f59e0b; font-size: 14px; letter-spacing: 2px; }
+    .results-rating-text { font-size: 13px; color: #888; font-weight: 500; }
+
+    /* ===== Results Header ===== */
+    .results-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 32px;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .auth-page.results-mode ~ .results-footer,
+    .results-header.visible { display: flex; }
+    .results-header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    .results-header-logo svg { width: 28px; height: 28px; }
+    .results-header-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    /* ===== Results Footer ===== */
+    .results-footer {
+      display: none;
+      background: #1a1a1a;
+      color: #999;
+      padding: 40px 32px;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+    .results-footer.visible { display: flex; }
+    .results-footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+    .results-footer-logo svg { width: 24px; height: 24px; }
+    .results-footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .results-footer-links a {
+      color: #888;
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .results-footer-links a:hover { color: #fff; }
+    .results-footer-copy {
+      font-size: 12px;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 700px) {
+      .auth-page.results-mode { padding: 32px 16px 60px; }
+      .auth-page.results-mode .auth-left,
+      .auth-page.results-mode .auth-right { max-width: 100%; }
+      .funnel-hero h2 { font-size: 22px; }
+      .results-stats-row { flex-wrap: wrap; }
+      .r-stat { min-width: 90px; }
+      .curve-card { padding: 20px 14px 16px; }
+      .curve-title { font-size: 14px; }
+      .curve-stats { gap: 20px; }
+      .curve-stat-val { font-size: 18px; }
+      .curve-legend { gap: 16px; }
+      .curve-legend-item { font-size: 11px; }
+    }
 
     /* Skip button */
     .skip-btn {
@@ -391,6 +1408,25 @@
       animation: stepIn 0.4s ease;
     }
     .site-preview.show { display: block; }
+    .site-preview-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background: #f5f5f5;
+      overflow: hidden;
+    }
+    .site-preview-img-wrap.loading::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
     .site-preview-img {
       width: 100%;
       height: 180px;
@@ -508,6 +1544,76 @@
     }
     .shake { animation: shake 0.4s ease; }
 
+    @keyframes resultsSlideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ctaPulseGlow {
+      0%, 100% { box-shadow: 0 4px 16px rgba(232,86,42,0.3); }
+      50% { box-shadow: 0 4px 32px rgba(232,86,42,0.55), 0 0 48px rgba(232,86,42,0.2); }
+    }
+    /* --- Continuous ambient animations --- */
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes softPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.04); opacity: 0.92; }
+    }
+    @keyframes glowBorder {
+      0%, 100% { border-color: #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+      50% { border-color: #c7d2fe; box-shadow: 0 4px 28px rgba(99,102,241,0.10), 0 0 0 3px rgba(99,102,241,0.04); }
+    }
+    @keyframes badgePop {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+    @keyframes statCountFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    /* Force all fade-ups visible before ambient anims */
+    .anim-live .fade-up {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    .anim-live .r-stat {
+      animation: floatY 3s ease-in-out infinite !important;
+    }
+    .anim-live .r-stat:nth-child(2) { animation-delay: 0.4s; }
+    .anim-live .r-stat:nth-child(3) { animation-delay: 0.8s; }
+    .anim-live .curve-stat-uplift {
+      animation: badgePop 2.5s ease-in-out infinite !important;
+    }
+    .anim-live .growth-badge {
+      animation: softPulse 2s ease-in-out infinite !important;
+    }
+    .anim-live .curve-stat-val {
+      animation: statCountFloat 3s ease-in-out infinite !important;
+    }
+    .anim-live .funnel-icon {
+      animation: floatY 3s ease-in-out infinite !important;
+    }
+    .fade-up { opacity: 0; transform: translateY(18px); animation: fadeUp 0.5s ease forwards; }
+    .fade-up.d1 { animation-delay: 0.05s; }
+    .fade-up.d2 { animation-delay: 0.15s; }
+    .fade-up.d3 { animation-delay: 0.25s; }
+    .fade-up.d4 { animation-delay: 0.4s; }
+    .fade-up.d5 { animation-delay: 0.55s; }
+    .fade-up.d6 { animation-delay: 0.65s; }
+    .fade-up.d7 { animation-delay: 0.75s; }
+    .fade-up.d8 { animation-delay: 0.9s; }
+    .fade-up.d9 { animation-delay: 1.0s; }
+    .fade-up.d10 { animation-delay: 1.1s; }
+    .fade-up.d11 { animation-delay: 1.2s; }
+    .fade-up.d12 { animation-delay: 1.35s; }
+
     @media (max-width: 768px) {
       .onboarding-topbar { padding: 16px 20px; }
       .progress-dot { width: 26px; height: 26px; font-size: 11px; }
@@ -525,12 +1631,25 @@
         <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
       </svg>
-      Nexora.ai
+      Nexora
+    </a>
+  </div>
+
+  <!-- Results Header (sticky) -->
+  <div class="results-header" id="results-header">
+    <a href="index.html" class="results-header-logo">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="8" fill="#E8562A"/>
+        <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+      </svg>
+      Nexora
     </a>
   </div>
 
   <!-- Main Layout -->
   <div class="auth-page" style="display:none;">
+    <canvas id="network-bg-canvas"></canvas>
 
     <!-- Left: Form -->
     <div class="auth-left" style="max-width:640px;">
@@ -571,7 +1690,9 @@
 
         <!-- Site preview card -->
         <div class="site-preview" id="site-preview">
-          <img class="site-preview-img" id="preview-img" src="" alt="Apercu du site">
+          <div class="site-preview-img-wrap loading" id="preview-img-wrap">
+            <img class="site-preview-img" id="preview-img" src="" alt="Apercu du site" onload="this.parentElement.classList.remove('loading')" onerror="this.parentElement.classList.remove('loading')">
+          </div>
           <div class="site-preview-body">
             <div class="site-preview-url">
               <span class="green-dot"></span>
@@ -635,9 +1756,10 @@
           <div class="tags-wrapper">
             <div class="tags-list" id="aud-tags"></div>
             <div class="tags-row">
-              <input type="text" id="aud-input" class="tags-input" placeholder="Ex: Entrepreneurs, PME en France...">
+              <input type="text" id="aud-input" class="tags-input" placeholder="Tapez une audience et appuyez Entree...">
               <button class="tag-add" onclick="handleAudAdd()">+</button>
             </div>
+            <div class="tags-hint" id="tags-hint">Appuyez sur <kbd>Entree</kbd> pour ajouter</div>
             <div class="suggestions-wrap" id="aud-suggestions"></div>
           </div>
         </div>
@@ -650,24 +1772,134 @@
         <span class="back-link" onclick="goBack(4)">&larr; Retour</span>
         <div class="step-badge">
           <span class="step-num">ETAPE 4</span>
-          <span class="optional-tag">Optionnel</span>
         </div>
-        <h1>Parametres de marque</h1>
-        <p class="step-desc">Personnalisez l'apparence de votre contenu genere.</p>
-        <div class="auth-field">
-          <label for="brand-hex">Couleur de marque</label>
-          <div class="color-row">
-            <input type="color" id="brand-picker" value="#000000">
-            <span style="font-size:18px;color:#999;">#</span>
-            <input type="text" id="brand-hex" class="color-hex" placeholder="000000" value="000000" maxlength="6">
+        <h1>Quels sont vos objectifs ?</h1>
+        <p class="step-desc">Selectionnez vos priorites pour que notre IA adapte votre strategie de contenu.</p>
+        <div class="goals-grid" id="goals-grid">
+          <div class="goal-card" onclick="toggleGoal(this, 'traffic')">
+            <span class="goal-icon">&#128200;</span>
+            <span class="goal-label">Generer du trafic organique</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleGoal(this, 'leads')">
+            <span class="goal-icon">&#127919;</span>
+            <span class="goal-label">Convertir plus de leads</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleGoal(this, 'authority')">
+            <span class="goal-icon">&#128081;</span>
+            <span class="goal-label">Renforcer mon autorite</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleGoal(this, 'seo')">
+            <span class="goal-icon">&#128269;</span>
+            <span class="goal-label">Ameliorer mon SEO</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleGoal(this, 'social')">
+            <span class="goal-icon">&#128242;</span>
+            <span class="goal-label">Alimenter mes reseaux sociaux</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleGoal(this, 'educate')">
+            <span class="goal-icon">&#127891;</span>
+            <span class="goal-label">Eduquer mon audience</span>
+            <span class="goal-check">&#10003;</span>
           </div>
         </div>
-        <div class="auth-field">
-          <label for="article-url">URL d'un article exemple <span style="color:#999;font-weight:400;">(optionnel)</span></label>
-          <input type="url" id="article-url" placeholder="https://www.votresite.com/blog/article">
-        </div>
+        <div id="err-4" class="field-error" style="display:none;"></div>
         <button class="auth-submit" onclick="finish()">Terminer la configuration &rarr;</button>
-        <button class="skip-btn" onclick="finish()">Passer et terminer</button>
+      </div>
+
+      <!-- Step 5: Analysis & Results (hidden from progress bar) -->
+      <div class="onboarding-step" data-step="5">
+
+        <!-- Loading Phase -->
+        <div id="analysis-loading">
+          <div class="analysis-header">
+            <span class="analysis-icon">&#128269;</span>
+            <h1>Analyse en cours...</h1>
+            <p class="step-desc">Notre IA analyse votre site et prepare votre strategie personnalisee.</p>
+          </div>
+          <div class="analysis-checklist" id="analysis-checklist">
+            <div class="check-item" data-check="1">
+              <span class="check-icon"></span>
+              <span>Scan du site web</span>
+            </div>
+            <div class="check-item" data-check="2">
+              <span class="check-icon"></span>
+              <span>Evaluation du contenu existant</span>
+            </div>
+            <div class="check-item" data-check="3">
+              <span class="check-icon"></span>
+              <span>Audit SEO technique</span>
+            </div>
+            <div class="check-item" data-check="4">
+              <span class="check-icon"></span>
+              <span>Analyse de la concurrence</span>
+            </div>
+            <div class="check-item" data-check="5">
+              <span class="check-icon"></span>
+              <span>Calcul du potentiel de croissance</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Phase (hidden initially) -->
+        <div id="analysis-results" style="display:none;">
+          <span id="result-domain" style="display:none;"></span>
+
+          <!-- 4. Section: Passer a l'action -->
+          <div class="funnel-section fade-up d9" style="margin-top:8px;">
+            <h4>Passez a l'action</h4>
+          </div>
+
+          <!-- Pricing Card -->
+
+          <div class="pricing-card-v2 fade-up d11">
+            <div class="pc2-left">
+              <span class="pc2-badge">Pour les entrepreneurs</span>
+              <h3 class="pc2-plan">Tout-en-un</h3>
+              <div class="pc2-price-row">
+                <span class="pc2-old">&euro;247</span>
+                <span class="pc2-current">&euro;99</span>
+                <span class="pc2-period">/mois</span>
+              </div>
+              <div class="pc2-urgency">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="var(--accent)" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg>
+                <div>
+                  <strong>Plus que 28 places en mars</strong>
+                  <span>Nous limitons les inscriptions pour maintenir la qualite des backlinks.</span>
+                </div>
+              </div>
+              <button class="pricing-cta-btn" id="results-cta" onclick="localStorage.setItem('nexora_onboarding_complete','true');window.location.href='select-plan.html'">Essayer gratuitement 3 jours &rarr;</button>
+            </div>
+            <div class="pc2-right">
+              <div class="pc2-includes-title">Ce qui est inclus :</div>
+              <div class="pc2-features-grid">
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>30 articles SEO optimises generes et publies automatiquement</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Articles avec citations, liens internes et infographies</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Backlinks de qualite via notre reseau de +2 500 sites partenaires</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Audit technique : on trouve et corrige ce qui bloque Google</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Articles bases sur des recherches en temps reel</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Recherche de mots-cles automatisee et clustering SERP</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Votre marque mentionnee sur les forums et Reddit</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Compatible WordPress, Webflow, Shopify, Wix et API</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Balisage JSON-LD pour les extraits enrichis</div>
+                <div class="pc2-feature"><span class="pc2-check">&#10003;</span>Articles disponibles en +20 langues</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guarantee-card-v2 fade-up d12">
+            <div class="guarantee-v2-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="#15803d" stroke-width="2" fill="none"/><path d="M9 12l2 2 4-4" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <strong>3 jours pour tester, sans aucun engagement</strong>
+            </div>
+            <p class="guarantee-v2-text">Annulez a tout moment pendant votre essai de 3 jours. Sans engagement, sans surprise.</p>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -708,36 +1940,196 @@
         <h3>Analyse de votre site</h3>
         <p>Nous allons scanner votre site pour comprendre votre positionnement actuel.</p>
       </div>
+
+      <!-- Results Right Panel — Vertical Funnel (shown in results-mode) -->
+      <div id="results-right-panel" style="display:none;">
+
+        <!-- 1. Funnel Hero — Recap -->
+        <div class="funnel-hero fade-up d1">
+          <div class="funnel-icon">&#128202;</div>
+          <h2>Analyse terminee pour <span class="domain-highlight" id="result-domain-right"></span></h2>
+          <p>Voici ce que nos algorithmes ont decouvert sur votre site</p>
+        </div>
+
+        <!-- Stats pills -->
+        <div class="results-stats-row fade-up d2">
+          <div class="r-stat">
+            <span class="r-stat-value">2 000+</span>
+            <span class="r-stat-label">Clients satisfaits</span>
+          </div>
+          <div class="r-stat">
+            <span class="r-stat-value">40%</span>
+            <span class="r-stat-label">Boost Trafic Moy.</span>
+          </div>
+          <div class="r-stat">
+            <span class="r-stat-value">90 jrs</span>
+            <span class="r-stat-label">Premier resultat</span>
+          </div>
+        </div>
+
+        <!-- Graph 1 : Trafic — barres verticales cote a cote -->
+        <!-- Courbe de croissance unique -->
+        <div class="curve-card fade-up d3" id="curve-chart">
+          <div class="curve-title">Projection de votre trafic sur 3 mois</div>
+          <div class="curve-subtitle" id="curve-domain-label"></div>
+          <div class="curve-svg-wrap">
+            <svg viewBox="0 0 500 220" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="grad-red" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ef4444" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#ef4444" stop-opacity="0.01"/>
+                </linearGradient>
+                <linearGradient id="grad-green" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#22c55e" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#22c55e" stop-opacity="0.01"/>
+                </linearGradient>
+              </defs>
+              <!-- Grid lines -->
+              <line x1="60" y1="30" x2="60" y2="185" class="curve-grid"/>
+              <line x1="60" y1="185" x2="475" y2="185" class="curve-grid"/>
+              <line x1="60" y1="140" x2="475" y2="140" class="curve-grid" stroke-dasharray="4 4"/>
+              <line x1="60" y1="95" x2="475" y2="95" class="curve-grid" stroke-dasharray="4 4"/>
+              <line x1="60" y1="50" x2="475" y2="50" class="curve-grid" stroke-dasharray="4 4"/>
+              <!-- Y axis labels -->
+              <text x="55" y="188" class="curve-y-label" text-anchor="end">0</text>
+              <text x="55" y="143" class="curve-y-label" text-anchor="end" id="cy-1"></text>
+              <text x="55" y="98" class="curve-y-label" text-anchor="end" id="cy-2"></text>
+              <text x="55" y="53" class="curve-y-label" text-anchor="end" id="cy-3"></text>
+              <!-- X axis labels -->
+              <text x="60" y="202" class="curve-axis-label" text-anchor="middle">Auj.</text>
+              <text x="198" y="202" class="curve-axis-label" text-anchor="middle">Mois 1</text>
+              <text x="337" y="202" class="curve-axis-label" text-anchor="middle">Mois 2</text>
+              <text x="475" y="202" class="curve-axis-label" text-anchor="middle">Mois 3</text>
+              <!-- Area fills (under curves) -->
+              <path id="area-red" class="curve-area-red"/>
+              <path id="area-green" class="curve-area-green"/>
+              <!-- Red curve (sans Nexora) -->
+              <polyline id="line-red" class="curve-line-red" points=""/>
+              <!-- Green curve (avec Nexora) -->
+              <polyline id="line-green" class="curve-line-green" points=""/>
+              <!-- End dots -->
+              <circle id="dot-red" class="curve-dot-red" r="5"/>
+              <circle id="dot-green" class="curve-dot-green" r="5"/>
+              <!-- End labels -->
+              <text id="label-red" class="curve-end-label curve-end-red"></text>
+              <text id="label-green" class="curve-end-label curve-end-green"></text>
+            </svg>
+          </div>
+          <div class="curve-legend">
+            <div class="curve-legend-item">
+              <span class="curve-legend-dot red"></span>
+              Sans changement
+            </div>
+            <div class="curve-legend-item">
+              <span class="curve-legend-dot green"></span>
+              Avec Nexora
+            </div>
+          </div>
+          <div class="curve-stats">
+            <div class="curve-stat">
+              <span class="curve-stat-val bad" id="cs-now">&mdash;</span>
+              <span class="curve-stat-label">Aujourd'hui</span>
+              <span class="curve-stat-unit">visiteurs / mois</span>
+            </div>
+            <div class="curve-stat">
+              <span class="curve-stat-val good" id="cs-proj">&mdash;</span>
+              <span class="curve-stat-label">Avec Nexora</span>
+              <span class="curve-stat-unit">visiteurs / mois</span>
+              <div><span class="curve-stat-uplift" id="cs-uplift"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Growth summary -->
+        <div class="growth-badge-wrap fade-up d6">
+          <div class="growth-badge" id="growth-badge">&#128640; &times;3.2 de croissance estimee</div>
+        </div>
+
+        <div class="results-rating fade-up d7">
+          <span class="results-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="results-rating-text">4.75/5 &mdash; 400+ avis</span>
+        </div>
+      </div>
     </div>
 
   </div>
 
+  <!-- Results Footer -->
+  <div class="results-footer" id="results-footer">
+    <a href="index.html" class="results-footer-logo">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="8" fill="#E8562A"/>
+        <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+      </svg>
+      Nexora
+    </a>
+    <div class="results-footer-links">
+      <a href="#">Mentions legales</a>
+      <a href="#">Politique de confidentialite</a>
+      <a href="#">CGV</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="results-footer-copy">&copy; 2025 Nexora — Tous droits reserves.</div>
+  </div>
+
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
   <script>
     // --- Auth Guard ---
-    requireAuth().then(function(user) {
-      if (!user) return;
-      if (localStorage.getItem('nexora_onboarding_complete') === 'true') {
-        window.location.href = 'dashboard.html';
-        return;
-      }
-      document.querySelector('.auth-page').style.display = 'flex';
-    });
-
-    // --- State ---
+    var _isResultsPreview = window.location.search.includes('results');
+    // ?reset in URL clears onboarding flag for testing
+    if (window.location.search.includes('reset')) {
+      localStorage.removeItem('nexora_onboarding_complete');
+      localStorage.removeItem('nexora_onboarding_data');
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+    // --- State (moved before preview check) ---
     var cur = 1;
     var data = {
       url: '', lang: 'fr', desc: '',
       audience: [],
-      color: '#000000', articleUrl: ''
+      goals: []
     };
+
+    if (_isResultsPreview) {
+      // Direct access to results page for design work
+      document.querySelector('.auth-page').style.display = 'flex';
+      document.querySelector('.onboarding-progress').style.display = 'none';
+      document.querySelectorAll('.onboarding-step').forEach(function(el) { el.classList.remove('active'); });
+      var s5 = document.querySelector('[data-step="5"]');
+      if (s5) s5.classList.add('active');
+      document.getElementById('analysis-loading').style.display = 'none';
+      document.getElementById('analysis-results').style.display = 'block';
+      var authPage = document.querySelector('.auth-page');
+      authPage.classList.add('results-mode');
+      document.getElementById('results-right-panel').style.display = 'block';
+      document.getElementById('results-header').classList.add('visible');
+      document.getElementById('results-footer').classList.add('visible');
+      document.querySelector('.onboarding-topbar').style.display = 'none';
+      // Fill with demo data
+      data.url = 'https://cedim-diag.fr';
+      setTimeout(function() { showResults(); }, 100);
+      // Init network background
+      setTimeout(initNetworkBg, 50);
+    } else {
+      requireAuth().then(function(user) {
+        if (!user) return;
+        if (localStorage.getItem('nexora_onboarding_complete') === 'true') {
+          window.location.href = 'dashboard.html';
+          return;
+        }
+        document.querySelector('.auth-page').style.display = 'flex';
+      });
+    }
 
     var cards = [
       { icon: '&#127760;', t: 'Analyse de votre site', d: 'Nous allons scanner votre site pour comprendre votre positionnement actuel.' },
       { icon: '&#127758;', t: 'Portee internationale', d: 'Ciblez l\'audience dans la langue de votre choix.' },
       { icon: '&#9997;&#65039;', t: 'Contenu sur mesure', d: 'Notre IA generera du contenu adapte a votre activite.' },
-      { icon: '&#127912;', t: 'Votre identite', d: 'Chaque contenu refletera l\'image de votre marque.' }
+      { icon: '&#127919;', t: 'Vos objectifs', d: 'Definissez vos priorites pour un contenu parfaitement cible.' },
+      { icon: '&#128640;', t: 'Votre potentiel', d: 'Decouvrez comment Nexora peut transformer votre trafic.' }
     ];
 
     // --- Navigation ---
@@ -747,6 +2139,14 @@
       if (s) s.classList.add('active');
       cur = n;
       document.getElementById('step-cur').textContent = n;
+
+      // Hide progress bar on analysis step
+      document.querySelector('.onboarding-progress').style.display = n > 4 ? 'none' : 'block';
+
+      // Full-page centered mode for analysis
+      var authPage = document.querySelector('.auth-page');
+      if (n > 4) { authPage.classList.add('analysis-mode'); }
+      else { authPage.classList.remove('analysis-mode'); authPage.classList.remove('results-mode'); }
 
       var dots = document.querySelectorAll('.progress-dot');
       var lines = document.querySelectorAll('.progress-line');
@@ -808,8 +2208,11 @@
             var d = res.data;
             // Screenshot
             var imgUrl = (d.screenshot && d.screenshot.url) || (d.image && d.image.url) || '';
-            document.getElementById('preview-img').src = imgUrl || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect fill="%23f0f0f0" width="400" height="180"/><text x="50%" y="50%" text-anchor="middle" fill="%23aaa" font-size="14">Apercu non disponible</text></svg>';
-            document.getElementById('preview-img').onerror = function() {
+            document.getElementById('preview-img-wrap').classList.add('loading');
+            var prevImg = document.getElementById('preview-img');
+            prevImg.src = imgUrl || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect fill="%23f0f0f0" width="400" height="180"/><text x="50%" y="50%" text-anchor="middle" fill="%23aaa" font-size="14">Apercu non disponible</text></svg>';
+            prevImg.onerror = function() {
+              this.parentElement.classList.remove('loading');
               this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect fill="%23f0f0f0" width="400" height="180"/><text x="50%" y="50%" text-anchor="middle" fill="%23aaa" font-size="14">Apercu non disponible</text></svg>';
             };
             // Meta
@@ -830,8 +2233,10 @@
 
     function showFallbackPreview(u) {
       var domain = u.replace(/^https?:\/\//, '').split('/')[0];
+      document.getElementById('preview-img-wrap').classList.add('loading');
       document.getElementById('preview-img').src = 'https://image.thum.io/get/width/600/' + u;
       document.getElementById('preview-img').onerror = function() {
+        this.parentElement.classList.remove('loading');
         this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect fill="%23f0f0f0" width="400" height="180"/><text x="50%" y="50%" text-anchor="middle" fill="%23aaa" font-size="14">Apercu non disponible</text></svg>';
       };
       document.getElementById('preview-url').textContent = domain;
@@ -896,12 +2301,301 @@
     function goBack(from) { showStep(from - 1); }
     function skipTo(n) { showStep(n); }
 
+    function toggleGoal(el, goal) {
+      el.classList.toggle('selected');
+      var idx = data.goals.indexOf(goal);
+      if (idx === -1) { data.goals.push(goal); }
+      else { data.goals.splice(idx, 1); }
+    }
+
     function finish() {
-      data.color = '#' + document.getElementById('brand-hex').value;
-      data.articleUrl = document.getElementById('article-url').value.trim();
+      hideErr(4);
+      if (data.goals.length === 0) {
+        showErr(4, 'Selectionnez au moins un objectif.');
+        return;
+      }
       localStorage.setItem('nexora_onboarding_data', JSON.stringify(data));
-      localStorage.setItem('nexora_onboarding_complete', 'true');
-      window.location.href = 'survey.html';
+
+      // Save to API (in background, don't block the UI)
+      if (typeof apiCall === 'function') {
+        apiCall('POST', 'onboarding', {
+          url: data.url || data.siteUrl,
+          description: data.description,
+          audiences: data.audiences || [],
+          goals: data.goals || [],
+          language: data.language || 'fr',
+          niche: data.niche || data.description
+        }).then(function(res) {
+          console.log('Onboarding saved to DB, keywords:', res.keywords_count);
+        }).catch(function(err) {
+          console.error('Onboarding API error:', err);
+        });
+      }
+
+      showStep(5);
+      startAnalysis();
+    }
+
+    // --- Analysis Engine ---
+    function hashCode(str) {
+      var hash = 0;
+      for (var i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash);
+    }
+
+    function startAnalysis() {
+      var items = document.querySelectorAll('#analysis-checklist .check-item');
+      var delays = [0, 2200, 4800, 8000, 11500];
+      var durations = [1800, 2200, 2800, 3000, 2500];
+
+      items.forEach(function(item, i) {
+        // Start processing
+        setTimeout(function() {
+          item.classList.add('active');
+        }, delays[i]);
+        // Complete
+        setTimeout(function() {
+          item.classList.remove('active');
+          item.classList.add('done');
+          item.querySelector('.check-icon').textContent = '\u2713';
+        }, delays[i] + durations[i]);
+      });
+
+      // After all checks done, show results
+      setTimeout(function() {
+        document.getElementById('analysis-loading').style.display = 'none';
+        var results = document.getElementById('analysis-results');
+        results.style.display = 'block';
+        results.style.animation = 'stepIn 0.5s ease';
+        // Switch to two-column results mode
+        var authPage = document.querySelector('.auth-page');
+        authPage.classList.remove('analysis-mode');
+        authPage.classList.add('results-mode');
+        document.getElementById('results-right-panel').style.display = 'block';
+        document.getElementById('results-header').classList.add('visible');
+        document.getElementById('results-footer').classList.add('visible');
+        document.querySelector('.onboarding-topbar').style.display = 'none';
+        showResults();
+        initNetworkBg();
+      }, 15000);
+    }
+
+    function showResults() {
+      var h = hashCode(data.url || 'default');
+      var traffic = 800 + (h % 1700);
+      var trafficProj = Math.round(traffic * 3.2);
+      var multiplier = (trafficProj / traffic).toFixed(1);
+
+      var domain = (data.url || '').replace(/^https?:\/\//, '').split('/')[0];
+      document.getElementById('result-domain').textContent = domain;
+      var rdRight = document.getElementById('result-domain-right');
+      if (rdRight) rdRight.textContent = domain;
+      var compEl = document.getElementById('pricing-competitor');
+      if (compEl && domain) compEl.textContent = domain;
+
+      // Domain label on chart
+      var domLabel = document.getElementById('curve-domain-label');
+      if (domLabel) domLabel.textContent = domain;
+
+      // === Build curve data ===
+      // Red (sans Nexora): stagnant, slight decline
+      var redPts = [
+        traffic,
+        Math.round(traffic * 0.95),
+        Math.round(traffic * 0.88),
+        Math.round(traffic * 0.82)
+      ];
+      // Green (avec Nexora): aggressive growth curve
+      var greenPts = [
+        traffic,
+        Math.round(traffic * 1.4),
+        Math.round(traffic * 2.1),
+        trafficProj
+      ];
+
+      // Chart geometry
+      var cLeft = 60, cRight = 475, cTop = 35, cBot = 185;
+      var maxVal = trafficProj * 1.15;
+      var xStep = (cRight - cLeft) / 3;
+
+      function yPos(v) { return cBot - ((v / maxVal) * (cBot - cTop)); }
+      function pts(arr) {
+        return arr.map(function(v, i) {
+          return (cLeft + i * xStep) + ',' + yPos(v);
+        }).join(' ');
+      }
+      function areaPath(arr) {
+        var d = 'M' + cLeft + ',' + cBot;
+        arr.forEach(function(v, i) { d += ' L' + (cLeft + i * xStep) + ',' + yPos(v); });
+        d += ' L' + cRight + ',' + cBot + ' Z';
+        return d;
+      }
+
+      // Y-axis labels
+      var yStep = Math.round(maxVal / 3);
+      document.getElementById('cy-1').textContent = formatNum(yStep);
+      document.getElementById('cy-2').textContent = formatNum(yStep * 2);
+      document.getElementById('cy-3').textContent = formatNum(yStep * 3);
+
+      // Set polylines + areas
+      document.getElementById('line-red').setAttribute('points', pts(redPts));
+      document.getElementById('line-green').setAttribute('points', pts(greenPts));
+      document.getElementById('area-red').setAttribute('d', areaPath(redPts));
+      document.getElementById('area-green').setAttribute('d', areaPath(greenPts));
+
+      // End dots
+      var redEnd = redPts[3], greenEnd = greenPts[3];
+      document.getElementById('dot-red').setAttribute('cx', cRight);
+      document.getElementById('dot-red').setAttribute('cy', yPos(redEnd));
+      document.getElementById('dot-green').setAttribute('cx', cRight);
+      document.getElementById('dot-green').setAttribute('cy', yPos(greenEnd));
+
+      // End labels
+      var lRed = document.getElementById('label-red');
+      var lGreen = document.getElementById('label-green');
+      lRed.setAttribute('x', cRight - 5);
+      lRed.setAttribute('y', yPos(redEnd) + 18);
+      lRed.textContent = formatNum(redEnd);
+      lGreen.setAttribute('x', cRight - 5);
+      lGreen.setAttribute('y', yPos(greenEnd) - 10);
+      lGreen.textContent = formatNum(greenEnd);
+
+      // Recalculate dash length for smooth animation
+      setTimeout(function() {
+        var lineR = document.getElementById('line-red');
+        var lineG = document.getElementById('line-green');
+        if (lineR) {
+          var lenR = lineR.getTotalLength ? lineR.getTotalLength() : 1000;
+          lineR.style.strokeDasharray = lenR;
+          lineR.style.strokeDashoffset = lenR;
+        }
+        if (lineG) {
+          var lenG = lineG.getTotalLength ? lineG.getTotalLength() : 1000;
+          lineG.style.strokeDasharray = lenG;
+          lineG.style.strokeDashoffset = lenG;
+        }
+        // Trigger animation
+        setTimeout(function() {
+          document.getElementById('curve-chart').classList.add('animated');
+        }, 50);
+      }, 100);
+
+      // Bottom stats
+      animateCounter('cs-now', 0, traffic, 1200, '');
+      animateCounter('cs-proj', 0, trafficProj, 1500, '');
+      setTimeout(function() {
+        document.getElementById('cs-uplift').textContent = '+' + Math.round((trafficProj / traffic - 1) * 100) + '%';
+      }, 800);
+
+      // Growth badge
+      document.getElementById('growth-badge').innerHTML = '&#128640; &times;' + multiplier + ' de croissance estimee';
+
+      // CTA pulse
+      setTimeout(function() {
+        var cta = document.getElementById('results-cta');
+        if (cta) cta.classList.add('pulse');
+      }, 3000);
+
+      // Activate continuous ambient animations after fade-ups complete
+      setTimeout(function() {
+        var panel = document.getElementById('results-right-panel');
+        if (panel) panel.classList.add('anim-live');
+      }, 2000);
+    }
+
+    function animateCounter(id, start, end, duration, suffix) {
+      var el = document.getElementById(id);
+      var startTime = null;
+      suffix = suffix || '';
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var p = Math.min((ts - startTime) / duration, 1);
+        // Ease out
+        var eased = 1 - Math.pow(1 - p, 3);
+        var current = Math.round(start + (end - start) * eased);
+        el.textContent = formatNum(current) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function formatNum(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }
+
+    // --- Animated network background ---
+    function initNetworkBg() {
+      var canvas = document.getElementById('network-bg-canvas');
+      if (!canvas || canvas._initialized) return;
+      canvas._initialized = true;
+      var ctx = canvas.getContext('2d');
+      var nodes = [];
+      var nodeCount = 60;
+      var maxDist = 150;
+      var w, h;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Create nodes
+      for (var i = 0; i < nodeCount; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          r: 2 + Math.random() * 2.5
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        // Move nodes
+        for (var i = 0; i < nodes.length; i++) {
+          var n = nodes[i];
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0) { n.x = 0; n.vx *= -1; }
+          if (n.x > w) { n.x = w; n.vx *= -1; }
+          if (n.y < 0) { n.y = 0; n.vy *= -1; }
+          if (n.y > h) { n.y = h; n.vy *= -1; }
+        }
+        // Draw lines
+        ctx.strokeStyle = 'rgba(190,190,195,0.25)';
+        ctx.lineWidth = 1;
+        for (var i = 0; i < nodes.length; i++) {
+          for (var j = i + 1; j < nodes.length; j++) {
+            var dx = nodes[i].x - nodes[j].x;
+            var dy = nodes[i].y - nodes[j].y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              ctx.globalAlpha = 1 - (dist / maxDist);
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        // Draw dots
+        ctx.globalAlpha = 1;
+        for (var i = 0; i < nodes.length; i++) {
+          var n = nodes[i];
+          ctx.fillStyle = 'rgba(180,180,185,0.5)';
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
     }
 
     // --- Errors ---
@@ -1049,9 +2743,26 @@
       }).join('');
     }
 
-    // Enter key on tag input
-    document.getElementById('aud-input').addEventListener('keydown', function(e) {
+    // Enter key on tag input + hint visibility
+    var _audInput = document.getElementById('aud-input');
+    _audInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') { e.preventDefault(); addTag('aud'); }
+    });
+    _audInput.addEventListener('input', function() {
+      var hint = document.getElementById('tags-hint');
+      if (this.value.trim().length > 0) {
+        hint.classList.add('show');
+      } else {
+        hint.classList.remove('show');
+      }
+    });
+    _audInput.addEventListener('focus', function() {
+      if (this.value.trim().length > 0) {
+        document.getElementById('tags-hint').classList.add('show');
+      }
+    });
+    _audInput.addEventListener('blur', function() {
+      setTimeout(function() { document.getElementById('tags-hint').classList.remove('show'); }, 200);
     });
 
     // --- Language audience ---
@@ -1061,16 +2772,7 @@
       document.getElementById('aud-count').textContent = aud;
     }
 
-    // --- Color sync ---
-    document.getElementById('brand-picker').addEventListener('input', function() {
-      document.getElementById('brand-hex').value = this.value.replace('#', '');
-    });
-    document.getElementById('brand-hex').addEventListener('input', function() {
-      var v = this.value;
-      if (/^[0-9A-Fa-f]{6}$/.test(v)) {
-        document.getElementById('brand-picker').value = '#' + v;
-      }
-    });
+    // --- (Color sync removed — replaced by goals step) ---
 
     // --- AI Generate from site data ---
     function aiGenerate() {

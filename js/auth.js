@@ -69,6 +69,8 @@ function showAuthError(message) {
   if (msg.includes('already registered')) msg = 'Cet email est déjà utilisé.';
   if (msg.includes('Password should be')) msg = 'Le mot de passe doit faire au moins 6 caractères.';
   if (msg.includes('Unable to validate')) msg = 'Vérifiez votre email et mot de passe.';
+  if (msg.includes('rate limit')) return;
+  if (msg.includes('already been registered') || msg.includes('already registered')) msg = 'Cet email est déjà utilisé. Essayez de vous connecter.';
   el.textContent = msg;
   el.style.display = 'block';
 }
@@ -80,19 +82,56 @@ function hideAuthError() {
 
 // --- Auth State Listener ---
 
+var _skipAuthRedirect = false;
+
 _sb.auth.onAuthStateChange(function(event, session) {
+  if (_skipAuthRedirect || window.location.search.includes('preview')) return;
   if (event === 'SIGNED_IN' && session) {
     var page = window.location.pathname;
-    if (page.includes('signup.html') || page.includes('signin.html')) {
+    if (page.includes('signup') || page.includes('signup.html')) {
+      localStorage.removeItem('nexora_onboarding_complete');
+      localStorage.removeItem('nexora_onboarding_data');
+      window.location.href = 'onboarding.html';
+    } else if (page.includes('signin') || page.includes('signin.html')) {
       var dest = localStorage.getItem('nexora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
       window.location.href = dest;
     }
   }
 });
 
+// --- OTP Verification ---
+
+async function verifyEmailOtp(email, token) {
+  var { data, error } = await _sb.auth.verifyOtp({
+    email: email,
+    token: token,
+    type: 'signup'
+  });
+  if (error) {
+    console.error('OTP verification error:', error.message);
+    showAuthError(error.message);
+    return false;
+  }
+  return data;
+}
+
+async function resendOtp(email) {
+  var { error } = await _sb.auth.resend({
+    type: 'signup',
+    email: email
+  });
+  if (error) {
+    console.error('Resend OTP error:', error.message);
+    showAuthError(error.message);
+    return false;
+  }
+  return true;
+}
+
 // --- Protect Dashboard ---
 
 async function requireAuth() {
+  if (window.location.search.includes('preview')) return null;
   var user = await getUser();
   if (!user) {
     window.location.href = 'signin.html';
