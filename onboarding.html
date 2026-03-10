@@ -902,10 +902,13 @@
     }
 
     @media (max-width: 600px) {
-      .auth-page.analysis-mode { padding: 0 16px 60px; }
+      .auth-page.analysis-mode { padding: 0 24px 60px; }
+      .analysis-mode .analysis-header { padding-top: 40px; }
       .analysis-mode #analysis-results > h1 { font-size: 26px; }
       .analysis-mode .result-stat { padding: 20px 14px; }
       .analysis-mode .stat-value { font-size: 26px; }
+      .analysis-checklist { padding: 0 12px; }
+      .check-item { padding: 14px 0; gap: 12px; font-size: 14px; }
     }
 
     /* ===== Results vertical funnel mode ===== */
@@ -1336,12 +1339,14 @@
     }
 
     @media (max-width: 700px) {
-      .auth-page.results-mode { padding: 32px 16px 60px; }
+      .auth-page.results-mode { padding: 32px 12px 60px; }
       .auth-page.results-mode .auth-left,
       .auth-page.results-mode .auth-right { max-width: 100%; }
       .funnel-hero h2 { font-size: 22px; }
-      .results-stats-row { flex-wrap: wrap; }
-      .r-stat { min-width: 90px; }
+      .results-stats-row { flex-wrap: nowrap; gap: 6px; }
+      .r-stat { min-width: 0; padding: 10px 4px; border-radius: 10px; }
+      .r-stat-value { font-size: 15px; }
+      .r-stat-label { font-size: 8px; letter-spacing: 0.3px; }
       .curve-card { padding: 20px 14px 16px; }
       .curve-title { font-size: 14px; }
       .curve-stats { gap: 20px; }
