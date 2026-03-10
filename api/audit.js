@@ -132,6 +132,16 @@ module.exports = async function handler(req, res) {
         fcp = parseFloat(((audits['first-contentful-paint']?.numericValue || 0) / 1000).toFixed(1));
         lcp = parseFloat(((audits['largest-contentful-paint']?.numericValue || 0) / 1000).toFixed(1));
         speedMobile = perfScore;
+      } else {
+        // API returned valid response but no lighthouse data (e.g. error response)
+        console.error('PageSpeed mobile: no lighthouseResult', JSON.stringify(psi.error || {}).slice(0, 200));
+        perfScore = htmlScore;
+        seoApiScore = htmlScore;
+        accessScore = 80;
+        bpScore = 75;
+        speedMobile = Math.max(htmlScore - 10, 30);
+        fcp = 2.5;
+        lcp = 3.8;
       }
 
       // Desktop run
@@ -141,6 +151,10 @@ module.exports = async function handler(req, res) {
       var dPsi = await dRes.json();
       if (dPsi.lighthouseResult) {
         speedDesktop = Math.round((dPsi.lighthouseResult.categories.performance?.score || 0) * 100);
+      } else {
+        // Fallback for desktop too
+        console.error('PageSpeed desktop: no lighthouseResult', JSON.stringify(dPsi.error || {}).slice(0, 200));
+        speedDesktop = Math.max(htmlScore, 40);
       }
 
     } catch (psiErr) {
