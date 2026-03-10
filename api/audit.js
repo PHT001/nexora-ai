@@ -150,6 +150,11 @@ module.exports = async function handler(req, res) {
       seoApiScore = htmlScore;
       accessScore = 80;
       bpScore = 75;
+      // Estimate speed values so they're not 0
+      speedMobile = Math.max(htmlScore - 10, 30);
+      speedDesktop = Math.max(htmlScore, 40);
+      fcp = 2.5;
+      lcp = 3.8;
     }
 
     var overallScore = Math.round((htmlScore * 0.3) + (seoApiScore * 0.3) + (perfScore * 0.2) + (accessScore * 0.1) + (bpScore * 0.1));

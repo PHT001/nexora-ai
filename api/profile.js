@@ -45,7 +45,7 @@ module.exports = async function handler(req, res) {
 
       var { data: lastArt } = await sb
         .from('articles')
-        .select('title, created_at')
+        .select('title, seo_score, word_count, article_type, created_at')
         .eq('site_id', site.id)
         .order('created_at', { ascending: false })
         .limit(1)
@@ -58,7 +58,7 @@ module.exports = async function handler(req, res) {
     if (site) {
       var { data: audit } = await sb
         .from('audits')
-        .select('overall_score, created_at')
+        .select('*')
         .eq('site_id', site.id)
         .order('created_at', { ascending: false })
         .limit(1)

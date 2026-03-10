@@ -920,11 +920,11 @@
               <div class="latest-article-thumb">📝</div>
               <div class="latest-article-info">
                 <div class="latest-article-label">Dernier article</div>
-                <div class="latest-article-title">Guide complet du diagnostic immobilier en 2026</div>
+                <div class="latest-article-title" id="overview-last-article-title">Aucun article genere</div>
                 <div class="latest-article-pills">
-                  <span class="la-pill seo">&#9679; SEO Score: 92</span>
-                  <span class="la-pill length">&#128196; 2,450 mots</span>
-                  <span class="la-pill keyword">&#127919; diagnostic immobilier</span>
+                  <span class="la-pill seo" id="overview-last-article-seo">&#9679; SEO Score: --</span>
+                  <span class="la-pill length" id="overview-last-article-words">&#128196; -- mots</span>
+                  <span class="la-pill keyword" id="overview-last-article-type">&#127919; --</span>
                 </div>
               </div>
             </div>
@@ -970,11 +970,11 @@
               <div class="stat-card-header">
                 <span class="stat-card-label">Health Score</span>
               </div>
-              <div class="stat-card-value">79 <span>/100</span></div>
+              <div class="stat-card-value" id="overview-health-score">-- <span>/100</span></div>
               <div class="stat-card-detail">
-                <div class="stat-card-detail-item"><span class="dot" style="background:#ef4444"></span> 3 problemes critiques</div>
-                <div class="stat-card-detail-item"><span class="dot" style="background:#eab308"></span> 7 avertissements</div>
-                <div class="stat-card-detail-item"><span class="dot" style="background:#22c55e"></span> 45 tests reussis</div>
+                <div class="stat-card-detail-item" id="overview-health-criticals"><span class="dot" style="background:#ef4444"></span> -- problemes critiques</div>
+                <div class="stat-card-detail-item" id="overview-health-warnings"><span class="dot" style="background:#eab308"></span> -- avertissements</div>
+                <div class="stat-card-detail-item" id="overview-health-passed"><span class="dot" style="background:#22c55e"></span> -- tests reussis</div>
               </div>
               <a class="stat-card-link" onclick="showSection('audit')">Lancer un audit &rarr;</a>
             </div>
@@ -1279,36 +1279,36 @@
           <div class="audit-top-row">
             <div class="audit-score-card">
               <div class="audit-score-circle">
-                <div class="audit-score-number audit-score-num">79</div>
+                <div class="audit-score-number audit-score-num" id="audit-overall-score">--</div>
                 <div class="audit-score-max">/100</div>
               </div>
-              <div class="audit-score-label" style="color:#eab308;">Correcte — ameliorations possibles</div>
-              <p style="font-size:13px;color:#666;margin-top:8px;">Derniere analyse : 9 mars 2026</p>
+              <div class="audit-score-label" id="audit-score-label" style="color:#eab308;">Aucun audit lance</div>
+              <p style="font-size:13px;color:#666;margin-top:8px;" id="audit-date">Derniere analyse : --</p>
               <button class="btn-generate audit-run-btn" style="margin:16px auto 0;display:inline-flex;" onclick="runAudit()">&#128260; Relancer l'audit</button>
             </div>
             <div class="audit-speed-card">
               <h4>Page Speed</h4>
               <div class="speed-gauges">
                 <div class="speed-gauge">
-                  <div class="speed-gauge-circle" style="border-color:#e8e8ec;border-top-color:#22c55e;border-right-color:#22c55e;">
-                    <span class="speed-gauge-val">85</span>
+                  <div class="speed-gauge-circle" id="audit-speed-mobile-circle" style="border-color:#e8e8ec;border-top-color:#22c55e;border-right-color:#22c55e;">
+                    <span class="speed-gauge-val" id="audit-speed-mobile">--</span>
                   </div>
                   <div class="speed-gauge-label">Mobile</div>
                 </div>
                 <div class="speed-gauge">
-                  <div class="speed-gauge-circle" style="border-color:#e8e8ec;border-top-color:#22c55e;border-right-color:#22c55e;border-bottom-color:#22c55e;">
-                    <span class="speed-gauge-val">92</span>
+                  <div class="speed-gauge-circle" id="audit-speed-desktop-circle" style="border-color:#e8e8ec;border-top-color:#22c55e;border-right-color:#22c55e;border-bottom-color:#22c55e;">
+                    <span class="speed-gauge-val" id="audit-speed-desktop">--</span>
                   </div>
                   <div class="speed-gauge-label">Desktop</div>
                 </div>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;">
                 <div style="text-align:center;padding:10px;background:#f9fafb;border-radius:8px;">
-                  <div style="font-size:18px;font-weight:700;color:#1a1a1a;">1.8s</div>
+                  <div style="font-size:18px;font-weight:700;color:#1a1a1a;" id="audit-fcp">--</div>
                   <div style="font-size:10px;color:#999;font-weight:600;text-transform:uppercase;">FCP</div>
                 </div>
                 <div style="text-align:center;padding:10px;background:#f9fafb;border-radius:8px;">
-                  <div style="font-size:18px;font-weight:700;color:#1a1a1a;">2.4s</div>
+                  <div style="font-size:18px;font-weight:700;color:#1a1a1a;" id="audit-lcp">--</div>
                   <div style="font-size:10px;color:#999;font-weight:600;text-transform:uppercase;">LCP</div>
                 </div>
               </div>
@@ -1316,120 +1316,41 @@
           </div>
 
           <div class="audit-categories">
-            <div class="audit-cat">
+            <div class="audit-cat" data-cat="performance">
               <div class="audit-cat-header">
                 <span class="audit-cat-title">Performance</span>
-                <span class="audit-cat-score good">85/100</span>
+                <span class="audit-cat-score">--/100</span>
               </div>
-              <div class="audit-bar"><div class="audit-bar-fill good" style="width:85%"></div></div>
+              <div class="audit-bar"><div class="audit-bar-fill" style="width:0%"></div></div>
             </div>
-            <div class="audit-cat">
+            <div class="audit-cat" data-cat="seo">
               <div class="audit-cat-header">
                 <span class="audit-cat-title">SEO On-page</span>
-                <span class="audit-cat-score avg">72/100</span>
+                <span class="audit-cat-score">--/100</span>
               </div>
-              <div class="audit-bar"><div class="audit-bar-fill avg" style="width:72%"></div></div>
+              <div class="audit-bar"><div class="audit-bar-fill" style="width:0%"></div></div>
             </div>
-            <div class="audit-cat">
+            <div class="audit-cat" data-cat="accessibility">
               <div class="audit-cat-header">
                 <span class="audit-cat-title">Accessibilite</span>
-                <span class="audit-cat-score good">88/100</span>
+                <span class="audit-cat-score">--/100</span>
               </div>
-              <div class="audit-bar"><div class="audit-bar-fill good" style="width:88%"></div></div>
+              <div class="audit-bar"><div class="audit-bar-fill" style="width:0%"></div></div>
             </div>
-            <div class="audit-cat">
+            <div class="audit-cat" data-cat="best-practices">
               <div class="audit-cat-header">
                 <span class="audit-cat-title">Contenu</span>
-                <span class="audit-cat-score avg">68/100</span>
+                <span class="audit-cat-score">--/100</span>
               </div>
-              <div class="audit-bar"><div class="audit-bar-fill avg" style="width:68%"></div></div>
+              <div class="audit-bar"><div class="audit-bar-fill" style="width:0%"></div></div>
             </div>
           </div>
 
           <div class="audit-issues audit-issues-list">
-            <div style="padding:14px 20px;font-size:13px;font-weight:700;color:#1a1a1a;background:#f9fafb;border-bottom:1px solid #e8e8ec;">
-              10 problemes detectes
+            <div style="padding:14px 20px;font-size:13px;font-weight:700;color:#1a1a1a;background:#f9fafb;border-bottom:1px solid #e8e8ec;" id="audit-issues-header">
+              Lancez un audit pour detecter les problemes
             </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#9888;&#65039;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Meta descriptions manquantes</div>
-                <div class="audit-issue-desc">3 pages n'ont pas de meta description definie</div>
-              </div>
-              <span class="audit-issue-severity severity-high">Critique</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#9888;&#65039;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Balises H1 manquantes</div>
-                <div class="audit-issue-desc">2 pages n'ont pas de balise H1</div>
-              </div>
-              <span class="audit-issue-severity severity-high">Critique</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#9888;&#65039;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Liens internes insuffisants</div>
-                <div class="audit-issue-desc">5 pages orphelines sans liens internes</div>
-              </div>
-              <span class="audit-issue-severity severity-high">Critique</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#9888;&#65039;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Images sans attribut alt</div>
-                <div class="audit-issue-desc">12 images n'ont pas de texte alternatif</div>
-              </div>
-              <span class="audit-issue-severity severity-medium">Moyen</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#128712;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Temps de chargement lent</div>
-                <div class="audit-issue-desc">2 pages chargent en plus de 3 secondes</div>
-              </div>
-              <span class="audit-issue-severity severity-medium">Moyen</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#128712;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Fichiers CSS non minifies</div>
-                <div class="audit-issue-desc">3 fichiers CSS pourraient etre compresses</div>
-              </div>
-              <span class="audit-issue-severity severity-medium">Moyen</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#128712;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Redirections en chaine</div>
-                <div class="audit-issue-desc">2 URLs ont des redirections multiples</div>
-              </div>
-              <span class="audit-issue-severity severity-medium">Moyen</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#128161;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Sitemap.xml absent</div>
-                <div class="audit-issue-desc">Aucun sitemap detecte sur votre site</div>
-              </div>
-              <span class="audit-issue-severity severity-low">Info</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#128161;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Robots.txt a optimiser</div>
-                <div class="audit-issue-desc">Le fichier robots.txt pourrait etre ameliore</div>
-              </div>
-              <span class="audit-issue-severity severity-low">Info</span>
-            </div>
-            <div class="audit-issue">
-              <span class="audit-issue-icon">&#128161;</span>
-              <div class="audit-issue-text">
-                <div class="audit-issue-title">Schema markup absent</div>
-                <div class="audit-issue-desc">Ajoutez des donnees structurees pour ameliorer le SEO</div>
-              </div>
-              <span class="audit-issue-severity severity-low">Info</span>
-            </div>
+            <!-- Issues will be populated dynamically by renderAuditIssues() -->
           </div>
         </div>
 
@@ -1920,11 +1841,43 @@
           if (sectorEl && _appData.site?.description) sectorEl.textContent = _appData.site.description.substring(0, 60) + '...';
         }
 
-        // Load overview stats
+        // Load overview stats from API data
         if (_appData.stats) {
-          var auditScoreEl = document.querySelector('.health-score-val');
-          if (auditScoreEl && _appData.stats.audit_score) {
-            auditScoreEl.textContent = _appData.stats.audit_score.overall_score + '/100';
+          // --- Health Score card ---
+          if (_appData.stats.audit_score) {
+            var audit = _appData.stats.audit_score;
+            var hsEl = document.getElementById('overview-health-score');
+            if (hsEl) hsEl.innerHTML = (audit.overall_score || '--') + ' <span>/100</span>';
+
+            // Count issues by severity
+            var issues = audit.issues || [];
+            var criticals = issues.filter(function(i) { return i.severity === 'critical'; }).length;
+            var warnings = issues.filter(function(i) { return i.severity === 'warning'; }).length;
+            var infos = issues.filter(function(i) { return i.severity === 'info'; }).length;
+            var passed = Math.max(10 - criticals - warnings - infos, 0);
+
+            var hcEl = document.getElementById('overview-health-criticals');
+            if (hcEl) hcEl.innerHTML = '<span class="dot" style="background:#ef4444"></span> ' + criticals + ' problemes critiques';
+            var hwEl = document.getElementById('overview-health-warnings');
+            if (hwEl) hwEl.innerHTML = '<span class="dot" style="background:#eab308"></span> ' + warnings + ' avertissements';
+            var hpEl = document.getElementById('overview-health-passed');
+            if (hpEl) hpEl.innerHTML = '<span class="dot" style="background:#22c55e"></span> ' + passed + ' tests reussis';
+
+            // Also pre-populate audit section
+            populateAuditSection(audit);
+          }
+
+          // --- Latest Article card ---
+          if (_appData.stats.last_article) {
+            var la = _appData.stats.last_article;
+            var titleEl = document.getElementById('overview-last-article-title');
+            if (titleEl) titleEl.textContent = la.title || 'Sans titre';
+            var seoEl = document.getElementById('overview-last-article-seo');
+            if (seoEl) seoEl.innerHTML = '&#9679; SEO Score: ' + (la.seo_score || '--');
+            var wordsEl = document.getElementById('overview-last-article-words');
+            if (wordsEl) wordsEl.innerHTML = '&#128196; ' + (la.word_count ? la.word_count.toLocaleString() : '--') + ' mots';
+            var typeEl = document.getElementById('overview-last-article-type');
+            if (typeEl) typeEl.innerHTML = '&#127919; ' + (la.article_type || 'article');
           }
         }
 
@@ -2106,29 +2059,23 @@
       try {
         var result = await apiCall('POST', 'audit');
         if (result.audit) {
-          // Update audit display
-          var scoreEl = document.querySelector('.audit-score-num');
-          if (scoreEl) scoreEl.textContent = result.scores.overall;
+          // Build a combined audit object for populateAuditSection
+          var auditData = result.audit;
+          auditData.performance_score = auditData.performance_score || result.scores.performance;
+          auditData.seo_score = auditData.seo_score || result.scores.seo;
+          auditData.accessibility_score = auditData.accessibility_score || result.scores.accessibility;
+          auditData.best_practices_score = auditData.best_practices_score || result.scores.best_practices;
+          auditData.speed_mobile = auditData.speed_mobile || result.speed.mobile;
+          auditData.speed_desktop = auditData.speed_desktop || result.speed.desktop;
+          auditData.fcp = auditData.fcp || result.speed.fcp;
+          auditData.lcp = auditData.lcp || result.speed.lcp;
+          auditData.issues = auditData.issues || result.issues;
 
-          // Update speed gauges
-          var mobileSp = document.querySelector('.speed-mobile');
-          if (mobileSp) mobileSp.textContent = result.speed.mobile;
-          var desktopSp = document.querySelector('.speed-desktop');
-          if (desktopSp) desktopSp.textContent = result.speed.desktop;
+          populateAuditSection(auditData);
 
-          var fcpEl = document.querySelector('.speed-fcp');
-          if (fcpEl) fcpEl.textContent = result.speed.fcp + 's';
-          var lcpEl = document.querySelector('.speed-lcp');
-          if (lcpEl) lcpEl.textContent = result.speed.lcp + 's';
-
-          // Update category bars
-          updateCategoryBar('seo', result.scores.seo);
-          updateCategoryBar('performance', result.scores.performance);
-          updateCategoryBar('accessibility', result.scores.accessibility);
-          updateCategoryBar('best-practices', result.scores.best_practices);
-
-          // Render issues
-          renderAuditIssues(result.issues);
+          // Also update overview health score
+          var hsEl = document.getElementById('overview-health-score');
+          if (hsEl) hsEl.innerHTML = result.scores.overall + ' <span>/100</span>';
 
           alert('Audit termine ! Score global: ' + result.scores.overall + '/100');
         }
@@ -2144,24 +2091,87 @@
     }
 
     function updateCategoryBar(category, score) {
-      var bar = document.querySelector('.cat-bar[data-cat="' + category + '"] .cat-fill');
-      var val = document.querySelector('.cat-bar[data-cat="' + category + '"] .cat-val');
-      if (bar) bar.style.width = score + '%';
-      if (val) val.textContent = score + '/100';
+      var cat = document.querySelector('.audit-cat[data-cat="' + category + '"]');
+      if (!cat) return;
+      var fill = cat.querySelector('.audit-bar-fill');
+      var scoreEl = cat.querySelector('.audit-cat-score');
+      if (fill) {
+        fill.style.width = score + '%';
+        fill.className = 'audit-bar-fill ' + (score >= 80 ? 'good' : score >= 50 ? 'avg' : 'bad');
+      }
+      if (scoreEl) {
+        scoreEl.textContent = score + '/100';
+        scoreEl.className = 'audit-cat-score ' + (score >= 80 ? 'good' : score >= 50 ? 'avg' : 'bad');
+      }
+    }
+
+    function populateAuditSection(audit) {
+      if (!audit) return;
+
+      // Overall score
+      var scoreNumEl = document.getElementById('audit-overall-score');
+      if (scoreNumEl) scoreNumEl.textContent = audit.overall_score || '--';
+
+      // Score label
+      var labelEl = document.getElementById('audit-score-label');
+      if (labelEl) {
+        var s = audit.overall_score || 0;
+        if (s >= 80) { labelEl.textContent = 'Excellent — continuez ainsi !'; labelEl.style.color = '#22c55e'; }
+        else if (s >= 50) { labelEl.textContent = 'Correcte — ameliorations possibles'; labelEl.style.color = '#eab308'; }
+        else { labelEl.textContent = 'A ameliorer — problemes detectes'; labelEl.style.color = '#ef4444'; }
+      }
+
+      // Date
+      var dateEl = document.getElementById('audit-date');
+      if (dateEl && audit.created_at) {
+        var d = new Date(audit.created_at);
+        var months = ['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre'];
+        dateEl.textContent = 'Derniere analyse : ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+      }
+
+      // Speed gauges
+      var mobileEl = document.getElementById('audit-speed-mobile');
+      if (mobileEl) mobileEl.textContent = audit.speed_mobile || '--';
+      var desktopEl = document.getElementById('audit-speed-desktop');
+      if (desktopEl) desktopEl.textContent = audit.speed_desktop || '--';
+
+      // FCP / LCP
+      var fcpEl = document.getElementById('audit-fcp');
+      if (fcpEl) fcpEl.textContent = (audit.fcp || '--') + 's';
+      var lcpEl = document.getElementById('audit-lcp');
+      if (lcpEl) lcpEl.textContent = (audit.lcp || '--') + 's';
+
+      // Category bars
+      updateCategoryBar('performance', audit.performance_score || 0);
+      updateCategoryBar('seo', audit.seo_score || 0);
+      updateCategoryBar('accessibility', audit.accessibility_score || 0);
+      updateCategoryBar('best-practices', audit.best_practices_score || 0);
+
+      // Issues
+      if (audit.issues) {
+        var headerEl = document.getElementById('audit-issues-header');
+        if (headerEl) headerEl.textContent = audit.issues.length + ' problemes detectes';
+        renderAuditIssues(audit.issues);
+      }
     }
 
     function renderAuditIssues(issues) {
       var container = document.querySelector('.audit-issues-list');
       if (!container || !issues) return;
-      container.innerHTML = '';
+      // Keep header, clear everything else
+      var headerHtml = '<div style="padding:14px 20px;font-size:13px;font-weight:700;color:#1a1a1a;background:#f9fafb;border-bottom:1px solid #e8e8ec;" id="audit-issues-header">'
+        + issues.length + ' problemes detectes</div>';
+      container.innerHTML = headerHtml;
       issues.forEach(function(issue) {
-        var sevClass = issue.severity === 'critical' ? 'error' : issue.severity === 'warning' ? 'warning' : 'info';
+        var sevLabel = issue.severity === 'critical' ? 'Critique' : issue.severity === 'warning' ? 'Moyen' : 'Info';
+        var sevClass = issue.severity === 'critical' ? 'severity-high' : issue.severity === 'warning' ? 'severity-med' : 'severity-low';
+        var icon = issue.severity === 'critical' ? '&#9888;&#65039;' : issue.severity === 'warning' ? '&#9888;&#65039;' : '&#128161;';
         var div = document.createElement('div');
-        div.className = 'audit-issue-item';
-        div.innerHTML = '<div class="issue-severity ' + sevClass + '">' + issue.severity.toUpperCase() + '</div>'
-          + '<div class="issue-content"><div class="issue-msg">' + issue.message + '</div>'
-          + '<div class="issue-fix">' + (issue.fix || '') + '</div>'
-          + '<div class="issue-cat">' + (issue.category || '') + '</div></div>';
+        div.className = 'audit-issue';
+        div.innerHTML = '<span class="audit-issue-icon">' + icon + '</span>'
+          + '<div class="audit-issue-text"><div class="audit-issue-title">' + issue.message + '</div>'
+          + '<div class="audit-issue-desc">' + (issue.fix || '') + '</div></div>'
+          + '<span class="audit-issue-severity ' + sevClass + '">' + sevLabel + '</span>';
         container.appendChild(div);
       });
     }

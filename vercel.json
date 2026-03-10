@@ -1,5 +1,9 @@
 {
   "cleanUrls": true,
+  "functions": {
+    "api/audit.js": { "maxDuration": 60 },
+    "api/generate-article.js": { "maxDuration": 60 }
+  },
   "headers": [
     {
       "source": "/api/(.*)",
