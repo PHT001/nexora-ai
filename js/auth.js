@@ -41,7 +41,7 @@ async function signInWithEmail(email, password) {
     showAuthError(error.message);
     return false;
   }
-  var dest = localStorage.getItem('nexora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
+  var dest = localStorage.getItem('seora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
   window.location.href = dest;
   return data;
 }
@@ -89,11 +89,11 @@ _sb.auth.onAuthStateChange(function(event, session) {
   if (event === 'SIGNED_IN' && session) {
     var page = window.location.pathname;
     if (page.includes('signup') || page.includes('signup.html')) {
-      localStorage.removeItem('nexora_onboarding_complete');
-      localStorage.removeItem('nexora_onboarding_data');
+      localStorage.removeItem('seora_onboarding_complete');
+      localStorage.removeItem('seora_onboarding_data');
       window.location.href = 'onboarding.html';
     } else if (page.includes('signin') || page.includes('signin.html')) {
-      var dest = localStorage.getItem('nexora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
+      var dest = localStorage.getItem('seora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
       window.location.href = dest;
     }
   }

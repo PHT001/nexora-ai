@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S'inscrire — Nexora.ai</title>
+  <title>S'inscrire — Seora.ai</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,13 +14,12 @@
       <a href="index.html" class="navbar-logo">
         <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="28" height="28" rx="8" fill="#E8562A"/>
-          <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+          <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
         </svg>
-        Nexora.ai
+        Seora.ai
       </a>
       <div class="navbar-links">
-        <a href="success-story.html">Resultats clients</a>
+        <a href="success-story.html">Résultats clients</a>
         <a href="pricing.html">Tarifs</a>
         <a href="affiliate.html">Programme partenaire</a>
       </div>
@@ -33,7 +32,7 @@
       </div>
     </div>
     <div class="mobile-menu">
-      <a href="success-story.html">Resultats clients</a>
+      <a href="success-story.html">Résultats clients</a>
       <a href="pricing.html">Tarifs</a>
       <a href="affiliate.html">Programme partenaire</a>
       <a href="signin.html">Se connecter</a>
@@ -73,7 +72,7 @@
           </div>
           <div class="auth-field">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" placeholder="6 caracteres minimum" required minlength="6">
+            <input type="password" id="password" placeholder="6 caractères minimum" required minlength="6">
           </div>
           <button type="submit" class="auth-submit">S'inscrire avec l'email</button>
         </form>
@@ -88,18 +87,18 @@
           Retour
         </a>
         <div class="otp-icon">&#128233;</div>
-        <h1>Verifiez votre email</h1>
-        <p style="color:#666;font-size:15px;line-height:1.6;margin:0 0 8px;">Un code de verification a ete envoye a :</p>
+        <h1>Vérifiez votre email</h1>
+        <p style="color:#666;font-size:15px;line-height:1.6;margin:0 0 8px;">Un code de vérification a été envoyé à :</p>
         <div class="otp-email-badge" id="otp-email-display"></div>
 
         <div class="otp-single-wrap">
           <input type="text" id="otp-code" class="otp-single-input" maxlength="8" inputmode="numeric" autocomplete="one-time-code" placeholder="Entrez le code" oninput="handleCodeInput(this)">
         </div>
 
-        <button id="otp-verify-btn" class="otp-verify-btn" disabled onclick="handleVerifyCode()">Verifier mon code</button>
+        <button id="otp-verify-btn" class="otp-verify-btn" disabled onclick="handleVerifyCode()">Vérifier mon code</button>
 
         <div class="otp-resend">
-          Vous n'avez pas recu le code ?
+          Vous n'avez pas reçu le code ?
           <a id="resend-link" onclick="handleResend()">Renvoyer</a>
           <span id="resend-timer" class="otp-timer">(60s)</span>
         </div>
@@ -151,8 +150,8 @@
             <div class="at-role">CEO @ Attention</div>
           </div>
         </div>
-        <p class="at-quote">"Nexora s'occupe de tout pour nous. De la recherche de contenu a la publication. C'est une solution qui nous fait gagner un temps fou !"</p>
-        <p class="at-desc">"Le plan de contenu sur 30 jours etait parfait. Chaque article est pertinent et optimise."</p>
+        <p class="at-quote">"Seora s'occupe de tout pour nous. De la recherche de contenu à la publication. C'est une solution qui nous fait gagner un temps fou !"</p>
+        <p class="at-desc">"Le plan de contenu sur 30 jours était parfait. Chaque article est pertinent et optimisé."</p>
       </div>
     </div>
 
@@ -260,8 +259,8 @@
 
       signUpWithEmail(email, password).then(function(data) {
         if (data) {
-          localStorage.removeItem('nexora_onboarding_complete');
-          localStorage.removeItem('nexora_onboarding_data');
+          localStorage.removeItem('seora_onboarding_complete');
+          localStorage.removeItem('seora_onboarding_data');
           window.location.href = 'onboarding.html';
         } else {
           btn.disabled = false;
@@ -310,7 +309,7 @@
           startResendTimer();
           var resendArea = document.querySelector('.otp-resend');
           var orig = resendArea.innerHTML;
-          resendArea.innerHTML = '<span style="color:#22c55e;font-weight:600;">Code renvoye !</span>';
+          resendArea.innerHTML = '<span style="color:#22c55e;font-weight:600;">Code renvoyé !</span>';
           setTimeout(function() { resendArea.innerHTML = orig; }, 2500);
         }
       });
@@ -329,20 +328,20 @@
 
       var btn = document.getElementById('otp-verify-btn');
       btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span>Verification...';
+      btn.innerHTML = '<span class="spinner"></span>Vérification...';
 
       verifyEmailOtp(_signupEmail, code).then(function(data) {
         if (data) {
-          btn.innerHTML = 'Compte verifie !';
+          btn.innerHTML = 'Compte vérifié !';
           btn.style.background = '#22c55e';
           setTimeout(function() {
-            localStorage.removeItem('nexora_onboarding_complete');
-            localStorage.removeItem('nexora_onboarding_data');
+            localStorage.removeItem('seora_onboarding_complete');
+            localStorage.removeItem('seora_onboarding_data');
             window.location.href = 'onboarding.html';
           }, 800);
         } else {
           btn.disabled = false;
-          btn.innerHTML = 'Verifier mon code';
+          btn.innerHTML = 'Vérifier mon code';
           inp.classList.add('error');
           inp.value = '';
           setTimeout(function() {

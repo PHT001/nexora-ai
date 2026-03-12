@@ -1,5 +1,5 @@
 -- =============================================
--- Nexora SaaS — Supabase Schema
+-- Seora SaaS — Supabase Schema
 -- Run this in Supabase SQL Editor (Dashboard > SQL)
 -- =============================================
 
@@ -153,5 +153,22 @@ create policy "Users update own settings" on public.settings for update using (a
 create policy "Service role full access settings" on public.settings for all using (auth.role() = 'service_role');
 
 -- =============================================
--- DONE! All 6 tables created with RLS policies.
+-- 7. CMS INTEGRATION COLUMNS
+-- =============================================
+
+-- Sites: CMS connection info
+alter table public.sites add column if not exists cms_type text;
+alter table public.sites add column if not exists cms_url text;
+alter table public.sites add column if not exists cms_api_key text;
+alter table public.sites add column if not exists cms_username text;
+alter table public.sites add column if not exists cms_extra jsonb default '{}';
+alter table public.sites add column if not exists cms_connected_at timestamptz;
+
+-- Articles: external CMS reference
+alter table public.articles add column if not exists cms_post_id text;
+alter table public.articles add column if not exists cms_post_url text;
+alter table public.articles add column if not exists published_at timestamptz;
+
+-- =============================================
+-- DONE! All tables created with RLS policies.
 -- =============================================

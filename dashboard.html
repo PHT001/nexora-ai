@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard — Nexora</title>
+  <title>Dashboard — Seora</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -71,7 +71,7 @@
       text-decoration: none; position: relative;
     }
     .sidebar-item:hover { background: #f5f6f8; color: #333; }
-    .sidebar-item.active { background: #FFF0EB; color: #E8562A; }
+    .sidebar-item.active { background: #EFF6FF; color: #E8562A; }
     .sidebar-item svg { width: 18px; height: 18px; flex-shrink: 0; }
     .sidebar-item .badge-new {
       font-size: 9px; font-weight: 700; background: #E8562A;
@@ -252,7 +252,7 @@
       font-weight: 500; cursor: pointer; transition: all 0.15s;
     }
     .cp-filter:hover { border-color: #ccc; color: #555; }
-    .cp-filter.active { background: #FFF0EB; border-color: #E8562A50; color: #E8562A; }
+    .cp-filter.active { background: #EFF6FF; border-color: #E8562A50; color: #E8562A; }
 
     .cp-table {
       width: 100%; border-collapse: separate; border-spacing: 0;
@@ -512,7 +512,7 @@
       margin-bottom: 3px;
     }
     .cal-tag.explainer { background: #dbeafe; color: #2563eb; }
-    .cal-tag.howto { background: #fef3c7; color: #d97706; }
+    .cal-tag.howto { background: #DBEAFE; color: #1E40AF; }
     .cal-tag.listicle { background: #fce7f3; color: #db2777; }
     .cal-article-title {
       font-size: 11px;
@@ -545,7 +545,7 @@
     .latest-article-left { display: flex; align-items: center; gap: 16px; flex: 1; }
     .latest-article-thumb {
       width: 56px; height: 56px; border-radius: 10px;
-      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      background: linear-gradient(135deg, #DBEAFE, #fde68a);
       display: flex; align-items: center; justify-content: center;
       font-size: 24px; flex-shrink: 0;
     }
@@ -684,7 +684,7 @@
 
     /* ===== CASE STUDY CARD ===== */
     .case-study-card {
-      background: linear-gradient(135deg, #FFF7ED, #FFF0EB);
+      background: linear-gradient(135deg, #FFF7ED, #EFF6FF);
       border: 1px solid #E8562A30; border-radius: 14px;
       padding: 20px 24px; margin-bottom: 24px;
     }
@@ -818,8 +818,8 @@
     <div class="mobile-topbar">
       <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
       <a href="index.html" class="sidebar-logo" style="padding:0">
-        <svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="#E8562A"/><path d="M8.5 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg>
-        Nexora
+        <svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="#E8562A"/><path d="M19 10.5C18 9 16 8.5 14.5 8.5C12 8.5 10 9.8 10 11.8C10 14 12 14.8 15 15.8C18 16.8 20 17.8 20 19.8C20 21.8 18 22.5 15.5 22.5C14 22.5 12 22 11 20.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        Seora
       </a>
       <div style="width:36px"></div>
     </div>
@@ -828,8 +828,8 @@
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <a href="index.html" class="sidebar-logo">
-        <svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="#E8562A"/><path d="M8.5 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 21.5V8.5l6.5 13V8.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg>
-        Nexora
+        <svg viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="8" fill="#E8562A"/><path d="M19 10.5C18 9 16 8.5 14.5 8.5C12 8.5 10 9.8 10 11.8C10 14 12 14.8 15 15.8C18 16.8 20 17.8 20 19.8C20 21.8 18 22.5 15.5 22.5C14 22.5 12 22 11 20.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        Seora
       </a>
 
       <div class="sidebar-site-selector" id="site-selector">
@@ -872,9 +872,9 @@
         <div class="sidebar-section-label">Autre</div>
         <div class="sidebar-item" data-section="settings" onclick="showSection('settings')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-          Parametres
+          Paramètres
         </div>
-        <div class="sidebar-item" onclick="window.open('https://nexora.ai/help','_blank')">
+        <div class="sidebar-item" onclick="window.open('https://seora.ai/help','_blank')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           Centre d'aide
         </div>
@@ -900,7 +900,7 @@
           <button class="btn-icon" title="Notifications">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
           </button>
-          <button class="btn-icon" title="Deconnexion" onclick="signOut()">
+          <button class="btn-icon" title="Déconnexion" onclick="signOut()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           </button>
         </div>
@@ -911,7 +911,7 @@
         <div class="section active" id="section-overview">
           <div class="welcome-banner">
             <h2 id="welcome-msg">Bienvenue ! 👋</h2>
-            <p>Votre espace Nexora est pret. Consultez vos metriques, planifiez votre contenu et optimisez votre SEO.</p>
+            <p>Votre espace Seora est prêt. Consultez vos métriques, planifiez votre contenu et optimisez votre SEO.</p>
           </div>
 
           <!-- Latest Article Card -->
@@ -920,7 +920,7 @@
               <div class="latest-article-thumb">📝</div>
               <div class="latest-article-info">
                 <div class="latest-article-label">Dernier article</div>
-                <div class="latest-article-title" id="overview-last-article-title">Aucun article genere</div>
+                <div class="latest-article-title" id="overview-last-article-title">Aucun article généré</div>
                 <div class="latest-article-pills">
                   <span class="la-pill seo" id="overview-last-article-seo">&#9679; SEO Score: --</span>
                   <span class="la-pill length" id="overview-last-article-words">&#128196; -- mots</span>
@@ -943,11 +943,11 @@
               </div>
               <div class="stat-card-value">40 <span>%</span></div>
               <div class="stat-card-detail">
-                <div class="stat-card-detail-item"><span class="dot" style="background:#22c55e"></span> ChatGPT — mentionne dans 3 prompts</div>
-                <div class="stat-card-detail-item"><span class="dot" style="background:#3b82f6"></span> Perplexity — mentionne dans 2 prompts</div>
-                <div class="stat-card-detail-item"><span class="dot" style="background:#a855f7"></span> Gemini — mentionne dans 1 prompt</div>
+                <div class="stat-card-detail-item"><span class="dot" style="background:#22c55e"></span> ChatGPT — mentionné dans 3 prompts</div>
+                <div class="stat-card-detail-item"><span class="dot" style="background:#3b82f6"></span> Perplexity — mentionné dans 2 prompts</div>
+                <div class="stat-card-detail-item"><span class="dot" style="background:#a855f7"></span> Gemini — mentionné dans 1 prompt</div>
               </div>
-              <a class="stat-card-link" onclick="showSection('analytics')">Voir les details &rarr;</a>
+              <a class="stat-card-link" onclick="showSection('analytics')">Voir les détails &rarr;</a>
             </div>
             <div class="stat-card">
               <div class="stat-card-header">
@@ -964,7 +964,7 @@
                 <div class="stat-mini-bar" style="height:25%"></div>
                 <div class="stat-mini-bar" style="height:22%"></div>
               </div>
-              <a class="stat-card-link" onclick="showSection('backlinks')">Ameliorer le DR &rarr;</a>
+              <a class="stat-card-link" onclick="showSection('backlinks')">Améliorer le DR &rarr;</a>
             </div>
             <div class="stat-card">
               <div class="stat-card-header">
@@ -972,9 +972,9 @@
               </div>
               <div class="stat-card-value" id="overview-health-score">-- <span>/100</span></div>
               <div class="stat-card-detail">
-                <div class="stat-card-detail-item" id="overview-health-criticals"><span class="dot" style="background:#ef4444"></span> -- problemes critiques</div>
+                <div class="stat-card-detail-item" id="overview-health-criticals"><span class="dot" style="background:#ef4444"></span> -- problèmes critiques</div>
                 <div class="stat-card-detail-item" id="overview-health-warnings"><span class="dot" style="background:#eab308"></span> -- avertissements</div>
-                <div class="stat-card-detail-item" id="overview-health-passed"><span class="dot" style="background:#22c55e"></span> -- tests reussis</div>
+                <div class="stat-card-detail-item" id="overview-health-passed"><span class="dot" style="background:#22c55e"></span> -- tests réussis</div>
               </div>
               <a class="stat-card-link" onclick="showSection('audit')">Lancer un audit &rarr;</a>
             </div>
@@ -984,7 +984,7 @@
           <div class="overview-two-col">
             <div class="reach-chart-wrap">
               <div class="reach-chart-header">
-                <h3>Portee potentielle</h3>
+                <h3>Portée potentielle</h3>
                 <div class="reach-period">
                   <button class="reach-period-btn">3M</button>
                   <button class="reach-period-btn active">6M</button>
@@ -1017,22 +1017,22 @@
                 <text x="100" y="198" fill="#bbb" font-size="10" font-family="Inter">Mai</text>
                 <text x="200" y="198" fill="#bbb" font-size="10" font-family="Inter">Juin</text>
                 <text x="300" y="198" fill="#bbb" font-size="10" font-family="Inter">Juil</text>
-                <text x="400" y="198" fill="#bbb" font-size="10" font-family="Inter">Aout</text>
+                <text x="400" y="198" fill="#bbb" font-size="10" font-family="Inter">Août</text>
                 <text x="520" y="198" fill="#bbb" font-size="10" font-family="Inter">Sept</text>
                 <!-- End dots -->
                 <circle cx="600" cy="65" r="4" fill="#E8562A"/>
                 <circle cx="600" cy="10" r="4" fill="#22c55e"/>
               </svg>
               <div class="reach-chart-legend">
-                <div class="reach-legend-item"><span class="reach-legend-dot current"></span> Portee actuelle</div>
-                <div class="reach-legend-item"><span class="reach-legend-dot projected"></span> Portee projetee</div>
+                <div class="reach-legend-item"><span class="reach-legend-dot current"></span> Portée actuelle</div>
+                <div class="reach-legend-item"><span class="reach-legend-dot projected"></span> Portée projetée</div>
               </div>
             </div>
 
             <div>
               <div class="lang-panel">
-                <h4>Langues ciblees</h4>
-                <p class="lang-panel-sub">Augmentez votre portee avec plus de langues</p>
+                <h4>Langues ciblées</h4>
+                <p class="lang-panel-sub">Augmentez votre portée avec plus de langues</p>
                 <div class="lang-slider-row">
                   <span style="font-size:11px;color:#999;">1</span>
                   <input type="range" class="lang-slider" min="1" max="28" value="4">
@@ -1040,9 +1040,9 @@
                   <span class="lang-slider-val">4</span>
                 </div>
                 <div class="lang-list">
-                  <div class="lang-row"><span class="lang-row-flag">🇫🇷</span><span class="lang-row-name">Francais</span><span class="lang-row-reach">430M</span></div>
+                  <div class="lang-row"><span class="lang-row-flag">🇫🇷</span><span class="lang-row-name">Français</span><span class="lang-row-reach">430M</span></div>
                   <div class="lang-row"><span class="lang-row-flag">🇺🇸</span><span class="lang-row-name">English</span><span class="lang-row-reach">2.3B</span></div>
-                  <div class="lang-row"><span class="lang-row-flag">🇪🇸</span><span class="lang-row-name">Espanol</span><span class="lang-row-reach">800M</span></div>
+                  <div class="lang-row"><span class="lang-row-flag">🇪🇸</span><span class="lang-row-name">Español</span><span class="lang-row-reach">800M</span></div>
                   <div class="lang-row"><span class="lang-row-flag">🇩🇪</span><span class="lang-row-name">Deutsch</span><span class="lang-row-reach">230M</span></div>
                 </div>
                 <div class="reach-cta" style="margin-top:14px;">+ Ajouter des langues</div>
@@ -1050,10 +1050,10 @@
 
               <!-- Case Study Card -->
               <div class="case-study-card" style="margin-top:16px;">
-                <div class="cs-label">Etude de cas</div>
-                <h4>Comment cedim-diag.fr a multiplie son trafic par 4</h4>
-                <p>Decouvrez la strategie SEO qui a permis de passer de 200 a 800 visiteurs mensuels en 3 mois.</p>
-                <button class="btn-cs">Lire l'etude &rarr;</button>
+                <div class="cs-label">Étude de cas</div>
+                <h4>Comment cedim-diag.fr a multiplié son trafic par 4</h4>
+                <p>Découvrez la stratégie SEO qui a permis de passer de 200 à 800 visiteurs mensuels en 3 mois.</p>
+                <button class="btn-cs">Lire l'étude &rarr;</button>
               </div>
             </div>
           </div>
@@ -1063,7 +1063,7 @@
             <div class="autopilot-icon">🤖</div>
             <div class="autopilot-text">
               <h4>Publiez vos articles en autopilote</h4>
-              <p>Connectez votre CMS pour publier automatiquement vos articles optimises SEO</p>
+              <p>Connectez votre CMS pour publier automatiquement vos articles optimisés SEO</p>
             </div>
             <div class="autopilot-platforms">
               <div class="autopilot-plat" title="WordPress">&#127760;</div>
@@ -1071,7 +1071,7 @@
               <div class="autopilot-plat" title="Wix">&#9998;</div>
               <div class="autopilot-plat" title="Webflow">&#9670;</div>
             </div>
-            <button class="btn-autopilot">Connecter mon site</button>
+            <button class="btn-autopilot" onclick="showSection('settings');setTimeout(function(){switchSettingsTab('integrations')},100)">Connecter mon site</button>
           </div>
         </div>
 
@@ -1080,11 +1080,11 @@
           <div class="cp-header">
             <div>
               <h3>Plan de contenu</h3>
-              <p style="font-size:13px;color:#999;margin-top:4px;">Visualisez et gerez votre calendrier de contenu.</p>
+              <p style="font-size:13px;color:#999;margin-top:4px;">Visualisez et gérez votre calendrier de contenu.</p>
             </div>
             <div style="display:flex;align-items:center;gap:12px;">
-              <span style="font-size:12px;color:#999;">&#9679; <span style="color:#a78bfa">Planifie</span> &nbsp; &#9679; <span style="color:#22c55e">Publie</span></span>
-              <button class="btn-generate" onclick="generateArticle()">+ Generer un article</button>
+              <span style="font-size:12px;color:#999;">&#9679; <span style="color:#a78bfa">Planifié</span> &nbsp; &#9679; <span style="color:#22c55e">Publié</span></span>
+              <button class="btn-generate" onclick="generateArticle()">+ Générer un article</button>
             </div>
           </div>
 
@@ -1102,11 +1102,11 @@
             <div class="cal-day">02</div><div class="cal-day">03</div><div class="cal-day">04</div><div class="cal-day">05</div><div class="cal-day">06</div><div class="cal-day">07</div><div class="cal-day">08</div>
             <div class="cal-day">09</div>
             <div class="cal-day has-article"><span class="cal-num today">10</span><div class="cal-article"><span class="cal-tag explainer">Explainer</span><div class="cal-article-title">Qu'est-ce que le diagnostic ECD</div><div class="cal-article-meta">KD: 21 · Vol: 500</div></div></div>
-            <div class="cal-day has-article"><span class="cal-num">11</span><div class="cal-article"><span class="cal-tag howto">How To</span><div class="cal-article-title">Test amiante post-renovation</div><div class="cal-article-meta">KD: 21 · Vol: 500</div></div></div>
+            <div class="cal-day has-article"><span class="cal-num">11</span><div class="cal-article"><span class="cal-tag howto">How To</span><div class="cal-article-title">Test amiante post-rénovation</div><div class="cal-article-meta">KD: 21 · Vol: 500</div></div></div>
             <div class="cal-day has-article"><span class="cal-num">12</span><div class="cal-article"><span class="cal-tag listicle">Listicle</span><div class="cal-article-title">Exemples de diagnostics immobiliers</div><div class="cal-article-meta">KD: 8 · Vol: 380</div></div></div>
-            <div class="cal-day has-article"><span class="cal-num">13</span><div class="cal-article"><span class="cal-tag explainer">Explainer</span><div class="cal-article-title">Diagnostics immobiliers expliques</div><div class="cal-article-meta">KD: 29 · Vol: 290</div></div></div>
-            <div class="cal-day has-article"><span class="cal-num">14</span><div class="cal-article"><span class="cal-tag explainer">Explainer</span><div class="cal-article-title">Role des diagnostics dans la renovation</div><div class="cal-article-meta">KD: 31 · Vol: 190</div></div></div>
-            <div class="cal-day has-article"><span class="cal-num">15</span><div class="cal-article"><span class="cal-tag listicle">Listicle</span><div class="cal-article-title">Conseils detection amiante</div><div class="cal-article-meta">KD: 32 · Vol: 130</div></div></div>
+            <div class="cal-day has-article"><span class="cal-num">13</span><div class="cal-article"><span class="cal-tag explainer">Explainer</span><div class="cal-article-title">Diagnostics immobiliers expliqués</div><div class="cal-article-meta">KD: 29 · Vol: 290</div></div></div>
+            <div class="cal-day has-article"><span class="cal-num">14</span><div class="cal-article"><span class="cal-tag explainer">Explainer</span><div class="cal-article-title">Rôle des diagnostics dans la rénovation</div><div class="cal-article-meta">KD: 31 · Vol: 190</div></div></div>
+            <div class="cal-day has-article"><span class="cal-num">15</span><div class="cal-article"><span class="cal-tag listicle">Listicle</span><div class="cal-article-title">Conseils détection amiante</div><div class="cal-article-meta">KD: 32 · Vol: 130</div></div></div>
             <div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div>
             <div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div>
             <div class="cal-day">30</div><div class="cal-day">31</div><div class="cal-day off">01</div><div class="cal-day off">02</div><div class="cal-day off">03</div><div class="cal-day off">04</div><div class="cal-day off">05</div>
@@ -1135,7 +1135,7 @@
                 <div class="analytics-card-change up">&#9650; +24.1%</div>
               </div>
               <div class="analytics-card">
-                <div class="analytics-card-label">Mots-cles positionnes</div>
+                <div class="analytics-card-label">Mots-clés positionnés</div>
                 <div class="analytics-card-value">34</div>
                 <div class="analytics-card-change up">&#9650; +12 cette semaine</div>
               </div>
@@ -1169,7 +1169,7 @@
                 <text x="220" y="215" fill="#bbb" font-size="10" font-family="Inter">Nov</text>
                 <text x="340" y="215" fill="#bbb" font-size="10" font-family="Inter">Dec</text>
                 <text x="460" y="215" fill="#bbb" font-size="10" font-family="Inter">Jan</text>
-                <text x="580" y="215" fill="#bbb" font-size="10" font-family="Inter">Fev</text>
+                <text x="580" y="215" fill="#bbb" font-size="10" font-family="Inter">Fév</text>
                 <text x="660" y="215" fill="#bbb" font-size="10" font-family="Inter">Mar</text>
               </svg>
             </div>
@@ -1177,7 +1177,7 @@
             <!-- Authority & Backlinks stats -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
               <div class="analytics-chart-card">
-                <h4>Autorite du domaine</h4>
+                <h4>Autorité du domaine</h4>
                 <div style="display:flex;align-items:center;gap:16px;margin-top:8px;">
                   <div style="font-size:40px;font-weight:800;color:#E8562A;">1</div>
                   <div>
@@ -1185,13 +1185,13 @@
                     <div style="font-size:18px;font-weight:700;color:#1a1a1a;">12</div>
                   </div>
                   <div style="margin-left:auto;">
-                    <div style="font-size:12px;color:#999;">Domaines referents</div>
+                    <div style="font-size:12px;color:#999;">Domaines référents</div>
                     <div style="font-size:18px;font-weight:700;color:#1a1a1a;">5</div>
                   </div>
                 </div>
               </div>
               <div class="analytics-chart-card">
-                <h4>Top mots-cles</h4>
+                <h4>Top mots-clés</h4>
                 <div style="margin-top:8px;">
                   <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0f2;font-size:13px;">
                     <span style="color:#555;">diagnostic immobilier</span>
@@ -1213,17 +1213,17 @@
             <table class="keyword-table">
               <thead>
                 <tr>
-                  <th>Mot-cle</th>
+                  <th>Mot-clé</th>
                   <th>Position</th>
                   <th>Volume</th>
-                  <th>Difficulte</th>
+                  <th>Difficulté</th>
                   <th>Changement</th>
                 </tr>
               </thead>
               <tbody>
                 <tr><td style="font-weight:500;color:#1a1a1a;">diagnostic immobilier prix</td><td><span class="kw-pos top10">5</span></td><td>2,400</td><td><span style="color:#eab308;">45</span></td><td><span class="kw-change up">&#9650; +3</span></td></tr>
                 <tr><td style="font-weight:500;color:#1a1a1a;">diagnostic amiante obligatoire</td><td><span class="kw-pos top10">8</span></td><td>1,900</td><td><span style="color:#22c55e;">28</span></td><td><span class="kw-change up">&#9650; +5</span></td></tr>
-                <tr><td style="font-weight:500;color:#1a1a1a;">ECD diagnostic certifie</td><td><span class="kw-pos top3">3</span></td><td>880</td><td><span style="color:#22c55e;">19</span></td><td><span class="kw-change up">&#9650; +2</span></td></tr>
+                <tr><td style="font-weight:500;color:#1a1a1a;">ECD diagnostic certifié</td><td><span class="kw-pos top3">3</span></td><td>880</td><td><span style="color:#22c55e;">19</span></td><td><span class="kw-change up">&#9650; +2</span></td></tr>
                 <tr><td style="font-weight:500;color:#1a1a1a;">diagnostic plomb appartement</td><td><span class="kw-pos top20">14</span></td><td>720</td><td><span style="color:#eab308;">52</span></td><td><span class="kw-change down">&#9660; -1</span></td></tr>
                 <tr><td style="font-weight:500;color:#1a1a1a;">devis diagnostic immobilier en ligne</td><td><span class="kw-pos top20">18</span></td><td>590</td><td><span style="color:#ef4444;">67</span></td><td><span class="kw-change up">&#9650; +4</span></td></tr>
                 <tr><td style="font-weight:500;color:#1a1a1a;">tarif DPE 2026</td><td><span class="kw-pos top10">7</span></td><td>1,100</td><td><span style="color:#22c55e;">31</span></td><td><span class="kw-change up">&#9650; +8</span></td></tr>
@@ -1257,14 +1257,14 @@
             </div>
 
             <div class="analytics-chart-card">
-              <h4>Prompts ou vous apparaissez</h4>
+              <h4>Prompts où vous apparaissez</h4>
               <table class="keyword-table" style="margin-top:12px;">
                 <thead>
                   <tr><th>Prompt</th><th>LLM</th><th>Position</th><th>Date</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td style="color:#1a1a1a;font-weight:500;">Meilleur diagnostiqueur immobilier a Paris</td><td><span style="color:#22c55e;font-weight:600;">ChatGPT</span></td><td><span class="kw-pos top3">2</span></td><td style="color:#999;">8 mars 2026</td></tr>
-                  <tr><td style="color:#1a1a1a;font-weight:500;">Ou faire un diagnostic amiante fiable</td><td><span style="color:#22c55e;font-weight:600;">ChatGPT</span></td><td><span class="kw-pos top10">5</span></td><td style="color:#999;">6 mars 2026</td></tr>
+                  <tr><td style="color:#1a1a1a;font-weight:500;">Meilleur diagnostiqueur immobilier à Paris</td><td><span style="color:#22c55e;font-weight:600;">ChatGPT</span></td><td><span class="kw-pos top3">2</span></td><td style="color:#999;">8 mars 2026</td></tr>
+                  <tr><td style="color:#1a1a1a;font-weight:500;">Où faire un diagnostic amiante fiable</td><td><span style="color:#22c55e;font-weight:600;">ChatGPT</span></td><td><span class="kw-pos top10">5</span></td><td style="color:#999;">6 mars 2026</td></tr>
                   <tr><td style="color:#1a1a1a;font-weight:500;">Diagnostic immobilier pas cher</td><td><span style="color:#3b82f6;font-weight:600;">Perplexity</span></td><td><span class="kw-pos top3">3</span></td><td style="color:#999;">5 mars 2026</td></tr>
                   <tr><td style="color:#1a1a1a;font-weight:500;">ECD diagnostic avis</td><td><span style="color:#3b82f6;font-weight:600;">Perplexity</span></td><td><span class="kw-pos top10">7</span></td><td style="color:#999;">3 mars 2026</td></tr>
                   <tr><td style="color:#1a1a1a;font-weight:500;">Diagnostic DPE obligatoire 2026</td><td><span style="color:#a855f7;font-weight:600;">Gemini</span></td><td><span class="kw-pos top10">4</span></td><td style="color:#999;">1 mars 2026</td></tr>
@@ -1282,8 +1282,8 @@
                 <div class="audit-score-number audit-score-num" id="audit-overall-score">--</div>
                 <div class="audit-score-max">/100</div>
               </div>
-              <div class="audit-score-label" id="audit-score-label" style="color:#eab308;">Aucun audit lance</div>
-              <p style="font-size:13px;color:#666;margin-top:8px;" id="audit-date">Derniere analyse : --</p>
+              <div class="audit-score-label" id="audit-score-label" style="color:#eab308;">Aucun audit lancé</div>
+              <p style="font-size:13px;color:#666;margin-top:8px;" id="audit-date">Dernière analyse : --</p>
               <button class="btn-generate audit-run-btn" style="margin:16px auto 0;display:inline-flex;" onclick="runAudit()">&#128260; Relancer l'audit</button>
             </div>
             <div class="audit-speed-card">
@@ -1332,7 +1332,7 @@
             </div>
             <div class="audit-cat" data-cat="accessibility">
               <div class="audit-cat-header">
-                <span class="audit-cat-title">Accessibilite</span>
+                <span class="audit-cat-title">Accessibilité</span>
                 <span class="audit-cat-score">--/100</span>
               </div>
               <div class="audit-bar"><div class="audit-bar-fill" style="width:0%"></div></div>
@@ -1348,7 +1348,7 @@
 
           <div class="audit-issues audit-issues-list">
             <div style="padding:14px 20px;font-size:13px;font-weight:700;color:#1a1a1a;background:#f9fafb;border-bottom:1px solid #e8e8ec;" id="audit-issues-header">
-              Lancez un audit pour detecter les problemes
+              Lancez un audit pour détecter les problèmes
             </div>
             <!-- Issues will be populated dynamically by renderAuditIssues() -->
           </div>
@@ -1363,11 +1363,11 @@
             </div>
             <div class="bl-stat">
               <div class="bl-stat-value">5</div>
-              <div class="bl-stat-label">Domaines referents</div>
+              <div class="bl-stat-label">Domaines référents</div>
             </div>
             <div class="bl-stat">
               <div class="bl-stat-value" style="color:#16a34a;">3</div>
-              <div class="bl-stat-label">Recus ce mois</div>
+              <div class="bl-stat-label">Reçus ce mois</div>
             </div>
             <div class="bl-stat">
               <div class="bl-stat-value" style="color:#E8562A;">2</div>
@@ -1377,11 +1377,11 @@
 
           <div class="bl-exchange-card">
             <div class="bl-exchange-header">
-              <h4>Echange de backlinks</h4>
+              <h4>Échange de backlinks</h4>
               <div class="bl-tabs">
-                <button class="bl-tab active" onclick="switchBlTab('received')">Recus</button>
-                <button class="bl-tab" onclick="switchBlTab('given')">Donnes</button>
-                <button class="bl-tab" onclick="switchBlTab('opportunities')">Opportunites</button>
+                <button class="bl-tab active" onclick="switchBlTab('received')">Reçus</button>
+                <button class="bl-tab" onclick="switchBlTab('given')">Donnés</button>
+                <button class="bl-tab" onclick="switchBlTab('opportunities')">Opportunités</button>
               </div>
             </div>
 
@@ -1391,7 +1391,7 @@
                 <tbody>
                   <tr><td style="color:#1a1a1a;font-weight:500;">diagnostiqueur-paris.fr</td><td><span style="font-weight:700;">22</span></td><td style="color:#555;">/diagnostic-amiante</td><td><span class="cp-status ready">DoFollow</span></td><td style="color:#999;">7 mars</td></tr>
                   <tr><td style="color:#1a1a1a;font-weight:500;">immo-conseil.com</td><td><span style="font-weight:700;">35</span></td><td style="color:#555;">/tarifs</td><td><span class="cp-status ready">DoFollow</span></td><td style="color:#999;">3 mars</td></tr>
-                  <tr><td style="color:#1a1a1a;font-weight:500;">renovation-habitat.fr</td><td><span style="font-weight:700;">18</span></td><td style="color:#555;">/blog/guide-dpe</td><td><span class="cp-status draft">NoFollow</span></td><td style="color:#999;">28 fev</td></tr>
+                  <tr><td style="color:#1a1a1a;font-weight:500;">renovation-habitat.fr</td><td><span style="font-weight:700;">18</span></td><td style="color:#555;">/blog/guide-dpe</td><td><span class="cp-status draft">NoFollow</span></td><td style="color:#999;">28 fév</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1411,23 +1411,23 @@
                 <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#f9fafb;border-radius:10px;">
                   <div>
                     <div style="font-size:14px;font-weight:500;color:#1a1a1a;">architecte-interieur.fr</div>
-                    <div style="font-size:12px;color:#999;">DR: 34 — Thematique: Immobilier</div>
+                    <div style="font-size:12px;color:#999;">DR: 34 — Thématique: Immobilier</div>
                   </div>
-                  <button class="btn-generate" style="padding:8px 16px;font-size:12px;">Proposer un echange</button>
+                  <button class="btn-generate" style="padding:8px 16px;font-size:12px;">Proposer un échange</button>
                 </div>
                 <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#f9fafb;border-radius:10px;">
                   <div>
                     <div style="font-size:14px;font-weight:500;color:#1a1a1a;">travaux-maison.com</div>
-                    <div style="font-size:12px;color:#999;">DR: 29 — Thematique: Renovation</div>
+                    <div style="font-size:12px;color:#999;">DR: 29 — Thématique: Rénovation</div>
                   </div>
-                  <button class="btn-generate" style="padding:8px 16px;font-size:12px;">Proposer un echange</button>
+                  <button class="btn-generate" style="padding:8px 16px;font-size:12px;">Proposer un échange</button>
                 </div>
                 <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#f9fafb;border-radius:10px;">
                   <div>
                     <div style="font-size:14px;font-weight:500;color:#1a1a1a;">conseil-habitation.fr</div>
-                    <div style="font-size:12px;color:#999;">DR: 45 — Thematique: Habitat</div>
+                    <div style="font-size:12px;color:#999;">DR: 45 — Thématique: Habitat</div>
                   </div>
-                  <button class="btn-generate" style="padding:8px 16px;font-size:12px;">Proposer un echange</button>
+                  <button class="btn-generate" style="padding:8px 16px;font-size:12px;">Proposer un échange</button>
                 </div>
               </div>
             </div>
@@ -1439,76 +1439,76 @@
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
             <div>
               <h3 style="font-size:18px;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Reddit AI Agent</h3>
-              <p style="font-size:13px;color:#999;">Trouvez les opportunites Reddit pour votre marque et generez des commentaires pertinents.</p>
+              <p style="font-size:13px;color:#999;">Trouvez les opportunités Reddit pour votre marque et générez des commentaires pertinents.</p>
             </div>
             <div style="display:flex;gap:8px;">
-              <button class="cp-filter">Agent explique</button>
-              <button class="btn-generate">&#9881; Parametres agent</button>
+              <button class="cp-filter">Agent expliqué</button>
+              <button class="btn-generate">&#9881; Paramètres agent</button>
             </div>
           </div>
 
           <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-card-value" style="color:#E8562A;">5</div>
-              <div style="font-size:11px;font-weight:600;text-transform:uppercase;color:#999;letter-spacing:0.5px;">Opportunites</div>
-              <div style="font-size:12px;color:#bbb;margin-top:4px;">Opportunites Reddit detectees</div>
+              <div style="font-size:11px;font-weight:600;text-transform:uppercase;color:#999;letter-spacing:0.5px;">Opportunités</div>
+              <div style="font-size:12px;color:#bbb;margin-top:4px;">Opportunités Reddit détectées</div>
             </div>
             <div class="stat-card">
               <div style="display:flex;align-items:center;gap:8px;">
                 <div class="stat-card-value">5<span>/3</span></div>
                 <span class="stat-card-badge" style="background:#a855f7;">Upgrade</span>
               </div>
-              <div style="font-size:11px;font-weight:600;text-transform:uppercase;color:#999;letter-spacing:0.5px;">Mots-cles suivis</div>
-              <div style="font-size:12px;color:#bbb;margin-top:4px;">Mots-cles que vous surveillez</div>
+              <div style="font-size:11px;font-weight:600;text-transform:uppercase;color:#999;letter-spacing:0.5px;">Mots-clés suivis</div>
+              <div style="font-size:12px;color:#bbb;margin-top:4px;">Mots-clés que vous surveillez</div>
             </div>
             <div class="stat-card">
               <div class="stat-card-value" style="color:#E8562A;">95K</div>
               <div style="font-size:11px;font-weight:600;text-transform:uppercase;color:#999;letter-spacing:0.5px;">Volume de recherche</div>
-              <div style="font-size:12px;color:#bbb;margin-top:4px;">Volume combine de tous les posts</div>
+              <div style="font-size:12px;color:#bbb;margin-top:4px;">Volume combiné de tous les posts</div>
             </div>
           </div>
 
-          <h4 style="font-size:16px;font-weight:700;color:#1a1a1a;margin:24px 0 16px;">Top Opportunites</h4>
+          <h4 style="font-size:16px;font-weight:700;color:#1a1a1a;margin:24px 0 16px;">Top Opportunités</h4>
           <div class="cp-filters" style="margin-bottom:16px;">
             <button class="cp-filter active">En attente</button>
-            <button class="cp-filter">Completes</button>
+            <button class="cp-filter">Complétés</button>
           </div>
 
           <div style="display:flex;flex-direction:column;gap:12px;">
             <div class="stat-card" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
               <div>
-                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Comment ameliorer le SEO de mon site e-commerce ?</div>
+                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Comment améliorer le SEO de mon site e-commerce ?</div>
                 <div style="font-size:12px;color:#999;">r/SEOFrance &nbsp; &#x2197; 8.1K vues</div>
               </div>
-              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Generer commentaire</button>
+              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Générer commentaire</button>
             </div>
             <div class="stat-card" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
               <div>
-                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Quel outil pour automatiser la creation de contenu ?</div>
+                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Quel outil pour automatiser la création de contenu ?</div>
                 <div style="font-size:12px;color:#999;">r/EntrepreneurFrance &nbsp; &#x2197; 6.3K vues</div>
               </div>
-              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Generer commentaire</button>
+              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Générer commentaire</button>
             </div>
             <div class="stat-card" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
               <div>
-                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Intelligence artificielle et marketing digital — retours d'experience ?</div>
+                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Intelligence artificielle et marketing digital — retours d'expérience ?</div>
                 <div style="font-size:12px;color:#999;">r/MarketingDigital &nbsp; &#x2197; 6.3K vues</div>
               </div>
-              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Generer commentaire</button>
+              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Générer commentaire</button>
             </div>
             <div class="stat-card" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
               <div>
-                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Meilleur outil pour generer du trafic organique rapidement ?</div>
+                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Meilleur outil pour générer du trafic organique rapidement ?</div>
                 <div style="font-size:12px;color:#999;">r/Startups &nbsp; &#x2197; 4.2K vues</div>
               </div>
-              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Generer commentaire</button>
+              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Générer commentaire</button>
             </div>
             <div class="stat-card" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
               <div>
-                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Besoin d'aide : site web de mon commerce qui n'apparait pas sur Google</div>
+                <div style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px;">Besoin d'aide : site web de mon commerce qui n'apparaît pas sur Google</div>
                 <div style="font-size:12px;color:#999;">r/vosfinances &nbsp; &#x2197; 3.8K vues</div>
               </div>
-              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Generer commentaire</button>
+              <button class="btn-generate" style="padding:8px 16px;font-size:12px;">&#10024; Générer commentaire</button>
             </div>
           </div>
         </div>
@@ -1519,10 +1519,10 @@
             <div class="settings-tab active" onclick="switchSettingsTab('account')">Compte</div>
             <div class="settings-tab" onclick="switchSettingsTab('billing')">Facturation</div>
             <div class="settings-tab" onclick="switchSettingsTab('business')">Entreprise</div>
-            <div class="settings-tab" onclick="switchSettingsTab('team')">Equipe</div>
+            <div class="settings-tab" onclick="switchSettingsTab('team')">Équipe</div>
             <div class="settings-tab" onclick="switchSettingsTab('competitors')">Concurrents</div>
-            <div class="settings-tab" onclick="switchSettingsTab('integrations')">Integrations</div>
-            <div class="settings-tab" onclick="switchSettingsTab('generation')">Generation</div>
+            <div class="settings-tab" onclick="switchSettingsTab('integrations')">Intégrations</div>
+            <div class="settings-tab" onclick="switchSettingsTab('generation')">Génération</div>
             <div class="settings-tab" onclick="switchSettingsTab('visuals')">Visuels</div>
           </div>
 
@@ -1550,12 +1550,12 @@
             <div class="settings-card">
               <h3>&#9888;&#65039; Zone dangereuse</h3>
               <div class="settings-row">
-                <span class="settings-label">Deconnexion</span>
-                <button class="btn-danger" onclick="signOut()">Se deconnecter</button>
+                <span class="settings-label">Déconnexion</span>
+                <button class="btn-danger" onclick="signOut()">Se déconnecter</button>
               </div>
               <div class="settings-row">
                 <span class="settings-label">Supprimer le compte</span>
-                <button class="btn-danger">Supprimer definitivement</button>
+                <button class="btn-danger">Supprimer définitivement</button>
               </div>
             </div>
           </div>
@@ -1573,7 +1573,7 @@
                 <span class="settings-value">10 avr 2026 — 49&#8364;/mois</span>
               </div>
               <div class="settings-row">
-                <span class="settings-label">Methode de paiement</span>
+                <span class="settings-label">Méthode de paiement</span>
                 <span class="settings-value">Visa •••• 4242</span>
               </div>
               <div class="settings-row">
@@ -1584,7 +1584,7 @@
             <div class="settings-card">
               <h3>&#128196; Historique de facturation</h3>
               <div class="settings-row"><span class="settings-label">10 mars 2026</span><span class="settings-value">49&#8364; — Plan Pro</span></div>
-              <div class="settings-row"><span class="settings-label">10 fev 2026</span><span class="settings-value">49&#8364; — Plan Pro</span></div>
+              <div class="settings-row"><span class="settings-label">10 fév 2026</span><span class="settings-value">49&#8364; — Plan Pro</span></div>
               <div class="settings-row"><span class="settings-label">10 jan 2026</span><span class="settings-value">49&#8364; — Plan Pro</span></div>
             </div>
           </div>
@@ -1607,7 +1607,7 @@
               </div>
               <div class="settings-row">
                 <span class="settings-label">Description</span>
-                <span class="settings-value">Diagnostiqueur immobilier certifie</span>
+                <span class="settings-value">Diagnostiqueur immobilier certifié</span>
               </div>
             </div>
           </div>
@@ -1615,16 +1615,16 @@
           <!-- Team -->
           <div class="settings-sub" id="settings-team">
             <div class="settings-card">
-              <h3>&#128101; Membres de l'equipe</h3>
+              <h3>&#128101; Membres de l'équipe</h3>
               <div class="settings-row">
                 <div style="display:flex;align-items:center;gap:10px;">
                   <div style="width:32px;height:32px;border-radius:50%;background:#E8562A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">A</div>
                   <div>
                     <div style="font-size:13px;font-weight:600;color:#1a1a1a;">Anis</div>
-                    <div style="font-size:11px;color:#999;">anis@nexora.io — Admin</div>
+                    <div style="font-size:11px;color:#999;">anis@seora.io — Admin</div>
                   </div>
                 </div>
-                <span class="settings-value" style="color:#16a34a;font-weight:600;">Proprietaire</span>
+                <span class="settings-value" style="color:#16a34a;font-weight:600;">Propriétaire</span>
               </div>
             </div>
             <div style="text-align:center;padding:20px;">
@@ -1653,16 +1653,16 @@
           <!-- Integrations -->
           <div class="settings-sub" id="settings-integrations">
             <div class="settings-card">
-              <h3>&#128268; Integrations</h3>
+              <h3>&#128268; Intégrations</h3>
               <div class="settings-row">
                 <div style="display:flex;align-items:center;gap:10px;">
                   <span style="font-size:20px;">&#127760;</span>
                   <div>
                     <div style="font-size:13px;font-weight:600;color:#1a1a1a;">Google Search Console</div>
-                    <div style="font-size:11px;color:#999;">Importez vos donnees de recherche</div>
+                    <div style="font-size:11px;color:#999;">Importez vos données de recherche</div>
                   </div>
                 </div>
-                <button class="btn-settings" style="background:#f0fdf4;color:#16a34a;border-color:#bbf7d0;">Connecte</button>
+                <button class="btn-settings" style="background:#f0fdf4;color:#16a34a;border-color:#bbf7d0;">Connecté</button>
               </div>
               <div class="settings-row">
                 <div style="display:flex;align-items:center;gap:10px;">
@@ -1682,17 +1682,27 @@
                     <div style="font-size:11px;color:#999;">Publiez vos articles automatiquement</div>
                   </div>
                 </div>
-                <button class="btn-settings">Connecter</button>
+                <button class="btn-settings" id="btn-cms-wordpress" onclick="openCmsConnectModal('wordpress')">Connecter</button>
               </div>
               <div class="settings-row">
                 <div style="display:flex;align-items:center;gap:10px;">
                   <span style="font-size:20px;">&#128722;</span>
                   <div>
                     <div style="font-size:13px;font-weight:600;color:#1a1a1a;">Shopify</div>
-                    <div style="font-size:11px;color:#999;">Integration e-commerce</div>
+                    <div style="font-size:11px;color:#999;">Intégration e-commerce</div>
                   </div>
                 </div>
-                <button class="btn-settings">Connecter</button>
+                <button class="btn-settings" id="btn-cms-shopify" onclick="openCmsConnectModal('shopify')">Connecter</button>
+              </div>
+              <div class="settings-row">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:20px;">&#9670;</span>
+                  <div>
+                    <div style="font-size:13px;font-weight:600;color:#1a1a1a;">Webflow</div>
+                    <div style="font-size:11px;color:#999;">Publication via l'API Webflow</div>
+                  </div>
+                </div>
+                <button class="btn-settings" id="btn-cms-webflow" onclick="openCmsConnectModal('webflow')">Connecter</button>
               </div>
             </div>
           </div>
@@ -1700,26 +1710,26 @@
           <!-- Generation -->
           <div class="settings-sub" id="settings-generation">
             <div class="settings-card">
-              <h3>&#9998; Parametres de generation</h3>
+              <h3>&#9998; Paramètres de génération</h3>
               <div class="settings-row">
                 <span class="settings-label">Ton de voix</span>
                 <span class="settings-value">Professionnel</span>
               </div>
               <div class="settings-row">
-                <span class="settings-label">Longueur d'article par defaut</span>
+                <span class="settings-label">Longueur d'article par défaut</span>
                 <span class="settings-value">2,000 — 3,000 mots</span>
               </div>
               <div class="settings-row">
-                <span class="settings-label">Frequence de publication</span>
+                <span class="settings-label">Fréquence de publication</span>
                 <span class="settings-value">3 articles / semaine</span>
               </div>
               <div class="settings-row">
                 <span class="settings-label">Inclure des images IA</span>
-                <button class="btn-settings" style="background:#f0fdf4;color:#16a34a;border-color:#bbf7d0;">Active</button>
+                <button class="btn-settings" style="background:#f0fdf4;color:#16a34a;border-color:#bbf7d0;">Activé</button>
               </div>
               <div class="settings-row">
                 <span class="settings-label">Liens internes automatiques</span>
-                <button class="btn-settings" style="background:#f0fdf4;color:#16a34a;border-color:#bbf7d0;">Active</button>
+                <button class="btn-settings" style="background:#f0fdf4;color:#16a34a;border-color:#bbf7d0;">Activé</button>
               </div>
             </div>
           </div>
@@ -1736,14 +1746,14 @@
               </div>
               <div class="settings-row">
                 <span class="settings-label">Logo</span>
-                <button class="btn-settings">Telecharger</button>
+                <button class="btn-settings">Télécharger</button>
               </div>
               <div class="settings-row">
                 <span class="settings-label">Style d'images</span>
-                <span class="settings-value">Realiste</span>
+                <span class="settings-value">Réaliste</span>
               </div>
               <div class="settings-row">
-                <span class="settings-label">Police preferee</span>
+                <span class="settings-label">Police préférée</span>
                 <span class="settings-value">Inter</span>
               </div>
             </div>
@@ -1765,7 +1775,7 @@
         document.getElementById('welcome-msg').textContent = 'Bienvenue, ' + name + ' ! \uD83D\uDC4B';
         document.getElementById('sidebar-name').textContent = name;
         document.getElementById('sidebar-avatar').textContent = 'A';
-        document.getElementById('settings-email').textContent = 'anis@nexora.io';
+        document.getElementById('settings-email').textContent = 'anis@seora.io';
         document.getElementById('settings-name').textContent = name;
         document.getElementById('site-url').textContent = 'cedim-diag.fr';
         document.getElementById('site-icon').textContent = 'C';
@@ -1805,7 +1815,7 @@
         // Check plan status
         if (_appData.profile && _appData.profile.plan_status !== 'active') {
           // Allow localStorage fallback for admin bypass
-          if (localStorage.getItem('nexora_paid') !== 'true') {
+          if (localStorage.getItem('seora_paid') !== 'true') {
             window.location.href = 'select-plan.html';
             return;
           }
@@ -1836,7 +1846,7 @@
         // Populate settings
         if (_appData.settings) {
           var langEl = document.getElementById('settings-lang');
-          if (langEl) langEl.textContent = _appData.site?.language === 'en' ? 'English' : 'Francais';
+          if (langEl) langEl.textContent = _appData.site?.language === 'en' ? 'English' : 'Français';
           var sectorEl = document.getElementById('settings-sector');
           if (sectorEl && _appData.site?.description) sectorEl.textContent = _appData.site.description.substring(0, 60) + '...';
         }
@@ -1857,11 +1867,11 @@
             var passed = Math.max(10 - criticals - warnings - infos, 0);
 
             var hcEl = document.getElementById('overview-health-criticals');
-            if (hcEl) hcEl.innerHTML = '<span class="dot" style="background:#ef4444"></span> ' + criticals + ' problemes critiques';
+            if (hcEl) hcEl.innerHTML = '<span class="dot" style="background:#ef4444"></span> ' + criticals + ' problèmes critiques';
             var hwEl = document.getElementById('overview-health-warnings');
             if (hwEl) hwEl.innerHTML = '<span class="dot" style="background:#eab308"></span> ' + warnings + ' avertissements';
             var hpEl = document.getElementById('overview-health-passed');
-            if (hpEl) hpEl.innerHTML = '<span class="dot" style="background:#22c55e"></span> ' + passed + ' tests reussis';
+            if (hpEl) hpEl.innerHTML = '<span class="dot" style="background:#22c55e"></span> ' + passed + ' tests réussis';
 
             // Also pre-populate audit section
             populateAuditSection(audit);
@@ -1881,6 +1891,9 @@
           }
         }
 
+        // Update CMS integration status
+        updateCmsStatusUI();
+
         // Load articles
         loadArticles();
 
@@ -1890,7 +1903,7 @@
       } catch (err) {
         console.error('Dashboard init error:', err);
         // Fallback to localStorage data
-        var raw = localStorage.getItem('nexora_onboarding_data');
+        var raw = localStorage.getItem('seora_onboarding_data');
         if (raw) {
           try {
             var data = JSON.parse(raw);
@@ -1960,6 +1973,28 @@
       var existing = document.getElementById('article-modal');
       if (existing) existing.remove();
 
+      // Build publish button row
+      var publishRow = '';
+      if (article.status === 'draft' && _appData.site && _appData.site.cms_type && _appData.site.cms_connected_at) {
+        var cmsLabel = { wordpress: 'WordPress', shopify: 'Shopify', webflow: 'Webflow' };
+        publishRow = '<div style="margin-bottom:16px;">'
+          + '<button id="btn-publish-article" onclick="publishArticleToCms(\'' + article.id + '\')" '
+          + 'style="padding:10px 20px;background:#E8562A;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">'
+          + '&#128640; Publier sur ' + (cmsLabel[_appData.site.cms_type] || _appData.site.cms_type) + '</button></div>';
+      } else if (article.cms_post_url) {
+        publishRow = '<div style="margin-bottom:16px;">'
+          + '<a href="' + article.cms_post_url + '" target="_blank" '
+          + 'style="padding:10px 20px;background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">'
+          + '&#9989; Voir sur le site</a></div>';
+      } else if (article.cms_post_id) {
+        publishRow = '<div style="margin-bottom:16px;">'
+          + '<span style="padding:8px 14px;background:#f0fdf4;color:#16a34a;border-radius:6px;font-size:12px;font-weight:600;">&#9989; Publié sur le CMS</span></div>';
+      }
+
+      // Status badge color
+      var statusStyle = 'background:#f0f0f2;color:#666;';
+      if (article.status === 'published') statusStyle = 'background:#f0fdf4;color:#16a34a;';
+
       var modal = document.createElement('div');
       modal.id = 'article-modal';
       modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;';
@@ -1968,11 +2003,12 @@
         + '<h2 style="font-size:20px;font-weight:700;">' + (article.title || 'Article') + '</h2>'
         + '<button onclick="document.getElementById(\'article-modal\').remove()" style="background:none;border:none;font-size:24px;cursor:pointer;color:#999;">&times;</button>'
         + '</div>'
-        + '<div style="display:flex;gap:12px;margin-bottom:16px;">'
-        + '<span style="background:#FFF0EB;color:#E8562A;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">SEO Score: ' + (article.seo_score || 0) + '/100</span>'
+        + '<div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">'
+        + '<span style="background:#EFF6FF;color:#E8562A;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">SEO Score: ' + (article.seo_score || 0) + '/100</span>'
         + '<span style="background:#f0f0f2;color:#666;padding:4px 10px;border-radius:6px;font-size:12px;">' + (article.word_count || 0) + ' mots</span>'
-        + '<span style="background:#f0f0f2;color:#666;padding:4px 10px;border-radius:6px;font-size:12px;">' + (article.status || 'draft') + '</span>'
+        + '<span style="' + statusStyle + 'padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;">' + (article.status || 'draft') + '</span>'
         + '</div>'
+        + publishRow
         + '<div style="background:#f9fafb;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#666;">'
         + '<strong>Meta description:</strong> ' + (article.meta_description || '-') + '</div>'
         + '<div style="font-size:14px;line-height:1.7;color:#333;white-space:pre-wrap;">' + (article.content || 'Aucun contenu.').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</div>'
@@ -1983,17 +2019,17 @@
 
     // === Generate Article ===
     async function generateArticle() {
-      var keyword = prompt('Entrez un mot-cle pour generer un article:');
+      var keyword = prompt('Entrez un mot-clé pour générer un article:');
       if (!keyword) return;
 
       var typeOptions = { '1': 'blog', '2': 'explainer', '3': 'how-to', '4': 'listicle' };
-      var typeChoice = prompt('Type d\'article:\n1. Blog\n2. Explainer\n3. How-To\n4. Listicle\n\nEntrez le numero:') || '1';
+      var typeChoice = prompt('Type d\'article:\n1. Blog\n2. Explainer\n3. How-To\n4. Listicle\n\nEntrez le numéro:') || '1';
       var articleType = typeOptions[typeChoice] || 'blog';
 
       // Show loading
       var btn = document.querySelector('.btn-generate');
       var originalText = btn.textContent;
-      btn.textContent = 'Generation en cours...';
+      btn.textContent = 'Génération en cours...';
       btn.disabled = true;
       btn.style.opacity = '0.7';
 
@@ -2010,13 +2046,190 @@
           _appData.articles.unshift(result.article);
           renderCalendar();
           showArticleModal(result.article);
-          alert('Article genere ! Il reste ' + result.remaining + ' articles ce mois-ci.');
+          var msg = 'Article généré ! Il reste ' + result.remaining + ' articles ce mois-ci.';
+          if (result.auto_published) {
+            msg += '\n\nL\'article a été publié automatiquement sur votre CMS.';
+          } else if (result.publish_error) {
+            msg += '\n\nAttention : la publication automatique a échoué — ' + result.publish_error;
+          }
+          alert(msg);
         }
       } catch(err) {
         btn.textContent = originalText;
         btn.disabled = false;
         btn.style.opacity = '1';
         alert('Erreur: ' + err.message);
+      }
+    }
+
+    // === CMS Integration Functions ===
+
+    function openCmsConnectModal(cmsType) {
+      var existing = document.getElementById('cms-connect-modal');
+      if (existing) existing.remove();
+
+      var fields = '';
+      if (cmsType === 'wordpress') {
+        fields = '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">URL de votre site WordPress</label>'
+          + '<input id="cms-url" type="url" placeholder="https://monsite.com" style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:14px;font-size:13px;outline:none;">'
+          + '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">Nom d\'utilisateur WordPress</label>'
+          + '<input id="cms-username" type="text" placeholder="admin" style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:14px;font-size:13px;outline:none;">'
+          + '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">Mot de passe d\'application</label>'
+          + '<input id="cms-api-key" type="password" placeholder="xxxx xxxx xxxx xxxx" style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:10px;font-size:13px;outline:none;">'
+          + '<div style="font-size:11px;color:#999;margin-bottom:20px;line-height:1.5;">WordPress > Utilisateurs > Profil > Mots de passe d\'application.<br>Cr\u00e9ez-en un et collez-le ici.</div>';
+      } else if (cmsType === 'shopify') {
+        fields = '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">URL Shopify</label>'
+          + '<input id="cms-url" type="text" placeholder="mastore.myshopify.com" style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:14px;font-size:13px;outline:none;">'
+          + '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">Token API Admin</label>'
+          + '<input id="cms-api-key" type="password" placeholder="shpat_..." style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:14px;font-size:13px;outline:none;">'
+          + '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">Blog ID</label>'
+          + '<input id="cms-extra-blog-id" type="text" placeholder="123456789" style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:10px;font-size:13px;outline:none;">'
+          + '<div style="font-size:11px;color:#999;margin-bottom:20px;line-height:1.5;">Trouvez votre Blog ID dans l\'URL admin :<br>/admin/blogs/<strong>BLOG_ID</strong></div>';
+      } else if (cmsType === 'webflow') {
+        fields = '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">Token API Webflow</label>'
+          + '<input id="cms-api-key" type="password" placeholder="Bearer token" style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:14px;font-size:13px;outline:none;">'
+          + '<label style="font-size:13px;color:#555;display:block;margin-bottom:4px;">Collection ID</label>'
+          + '<input id="cms-extra-collection-id" type="text" placeholder="abc123def456" style="width:100%;padding:10px 14px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:10px;font-size:13px;outline:none;">'
+          + '<div style="font-size:11px;color:#999;margin-bottom:20px;line-height:1.5;">Trouvez le Collection ID dans Webflow :<br>CMS > votre collection > Settings</div>';
+      }
+
+      var cmsLabels = { wordpress: 'WordPress', shopify: 'Shopify', webflow: 'Webflow' };
+      var modal = document.createElement('div');
+      modal.id = 'cms-connect-modal';
+      modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;';
+      modal.innerHTML = '<div style="background:#fff;border-radius:16px;padding:32px;max-width:480px;width:90%;">'
+        + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">'
+        + '<h2 style="font-size:18px;font-weight:700;">Connecter ' + cmsLabels[cmsType] + '</h2>'
+        + '<button onclick="document.getElementById(\'cms-connect-modal\').remove()" style="background:none;border:none;font-size:24px;cursor:pointer;color:#999;">&times;</button>'
+        + '</div>'
+        + fields
+        + '<button id="cms-connect-submit" onclick="submitCmsConnect(\'' + cmsType + '\')" style="width:100%;padding:12px;background:#E8562A;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">Tester et connecter</button>'
+        + '</div>';
+      modal.addEventListener('click', function(e) { if (e.target === modal) modal.remove(); });
+      document.body.appendChild(modal);
+    }
+
+    async function submitCmsConnect(cmsType) {
+      var btn = document.getElementById('cms-connect-submit');
+      btn.textContent = 'Connexion en cours...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+
+      var payload = {
+        cms_type: cmsType,
+        cms_url: (document.getElementById('cms-url') || {}).value || '',
+        cms_api_key: (document.getElementById('cms-api-key') || {}).value || '',
+        cms_username: (document.getElementById('cms-username') || {}).value || '',
+        cms_extra: {}
+      };
+
+      var blogIdEl = document.getElementById('cms-extra-blog-id');
+      if (blogIdEl && blogIdEl.value) payload.cms_extra.blog_id = blogIdEl.value;
+      var collectionIdEl = document.getElementById('cms-extra-collection-id');
+      if (collectionIdEl && collectionIdEl.value) payload.cms_extra.collection_id = collectionIdEl.value;
+
+      // Webflow needs a dummy cms_url
+      if (cmsType === 'webflow' && !payload.cms_url) payload.cms_url = 'webflow.io';
+
+      try {
+        await apiCall('POST', 'cms-connect', payload);
+        document.getElementById('cms-connect-modal').remove();
+        _appData.site.cms_type = cmsType;
+        _appData.site.cms_connected_at = new Date().toISOString();
+        updateCmsStatusUI();
+        alert('CMS connect\u00e9 avec succ\u00e8s !');
+      } catch (err) {
+        btn.textContent = 'Tester et connecter';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        alert('Erreur: ' + err.message);
+      }
+    }
+
+    async function disconnectCms() {
+      try {
+        await apiCall('DELETE', 'cms-connect');
+        _appData.site.cms_type = null;
+        _appData.site.cms_connected_at = null;
+        updateCmsStatusUI();
+        alert('CMS d\u00e9connect\u00e9.');
+      } catch (err) {
+        alert('Erreur: ' + err.message);
+      }
+    }
+
+    function updateCmsStatusUI() {
+      var site = _appData.site;
+      var cmsTypes = ['wordpress', 'shopify', 'webflow'];
+
+      cmsTypes.forEach(function(type) {
+        var btn = document.getElementById('btn-cms-' + type);
+        if (!btn) return;
+
+        if (site && site.cms_type === type && site.cms_connected_at) {
+          btn.textContent = 'Connect\u00e9 \u2713';
+          btn.style.background = '#f0fdf4';
+          btn.style.color = '#16a34a';
+          btn.style.borderColor = '#bbf7d0';
+          btn.onclick = function() {
+            if (confirm('D\u00e9connecter ' + type.charAt(0).toUpperCase() + type.slice(1) + ' ?')) disconnectCms();
+          };
+        } else {
+          btn.textContent = 'Connecter';
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.style.borderColor = '';
+          btn.onclick = function() { openCmsConnectModal(type); };
+        }
+      });
+
+      // Update autopilot banner
+      var autopilotBtn = document.querySelector('.btn-autopilot');
+      if (autopilotBtn) {
+        if (site && site.cms_type && site.cms_connected_at) {
+          autopilotBtn.textContent = 'CMS connect\u00e9 \u2713';
+          autopilotBtn.style.background = '#16a34a';
+          autopilotBtn.onclick = null;
+        } else {
+          autopilotBtn.textContent = 'Connecter mon site';
+          autopilotBtn.style.background = '';
+          autopilotBtn.onclick = function() {
+            showSection('settings');
+            setTimeout(function() { switchSettingsTab('integrations'); }, 100);
+          };
+        }
+      }
+    }
+
+    async function publishArticleToCms(articleId) {
+      var btn = document.getElementById('btn-publish-article');
+      if (!btn) return;
+      var cmsLabel = { wordpress: 'WordPress', shopify: 'Shopify', webflow: 'Webflow' };
+      btn.textContent = 'Publication en cours...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+
+      try {
+        var result = await apiCall('POST', 'publish-cms', { article_id: articleId });
+
+        // Update local state
+        var art = _appData.articles.find(function(a) { return a.id === articleId; });
+        if (art) {
+          art.status = 'published';
+          art.cms_post_id = result.cms_post_id;
+          art.cms_post_url = result.cms_post_url;
+        }
+
+        // Close and reopen modal with updated data
+        document.getElementById('article-modal').remove();
+        if (art) showArticleModal(art);
+        renderCalendar();
+        alert('Article publi\u00e9 avec succ\u00e8s sur ' + (cmsLabel[_appData.site.cms_type] || 'le CMS') + ' !');
+      } catch (err) {
+        btn.textContent = '\uD83D\uDE80 Publier sur ' + (cmsLabel[_appData.site.cms_type] || 'CMS');
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        alert('Erreur de publication: ' + err.message);
       }
     }
 
@@ -2042,7 +2255,7 @@
           + '<td>' + pos + '</td>'
           + '<td><span class="change ' + changeClass + '">' + (changeClass === 'up' ? '&#9650;' : '-') + '</span></td>'
           + '<td>' + (kw.volume || 0).toLocaleString() + '</td>'
-          + '<td><div class="kd-bar"><div class="kd-fill" style="width:' + (kw.difficulty || 0) + '%;background:' + (kw.difficulty > 60 ? '#ef4444' : kw.difficulty > 30 ? '#f59e0b' : '#22c55e') + '"></div></div></td>';
+          + '<td><div class="kd-bar"><div class="kd-fill" style="width:' + (kw.difficulty || 0) + '%;background:' + (kw.difficulty > 60 ? '#ef4444' : kw.difficulty > 30 ? '#3B82F6' : '#22c55e') + '"></div></div></td>';
         tbody.appendChild(tr);
       });
     }
@@ -2077,7 +2290,7 @@
           var hsEl = document.getElementById('overview-health-score');
           if (hsEl) hsEl.innerHTML = result.scores.overall + ' <span>/100</span>';
 
-          alert('Audit termine ! Score global: ' + result.scores.overall + '/100');
+          alert('Audit terminé ! Score global: ' + result.scores.overall + '/100');
         }
       } catch(err) {
         alert('Erreur audit: ' + err.message);
@@ -2117,16 +2330,16 @@
       if (labelEl) {
         var s = audit.overall_score || 0;
         if (s >= 80) { labelEl.textContent = 'Excellent — continuez ainsi !'; labelEl.style.color = '#22c55e'; }
-        else if (s >= 50) { labelEl.textContent = 'Correcte — ameliorations possibles'; labelEl.style.color = '#eab308'; }
-        else { labelEl.textContent = 'A ameliorer — problemes detectes'; labelEl.style.color = '#ef4444'; }
+        else if (s >= 50) { labelEl.textContent = 'Correcte — améliorations possibles'; labelEl.style.color = '#eab308'; }
+        else { labelEl.textContent = 'À améliorer — problèmes détectés'; labelEl.style.color = '#ef4444'; }
       }
 
       // Date
       var dateEl = document.getElementById('audit-date');
       if (dateEl && audit.created_at) {
         var d = new Date(audit.created_at);
-        var months = ['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre'];
-        dateEl.textContent = 'Derniere analyse : ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+        var months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+        dateEl.textContent = 'Dernière analyse : ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
       }
 
       // Speed gauges
@@ -2150,7 +2363,7 @@
       // Issues
       if (audit.issues) {
         var headerEl = document.getElementById('audit-issues-header');
-        if (headerEl) headerEl.textContent = audit.issues.length + ' problemes detectes';
+        if (headerEl) headerEl.textContent = audit.issues.length + ' problèmes détectés';
         renderAuditIssues(audit.issues);
       }
     }
@@ -2160,7 +2373,7 @@
       if (!container || !issues) return;
       // Keep header, clear everything else
       var headerHtml = '<div style="padding:14px 20px;font-size:13px;font-weight:700;color:#1a1a1a;background:#f9fafb;border-bottom:1px solid #e8e8ec;" id="audit-issues-header">'
-        + issues.length + ' problemes detectes</div>';
+        + issues.length + ' problèmes détectés</div>';
       container.innerHTML = headerHtml;
       issues.forEach(function(issue) {
         var sevLabel = issue.severity === 'critical' ? 'Critique' : issue.severity === 'warning' ? 'Moyen' : 'Info';
@@ -2191,7 +2404,7 @@
         if (freqEl) settingsData.publish_frequency = freqEl.value;
 
         await apiCall('POST', 'settings', { settings: settingsData });
-        alert('Parametres sauvegardes !');
+        alert('Paramètres sauvegardés !');
       } catch(err) {
         alert('Erreur: ' + err.message);
       }
@@ -2209,13 +2422,13 @@
 
     // === Generate Keywords ===
     async function generateNewKeywords() {
-      var topic = prompt('Theme pour les nouveaux mots-cles (optionnel):') || '';
+      var topic = prompt('Thème pour les nouveaux mots-clés (optionnel):') || '';
       try {
         var result = await apiCall('POST', 'generate-keywords', { topic: topic, count: 5 });
         if (result.keywords) {
           _appData.keywords = _appData.keywords.concat(result.keywords);
           renderKeywordTable();
-          alert(result.keywords.length + ' nouveaux mots-cles generes !');
+          alert(result.keywords.length + ' nouveaux mots-clés générés !');
         }
       } catch(err) {
         alert('Erreur: ' + err.message);
@@ -2224,7 +2437,7 @@
 
     // Check for payment success redirect
     if (window.location.search.includes('payment=success')) {
-      localStorage.setItem('nexora_paid', 'true');
+      localStorage.setItem('seora_paid', 'true');
       // Clean URL
       window.history.replaceState({}, '', window.location.pathname);
     }
@@ -2247,7 +2460,7 @@
         'audit': 'Audit technique',
         'backlinks': 'Backlinks',
         'reddit': 'Reddit AI Agent',
-        'settings': 'Parametres'
+        'settings': 'Paramètres'
       };
       document.getElementById('topbar-title').textContent = titles[id] || id;
 

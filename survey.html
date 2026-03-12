@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sondage — Nexora.ai</title>
+  <title>Sondage — Seora.ai</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -74,7 +74,7 @@
     }
     .survey-option.selected {
       border-color: var(--accent);
-      background: #FFF0EB;
+      background: #EFF6FF;
       color: var(--accent);
       font-weight: 600;
     }
@@ -175,10 +175,9 @@
     <a href="index.html" class="navbar-logo">
       <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="28" height="28" rx="8" fill="#E8562A"/>
-        <path d="M8 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M14 20V8l6 12V8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+        <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
       </svg>
-      Nexora.ai
+      Seora.ai
     </a>
   </div>
 
@@ -198,7 +197,7 @@
         Sondage
       </div>
 
-      <h1 class="survey-question">Comment avez-vous connu Nexora ?</h1>
+      <h1 class="survey-question">Comment avez-vous connu Seora ?</h1>
       <p class="survey-desc">Votre reponse nous aide a ameliorer nos strategies marketing et votre experience.</p>
 
       <div class="survey-grid">
@@ -234,7 +233,7 @@
         </button>
         <button class="survey-option" data-value="friend" onclick="selectSource(this)">
           <span class="survey-option-icon">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="4" stroke="#F59E0B" stroke-width="2"/><path d="M2 21v-2a4 4 0 014-4h6a4 4 0 014 4v2" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/><path d="M16 3.13a4 4 0 010 7.75M21 21v-2a4 4 0 00-3-3.87" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="4" stroke="#3B82F6" stroke-width="2"/><path d="M2 21v-2a4 4 0 014-4h6a4 4 0 014 4v2" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/><path d="M16 3.13a4 4 0 010 7.75M21 21v-2a4 4 0 00-3-3.87" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/></svg>
           </span>
           Ami / Collegue
         </button>
@@ -299,7 +298,7 @@
 
     function submitSurvey() {
       if (!selectedSource) return;
-      localStorage.setItem('nexora_acquisition_source', selectedSource);
+      localStorage.setItem('seora_acquisition_source', selectedSource);
       window.location.href = 'pricing.html';
     }
 

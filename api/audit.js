@@ -22,7 +22,7 @@ module.exports = async function handler(req, res) {
 
     try {
       var htmlRes = await fetch(url, {
-        headers: { 'User-Agent': 'NexoraBot/1.0' },
+        headers: { 'User-Agent': 'SeoraBot/1.0' },
         signal: AbortSignal.timeout(10000)
       });
       var html = await htmlRes.text();

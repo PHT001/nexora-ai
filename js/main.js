@@ -1,5 +1,5 @@
 /* ========================================
-   Nexora.ai — Shared JS (trysoro-style animations)
+   Seora.ai — Shared JS (trysoro-style animations)
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -30,41 +30,76 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Hero rotating text ---- */
-  const rotatingEl = document.querySelector('.rotating-text');
-  const rotatingIcon = document.querySelector('.rotating-icon');
-  if (rotatingEl) {
-    // Real Google SVG logos
-    var svgGoogle = '<svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.34 2.49 10.5l8.04-5.91z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
-    var svgMaps = '<svg width="18" height="18" viewBox="0 0 92 132"><path d="M46 2C22.4 2 3 21.4 3 45c0 31.5 43 85 43 85s43-53.5 43-85C89 21.4 69.6 2 46 2z" fill="#34A853"/><path d="M46 2v43h43C89 21.4 69.6 2 46 2z" fill="#4285F4"/><path d="M46 2C22.4 2 3 21.4 3 45h43V2z" fill="#EA4335"/><path d="M3 45c0 31.5 43 85 43 85V45H3z" fill="#FBBC04"/><circle cx="46" cy="45" r="13" fill="#fff"/></svg>';
-    var svgDiscover = '<svg width="18" height="18" viewBox="0 0 48 48"><path d="M20 2h8L36 10 24 22 20 14z" fill="#EA4335"/><path d="M46 20v8L38 36 26 24 34 20z" fill="#4285F4"/><path d="M28 46h-8L12 38 24 26 28 34z" fill="#34A853"/><path d="M2 28v-8L10 12 22 24 14 28z" fill="#FBBC04"/></svg>';
-
-    var items = [
-      { text: 'Google', icon: svgGoogle, bg: '#4285F41a' },
-      { text: 'Google Maps', icon: svgMaps, bg: '#34A8531a' },
-      { text: 'Google Discover', icon: svgDiscover, bg: '#FBBC041a' }
+  /* ---- Hero rotating logo ---- */
+  var rotatingLogo = document.querySelector('.rotating-logo');
+  if (rotatingLogo) {
+    var logos = [
+      { src: 'logo/chatgpt.png', alt: 'ChatGPT' },
+      { src: 'logo/perplexity.png', alt: 'Perplexity' },
+      { src: 'logo/gemini.png', alt: 'Gemini' },
+      { src: 'logo/claude.png', alt: 'Claude' },
+      { src: 'logo/google.png', alt: 'Google' },
+      { src: 'logo/googlemaps.png', alt: 'Google Maps' }
     ];
-    var idx = 0;
+    var lIdx = 0;
+    // Preload
+    logos.forEach(function(l) { var i = new Image(); i.src = l.src; });
     setInterval(function() {
-      idx = (idx + 1) % items.length;
-      rotatingEl.style.opacity = '0';
-      rotatingEl.style.transform = 'translateY(10px) scale(0.95)';
-      if (rotatingIcon) {
-        rotatingIcon.style.opacity = '0';
-        rotatingIcon.style.transform = 'scale(0.8)';
-      }
+      rotatingLogo.style.opacity = '0';
+      rotatingLogo.style.transform = 'translateY(10px) scale(0.95)';
       setTimeout(function() {
-        rotatingEl.textContent = items[idx].text;
-        if (rotatingIcon) {
-          rotatingIcon.innerHTML = items[idx].icon;
-          rotatingIcon.style.background = items[idx].bg;
-          rotatingIcon.style.opacity = '1';
-          rotatingIcon.style.transform = 'scale(1)';
-        }
-        rotatingEl.style.opacity = '1';
-        rotatingEl.style.transform = 'translateY(0) scale(1)';
-      }, 250);
+        lIdx = (lIdx + 1) % logos.length;
+        rotatingLogo.querySelector('img').src = logos[lIdx].src;
+        rotatingLogo.querySelector('img').alt = logos[lIdx].alt;
+        rotatingLogo.style.opacity = '1';
+        rotatingLogo.style.transform = 'translateY(0) scale(1)';
+      }, 300);
     }, 2500);
+  }
+
+  /* ---- Duo mockups: rotating AI logos in both hero + GEO section ---- */
+  var aiLogos = [
+    { src: 'logo/chatgpt.png', name: 'ChatGPT' },
+    { src: 'logo/perplexity.png', name: 'Perplexity' },
+    { src: 'logo/gemini.png', name: 'Gemini' },
+    { src: 'logo/claude.png', name: 'Claude' }
+  ];
+  aiLogos.forEach(function(l) { var i = new Image(); i.src = l.src; });
+
+  // Hero duo
+  var duoAiLogo = document.querySelector('.hero-duo-ai-logo:not(.geo-duo-ai-logo)');
+  var duoAiName = document.querySelector('.hero-duo-ai-name:not(.geo-duo-ai-name)');
+  var duoAiIcon = document.querySelector('.hd-ai-icon:not(.geo-duo-ai-icon)');
+  if (duoAiLogo && duoAiName) {
+    var aiIdx = 0;
+    setInterval(function() {
+      duoAiLogo.style.opacity = '0';
+      setTimeout(function() {
+        aiIdx = (aiIdx + 1) % aiLogos.length;
+        duoAiLogo.src = aiLogos[aiIdx].src;
+        duoAiName.textContent = aiLogos[aiIdx].name;
+        if (duoAiIcon) duoAiIcon.src = aiLogos[aiIdx].src;
+        duoAiLogo.style.opacity = '1';
+      }, 250);
+    }, 3000);
+  }
+
+  // GEO section duo
+  var geoAiLogo = document.querySelector('.geo-duo-ai-logo');
+  var geoAiName = document.querySelector('.geo-duo-ai-name');
+  var geoAiIcon = document.querySelector('.geo-duo-ai-icon');
+  if (geoAiLogo && geoAiName) {
+    var geoIdx = 0;
+    setInterval(function() {
+      geoAiLogo.style.opacity = '0';
+      setTimeout(function() {
+        geoIdx = (geoIdx + 1) % aiLogos.length;
+        geoAiLogo.src = aiLogos[geoIdx].src;
+        geoAiName.textContent = aiLogos[geoIdx].name;
+        if (geoAiIcon) geoAiIcon.src = aiLogos[geoIdx].src;
+        geoAiLogo.style.opacity = '1';
+      }, 250);
+    }, 3500);
   }
 
   /* ---- Accordions ---- */
@@ -358,21 +393,46 @@ document.addEventListener('DOMContentLoaded', function () {
   statNums.forEach(function(el) { obs.observe(el); });
 })();
 
-// ========== DEMO TAB SWITCHING ==========
+// ========== DEMO TAB SWITCHING (click + auto-rotate every 4s) ==========
 (function() {
   var tabs = document.querySelectorAll('.demo-tab');
   var panels = document.querySelectorAll('.demo-panel');
   if (!tabs.length) return;
-  tabs.forEach(function(tab) {
+
+  var currentIdx = 0;
+  var autoInterval = null;
+
+  function switchTo(idx) {
+    currentIdx = idx % tabs.length;
+    var target = tabs[currentIdx].getAttribute('data-tab');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    tabs[currentIdx].classList.add('active');
+    panels.forEach(function(p) { p.classList.remove('active'); });
+    var targetPanel = document.querySelector('.demo-panel[data-panel="' + target + '"]');
+    if (targetPanel) targetPanel.classList.add('active');
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoInterval = setInterval(function() {
+      switchTo(currentIdx + 1);
+    }, 4000);
+  }
+
+  function stopAuto() {
+    if (autoInterval) { clearInterval(autoInterval); autoInterval = null; }
+  }
+
+  // Click handler — switch + restart timer
+  tabs.forEach(function(tab, i) {
     tab.addEventListener('click', function() {
-      var target = this.getAttribute('data-tab');
-      tabs.forEach(function(t) { t.classList.remove('active'); });
-      this.classList.add('active');
-      panels.forEach(function(p) { p.classList.remove('active'); });
-      var targetPanel = document.querySelector('.demo-panel[data-panel="' + target + '"]');
-      if (targetPanel) targetPanel.classList.add('active');
+      switchTo(i);
+      startAuto();
     });
   });
+
+  // Start auto-rotation
+  startAuto();
 })();
 
 // ========== TESTIMONIALS MARQUEE — duplicate cards for seamless loop ==========
@@ -483,17 +543,26 @@ document.addEventListener('DOMContentLoaded', function () {
   cards.forEach(function(c) { obs.observe(c); });
 })();
 
-// ========== ANIMATED GOOGLE MOCKUP ==========
+// ========== ANIMATED GOOGLE MOCKUP (LOOP) ==========
 (function() {
   var googleMockup = document.querySelector('[data-mockup="google"]');
   if (!googleMockup) return;
 
-  function animateGoogle(el) {
-    var query = el.querySelector('.mg-query');
-    var cursor = el.querySelector('.mg-cursor');
-    var results = el.querySelectorAll('.mg-result');
-    var missing = el.querySelector('.mg-missing');
-    var text = query.getAttribute('data-text');
+  var query = googleMockup.querySelector('.mg-query');
+  var cursor = googleMockup.querySelector('.mg-cursor');
+  var results = googleMockup.querySelectorAll('.mg-result');
+  var missing = googleMockup.querySelector('.mg-missing');
+  var text = query.getAttribute('data-text');
+
+  function resetGoogle() {
+    query.textContent = '';
+    cursor.style.display = '';
+    results.forEach(function(r) { r.classList.remove('visible'); });
+    if (missing) missing.classList.remove('visible');
+  }
+
+  function animateGoogle() {
+    resetGoogle();
     var i = 0;
     function typeChar() {
       if (i < text.length) {
@@ -505,7 +574,9 @@ document.addEventListener('DOMContentLoaded', function () {
         results.forEach(function(r, idx) {
           setTimeout(function() { r.classList.add('visible'); }, 300 + idx * 400);
         });
-        setTimeout(function() { if (missing) missing.classList.add('visible'); }, 300 + results.length * 400 + 400);
+        var totalTime = 300 + results.length * 400 + 400;
+        setTimeout(function() { if (missing) missing.classList.add('visible'); }, totalTime);
+        setTimeout(animateGoogle, totalTime + 3000);
       }
     }
     setTimeout(typeChar, 600);
@@ -514,13 +585,90 @@ document.addEventListener('DOMContentLoaded', function () {
   var mockupObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        animateGoogle(entry.target);
+        animateGoogle();
         mockupObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.25 });
 
   mockupObserver.observe(googleMockup);
+})();
+
+// ========== ANIMATED CHATGPT MOCKUP (LOOP) ==========
+(function() {
+  var chatMockup = document.querySelector('[data-mockup="chatgpt"]');
+  if (!chatMockup) return;
+
+  var userMsg = chatMockup.querySelector('.mc-user');
+  var aiMsg = chatMockup.querySelector('.mc-ai');
+  var userBubble = chatMockup.querySelector('.mc-bubble-user');
+  var intro = chatMockup.querySelector('.mc-ai-intro');
+  var items = chatMockup.querySelectorAll('.mc-ai-item');
+  var missing = chatMockup.querySelector('.mc-missing-gpt');
+  var text = userBubble.getAttribute('data-text');
+
+  function resetChat() {
+    userBubble.textContent = '';
+    userMsg.classList.remove('mc-visible');
+    userMsg.classList.add('mc-hidden');
+    aiMsg.classList.remove('mc-visible');
+    aiMsg.classList.add('mc-hidden');
+    intro.classList.remove('mc-type-visible');
+    intro.classList.add('mc-type-hidden');
+    items.forEach(function(item) {
+      item.classList.remove('mc-type-visible');
+      item.classList.add('mc-type-hidden');
+    });
+    if (missing) missing.classList.remove('visible');
+  }
+
+  function animateChat() {
+    resetChat();
+    setTimeout(function() {
+      userMsg.classList.remove('mc-hidden');
+      userMsg.classList.add('mc-visible');
+      var i = 0;
+      function typeChar() {
+        if (i < text.length) {
+          userBubble.textContent += text[i];
+          i++;
+          setTimeout(typeChar, 40 + Math.random() * 30);
+        } else {
+          setTimeout(function() {
+            aiMsg.classList.remove('mc-hidden');
+            aiMsg.classList.add('mc-visible');
+            setTimeout(function() {
+              intro.classList.remove('mc-type-hidden');
+              intro.classList.add('mc-type-visible');
+              items.forEach(function(item, idx) {
+                setTimeout(function() {
+                  item.classList.remove('mc-type-hidden');
+                  item.classList.add('mc-type-visible');
+                }, 300 + idx * 350);
+              });
+              var totalItems = 300 + items.length * 350 + 400;
+              setTimeout(function() {
+                if (missing) missing.classList.add('visible');
+              }, totalItems);
+              setTimeout(animateChat, totalItems + 3000);
+            }, 300);
+          }, 600);
+        }
+      }
+      typeChar();
+    }, 800);
+  }
+
+  var chatObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        animateChat();
+        chatObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  chatObserver.observe(chatMockup);
 })();
 
 // ========== EVO CARD SCROLL ANIMATION ==========

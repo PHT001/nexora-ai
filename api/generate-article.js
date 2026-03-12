@@ -1,5 +1,6 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const { createAdminClient, getUser, cors } = require('./_lib/supabase');
+const { publishToCms, markdownToHtml } = require('./_lib/cms-publish');
 
 module.exports = async function handler(req, res) {
   cors(res);
@@ -92,9 +93,42 @@ module.exports = async function handler(req, res) {
       articles_used: profile.articles_used + 1
     }).eq('id', user.id);
 
+    // --- AUTO-PUBLISH: if enabled and CMS connected ---
+    var autoPublished = false;
+    var publishError = null;
+
+    var { data: settingsData } = await sb.from('settings').select('auto_publish').eq('user_id', user.id).single();
+
+    if (settingsData && settingsData.auto_publish && site.cms_type && site.cms_connected_at) {
+      try {
+        var htmlContent = markdownToHtml(saved.content);
+        var pubResult = await publishToCms(site, saved, htmlContent);
+
+        var now = new Date().toISOString();
+        await sb.from('articles').update({
+          status: 'published',
+          cms_post_id: pubResult.post_id,
+          cms_post_url: pubResult.post_url,
+          published_at: now,
+          updated_at: now
+        }).eq('id', saved.id);
+
+        saved.status = 'published';
+        saved.cms_post_id = pubResult.post_id;
+        saved.cms_post_url = pubResult.post_url;
+        autoPublished = true;
+      } catch (pubErr) {
+        // Non-blocking: article stays as draft
+        console.error('Auto-publish failed:', pubErr.message);
+        publishError = pubErr.message;
+      }
+    }
+
     return res.status(200).json({
       article: saved,
-      remaining: profile.articles_limit - profile.articles_used - 1
+      remaining: profile.articles_limit - profile.articles_used - 1,
+      auto_published: autoPublished,
+      publish_error: publishError
     });
   } catch (err) {
     console.error('Generate article error:', err);
