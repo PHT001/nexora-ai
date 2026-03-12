@@ -3,7 +3,7 @@
   "functions": {
     "api/audit.js": { "maxDuration": 60 },
     "api/generate-article.js": { "maxDuration": 60 },
-    "api/publish-cms.js": { "maxDuration": 60 }
+    "api/cms.js": { "maxDuration": 60 }
   },
   "headers": [
     {
