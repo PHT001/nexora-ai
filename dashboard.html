@@ -929,8 +929,8 @@
               </div>
             </div>
             <div class="latest-article-actions">
-              <button class="btn-la connect">Connecter site</button>
-              <button class="btn-la view">Voir l'article</button>
+              <button class="btn-la connect" onclick="showSection('settings');setTimeout(function(){switchSettingsTab('integrations')},100)">Connecter site</button>
+              <button class="btn-la view" onclick="if(_appData.stats&&_appData.stats.last_article){var a=_appData.articles&&_appData.articles.find(function(x){return x.id===_appData.stats.last_article.id});showArticleModal(a||_appData.stats.last_article);}">Voir l'article</button>
             </div>
           </div>
 
@@ -1443,7 +1443,7 @@
             </div>
             <div style="display:flex;gap:8px;">
               <button class="cp-filter">Agent expliqué</button>
-              <button class="btn-generate">&#9881; Paramètres agent</button>
+              <button class="btn-generate" onclick="alert('Configuration de l\'agent Reddit bientôt disponible.')">&#9881; Paramètres agent</button>
             </div>
           </div>
 
@@ -1540,11 +1540,11 @@
               </div>
               <div class="settings-row">
                 <span class="settings-label">Mot de passe</span>
-                <button class="btn-settings">Modifier</button>
+                <button class="btn-settings" onclick="alert('Fonctionnalité bientôt disponible.')">Modifier</button>
               </div>
               <div class="settings-row">
                 <span class="settings-label">Authentification 2FA</span>
-                <button class="btn-settings">Activer</button>
+                <button class="btn-settings" onclick="alert('Fonctionnalité bientôt disponible.')">Activer</button>
               </div>
             </div>
             <div class="settings-card">
@@ -1555,7 +1555,7 @@
               </div>
               <div class="settings-row">
                 <span class="settings-label">Supprimer le compte</span>
-                <button class="btn-danger">Supprimer définitivement</button>
+                <button class="btn-danger" onclick="if(confirm('Êtes-vous sûr ? Cette action est irréversible.')){alert('Contactez le support pour supprimer votre compte.')}">Supprimer définitivement</button>
               </div>
             </div>
           </div>
@@ -1628,7 +1628,7 @@
               </div>
             </div>
             <div style="text-align:center;padding:20px;">
-              <button class="btn-generate">+ Inviter un membre</button>
+              <button class="btn-generate" onclick="alert('Fonctionnalité bientôt disponible.')">+ Inviter un membre</button>
             </div>
           </div>
 
@@ -1638,15 +1638,15 @@
               <h3>&#127919; Concurrents suivis</h3>
               <div class="settings-row">
                 <span class="settings-label">diagnostiqueur-paris.fr</span>
-                <button class="btn-danger" style="font-size:11px;padding:4px 10px;">Retirer</button>
+                <button class="btn-danger" style="font-size:11px;padding:4px 10px;" onclick="if(confirm('Retirer ce concurrent ?'))this.closest('.settings-row').remove()">Retirer</button>
               </div>
               <div class="settings-row">
                 <span class="settings-label">immo-diag.com</span>
-                <button class="btn-danger" style="font-size:11px;padding:4px 10px;">Retirer</button>
+                <button class="btn-danger" style="font-size:11px;padding:4px 10px;" onclick="if(confirm('Retirer ce concurrent ?'))this.closest('.settings-row').remove()">Retirer</button>
               </div>
             </div>
             <div style="text-align:center;padding:20px;">
-              <button class="btn-generate">+ Ajouter un concurrent</button>
+              <button class="btn-generate" onclick="var u=prompt('URL du concurrent à suivre :');if(u){var r=document.createElement('div');r.className='settings-row';r.innerHTML='<span class=settings-label>'+u+'</span><button class=btn-danger style=font-size:11px;padding:4px+10px onclick=if(confirm(\'Retirer?\'))this.closest(\'.settings-row\').remove()>Retirer</button>';document.querySelector('#settings-competitors .settings-card').appendChild(r)}">+ Ajouter un concurrent</button>
             </div>
           </div>
 
@@ -1672,7 +1672,7 @@
                     <div style="font-size:11px;color:#999;">Suivez votre trafic</div>
                   </div>
                 </div>
-                <button class="btn-settings">Connecter</button>
+                <button class="btn-settings" onclick="alert('Intégration Google Analytics bientôt disponible.')">Connecter</button>
               </div>
               <div class="settings-row">
                 <div style="display:flex;align-items:center;gap:10px;">
@@ -1746,7 +1746,7 @@
               </div>
               <div class="settings-row">
                 <span class="settings-label">Logo</span>
-                <button class="btn-settings">Télécharger</button>
+                <button class="btn-settings" onclick="alert('Upload de logo bientôt disponible.')">Télécharger</button>
               </div>
               <div class="settings-row">
                 <span class="settings-label">Style d'images</span>
