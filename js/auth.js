@@ -1,19 +1,76 @@
 // Supabase Auth Configuration
 const SUPABASE_URL = 'https://lzqnbsgxqecnwecksfuc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6cW5ic2d4cWVjbndlY2tzZnVjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTE4MjIsImV4cCI6MjA4ODYyNzgyMn0.STBKjwoDY8Ci1w3u8xxuL2DRwqGAbVLMvI8t3x1Wa40';
+const GOOGLE_CLIENT_ID = '628851300069-nvssk2rfj7g14q4nbfv7emt4c9l6viil.apps.googleusercontent.com';
 
 var _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // --- Auth Functions ---
 
-async function signInWithGoogle() {
-  var { error } = await _sb.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: window.location.origin + '/onboarding.html' }
+// Google Identity Services callback
+async function handleGoogleCredential(response) {
+  try {
+    var { data, error } = await _sb.auth.signInWithIdToken({
+      provider: 'google',
+      token: response.credential
+    });
+    if (error) {
+      console.error('Google sign-in error:', error.message);
+      showAuthError(error.message);
+      return;
+    }
+    // Redirect after successful sign-in
+    var page = window.location.pathname;
+    if (page.includes('signup')) {
+      localStorage.removeItem('seora_onboarding_complete');
+      localStorage.removeItem('seora_onboarding_data');
+      window.location.href = 'onboarding.html';
+    } else {
+      var dest = localStorage.getItem('seora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
+      window.location.href = dest;
+    }
+  } catch (err) {
+    console.error('Google credential error:', err);
+    showAuthError('Erreur de connexion Google. Réessayez.');
+  }
+}
+
+// Initialize Google Sign-In buttons (called when GIS script loads)
+function initGoogleSignIn() {
+  if (typeof google === 'undefined' || !google.accounts) return;
+
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleCredential
   });
-  if (error) {
-    console.error('Google sign-in error:', error.message);
-    showAuthError(error.message);
+
+  var containers = document.querySelectorAll('.g-signin-btn');
+  containers.forEach(function(el) {
+    var text = el.getAttribute('data-text') || 'signin_with';
+    google.accounts.id.renderButton(el, {
+      theme: 'outline',
+      size: 'large',
+      shape: 'rectangular',
+      text: text,
+      width: Math.max(el.offsetWidth, 300),
+      logo_alignment: 'left'
+    });
+  });
+}
+
+// Fallback if GIS not loaded
+async function signInWithGoogle() {
+  if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+    google.accounts.id.prompt();
+  } else {
+    var { error } = await _sb.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin + '/onboarding.html' }
+    });
+    if (error) {
+      console.error('Google sign-in error:', error.message);
+      showAuthError(error.message);
+    }
   }
 }
 
@@ -158,3 +215,10 @@ async function updateNavAuth() {
     userMenus.forEach(function(m) { m.style.display = 'none'; });
   }
 }
+
+// --- Auto-init Google Sign-In on page load ---
+window.addEventListener('load', function() {
+  if (document.querySelector('.g-signin-btn')) {
+    initGoogleSignIn();
+  }
+});
