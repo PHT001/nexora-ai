@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard — Seora</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%23E8562A'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
+  <meta name="theme-color" content="#E8562A">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -452,6 +454,24 @@
       .stats-grid { grid-template-columns: 1fr; }
       .analytics-grid { grid-template-columns: repeat(2, 1fr); }
       .audit-categories { grid-template-columns: 1fr; }
+      .cal-grid { font-size: 11px; }
+      .cal-cell { min-height: 60px; padding: 4px; }
+      .cal-article { font-size: 10px; padding: 3px 4px; }
+      .cal-article .cal-kd { display: none; }
+      .latest-article-card { flex-direction: column; gap: 12px; }
+      .latest-article-actions { justify-content: center; }
+      .settings-tabs { flex-wrap: wrap; gap: 4px; }
+      .settings-tab { font-size: 12px; padding: 6px 10px; }
+      .settings-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { gap: 12px; }
+      .stat-card-value { font-size: 28px; }
+      .analytics-grid { grid-template-columns: 1fr; }
+      .cal-header span { font-size: 10px; }
+      .cal-cell { min-height: 50px; }
+      .cal-article span { display: none; }
+      .btn-generate { font-size: 12px; padding: 8px 14px; }
     }
 
     /* ===== CALENDAR VIEW ===== */
@@ -801,6 +821,75 @@
     .speed-gauge-val { font-size: 18px; font-weight: 800; color: #1a1a1a; }
     .speed-gauge-label { font-size: 10px; color: #999; font-weight: 600; text-transform: uppercase; }
 
+    /* ===== LOADING & EMPTY STATES ===== */
+    .loading-overlay {
+      position: fixed; inset: 0; z-index: 9998;
+      background: #f5f6f8;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.4s;
+    }
+    .loading-overlay.fade-out { opacity: 0; pointer-events: none; }
+    .loading-spinner {
+      width: 40px; height: 40px;
+      border: 3px solid #e8e8ec;
+      border-top-color: #E8562A;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 14px; color: #999; margin-top: 16px; font-weight: 500; }
+
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f2 25%, #e8e8ec 50%, #f0f0f2 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 8px;
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    .empty-state {
+      text-align: center; padding: 48px 24px;
+      color: #999;
+    }
+    .empty-state-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+    .empty-state-title { font-size: 16px; font-weight: 600; color: #666; margin-bottom: 6px; }
+    .empty-state-desc { font-size: 13px; color: #aaa; line-height: 1.6; max-width: 340px; margin: 0 auto 20px; }
+    .empty-state-btn {
+      display: inline-block; padding: 10px 24px; background: #E8562A; color: #fff;
+      border: none; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+    }
+    .empty-state-btn:hover { background: #d14a22; }
+
+    /* Inline spinner for buttons */
+    .btn-spinner {
+      display: inline-block; width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle; margin-right: 6px;
+    }
+
+    /* Toast notifications */
+    .toast-container {
+      position: fixed; bottom: 24px; right: 24px; z-index: 10000;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .toast {
+      padding: 14px 20px; border-radius: 10px;
+      font-size: 13px; font-weight: 500; color: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transform: translateX(120%);
+      animation: slideIn 0.3s forwards;
+      max-width: 360px;
+    }
+    .toast.success { background: #16a34a; }
+    .toast.error { background: #ef4444; }
+    .toast.info { background: #3b82f6; }
+    @keyframes slideIn { to { transform: translateX(0); } }
+    @keyframes slideOut { to { transform: translateX(120%); opacity: 0; } }
+
     /* ===== RESPONSIVE ADDITIONS ===== */
     @media (max-width: 768px) {
       .overview-two-col { grid-template-columns: 1fr; }
@@ -813,6 +902,14 @@
   </style>
 </head>
 <body>
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Chargement du dashboard...</div>
+  </div>
+  <!-- Toast container -->
+  <div class="toast-container" id="toast-container"></div>
+
   <div class="app">
     <!-- Mobile top bar -->
     <div class="mobile-topbar">
@@ -1767,6 +1864,29 @@
   <script src="js/auth.js"></script>
   <script src="js/api.js"></script>
   <script>
+    // === Toast notification system ===
+    function showToast(message, type) {
+      type = type || 'info';
+      var container = document.getElementById('toast-container');
+      var toast = document.createElement('div');
+      toast.className = 'toast ' + type;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(function() {
+        toast.style.animation = 'slideOut 0.3s forwards';
+        setTimeout(function() { toast.remove(); }, 300);
+      }, 4000);
+    }
+
+    // === Hide loading overlay ===
+    function hideLoadingOverlay() {
+      var overlay = document.getElementById('loading-overlay');
+      if (overlay) {
+        overlay.classList.add('fade-out');
+        setTimeout(function() { overlay.remove(); }, 400);
+      }
+    }
+
     // === Preview mode (skip auth for design) ===
     var _isDashPreview = window.location.search.includes('preview');
     if (_isDashPreview) {
@@ -1782,6 +1902,7 @@
         document.getElementById('sidebar-plan').textContent = 'Plan Pro';
         var upgradeBtn = document.querySelector('.btn-upgrade');
         if (upgradeBtn) upgradeBtn.style.display = 'none';
+        hideLoadingOverlay();
       })();
     }
     // === Global state ===
@@ -1833,8 +1954,11 @@
         // Populate plan
         if (_appData.profile) {
           var planName = _appData.profile.plan || 'free';
-          document.getElementById('sidebar-plan').textContent = 'Plan ' + planName.charAt(0).toUpperCase() + planName.slice(1);
+          var planLabels = { 'free': 'Free', 'pro': 'Pro', 'all-in-one': 'Tout-en-un' };
+          var planEl = document.getElementById('sidebar-plan');
+          planEl.textContent = planLabels[planName] || ('Plan ' + planName);
           if (planName !== 'free') {
+            planEl.style.cssText = 'background:linear-gradient(135deg,#E8562A,#f59e0b);color:#fff;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;';
             var upgradeBtn = document.querySelector('.btn-upgrade');
             if (upgradeBtn) upgradeBtn.style.display = 'none';
           }
@@ -1900,8 +2024,12 @@
         // Load keywords
         loadKeywords();
 
+        // Hide loading overlay
+        hideLoadingOverlay();
+
       } catch (err) {
         console.error('Dashboard init error:', err);
+        hideLoadingOverlay();
         // Fallback to localStorage data
         var raw = localStorage.getItem('seora_onboarding_data');
         if (raw) {
@@ -1922,6 +2050,9 @@
         var data = await apiCall('GET', 'articles');
         _appData.articles = data.articles || [];
         renderCalendar();
+        // Update sidebar badge count
+        var badge = document.querySelector('[data-section="content-plan"] .badge-count');
+        if (badge) badge.textContent = _appData.articles.length;
       } catch(e) { console.error('Load articles error:', e); }
     }
 
@@ -2026,10 +2157,10 @@
       var typeChoice = prompt('Type d\'article:\n1. Blog\n2. Explainer\n3. How-To\n4. Listicle\n\nEntrez le numéro:') || '1';
       var articleType = typeOptions[typeChoice] || 'blog';
 
-      // Show loading
+      // Show loading with spinner
       var btn = document.querySelector('.btn-generate');
       var originalText = btn.textContent;
-      btn.textContent = 'Génération en cours...';
+      btn.innerHTML = '<span class="btn-spinner"></span> Génération en cours...';
       btn.disabled = true;
       btn.style.opacity = '0.7';
 
@@ -2046,19 +2177,22 @@
           _appData.articles.unshift(result.article);
           renderCalendar();
           showArticleModal(result.article);
-          var msg = 'Article généré ! Il reste ' + result.remaining + ' articles ce mois-ci.';
+          // Update sidebar badge
+          var badge = document.querySelector('[data-section="content-plan"] .badge-count');
+          if (badge) badge.textContent = _appData.articles.length;
+
+          showToast('Article généré ! Il reste ' + result.remaining + ' articles ce mois-ci.', 'success');
           if (result.auto_published) {
-            msg += '\n\nL\'article a été publié automatiquement sur votre CMS.';
+            showToast('Article publié automatiquement sur votre CMS.', 'success');
           } else if (result.publish_error) {
-            msg += '\n\nAttention : la publication automatique a échoué — ' + result.publish_error;
+            showToast('Publication auto échouée : ' + result.publish_error, 'error');
           }
-          alert(msg);
         }
       } catch(err) {
         btn.textContent = originalText;
         btn.disabled = false;
         btn.style.opacity = '1';
-        alert('Erreur: ' + err.message);
+        showToast('Erreur: ' + err.message, 'error');
       }
     }
 
@@ -2138,12 +2272,12 @@
         _appData.site.cms_type = cmsType;
         _appData.site.cms_connected_at = new Date().toISOString();
         updateCmsStatusUI();
-        alert('CMS connect\u00e9 avec succ\u00e8s !');
+        showToast('CMS connecté avec succès !', 'success');
       } catch (err) {
         btn.textContent = 'Tester et connecter';
         btn.disabled = false;
         btn.style.opacity = '1';
-        alert('Erreur: ' + err.message);
+        showToast('Erreur: ' + err.message, 'error');
       }
     }
 
@@ -2153,9 +2287,9 @@
         _appData.site.cms_type = null;
         _appData.site.cms_connected_at = null;
         updateCmsStatusUI();
-        alert('CMS d\u00e9connect\u00e9.');
+        showToast('CMS déconnecté.', 'info');
       } catch (err) {
-        alert('Erreur: ' + err.message);
+        showToast('Erreur: ' + err.message, 'error');
       }
     }
 
@@ -2225,12 +2359,12 @@
         document.getElementById('article-modal').remove();
         if (art) showArticleModal(art);
         renderCalendar();
-        alert('Article publi\u00e9 avec succ\u00e8s sur ' + (cmsLabel[_appData.site.cms_type] || 'le CMS') + ' !');
+        showToast('Article publié sur ' + (cmsLabel[_appData.site.cms_type] || 'le CMS') + ' !', 'success');
       } catch (err) {
         btn.textContent = '\uD83D\uDE80 Publier sur ' + (cmsLabel[_appData.site.cms_type] || 'CMS');
         btn.disabled = false;
         btn.style.opacity = '1';
-        alert('Erreur de publication: ' + err.message);
+        showToast('Erreur de publication: ' + err.message, 'error');
       }
     }
 
@@ -2291,10 +2425,10 @@
           var hsEl = document.getElementById('overview-health-score');
           if (hsEl) hsEl.innerHTML = result.scores.overall + ' <span>/100</span>';
 
-          alert('Audit terminé ! Score global: ' + result.scores.overall + '/100');
+          showToast('Audit terminé ! Score global: ' + result.scores.overall + '/100', 'success');
         }
       } catch(err) {
-        alert('Erreur audit: ' + err.message);
+        showToast('Erreur audit: ' + err.message, 'error');
       }
 
       if (auditBtn) {

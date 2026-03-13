@@ -1,6 +1,7 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const { createAdminClient, getUser, cors } = require('./_lib/supabase');
 const { publishToCms, markdownToHtml } = require('./_lib/cms-publish');
+const { sendArticlePublishedEmail } = require('./_lib/emails');
 
 module.exports = async function handler(req, res) {
   cors(res);
@@ -117,6 +118,13 @@ module.exports = async function handler(req, res) {
         saved.cms_post_id = pubResult.post_id;
         saved.cms_post_url = pubResult.post_url;
         autoPublished = true;
+
+        // Send email notification (non-blocking)
+        try {
+          var userEmail = user.email;
+          var userName = user.user_metadata?.full_name || userEmail.split('@')[0];
+          await sendArticlePublishedEmail(userEmail, userName, saved.title, pubResult.post_url, site.domain);
+        } catch (emailErr) { console.error('Article published email error:', emailErr.message); }
       } catch (pubErr) {
         // Non-blocking: article stays as draft
         console.error('Auto-publish failed:', pubErr.message);

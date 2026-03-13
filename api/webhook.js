@@ -1,5 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { createAdminClient } = require('./_lib/supabase');
+const { sendWelcomeEmail, sendPaymentFailedEmail } = require('./_lib/emails');
 
 // Disable body parsing — Stripe needs raw body for signature verification
 module.exports.config = { api: { bodyParser: false } };
@@ -40,6 +41,13 @@ module.exports = async function handler(req, res) {
             articles_limit: 30,
             stripe_customer_id: session.customer
           }).eq('id', uid);
+
+          // Send welcome email (non-blocking)
+          try {
+            var email = session.customer_email || session.customer_details?.email;
+            var name = session.customer_details?.name || '';
+            if (email) await sendWelcomeEmail(email, name);
+          } catch (emailErr) { console.error('Welcome email error:', emailErr.message); }
         }
         break;
       }
@@ -82,6 +90,13 @@ module.exports = async function handler(req, res) {
         await sb.from('profiles')
           .update({ plan_status: 'past_due' })
           .eq('stripe_customer_id', failedInvoice.customer);
+
+        // Send payment failed email (non-blocking)
+        try {
+          var custEmail = failedInvoice.customer_email;
+          var custName = failedInvoice.customer_name || '';
+          if (custEmail) await sendPaymentFailedEmail(custEmail, custName);
+        } catch (emailErr) { console.error('Payment failed email error:', emailErr.message); }
         break;
       }
     }
