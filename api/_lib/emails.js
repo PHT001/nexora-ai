@@ -6,7 +6,8 @@ function getResend() {
   return resend;
 }
 
-var FROM = 'Seora <notifications@tryseora.com>';
+// Use custom domain if verified, otherwise fallback to Resend default
+var FROM = process.env.RESEND_FROM_EMAIL || 'Seora <onboarding@resend.dev>';
 
 // ─── Welcome email after payment ───
 async function sendWelcomeEmail(email, name) {
