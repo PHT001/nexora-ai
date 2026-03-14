@@ -3,359 +3,405 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tarifs — Seora.ai</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/style.css">
+  <title>Tarifs — Seora</title>
+  <meta name="description" content="Seora — SEO + GEO automatisé à partir de 49€/mois. Publication quotidienne, backlinks, optimisation IA. Essayez sans risque.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
+  <meta name="theme-color" content="#5855FF">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cal-sans@1.0.1/index.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pricing-soro.css">
 </head>
 <body>
 
-  <!-- ======== Navbar ======== -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="28" height="28" rx="8" fill="#5855FF"/>
-          <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        Seora.ai
-      </a>
-      <div class="navbar-links">
-        <a href="success-story.html">Résultats clients</a>
-        <a href="pricing.html">Tarifs</a>
-        <a href="affiliate.html">Programme partenaire</a>
-      </div>
-      <div class="navbar-actions">
-        <a href="signin.html" class="navbar-signin">Se connecter</a>
-        <a href="signup.html" class="btn btn-primary btn-sm">Essai gratuit 3 jours</a>
-      </div>
-      <button class="burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <!-- Mobile menu -->
-    <div class="mobile-menu">
-      <a href="success-story.html">Résultats clients</a>
+<!-- ======== Sale Banner ======== -->
+<div class="sale-banner">
+  <span>Offre spéciale — <strong>jusqu'à -50%</strong></span>
+  <span class="sale-timer" id="saleTimer">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    <span id="timerDisplay">00:00:00</span>
+  </span>
+</div>
+
+<!-- ======== Navbar ======== -->
+<nav class="navbar" style="top:40px;">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="8" fill="#5855FF"/>
+        <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      Seora
+    </a>
+    <div class="navbar-links">
       <a href="pricing.html">Tarifs</a>
-      <a href="affiliate.html">Programme partenaire</a>
+      <a href="blog.html">Blog</a>
       <a href="signin.html">Se connecter</a>
-      <a href="signup.html" class="btn btn-primary btn-sm">Essai gratuit 3 jours</a>
     </div>
-  </nav>
+    <div class="navbar-actions">
+      <a href="#pricing-options" class="btn btn-primary-outline btn-sm">Acheter</a>
+    </div>
+  </div>
+</nav>
 
-  <!-- ======== Pricing Section ======== -->
-  <section class="section">
-    <div class="container">
-      <h1 class="section-title" style="font-size:48px; margin-bottom:12px;">Investissez dans une Croissance <span class="accent">Long-Terme</span></h1>
-      <p style="text-align:center;color:#888;font-size:17px;margin-bottom:32px;">SEO + GEO : la seule solution qui couvre Google <em>et</em> l'IA</p>
+<!-- ======== Hero / Product ======== -->
+<section class="sp-hero">
+  <div class="sp-container">
 
-      <div style="text-align:center;margin-bottom:32px;">
-        <span style="display:inline-block;background:rgba(16,163,127,0.12);color:#10A37F;font-size:13px;font-weight:600;padding:8px 20px;border-radius:20px;">&#10024; Inclut le GEO — Optimisation pour ChatGPT, Perplexity & Gemini</span>
-      </div>
-
-      <!-- All-in-One Card -->
-      <div class="pricing-card">
-        <div class="pricing-inner">
-          <div class="pricing-left">
-            <div class="pricing-label">POUR LES ENTREPRENEURS AMBITIEUX</div>
-            <div class="pricing-name">Tout-en-un</div>
-            <div class="pricing-price">
-              <span class="price-old">€247</span>
-              <span class="price-current">€99</span>
-              <span class="price-period">/mois</span>
-            </div>
-            <div class="pricing-spots">
-              <span class="fire">🔥</span>
-              <div>
-                <span class="urgency-spots"></span>
-                <small>Nous limitons les inscriptions pour maintenir la qualité des résultats.</small>
-              </div>
-            </div>
-            <a href="signup.html" class="btn btn-primary btn-lg" style="width:100%;">Commencer l'essai gratuit de 3 jours →</a>
-          </div>
-          <div class="pricing-right">
-            <div style="font-weight:700; font-size:16px; margin-bottom:16px;">Ce qui est inclus :</div>
-            <div class="pricing-features">
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>30 articles optimisés SEO/LLM générés et publiés automatiquement</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Articles avec citations, liens internes et infographies personnalisées</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Backlinks de qualité automatiques (valeur de 800$+/mois) via notre réseau exclusif de 2 500+ sites partenaires vérifiés</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Nous détectons les problèmes techniques sur votre site qui empêchent Google et ChatGPT de le lire et le classer correctement</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Articles appuyés par des recherches en temps réel et des analyses d'experts</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Recherche automatisée de mots-clés et regroupement basé sur les SERP</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Agent Reddit qui développe la visibilité et l'autorité de votre marque</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span><strong>Optimisation GEO</strong> : votre marque citée par ChatGPT, Perplexity, Gemini et Claude</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Suivi de visibilité IA en temps réel — voyez comment les LLM parlent de vous</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Compatible avec WordPress, Webflow, Shopify, Wix, API et de nombreuses autres plateformes</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Balisage JSON-LD schema pour les extraits en vedette</span>
-              </div>
-              <div class="pf-item">
-                <span class="pf-check">✓</span>
-                <span>Articles disponibles en 20+ langues (option d'achat disponible)</span>
-              </div>
-            </div>
-          </div>
+    <div class="sp-product-card">
+      <div class="sp-product-header">
+        <div class="sp-product-logo">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+            <rect width="28" height="28" rx="8" fill="#5855FF"/>
+            <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <span class="sp-product-name">Seora</span>
+        </div>
+        <div class="sp-product-price-intro">
+          <span class="sp-starting">À partir de</span>
+          <span class="sp-price-big">€49<span class="sp-price-mo">/mois</span></span>
         </div>
       </div>
 
-      <!-- Agency Card -->
-      <div class="agency-card">
-        <div class="agency-info">
-          <div class="agency-label">POUR LES AGENCES</div>
-          <h3>Agency Plan</h3>
-          <p>Pour les entreprises qui souhaitent revendre nos services à leurs clients.</p>
+      <div class="sp-divider"></div>
+
+      <!-- Features -->
+      <div class="sp-features">
+        <div class="sp-feature">
+          <div class="sp-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5855FF" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <div class="sp-feature-title">Publication quotidienne</div>
+            <div class="sp-feature-desc">Un article est créé chaque matin. Approuvez-le, modifiez-le ou publiez-le automatiquement.</div>
+          </div>
         </div>
-        <div class="agency-btns">
-          <a href="#" class="btn btn-dark btn-sm">En savoir plus →</a>
-          <a href="success-story.html" class="btn btn-outline btn-sm">Voir l'étude de cas</a>
+
+        <div class="sp-feature">
+          <div class="sp-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5855FF" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-10"/></svg>
+          </div>
+          <div>
+            <div class="sp-feature-title">Recherche de mots-clés</div>
+            <div class="sp-feature-desc">Seora trouve ce que vos clients cherchent — et sait quoi écrire.</div>
+          </div>
+        </div>
+
+        <div class="sp-feature">
+          <div class="sp-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5855FF" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="sp-feature-title">Optimisation Google + IA</div>
+            <div class="sp-feature-desc">Chaque article obtient un score 100/100 — conçu pour Google et les moteurs IA.</div>
+          </div>
+        </div>
+
+        <div class="sp-feature">
+          <div class="sp-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5855FF" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+          </div>
+          <div>
+            <div class="sp-feature-title">Compatible avec votre site</div>
+            <div class="sp-feature-desc">Connectez votre site une fois et publiez sans copier-coller (WordPress, Shopify, etc.).</div>
+          </div>
+        </div>
+
+        <div class="sp-feature">
+          <div class="sp-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5855FF" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div>
+            <div class="sp-feature-title">Backlinks automatiques</div>
+            <div class="sp-feature-desc">+2 500 sites partenaires. Vos backlinks sont créés automatiquement chaque mois.</div>
+          </div>
+        </div>
+
+        <div class="sp-feature">
+          <div class="sp-feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5855FF" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div>
+            <div class="sp-feature-title">Visibilité IA (GEO)</div>
+            <div class="sp-feature-desc">Votre marque citée par ChatGPT, Perplexity, Gemini et Claude.</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ======== FAQs Section ======== -->
-  <section class="section">
-    <div class="container">
-      <div class="faq-section">
-        <div class="faq-left">
-          <h2>FAQs</h2>
-          <p>Vous n'avez pas trouvé ce que vous cherchez ?<br><a href="mailto:contact@seora.ai">Envoyez-nous un email</a></p>
+    <!-- Powered by AI -->
+    <div class="sp-ai-card">
+      <div class="sp-ai-text">
+        <span class="sp-ai-accent">Propulsé par l'IA la plus avancée,</span> qui développe votre trafic pendant que vous dormez.
+      </div>
+      <div class="sp-ai-visual">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <rect x="15" y="20" width="50" height="35" rx="6" fill="#e8e6ff" stroke="#5855FF" stroke-width="1.5"/>
+          <rect x="20" y="25" width="40" height="25" rx="3" fill="#f3f2ff"/>
+          <circle cx="30" cy="37" r="4" fill="#5855FF" opacity="0.3"/>
+          <circle cx="50" cy="37" r="4" fill="#5855FF" opacity="0.3"/>
+          <path d="M33 42c0 0 3 4 7 4s7-4 7-4" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="25" y="55" width="30" height="8" rx="2" fill="#ddd"/>
+          <rect x="30" y="58" width="4" height="2" rx="1" fill="#999"/>
+          <rect x="36" y="58" width="4" height="2" rx="1" fill="#999"/>
+          <rect x="42" y="58" width="4" height="2" rx="1" fill="#999"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Included with Seora -->
+    <div class="sp-included">
+      <h2 class="sp-included-title">Inclus avec Seora</h2>
+      <p class="sp-included-sub">Tout ce qu'il faut pour passer de "0 trafic" à Top 1 sur Google et ChatGPT.</p>
+      <div class="sp-included-grid">
+        <div class="sp-included-item">
+          <div class="sp-included-icon">📅</div>
+          <div class="sp-included-label">Calendrier de contenu</div>
         </div>
-        <div class="faq-right">
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Je ne suis pas un expert SEO ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Pas de souci ! Seora.ai est conçu pour les entrepreneurs qui n'ont aucune expérience en SEO. Notre plateforme gère tout automatiquement — de la recherche de mots-clés à la publication d'articles, en passant par la création de backlinks. Vous n'avez besoin d'aucune compétence technique.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Avez-vous une démo vidéo ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Oui, nous proposons une démonstration vidéo complète d'une minute qui vous montre exactement comment fonctionne notre plateforme. Vous pouvez la visionner directement depuis notre page d'accueil ou nous contacter pour une démonstration personnalisée.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Comment fonctionne l'échange de backlinks ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Notre réseau exclusif de plus de 2 500 sites partenaires vérifiés place automatiquement des backlinks de qualité vers votre site. Les liens sont insérés naturellement dans du contenu pertinent, ce qui renforce l'autorité de votre domaine aux yeux de Google et des moteurs de recherche IA.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Google va-t-il pénaliser le contenu écrit par l'IA ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Non. Google a officiellement déclaré que le contenu généré par l'IA n'est pas contraire à ses directives, tant qu'il est utile et de qualité. Nos articles sont appuyés par des recherches en temps réel, des sources fiables et des données d'experts, ce qui les rend indiscernables du contenu écrit par des humains.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Quel type d'articles produisez-vous ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Nous produisons des articles longs et approfondis, optimisés pour le SEO et la visibilité dans les moteurs de recherche IA. Chaque article inclut des citations, des liens internes, un balisage schema JSON-LD et des infographies personnalisées à votre marque.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Le contenu IA peut-il vraiment se classer sur Google ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Absolument. Nos clients constatent régulièrement des augmentations significatives de trafic organique. Notre contenu est conçu selon une méthodologie de rétro-ingénierie des facteurs de classement de Google et des moteurs IA, garantissant une visibilité maximale.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Quelles langues sont prises en charge ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Nous prenons en charge plus de 20 langues, dont le français, l'anglais, l'espagnol, l'allemand, l'italien, le portugais, le néerlandais, et bien d'autres. Les articles multilingues sont disponibles en option dans votre abonnement.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Comment pouvez-vous générer du contenu de haute qualité ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Nous combinons des modèles d'IA avancés avec des recherches en temps réel, des analyses d'experts et une optimisation SEO poussée. Chaque article passe par plusieurs étapes de vérification pour garantir la précision, la pertinence et la qualité éditoriale.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Dois-je écrire les articles moi-même ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Non, pas du tout. Notre plateforme génère, optimise et publie automatiquement les articles pour vous. Tout fonctionne en pilote automatique — vous n'avez qu'à regarder votre trafic augmenter.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Les liens internes sont-ils pris en charge ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Oui. Nos articles incluent automatiquement des liens internes vers les pages pertinentes de votre site, ce qui améliore la structure de votre site et aide les moteurs de recherche à mieux comprendre et indexer votre contenu.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Dans quel format les articles sont-ils générés ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Les articles sont générés en HTML optimisé, prêts à être publiés directement sur votre site. Ils sont compatibles avec WordPress, Webflow, Shopify, Wix et de nombreuses autres plateformes via notre API ou nos intégrations natives.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Les articles quotidiens dans différentes langues sont-ils simplement traduits ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Non. Chaque article est créé spécifiquement pour la langue et le marché cible. Nous ne faisons pas de simple traduction — le contenu est adapté culturellement et optimisé pour les mots-clés locaux de chaque langue.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Quelles niches sont autorisées pour l'échange de backlinks ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">La plupart des niches légitimes sont acceptées dans notre réseau de backlinks. Nous travaillons avec des entreprises SaaS, e-commerce, santé, finance, éducation, technologie et bien d'autres secteurs. Seuls les sites à contenu illégal ou trompeur sont exclus.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Combien de temps faut-il généralement pour voir des résultats ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">La plupart de nos clients commencent à voir des résultats significatifs en 2 à 4 semaines. Les premiers articles commencent à se classer rapidement, et les effets s'accumulent avec le temps grâce à la création continue de contenu et de backlinks.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Puis-je annuler mon abonnement ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Oui, vous pouvez annuler votre abonnement à tout moment depuis votre tableau de bord. Il n'y a aucun engagement à long terme. Votre accès reste actif jusqu'à la fin de votre période de facturation en cours.</div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">
-              Quelle est votre politique de remboursement ?
-              <span class="icon">+</span>
-            </button>
-            <div class="accordion-body">
-              <div class="accordion-body-inner">Nous offrons un essai gratuit de 3 jours pour que vous puissiez tester notre plateforme sans risque. Si vous n'êtes pas satisfait après votre essai, vous pouvez annuler avant d'être facturé. Pour les abonnements actifs, contactez notre équipe pour discuter des options de remboursement.</div>
-            </div>
-          </div>
-
+        <div class="sp-included-item">
+          <div class="sp-included-icon">⚡</div>
+          <div class="sp-included-label">Configuration en 3 min</div>
+        </div>
+        <div class="sp-included-item">
+          <div class="sp-included-icon">📝</div>
+          <div class="sp-included-label">Articles longs quotidiens</div>
+        </div>
+        <div class="sp-included-item">
+          <div class="sp-included-icon">🌍</div>
+          <div class="sp-included-label">+20 langues</div>
+        </div>
+        <div class="sp-included-item">
+          <div class="sp-included-icon">🔗</div>
+          <div class="sp-included-label">Liens internes auto</div>
+        </div>
+        <div class="sp-included-item">
+          <div class="sp-included-icon">🖼️</div>
+          <div class="sp-included-label">Images générées par IA</div>
+        </div>
+        <div class="sp-included-item">
+          <div class="sp-included-icon">🔍</div>
+          <div class="sp-included-label">Recherche automatique</div>
+        </div>
+        <div class="sp-included-item">
+          <div class="sp-included-icon">📢</div>
+          <div class="sp-included-label">Promotion automatique</div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ======== Footer ======== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-links">
-        <a href="index.html">Accueil</a>
-        <a href="affiliate.html">Backlinks</a>
-        <a href="success-story.html">Résultats clients</a>
-        <a href="ai-audit.html">Audit IA</a>
-        <a href="pricing.html">Tarifs</a>
-        <a href="blog.html">Blog</a>
-        <a href="terms.html">Conditions Générales</a>
-        <a href="privacy.html">Politique de Confidentialité</a>
+    <!-- Trust signals -->
+    <div class="sp-trust">
+      <div class="sp-trust-item">
+        <div class="sp-trust-icon">💬</div>
+        <div class="sp-trust-title">Support prioritaire 24/7</div>
+        <div class="sp-trust-desc">Une réponse en moins de 2h, tous les jours.</div>
       </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">
-          <div class="footer-logo">
-            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="28" height="28" rx="8" fill="#5855FF"/>
-              <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            </svg>
-            Seora.ai
+      <div class="sp-trust-item">
+        <div class="sp-trust-icon">🛡️</div>
+        <div class="sp-trust-title">Satisfait ou remboursé</div>
+        <div class="sp-trust-desc">30 jours pour tester. Remboursement intégral sans conditions.</div>
+      </div>
+      <div class="sp-trust-item">
+        <div class="sp-trust-icon">🔒</div>
+        <div class="sp-trust-title">Paiement sécurisé</div>
+        <div class="sp-trust-desc">Chiffrement 256-bit via Stripe.</div>
+      </div>
+    </div>
+
+    <!-- Pricing Options -->
+    <div class="sp-pricing" id="pricing-options">
+      <h3 class="sp-pricing-title">Options de paiement</h3>
+
+      <label class="sp-plan" data-plan="yearly">
+        <input type="radio" name="plan" value="yearly">
+        <div class="sp-plan-inner">
+          <div class="sp-plan-badge">Meilleure offre</div>
+          <div class="sp-plan-prices">
+            <span class="sp-plan-old">€99</span>
+            <span class="sp-plan-current">€49</span>
+            <span class="sp-plan-period">/mois</span>
           </div>
-          <div class="footer-address">835 Fifth Avenue, San Rafael CA 94901 &nbsp;&middot;&nbsp; SEORA INC.</div>
+          <div class="sp-plan-cycle">Paiement annuel</div>
         </div>
-        <div class="footer-bottom-right">
-          <div class="footer-social">
-            <a href="#" aria-label="LinkedIn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="#" aria-label="Twitter">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
+      </label>
+
+      <label class="sp-plan" data-plan="quarterly">
+        <input type="radio" name="plan" value="quarterly">
+        <div class="sp-plan-inner">
+          <div class="sp-plan-prices">
+            <span class="sp-plan-old">€149</span>
+            <span class="sp-plan-current">€74</span>
+            <span class="sp-plan-period">/mois</span>
           </div>
-          <div class="footer-copy">Copyright &copy; 2026 Seora.ai</div>
+          <div class="sp-plan-cycle">Paiement trimestriel</div>
+        </div>
+      </label>
+
+      <label class="sp-plan sp-plan-selected" data-plan="monthly">
+        <input type="radio" name="plan" value="monthly" checked>
+        <div class="sp-plan-inner">
+          <div class="sp-plan-prices">
+            <span class="sp-plan-old">€197</span>
+            <span class="sp-plan-current">€99</span>
+            <span class="sp-plan-period">/mois</span>
+          </div>
+          <div class="sp-plan-cycle">Paiement mensuel</div>
+          <div class="sp-plan-sale">-50%</div>
+        </div>
+      </label>
+
+      <button class="sp-buy-btn" id="buyBtn">Acheter — €99/mois</button>
+      <p class="sp-guarantee-text">🛡️ Satisfait ou remboursé 30 jours</p>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="sp-testimonials">
+      <p class="sp-testi-label">Ils utilisent déjà Seora</p>
+      <h3 class="sp-testi-title">Approuvé par des entrepreneurs</h3>
+      <p class="sp-testi-sub">Des centaines d'entrepreneurs utilisent Seora pour publier du contenu SEO et développer leur trafic.</p>
+
+      <div class="sp-testi-grid">
+        <div class="sp-testi-card">
+          <p class="sp-testi-quote">"En 6 semaines on est passé de la page 4 à la page 1. Le ROI est incroyable."</p>
+          <div class="sp-testi-author">
+            <strong>Lucas M.</strong> <span>· Fondateur, PixelForge</span>
+          </div>
+        </div>
+        <div class="sp-testi-card">
+          <p class="sp-testi-quote">"Le trafic venant de l'IA est inattendu mais très bienvenu. Google nous affiche partout maintenant."</p>
+          <div class="sp-testi-author">
+            <strong>Claire F.</strong> <span>· Fondatrice, BioSoins</span>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
 
-  <script src="js/main.js"></script>
+    <!-- Risk-free -->
+    <div class="sp-risk-free">
+      <h3 class="sp-risk-title">Essayez Seora sans risque</h3>
+      <p class="sp-risk-desc">Testez Seora sur votre site. Si ce n'est pas pour vous, demandez un remboursement dans les 30 jours — vous êtes couvert.</p>
+    </div>
+
+    <!-- FAQ -->
+    <div class="sp-faq">
+      <h3 class="sp-faq-title">FAQ</h3>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">Que fait Seora exactement ?<span>+</span></button>
+        <div class="sp-faq-a">Seora publie chaque jour du contenu SEO optimisé sur votre site, crée des backlinks automatiquement et optimise votre visibilité sur Google et les moteurs IA (ChatGPT, Perplexity, Gemini).</div>
+      </div>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">Combien d'articles par mois ?<span>+</span></button>
+        <div class="sp-faq-a">30 articles par mois, publiés automatiquement chaque jour sur votre site. Chaque article est long, optimisé SEO et appuyé par des recherches en temps réel.</div>
+      </div>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">Puis-je connecter mon site existant ?<span>+</span></button>
+        <div class="sp-faq-a">Oui. Seora est compatible avec WordPress, Webflow, Shopify, Wix et de nombreuses autres plateformes. La connexion se fait en 3 minutes.</div>
+      </div>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">Seora gère-t-il le SEO technique ?<span>+</span></button>
+        <div class="sp-faq-a">Oui. Notre audit détecte automatiquement les problèmes techniques qui bloquent Google et les corrige : balisage schema, vitesse, indexation, liens cassés.</div>
+      </div>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">Quelles langues sont supportées ?<span>+</span></button>
+        <div class="sp-faq-a">Plus de 20 langues : français, anglais, espagnol, allemand, italien, portugais, néerlandais, et bien d'autres.</div>
+      </div>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">Faut-il des connaissances en SEO ?<span>+</span></button>
+        <div class="sp-faq-a">Aucune. Seora est conçu pour les entrepreneurs qui n'ont aucune expérience en SEO. Tout est automatisé de A à Z.</div>
+      </div>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">Y a-t-il un engagement ?<span>+</span></button>
+        <div class="sp-faq-a">Non. Vous pouvez annuler à tout moment depuis votre tableau de bord. Satisfait ou remboursé 30 jours.</div>
+      </div>
+
+      <div class="sp-faq-item">
+        <button class="sp-faq-q">En combien de temps voit-on des résultats ?<span>+</span></button>
+        <div class="sp-faq-a">La plupart de nos clients voient des résultats significatifs en 2 à 4 semaines. Les effets s'accumulent avec le temps.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======== Footer ======== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="pricing.html">Tarifs</a>
+      <a href="blog.html">Blog</a>
+      <a href="terms.html">Conditions générales</a>
+      <a href="privacy.html">Politique de confidentialité</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <div class="footer-logo">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="8" fill="#5855FF"/>
+            <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          Seora
+        </div>
+        <div class="footer-address">12 Rue de la Paix, 75002 Paris · SEORA SAS</div>
+      </div>
+      <div class="footer-bottom-right">
+        <div class="footer-copy">Copyright &copy; 2026 Seora</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sale timer countdown
+(function() {
+  var end = new Date();
+  end.setHours(23, 59, 59, 0);
+  function tick() {
+    var now = new Date();
+    var diff = Math.max(0, end - now);
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('timerDisplay').textContent =
+      String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    if (diff > 0) requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+// Plan selection
+document.querySelectorAll('.sp-plan').forEach(function(el) {
+  el.addEventListener('click', function() {
+    document.querySelectorAll('.sp-plan').forEach(function(p) { p.classList.remove('sp-plan-selected'); });
+    el.classList.add('sp-plan-selected');
+    el.querySelector('input').checked = true;
+    var prices = { yearly: '€49/mois', quarterly: '€74/mois', monthly: '€99/mois' };
+    document.getElementById('buyBtn').textContent = 'Acheter — ' + prices[el.dataset.plan];
+  });
+});
+
+// Buy button -> redirect to signup for now (can be Stripe later)
+document.getElementById('buyBtn').addEventListener('click', function() {
+  var plan = document.querySelector('input[name="plan"]:checked').value;
+  window.location.href = 'signup.html?plan=' + plan;
+});
+
+// FAQ accordion
+document.querySelectorAll('.sp-faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = btn.parentElement;
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.sp-faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
 </body>
 </html>
