@@ -319,6 +319,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  /* ---- Dynamic urgency spots ---- */
+  (function() {
+    var els = document.querySelectorAll('.urgency-spots');
+    if (!els.length) return;
+    var now = new Date();
+    var month = now.getMonth();
+    var day = now.getDate();
+    var daysInMonth = new Date(now.getFullYear(), month + 1, 0).getDate();
+    var daysLeft = daysInMonth - day;
+    var monthNames = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    // Base spots that decrease as the month progresses (40 at start, ~5 at end)
+    var seed = (now.getFullYear() * 13 + month * 7 + day * 3) % 5;
+    var spots = Math.max(3, Math.round(12 + (daysLeft / daysInMonth) * 26) + seed);
+    var text = 'Plus que ' + spots + ' places en ' + monthNames[month];
+    els.forEach(function(el) { el.textContent = text; });
+  })();
+
 });
 
 // ========== SCROLL PROGRESS BAR ==========
