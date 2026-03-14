@@ -1665,10 +1665,8 @@
           <div class="progress-dot">2</div>
           <div class="progress-line"></div>
           <div class="progress-dot">3</div>
-          <div class="progress-line"></div>
-          <div class="progress-dot">4</div>
         </div>
-        <div class="progress-label">Étape <span id="step-cur">1</span> sur 4</div>
+        <div class="progress-label">Étape <span id="step-cur">1</span> sur 3</div>
       </div>
 
       <!-- Step 1: Website URL -->
@@ -1742,39 +1740,11 @@
         <button class="auth-submit" onclick="nextStep(2)">Continuer &rarr;</button>
       </div>
 
-      <!-- Step 3: Business description -->
+      <!-- Step 3: Goals -->
       <div class="onboarding-step" data-step="3">
         <span class="back-link" onclick="goBack(3)">&larr; Retour</span>
-        <div class="step-badge"><span class="step-num">ÉTAPE 3</span></div>
-        <h1>Décrivez votre activité</h1>
-        <p class="step-desc">Aidez-nous à comprendre votre entreprise pour générer du contenu pertinent.</p>
-        <div class="auth-field">
-          <label>Description</label>
-          <textarea id="biz-desc" class="ob-textarea" placeholder="Ex: Nous sommes un salon de coiffure à Lyon, spécialisé dans la coloration bio..."></textarea>
-          <button class="ai-btn" id="ai-gen-btn" onclick="aiGenerate()">&#10024; Générer avec l'IA</button>
-          <div class="ai-gen-info" id="ai-gen-info"></div>
-        </div>
-        <div class="auth-field">
-          <label>Audience cible <span style="color:#999;font-weight:400;">(minimum 2)</span></label>
-          <div class="tags-wrapper">
-            <div class="tags-list" id="aud-tags"></div>
-            <div class="tags-row">
-              <input type="text" id="aud-input" class="tags-input" placeholder="Tapez une audience et appuyez Entrée...">
-              <button class="tag-add" onclick="handleAudAdd()">+</button>
-            </div>
-            <div class="tags-hint" id="tags-hint">Appuyez sur <kbd>Entrée</kbd> pour ajouter</div>
-            <div class="suggestions-wrap" id="aud-suggestions"></div>
-          </div>
-        </div>
-        <div id="err-3" class="field-error" style="display:none;"></div>
-        <button class="auth-submit" onclick="nextStep(3)">Continuer &rarr;</button>
-      </div>
-
-      <!-- Step 4: Brand (Optional) -->
-      <div class="onboarding-step" data-step="4">
-        <span class="back-link" onclick="goBack(4)">&larr; Retour</span>
         <div class="step-badge">
-          <span class="step-num">ÉTAPE 4</span>
+          <span class="step-num">ÉTAPE 3</span>
         </div>
         <h1>Quels sont vos objectifs ?</h1>
         <p class="step-desc">Sélectionnez vos priorités pour que notre IA adapte votre stratégie de contenu.</p>
@@ -1810,12 +1780,12 @@
             <span class="goal-check">&#10003;</span>
           </div>
         </div>
-        <div id="err-4" class="field-error" style="display:none;"></div>
+        <div id="err-3" class="field-error" style="display:none;"></div>
         <button class="auth-submit" onclick="finish()">Terminer la configuration &rarr;</button>
       </div>
 
-      <!-- Step 5: Analysis & Results (hidden from progress bar) -->
-      <div class="onboarding-step" data-step="5">
+      <!-- Step 4: Analysis & Results (hidden from progress bar) -->
+      <div class="onboarding-step" data-step="4">
 
         <!-- Loading Phase -->
         <div id="analysis-loading">
@@ -2100,8 +2070,8 @@
       document.querySelector('.auth-page').style.display = 'flex';
       document.querySelector('.onboarding-progress').style.display = 'none';
       document.querySelectorAll('.onboarding-step').forEach(function(el) { el.classList.remove('active'); });
-      var s5 = document.querySelector('[data-step="5"]');
-      if (s5) s5.classList.add('active');
+      var s4 = document.querySelector('[data-step="4"]');
+      if (s4) s4.classList.add('active');
       document.getElementById('analysis-loading').style.display = 'none';
       document.getElementById('analysis-results').style.display = 'block';
       var authPage = document.querySelector('.auth-page');
@@ -2129,7 +2099,6 @@
     var cards = [
       { icon: '&#127760;', t: 'Analyse de votre site', d: 'Nous allons scanner votre site pour comprendre votre positionnement actuel.' },
       { icon: '&#127758;', t: 'Portée internationale', d: 'Ciblez l\'audience dans la langue de votre choix.' },
-      { icon: '&#9997;&#65039;', t: 'Contenu sur mesure', d: 'Notre IA générera du contenu adapté à votre activité.' },
       { icon: '&#127919;', t: 'Vos objectifs', d: 'Définissez vos priorités pour un contenu parfaitement ciblé.' },
       { icon: '&#128640;', t: 'Votre potentiel', d: 'Découvrez comment Seora peut transformer votre trafic.' }
     ];
@@ -2143,11 +2112,11 @@
       document.getElementById('step-cur').textContent = n;
 
       // Hide progress bar on analysis step
-      document.querySelector('.onboarding-progress').style.display = n > 4 ? 'none' : 'block';
+      document.querySelector('.onboarding-progress').style.display = n > 3 ? 'none' : 'block';
 
       // Full-page centered mode for analysis
       var authPage = document.querySelector('.auth-page');
-      if (n > 4) { authPage.classList.add('analysis-mode'); }
+      if (n > 3) { authPage.classList.add('analysis-mode'); }
       else { authPage.classList.remove('analysis-mode'); authPage.classList.remove('results-mode'); }
 
       var dots = document.querySelectorAll('.progress-dot');
@@ -2169,18 +2138,6 @@
         card.style.opacity = '1';
       }, 200);
 
-      // Step 3: show AI button if user confirmed a site in step 1
-      if (n === 3) {
-        var aiBtn = document.getElementById('ai-gen-btn');
-        if (data.url && siteConfirmed) {
-          aiBtn.classList.add('visible');
-        } else {
-          aiBtn.classList.remove('visible');
-        }
-        // Reset info message
-        document.getElementById('ai-gen-info').classList.remove('show');
-        document.getElementById('ai-gen-info').classList.remove('error');
-      }
     }
 
     // --- Site Search & Preview ---
@@ -2291,12 +2248,6 @@
       if (from === 2) {
         data.lang = document.getElementById('lang').value;
       }
-      if (from === 3) {
-        var d = document.getElementById('biz-desc').value.trim();
-        if (!d) { showErr(3, 'Veuillez décrire votre activité.'); shakeEl('biz-desc'); return; }
-        if (data.audience.length < 2) { showErr(3, 'Ajoutez au moins 2 audiences cibles.'); return; }
-        data.desc = d;
-      }
       showStep(from + 1);
     }
 
@@ -2311,22 +2262,24 @@
     }
 
     function finish() {
-      hideErr(4);
+      hideErr(3);
       if (data.goals.length === 0) {
-        showErr(4, 'Sélectionnez au moins un objectif.');
+        showErr(3, 'Sélectionnez au moins un objectif.');
         return;
       }
+      // Auto-fill desc from scraped site data
+      data.desc = data.siteDesc || '';
       localStorage.setItem('seora_onboarding_data', JSON.stringify(data));
 
       // Save to API (in background, don't block the UI)
       if (typeof apiCall === 'function') {
         apiCall('POST', 'onboarding', {
           url: data.url || data.siteUrl,
-          description: data.desc,
-          audiences: data.audience || [],
+          description: data.siteDesc || data.siteTitle || '',
+          audiences: [],
           goals: data.goals || [],
           language: data.lang || 'fr',
-          niche: data.niche || data.desc
+          niche: data.siteDesc || data.siteTitle || ''
         }).then(function(res) {
           console.log('Onboarding saved to DB, keywords:', res.keywords_count);
         }).catch(function(err) {
@@ -2334,7 +2287,7 @@
         });
       }
 
-      showStep(5);
+      showStep(4);
       startAnalysis();
     }
 
