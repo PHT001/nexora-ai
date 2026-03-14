@@ -168,18 +168,34 @@
   padding: 4px 10px; border-radius: 6px;
 }
 
-/* Buy button */
+/* Buy button — glowy animated */
+.sp-buy-btn-wrap {
+  position: relative; margin-top: 16px;
+}
 .sp-buy-btn {
+  position: relative; z-index: 1;
   display: block; width: 100%;
   background: linear-gradient(to right, #5855FF, #8b3dff);
   color: #fff; border: none; font-size: 17px; font-weight: 700;
-  padding: 16px; border-radius: 9999px;
-  cursor: pointer; transition: all 0.2s ease;
-  margin-top: 16px;
+  padding: 18px; border-radius: 9999px;
+  cursor: pointer; transition: all 0.3s ease;
+}
+.sp-buy-btn-wrap::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, #5855FF, #8b3dff);
+  border-radius: 9999px;
+  filter: blur(24px);
+  opacity: 0.5;
+  z-index: 0;
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); filter: blur(24px); }
+  50% { opacity: 0.7; transform: scale(1.02); filter: blur(30px); }
 }
 .sp-buy-btn:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 30px rgba(88,85,255,0.3);
 }
 .sp-buy-btn:active { transform: scale(0.98); }
 .sp-guarantee-text {
