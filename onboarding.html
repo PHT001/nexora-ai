@@ -1979,19 +1979,19 @@
           <p>Voici ce que nos algorithmes ont découvert sur votre site</p>
         </div>
 
-        <!-- Stats pills -->
+        <!-- Stats pills (real audit data) -->
         <div class="results-stats-row fade-up d2">
           <div class="r-stat">
-            <span class="r-stat-value">2 000+</span>
-            <span class="r-stat-label">Clients satisfaits</span>
+            <span class="r-stat-value" id="stat-seo-score">—</span>
+            <span class="r-stat-label">Score SEO</span>
           </div>
           <div class="r-stat">
-            <span class="r-stat-value">40%</span>
-            <span class="r-stat-label">Boost Trafic Moy.</span>
+            <span class="r-stat-value" id="stat-perf-score">—</span>
+            <span class="r-stat-label">Performance</span>
           </div>
           <div class="r-stat">
-            <span class="r-stat-value">90 jrs</span>
-            <span class="r-stat-label">Premier résultat</span>
+            <span class="r-stat-value" id="stat-issues">—</span>
+            <span class="r-stat-label">Problèmes détectés</span>
           </div>
         </div>
 
@@ -2368,17 +2368,30 @@
       return Math.abs(hash);
     }
 
+    var auditData = null;
+
     function startAnalysis() {
       var items = document.querySelectorAll('#analysis-checklist .check-item');
       var delays = [0, 2200, 4800, 8000, 11500];
       var durations = [1800, 2200, 2800, 3000, 2500];
 
+      // Fire real audit API call in parallel with animation
+      var auditReady = false;
+      if (typeof apiCall === 'function') {
+        apiCall('POST', 'audit').then(function(res) {
+          auditData = res;
+          auditReady = true;
+          console.log('Audit data received:', res);
+        }).catch(function(err) {
+          console.error('Audit API failed, using fallback:', err);
+          auditReady = true; // let it proceed with fallback
+        });
+      } else {
+        auditReady = true;
+      }
+
       items.forEach(function(item, i) {
-        // Start processing
-        setTimeout(function() {
-          item.classList.add('active');
-        }, delays[i]);
-        // Complete
+        setTimeout(function() { item.classList.add('active'); }, delays[i]);
         setTimeout(function() {
           item.classList.remove('active');
           item.classList.add('done');
@@ -2386,13 +2399,12 @@
         }, delays[i] + durations[i]);
       });
 
-      // After all checks done, show results
-      setTimeout(function() {
+      // Wait for both animation (15s) and audit data
+      function revealResults() {
         document.getElementById('analysis-loading').style.display = 'none';
         var results = document.getElementById('analysis-results');
         results.style.display = 'block';
         results.style.animation = 'stepIn 0.5s ease';
-        // Switch to two-column results mode
         var authPage = document.querySelector('.auth-page');
         authPage.classList.remove('analysis-mode');
         authPage.classList.add('results-mode');
@@ -2402,14 +2414,53 @@
         document.querySelector('.onboarding-topbar').style.display = 'none';
         showResults();
         initNetworkBg();
+      }
+
+      setTimeout(function() {
+        if (auditReady) {
+          revealResults();
+        } else {
+          // Audit still loading — update last checklist item text
+          var lastItem = items[items.length - 1];
+          lastItem.classList.add('active');
+          lastItem.classList.remove('done');
+          lastItem.querySelector('.check-icon').textContent = '';
+          lastItem.querySelector('span:last-child').textContent = 'Finalisation de l\'analyse...';
+          var waitInterval = setInterval(function() {
+            if (auditReady) {
+              clearInterval(waitInterval);
+              lastItem.classList.remove('active');
+              lastItem.classList.add('done');
+              lastItem.querySelector('.check-icon').textContent = '\u2713';
+              lastItem.querySelector('span:last-child').textContent = 'Calcul du potentiel de croissance';
+              setTimeout(revealResults, 500);
+            }
+          }, 500);
+        }
       }, 15000);
     }
 
     function showResults() {
-      var h = hashCode(data.url || 'default');
-      var traffic = 800 + (h % 1700);
-      var trafficProj = Math.round(traffic * 3.2);
-      var multiplier = (trafficProj / traffic).toFixed(1);
+      var traffic, trafficProj, multiplier;
+
+      if (auditData && auditData.scores) {
+        // Real data from audit API
+        var seoScore = auditData.scores.overall || 50;
+        var perfScore = auditData.scores.performance || 50;
+        // Estimate current traffic from SEO score (higher score = more traffic)
+        traffic = Math.round(seoScore * seoScore * 0.5 + 200);
+        // Improvement potential: worse score = more room to grow
+        var improvementRoom = (100 - seoScore) / 100;
+        var growthMultiplier = 2.0 + improvementRoom * 2.5; // 2x for perfect sites, 4.5x for poor ones
+        trafficProj = Math.round(traffic * growthMultiplier);
+        multiplier = growthMultiplier.toFixed(1);
+      } else {
+        // Fallback: hash-based estimation
+        var h = hashCode(data.url || 'default');
+        traffic = 800 + (h % 1700);
+        trafficProj = Math.round(traffic * 3.2);
+        multiplier = (trafficProj / traffic).toFixed(1);
+      }
 
       var domain = (data.url || '').replace(/^https?:\/\//, '').split('/')[0];
       document.getElementById('result-domain').textContent = domain;
@@ -2417,6 +2468,17 @@
       if (rdRight) rdRight.textContent = domain;
       var compEl = document.getElementById('pricing-competitor');
       if (compEl && domain) compEl.textContent = domain;
+
+      // Populate real score pills
+      if (auditData && auditData.scores) {
+        document.getElementById('stat-seo-score').textContent = auditData.scores.overall + '/100';
+        document.getElementById('stat-perf-score').textContent = auditData.scores.performance + '/100';
+        document.getElementById('stat-issues').textContent = (auditData.issues ? auditData.issues.length : 0);
+      } else {
+        document.getElementById('stat-seo-score').textContent = '—';
+        document.getElementById('stat-perf-score').textContent = '—';
+        document.getElementById('stat-issues').textContent = '—';
+      }
 
       // Domain label on chart
       var domLabel = document.getElementById('curve-domain-label');
