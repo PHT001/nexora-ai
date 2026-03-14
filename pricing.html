@@ -38,7 +38,7 @@
       <a href="signin.html">Se connecter</a>
     </div>
     <div class="navbar-actions">
-      <a href="#pricing-options" class="btn btn-primary-outline btn-sm">Acheter</a>
+      <a href="#" class="btn btn-primary-outline btn-sm" onclick="event.preventDefault();document.getElementById('stickyBuyBtn').click();">Acheter</a>
     </div>
   </div>
 </nav>
@@ -207,53 +207,7 @@
       </div>
     </div>
 
-    <!-- Pricing Options -->
-    <div class="sp-pricing" id="pricing-options">
-      <h3 class="sp-pricing-title">Options de paiement</h3>
-
-      <label class="sp-plan" data-plan="yearly">
-        <input type="radio" name="plan" value="yearly">
-        <div class="sp-plan-inner">
-          <div class="sp-plan-badge">Meilleure offre</div>
-          <div class="sp-plan-prices">
-            <span class="sp-plan-old">€99</span>
-            <span class="sp-plan-current">€49</span>
-            <span class="sp-plan-period">/mois</span>
-          </div>
-          <div class="sp-plan-cycle">Paiement annuel</div>
-        </div>
-      </label>
-
-      <label class="sp-plan" data-plan="quarterly">
-        <input type="radio" name="plan" value="quarterly">
-        <div class="sp-plan-inner">
-          <div class="sp-plan-prices">
-            <span class="sp-plan-old">€149</span>
-            <span class="sp-plan-current">€74</span>
-            <span class="sp-plan-period">/mois</span>
-          </div>
-          <div class="sp-plan-cycle">Paiement trimestriel</div>
-        </div>
-      </label>
-
-      <label class="sp-plan sp-plan-selected" data-plan="monthly">
-        <input type="radio" name="plan" value="monthly" checked>
-        <div class="sp-plan-inner">
-          <div class="sp-plan-prices">
-            <span class="sp-plan-old">€197</span>
-            <span class="sp-plan-current">€99</span>
-            <span class="sp-plan-period">/mois</span>
-          </div>
-          <div class="sp-plan-cycle">Paiement mensuel</div>
-          <div class="sp-plan-sale">-50%</div>
-        </div>
-      </label>
-
-      <div class="sp-buy-btn-wrap">
-        <button class="sp-buy-btn" id="buyBtn">Acheter — €99/mois</button>
-      </div>
-      <p class="sp-guarantee-text">🛡️ Satisfait ou remboursé 30 jours</p>
-    </div>
+    <!-- Pricing options are in the bottom sheet -->
 
     <!-- Testimonials -->
     <div class="sp-testimonials">
@@ -359,6 +313,63 @@
   </div>
 </footer>
 
+<!-- ======== Sticky Buy Button ======== -->
+<div class="sp-sticky-bar">
+  <div class="sp-buy-btn-wrap">
+    <button class="sp-buy-btn" id="stickyBuyBtn">Profiter de -50% →</button>
+  </div>
+</div>
+
+<!-- ======== Bottom Sheet ======== -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-sheet" id="spSheet">
+  <div class="sp-sheet-handle"></div>
+  <h3 class="sp-pricing-title">Options de paiement</h3>
+
+  <label class="sp-plan" data-plan="yearly">
+    <input type="radio" name="plan" value="yearly">
+    <div class="sp-plan-inner">
+      <div class="sp-plan-badge">Meilleure offre</div>
+      <div class="sp-plan-prices">
+        <span class="sp-plan-old">€99</span>
+        <span class="sp-plan-current">€49</span>
+        <span class="sp-plan-period">/mois</span>
+      </div>
+      <div class="sp-plan-cycle">Paiement annuel</div>
+    </div>
+  </label>
+
+  <label class="sp-plan" data-plan="quarterly">
+    <input type="radio" name="plan" value="quarterly">
+    <div class="sp-plan-inner">
+      <div class="sp-plan-prices">
+        <span class="sp-plan-old">€149</span>
+        <span class="sp-plan-current">€74</span>
+        <span class="sp-plan-period">/mois</span>
+      </div>
+      <div class="sp-plan-cycle">Paiement trimestriel</div>
+    </div>
+  </label>
+
+  <label class="sp-plan sp-plan-selected" data-plan="monthly">
+    <input type="radio" name="plan" value="monthly" checked>
+    <div class="sp-plan-inner">
+      <div class="sp-plan-prices">
+        <span class="sp-plan-old">€197</span>
+        <span class="sp-plan-current">€99</span>
+        <span class="sp-plan-period">/mois</span>
+      </div>
+      <div class="sp-plan-cycle">Paiement mensuel</div>
+      <div class="sp-plan-sale">-50%</div>
+    </div>
+  </label>
+
+  <div class="sp-buy-btn-wrap" style="margin-top:12px;">
+    <button class="sp-buy-btn" id="sheetBuyBtn">Acheter — €99/mois</button>
+  </div>
+  <p class="sp-guarantee-text">🛡️ Satisfait ou remboursé 30 jours</p>
+</div>
+
 <script>
 // Sale timer countdown
 (function() {
@@ -377,6 +388,22 @@
   tick();
 })();
 
+// Bottom sheet
+var sheet = document.getElementById('spSheet');
+var overlay = document.getElementById('spOverlay');
+function openSheet() {
+  sheet.classList.add('open');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSheet() {
+  sheet.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('stickyBuyBtn').addEventListener('click', openSheet);
+overlay.addEventListener('click', closeSheet);
+
 // Plan selection
 document.querySelectorAll('.sp-plan').forEach(function(el) {
   el.addEventListener('click', function() {
@@ -384,12 +411,12 @@ document.querySelectorAll('.sp-plan').forEach(function(el) {
     el.classList.add('sp-plan-selected');
     el.querySelector('input').checked = true;
     var prices = { yearly: '€49/mois', quarterly: '€74/mois', monthly: '€99/mois' };
-    document.getElementById('buyBtn').textContent = 'Acheter — ' + prices[el.dataset.plan];
+    document.getElementById('sheetBuyBtn').textContent = 'Acheter — ' + prices[el.dataset.plan];
   });
 });
 
 // Buy button -> redirect to signup for now (can be Stripe later)
-document.getElementById('buyBtn').addEventListener('click', function() {
+document.getElementById('sheetBuyBtn').addEventListener('click', function() {
   var plan = document.querySelector('input[name="plan"]:checked').value;
   window.location.href = 'signup.html?plan=' + plan;
 });
