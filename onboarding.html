@@ -1665,8 +1665,10 @@
           <div class="progress-dot">2</div>
           <div class="progress-line"></div>
           <div class="progress-dot">3</div>
+          <div class="progress-line"></div>
+          <div class="progress-dot">4</div>
         </div>
-        <div class="progress-label">Étape <span id="step-cur">1</span> sur 3</div>
+        <div class="progress-label">Étape <span id="step-cur">1</span> sur 4</div>
       </div>
 
       <!-- Step 1: Website URL -->
@@ -1781,11 +1783,64 @@
           </div>
         </div>
         <div id="err-3" class="field-error" style="display:none;"></div>
+        <button class="auth-submit" onclick="nextStep(3)">Continuer &rarr;</button>
+      </div>
+
+      <!-- Step 4: How did you hear about us -->
+      <div class="onboarding-step" data-step="4">
+        <span class="back-link" onclick="goBack(4)">&larr; Retour</span>
+        <div class="step-badge">
+          <span class="step-num">ÉTAPE 4</span>
+        </div>
+        <h1>Comment avez-vous entendu parler de nous ?</h1>
+        <p class="step-desc">Aidez-nous à mieux comprendre comment vous nous avez découvert.</p>
+        <div class="goals-grid" id="referral-grid">
+          <div class="goal-card" onclick="toggleReferral(this, 'google')">
+            <span class="goal-icon">&#128269;</span>
+            <span class="goal-label">Google</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleReferral(this, 'facebook')">
+            <span class="goal-icon">&#128266;</span>
+            <span class="goal-label">Facebook</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleReferral(this, 'instagram')">
+            <span class="goal-icon">&#128247;</span>
+            <span class="goal-label">Instagram</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleReferral(this, 'tiktok')">
+            <span class="goal-icon">&#127926;</span>
+            <span class="goal-label">TikTok</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleReferral(this, 'linkedin')">
+            <span class="goal-icon">&#128188;</span>
+            <span class="goal-label">LinkedIn</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleReferral(this, 'youtube')">
+            <span class="goal-icon">&#9654;&#65039;</span>
+            <span class="goal-label">YouTube</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleReferral(this, 'bouche-a-oreille')">
+            <span class="goal-icon">&#128483;&#65039;</span>
+            <span class="goal-label">Bouche-à-oreille</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+          <div class="goal-card" onclick="toggleReferral(this, 'autre')">
+            <span class="goal-icon">&#10024;</span>
+            <span class="goal-label">Autre</span>
+            <span class="goal-check">&#10003;</span>
+          </div>
+        </div>
         <button class="auth-submit" onclick="finish()">Terminer la configuration &rarr;</button>
       </div>
 
-      <!-- Step 4: Analysis & Results (hidden from progress bar) -->
-      <div class="onboarding-step" data-step="4">
+      <!-- Step 5: Analysis & Results (hidden from progress bar) -->
+      <div class="onboarding-step" data-step="5">
 
         <!-- Loading Phase -->
         <div id="analysis-loading">
@@ -2070,8 +2125,8 @@
       document.querySelector('.auth-page').style.display = 'flex';
       document.querySelector('.onboarding-progress').style.display = 'none';
       document.querySelectorAll('.onboarding-step').forEach(function(el) { el.classList.remove('active'); });
-      var s4 = document.querySelector('[data-step="4"]');
-      if (s4) s4.classList.add('active');
+      var s5 = document.querySelector('[data-step="5"]');
+      if (s5) s5.classList.add('active');
       document.getElementById('analysis-loading').style.display = 'none';
       document.getElementById('analysis-results').style.display = 'block';
       var authPage = document.querySelector('.auth-page');
@@ -2100,6 +2155,7 @@
       { icon: '&#127760;', t: 'Analyse de votre site', d: 'Nous allons scanner votre site pour comprendre votre positionnement actuel.' },
       { icon: '&#127758;', t: 'Portée internationale', d: 'Ciblez l\'audience dans la langue de votre choix.' },
       { icon: '&#127919;', t: 'Vos objectifs', d: 'Définissez vos priorités pour un contenu parfaitement ciblé.' },
+      { icon: '&#128172;', t: 'Votre découverte', d: 'Dites-nous comment vous avez découvert Seora.' },
       { icon: '&#128640;', t: 'Votre potentiel', d: 'Découvrez comment Seora peut transformer votre trafic.' }
     ];
 
@@ -2112,11 +2168,11 @@
       document.getElementById('step-cur').textContent = n;
 
       // Hide progress bar on analysis step
-      document.querySelector('.onboarding-progress').style.display = n > 3 ? 'none' : 'block';
+      document.querySelector('.onboarding-progress').style.display = n > 4 ? 'none' : 'block';
 
       // Full-page centered mode for analysis
       var authPage = document.querySelector('.auth-page');
-      if (n > 3) { authPage.classList.add('analysis-mode'); }
+      if (n > 4) { authPage.classList.add('analysis-mode'); }
       else { authPage.classList.remove('analysis-mode'); authPage.classList.remove('results-mode'); }
 
       var dots = document.querySelectorAll('.progress-dot');
@@ -2248,6 +2304,12 @@
       if (from === 2) {
         data.lang = document.getElementById('lang').value;
       }
+      if (from === 3) {
+        if (data.goals.length === 0) {
+          showErr(3, 'Sélectionnez au moins un objectif.');
+          return;
+        }
+      }
       showStep(from + 1);
     }
 
@@ -2261,14 +2323,17 @@
       else { data.goals.splice(idx, 1); }
     }
 
+    var referralSource = '';
+    function toggleReferral(el, source) {
+      document.querySelectorAll('#referral-grid .goal-card').forEach(function(c) { c.classList.remove('selected'); });
+      el.classList.add('selected');
+      referralSource = source;
+    }
+
     function finish() {
-      hideErr(3);
-      if (data.goals.length === 0) {
-        showErr(3, 'Sélectionnez au moins un objectif.');
-        return;
-      }
       // Auto-fill desc from scraped site data
       data.desc = data.siteDesc || '';
+      data.referral = referralSource;
       localStorage.setItem('seora_onboarding_data', JSON.stringify(data));
 
       // Save to API (in background, don't block the UI)
@@ -2279,7 +2344,8 @@
           audiences: [],
           goals: data.goals || [],
           language: data.lang || 'fr',
-          niche: data.siteDesc || data.siteTitle || ''
+          niche: data.siteDesc || data.siteTitle || '',
+          referral: referralSource
         }).then(function(res) {
           console.log('Onboarding saved to DB, keywords:', res.keywords_count);
         }).catch(function(err) {
@@ -2287,7 +2353,7 @@
         });
       }
 
-      showStep(4);
+      showStep(5);
       startAnalysis();
     }
 
