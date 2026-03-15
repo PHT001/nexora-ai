@@ -3,10 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configuration — Seora.ai</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Configuration — Seora</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/landing.css">
   <style>
+    /* Base layout (from style.css) */
+    .auth-page {
+      display: flex;
+      min-height: 100vh;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .auth-left {
+      flex: 1;
+      padding: 60px;
+      overflow-y: auto;
+    }
+    .auth-right {
+      flex: 0 0 42%;
+      background: #f7f7f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-right .network-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.5;
+    }
+    .auth-field {
+      margin-bottom: 16px;
+    }
+    .auth-field label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .auth-field input,
+    .auth-field select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .auth-field input:focus,
+    .auth-field select:focus {
+      border-color: #5855FF;
+      box-shadow: 0 0 0 3px rgba(88,85,255,0.08);
+    }
+    .auth-submit {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #5855FF, #8B3DFF);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      font-family: 'Inter', system-ui, sans-serif;
+      margin-top: 8px;
+    }
+    .auth-submit:hover { opacity: 0.9; }
+    .auth-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    @media (max-width: 900px) {
+      .auth-page { flex-direction: column; }
+      .auth-right { display: none; }
+      .auth-left { padding: 32px 24px; }
+    }
+
     .onboarding-topbar {
       padding: 20px 32px;
       display: flex;
@@ -40,7 +113,7 @@
     .progress-dot.active {
       border-color: var(--accent);
       color: var(--accent);
-      background: #EFF6FF;
+      background: #f0efff;
     }
     .progress-dot.completed {
       border-color: var(--accent);
@@ -96,8 +169,9 @@
     }
 
     .onboarding-step h1 {
+      font-family: 'Cal Sans', system-ui, sans-serif;
       font-size: 28px;
-      font-weight: 700;
+      font-weight: 400;
       margin-bottom: 6px;
       color: #1a1a1a;
     }
@@ -163,7 +237,7 @@
       align-items: center;
       gap: 8px;
       padding: 10px 16px;
-      background: #EFF6FF;
+      background: #f0efff;
       border-radius: 10px;
       font-size: 14px;
       color: #333;
@@ -267,7 +341,7 @@
       gap: 6px;
       margin-top: 8px;
       padding: 8px 16px;
-      background: #EFF6FF;
+      background: #f0efff;
       color: var(--accent);
       border-radius: 20px;
       font-size: 13px;
@@ -278,7 +352,7 @@
       transition: background 0.2s;
     }
     .ai-btn.visible { display: inline-flex; }
-    .ai-btn:hover { background: #ffe5dc; }
+    .ai-btn:hover { background: #eeedff; }
     .ai-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
     /* AI generation feedback */
@@ -329,7 +403,7 @@
       font-family: 'Inter', sans-serif;
       transition: all 0.2s;
     }
-    .suggestion-pill:hover { border-color: var(--accent); color: var(--accent); background: #EFF6FF; }
+    .suggestion-pill:hover { border-color: var(--accent); color: var(--accent); background: #f0efff; }
     .suggestion-pill .s-plus { color: var(--accent); font-weight: 600; font-size: 14px; }
 
     /* Goals grid */
@@ -353,15 +427,15 @@
     }
     .goal-card:hover { border-color: #ddd; background: #fafafa; }
     .goal-card.selected {
-      border-color: #E8562A;
-      background: #FFF6F3;
+      border-color: #5855FF;
+      background: #f0efff;
     }
     .goal-icon { font-size: 20px; flex-shrink: 0; }
     .goal-label { font-size: 14px; font-weight: 500; color: #333; line-height: 1.3; }
     .goal-check {
       display: none;
       margin-left: auto;
-      color: #E8562A;
+      color: #5855FF;
       font-weight: 700;
       font-size: 16px;
       flex-shrink: 0;
@@ -409,7 +483,7 @@
       background: #f9f9f9; border-radius: 12px; padding: 20px 16px; text-align: center;
     }
     .stat-value {
-      display: block; font-size: 28px; font-weight: 800; color: #1a1a1a; margin-bottom: 4px;
+      display: block; font-family: 'Cal Sans', system-ui, sans-serif; font-size: 28px; font-weight: 400; color: #1a1a1a; margin-bottom: 4px;
     }
     .stat-value.accent { color: var(--accent); }
     .stat-label { font-size: 12px; color: #999; font-weight: 500; }
@@ -429,8 +503,8 @@
       transition: width 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
     }
     .proj-fill.current { background: #ccc; }
-    .proj-fill.m1 { background: #ffb89a; }
-    .proj-fill.m2 { background: #f08060; }
+    .proj-fill.m1 { background: #c4c3ff; }
+    .proj-fill.m2 { background: #8B85FF; }
     .proj-fill.m3 { background: var(--accent); }
     .proj-value { width: 70px; text-align: right; font-size: 14px; font-weight: 700; color: #1a1a1a; flex-shrink: 0; }
     .proj-value.highlight { color: var(--accent); font-size: 16px; }
@@ -543,7 +617,7 @@
     /* Pricing section */
     .pricing-header { text-align: left; margin-bottom: 28px; padding-top: 8px; }
     .pricing-ready { color: var(--accent); font-size: 15px; font-weight: 600; display: block; margin-bottom: 6px; }
-    .pricing-header h2 { font-size: 34px; font-weight: 800; color: #1a1a1a; margin: 0 0 8px; line-height: 1.2; }
+    .pricing-header h2 { font-family: 'Cal Sans', system-ui, sans-serif; font-size: 34px; font-weight: 400; color: #1a1a1a; margin: 0 0 8px; line-height: 1.2; }
     .pricing-header p { font-size: 15px; color: #888; line-height: 1.5; margin: 0; }
 
     .pricing-card {
@@ -563,22 +637,22 @@
       color: #333; text-transform: uppercase;
     }
     .pricing-plan-name {
-      font-size: 26px; font-weight: 700; color: var(--accent); margin: 8px 0 14px;
+      font-family: 'Cal Sans', system-ui, sans-serif; font-size: 26px; font-weight: 400; color: var(--accent); margin: 8px 0 14px;
     }
     .pricing-row { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-bottom: 18px; }
     .pricing-old { font-size: 16px; color: #999; text-decoration: line-through; }
-    .pricing-current { font-size: 46px; font-weight: 800; color: #1a1a1a; }
+    .pricing-current { font-family: 'Cal Sans', system-ui, sans-serif; font-size: 46px; font-weight: 400; color: #1a1a1a; }
     .pricing-period { font-size: 16px; color: #888; font-weight: 500; }
 
     .pricing-cta-btn {
       display: block; width: 100%; box-sizing: border-box;
-      padding: 18px; background: var(--accent); color: #fff;
-      border: none; border-radius: 12px; font-size: 17px; font-weight: 700;
+      padding: 18px; background: linear-gradient(135deg, #5855FF, #8B3DFF); color: #fff;
+      border: none; border-radius: 9999px; font-size: 17px; font-weight: 700;
       cursor: pointer; font-family: 'Inter', sans-serif;
-      transition: all 0.2s; box-shadow: 0 4px 16px rgba(232,86,42,0.3);
+      transition: all 0.2s; box-shadow: 0 4px 16px rgba(88,85,255,0.3);
       text-align: center;
     }
-    .pricing-cta-btn:hover { background: #d14a22; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,86,42,0.4); }
+    .pricing-cta-btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(88,85,255,0.4); }
     .pricing-cta-btn.pulse { animation: ctaPulseGlow 2s ease-in-out infinite; }
 
     .pricing-cancel { font-size: 13px; color: #666; margin-top: 12px; }
@@ -641,14 +715,15 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--accent);
-      background: #EFF6FF;
+      background: #f0efff;
       padding: 5px 12px;
       border-radius: 6px;
       margin-bottom: 10px;
     }
     .pc2-plan {
+      font-family: 'Cal Sans', system-ui, sans-serif;
       font-size: 28px;
-      font-weight: 800;
+      font-weight: 400;
       color: #1a1a1a;
       margin: 0 0 12px;
       line-height: 1.1;
@@ -665,8 +740,9 @@
       text-decoration: line-through;
     }
     .pc2-current {
+      font-family: 'Cal Sans', system-ui, sans-serif;
       font-size: 44px;
-      font-weight: 800;
+      font-weight: 400;
       color: #1a1a1a;
       line-height: 1;
     }
@@ -679,8 +755,8 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      background: #FFF7F5;
-      border: 1px solid #ffe0d6;
+      background: #f5f4ff;
+      border: 1px solid #e0dfff;
       border-radius: 10px;
       padding: 12px 14px;
       margin-bottom: 18px;
@@ -762,8 +838,9 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-family: 'Cal Sans', system-ui, sans-serif;
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 400;
       color: #15803d;
     }
     .guarantee-v2-title svg { flex-shrink: 0; }
@@ -979,13 +1056,14 @@
     }
     .funnel-hero .funnel-icon {
       width: 56px; height: 56px; border-radius: 50%;
-      background: linear-gradient(135deg, #EFF6FF 0%, #ffe0d4 100%);
+      background: linear-gradient(135deg, #f0efff 0%, #e0dfff 100%);
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px; font-size: 26px;
     }
     .funnel-hero h2 {
+      font-family: 'Cal Sans', system-ui, sans-serif;
       font-size: 26px;
-      font-weight: 800;
+      font-weight: 400;
       color: #1a1a1a;
       line-height: 1.3;
       margin-bottom: 8px;
@@ -1256,7 +1334,7 @@
       gap: 8px;
       margin-top: 16px;
     }
-    .results-rating-stars { color: #3B82F6; font-size: 14px; letter-spacing: 2px; }
+    .results-rating-stars { color: #5855FF; font-size: 14px; letter-spacing: 2px; }
     .results-rating-text { font-size: 13px; color: #888; font-weight: 500; }
 
     /* ===== Results Header ===== */
@@ -1280,8 +1358,9 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-family: 'Cal Sans', system-ui, sans-serif;
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 400;
       color: #1a1a1a;
       text-decoration: none;
     }
@@ -1313,8 +1392,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      font-family: 'Cal Sans', system-ui, sans-serif;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 400;
       color: #fff;
       text-decoration: none;
     }
@@ -1445,7 +1525,7 @@
     }
     .site-preview-url {
       font-size: 12px;
-      color: #E8562A;
+      color: #5855FF;
       font-weight: 500;
       margin-bottom: 6px;
       display: flex;
@@ -1497,10 +1577,10 @@
       transition: all 0.2s;
     }
     .btn-confirm-site.yes {
-      background: #E8562A;
+      background: #5855FF;
       color: #fff;
     }
-    .btn-confirm-site.yes:hover { background: #d14a22; }
+    .btn-confirm-site.yes:hover { background: #4845cc; }
     .btn-confirm-site.no {
       background: #f0f0f0;
       color: #666;
@@ -1519,7 +1599,7 @@
       width: 36px;
       height: 36px;
       border: 3px solid #eee;
-      border-top-color: #E8562A;
+      border-top-color: #5855FF;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 12px;
@@ -1558,8 +1638,8 @@
       to { opacity: 1; transform: translateY(0); }
     }
     @keyframes ctaPulseGlow {
-      0%, 100% { box-shadow: 0 4px 16px rgba(232,86,42,0.3); }
-      50% { box-shadow: 0 4px 32px rgba(232,86,42,0.55), 0 0 48px rgba(232,86,42,0.2); }
+      0%, 100% { box-shadow: 0 4px 16px rgba(88,85,255,0.3); }
+      50% { box-shadow: 0 4px 32px rgba(88,85,255,0.55), 0 0 48px rgba(88,85,255,0.2); }
     }
     /* --- Continuous ambient animations --- */
     @keyframes floatY {
@@ -1572,7 +1652,7 @@
     }
     @keyframes glowBorder {
       0%, 100% { border-color: #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-      50% { border-color: #c7d2fe; box-shadow: 0 4px 28px rgba(99,102,241,0.10), 0 0 0 3px rgba(99,102,241,0.04); }
+      50% { border-color: #c4c3ff; box-shadow: 0 4px 28px rgba(88,85,255,0.10), 0 0 0 3px rgba(88,85,255,0.04); }
     }
     @keyframes badgePop {
       0%, 100% { transform: scale(1); }
@@ -1630,7 +1710,7 @@
 
   <!-- Minimal top bar -->
   <div class="onboarding-topbar">
-    <a href="index.html" class="navbar-logo">
+    <a href="index.html" class="s-nav-logo">
       <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="28" height="28" rx="8" fill="#5855FF"/>
         <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
@@ -2097,7 +2177,7 @@
       <a href="#">CGV</a>
       <a href="#">Contact</a>
     </div>
-    <div class="results-footer-copy">&copy; 2025 Seora — Tous droits réservés.</div>
+    <div class="results-footer-copy">&copy; 2026 Seora — Tous droits réservés.</div>
   </div>
 
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
@@ -2105,10 +2185,16 @@
   <script src="js/api.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // === XSS protection ===
+    function esc(s) {
+      if (s == null) return '';
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+    }
+
     // --- Auth Guard ---
-    var _isResultsPreview = window.location.search.includes('results');
+    var _isResultsPreview = new URLSearchParams(window.location.search).has('results');
     // ?reset in URL clears onboarding flag for testing
-    if (window.location.search.includes('reset')) {
+    if (new URLSearchParams(window.location.search).has('reset')) {
       localStorage.removeItem('seora_onboarding_complete');
       localStorage.removeItem('seora_onboarding_data');
       window.history.replaceState({}, '', window.location.pathname);
@@ -2271,7 +2357,7 @@
       data.siteDesc = document.getElementById('preview-desc').textContent;
       // Update right card
       var card = document.getElementById('ob-card');
-      card.innerHTML = '<div class="ob-card-icon">&#9989;</div><h3>Site confirmé !</h3><p>' + u.replace(/^https?:\/\//, '') + '</p>';
+      card.innerHTML = '<div class="ob-card-icon">&#9989;</div><h3>Site confirmé !</h3><p>' + esc(u.replace(/^https?:\/\//, '')) + '</p>';
       // Show continue, hide preview question
       document.getElementById('site-preview').querySelector('.site-preview-question').innerHTML = '<span style="color:#22c55e;font-weight:600;">&#10003; Site confirmé</span><span></span>';
       document.getElementById('btn-continue-1').style.display = 'block';
@@ -2790,7 +2876,8 @@
 
       wrap.innerHTML = '<div class="suggestions-label">&#128161; Suggestions basées sur votre site :</div>' +
         suggestions.map(function(s) {
-          return '<span class="suggestion-pill" onclick="pickSuggestion(this, \'' + s.replace(/'/g, "\\'") + '\')"><span class="s-plus">+</span> ' + s + '</span>';
+          var safe = esc(s);
+          return '<span class="suggestion-pill" onclick="pickSuggestion(this, \'' + safe.replace(/'/g, "\\'") + '\')"><span class="s-plus">+</span> ' + safe + '</span>';
         }).join('');
       wrap.classList.add('show');
     }
@@ -2823,7 +2910,7 @@
     function renderTags() {
       var container = document.getElementById('aud-tags');
       container.innerHTML = data.audience.map(function(t, i) {
-        return '<span class="tag-pill">' + t + ' <span class="tag-x" onclick="removeTag(\'aud\',' + i + ')">&times;</span></span>';
+        return '<span class="tag-pill">' + esc(t) + ' <span class="tag-x" onclick="removeTag(\'aud\',' + i + ')">&times;</span></span>';
       }).join('');
     }
 
@@ -2905,7 +2992,7 @@
           }
 
           // Typing animation
-          info.innerHTML = '&#9989; Description générée à partir de <strong>' + domain + '</strong>';
+          info.innerHTML = '&#9989; Description générée à partir de <strong>' + esc(domain) + '</strong>';
           info.classList.add('show');
           info.classList.remove('error');
           typeText(textarea, generated, function() {
@@ -2919,7 +3006,7 @@
           var generated = buildDescription(data.siteTitle, data.siteDesc, domain, '', data.lang);
 
           if (generated) {
-            info.innerHTML = '&#9989; Description générée à partir de <strong>' + domain + '</strong>';
+            info.innerHTML = '&#9989; Description générée à partir de <strong>' + esc(domain) + '</strong>';
             info.classList.add('show');
             info.classList.remove('error');
             typeText(textarea, generated, function() {

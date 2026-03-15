@@ -2,7 +2,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { createAdminClient, getUser, cors } = require('./_lib/supabase');
 
 module.exports = async function handler(req, res) {
-  cors(res);
+  cors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -11,8 +11,16 @@ module.exports = async function handler(req, res) {
 
   try {
     var { url, description, audiences, goals, language, niche } = req.body;
+    if (!url || String(url).length > 500) return res.status(400).json({ error: 'URL invalide.' });
+    var safeUrl = String(url).trim();
+    if (!safeUrl.startsWith('http://') && !safeUrl.startsWith('https://')) safeUrl = 'https://' + safeUrl;
     var domain = '';
-    try { domain = new URL(url).hostname; } catch (e) { domain = url; }
+    try { domain = new URL(safeUrl).hostname; } catch (e) { return res.status(400).json({ error: 'URL invalide.' }); }
+    var safeDescription = String(description || '').substring(0, 2000);
+    var safeNiche = String(niche || '').substring(0, 200);
+    var safeLang = ['fr', 'en'].indexOf(language) !== -1 ? language : 'fr';
+    var safeAudiences = Array.isArray(audiences) ? audiences.slice(0, 10).map(function(a) { return String(a).substring(0, 200); }) : [];
+    var safeGoals = Array.isArray(goals) ? goals.slice(0, 10).map(function(g) { return String(g).substring(0, 200); }) : [];
 
     var sb = createAdminClient();
 
@@ -21,21 +29,22 @@ module.exports = async function handler(req, res) {
       .from('sites')
       .select('id')
       .eq('user_id', user.id)
-      .single();
+      .maybeSingle();
 
     var siteId;
     if (existingSite) {
       await sb.from('sites').update({
-        url, domain, language: language || 'fr', description,
-        audiences: audiences || [], goals: goals || [], niche,
+        url: safeUrl, domain: domain, language: safeLang, description: safeDescription,
+        audiences: safeAudiences, goals: safeGoals, niche: safeNiche,
         updated_at: new Date().toISOString()
       }).eq('id', existingSite.id);
       siteId = existingSite.id;
     } else {
-      var { data: newSite } = await sb.from('sites').insert({
-        user_id: user.id, url, domain, language: language || 'fr',
-        description, audiences: audiences || [], goals: goals || [], niche
-      }).select('id').single();
+      var { data: newSite, error: siteErr } = await sb.from('sites').insert({
+        user_id: user.id, url: safeUrl, domain: domain, language: safeLang,
+        description: safeDescription, audiences: safeAudiences, goals: safeGoals, niche: safeNiche
+      }).select('id').maybeSingle();
+      if (siteErr || !newSite) throw new Error('Échec de la création du site');
       siteId = newSite.id;
     }
 
@@ -50,8 +59,8 @@ module.exports = async function handler(req, res) {
     var keywords = [];
     try {
       var anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-      var prompt = 'Tu es un expert SEO. Pour le site "' + domain + '" (' + (description || niche || '') + '), '
-        + 'génère exactement 8 mots-clés SEO pertinents en ' + (language || 'français') + '. '
+      var prompt = 'Tu es un expert SEO. Pour le site "' + domain + '" (' + (safeDescription || safeNiche || '') + '), '
+        + 'génère exactement 8 mots-clés SEO pertinents en ' + (safeLang === 'en' ? 'English' : 'français') + '. '
         + 'Pour chaque mot-clé, estime le volume de recherche mensuel (entre 100 et 10000) et la difficulté SEO (entre 10 et 90). '
         + 'Réponds UNIQUEMENT en JSON, format: [{"keyword":"...","volume":...,"difficulty":...}]';
 
@@ -84,6 +93,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ success: true, site_id: siteId, keywords_count: keywords.length });
   } catch (err) {
     console.error('Onboarding error:', err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 };

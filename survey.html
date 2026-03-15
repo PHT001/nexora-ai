@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sondage — Seora.ai</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Sondage — Seora</title>
+  <link rel="stylesheet" href="css/landing.css">
   <style>
     .survey-topbar {
       padding: 20px 32px;
@@ -70,11 +69,11 @@
     }
     .survey-option:hover {
       border-color: var(--accent);
-      background: #FFF7F4;
+      background: #f5f4ff;
     }
     .survey-option.selected {
       border-color: var(--accent);
-      background: #EFF6FF;
+      background: #f0efff;
       color: var(--accent);
       font-weight: 600;
     }
@@ -96,17 +95,17 @@
       width: 100%;
       padding: 16px;
       margin-top: 28px;
-      background: #111;
+      background: linear-gradient(135deg, #5855FF, #8B3DFF);
       color: #fff;
       border: none;
-      border-radius: 12px;
+      border-radius: 9999px;
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
+      transition: opacity 0.2s;
     }
-    .survey-submit:hover { background: #222; }
+    .survey-submit:hover { opacity: 0.9; }
     .survey-submit:disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -135,7 +134,7 @@
       z-index: 1;
       width: 180px;
       height: 180px;
-      background: #1a1a1a;
+      background: #5855FF;
       border-radius: 32px;
       display: flex;
       align-items: center;
@@ -172,12 +171,12 @@
 
   <!-- Top bar -->
   <div class="survey-topbar">
-    <a href="index.html" class="navbar-logo">
+    <a href="index.html" class="s-nav-logo">
       <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="28" height="28" rx="8" fill="#5855FF"/>
         <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
       </svg>
-      Seora.ai
+      Seora
     </a>
   </div>
 
@@ -197,7 +196,7 @@
         Sondage
       </div>
 
-      <h1 class="survey-question">Comment avez-vous connu Seora ?</h1>
+      <h1 class="survey-question" style="font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Comment avez-vous connu Seora ?</h1>
       <p class="survey-desc">Votre reponse nous aide a ameliorer nos strategies marketing et votre experience.</p>
 
       <div class="survey-grid">
@@ -269,9 +268,8 @@
         </svg>
       </div>
       <div class="survey-right-logo">
-        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 60V20l20 40V20" stroke="#E8562A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M40 60V20l20 40V20" stroke="#E8562A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+        <svg viewBox="0 0 28 28" width="120" height="120" fill="none">
+          <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
     </div>

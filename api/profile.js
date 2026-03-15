@@ -1,7 +1,7 @@
 const { createAdminClient, getUser, cors } = require('./_lib/supabase');
 
 module.exports = async function handler(req, res) {
-  cors(res);
+  cors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -11,26 +11,26 @@ module.exports = async function handler(req, res) {
   try {
     var sb = createAdminClient();
 
-    // Get profile
+    // Get profile (exclude stripe_customer_id from response)
     var { data: profile } = await sb
       .from('profiles')
-      .select('*')
+      .select('id, email, full_name, avatar_url, plan, plan_status, articles_used, articles_limit, created_at, updated_at')
       .eq('id', user.id)
-      .single();
+      .maybeSingle();
 
-    // Get site
+    // Get site (exclude sensitive CMS credentials)
     var { data: site } = await sb
       .from('sites')
-      .select('*')
+      .select('id, user_id, url, domain, language, description, audiences, goals, niche, cms_type, cms_url, cms_connected_at, cms_extra, created_at, updated_at')
       .eq('user_id', user.id)
-      .single();
+      .maybeSingle();
 
     // Get settings
     var { data: settings } = await sb
       .from('settings')
       .select('*')
       .eq('user_id', user.id)
-      .single();
+      .maybeSingle();
 
     // Get article count
     var articleCount = 0;
@@ -49,7 +49,7 @@ module.exports = async function handler(req, res) {
         .eq('site_id', site.id)
         .order('created_at', { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
       lastArticle = lastArt;
     }
 
@@ -58,11 +58,11 @@ module.exports = async function handler(req, res) {
     if (site) {
       var { data: audit } = await sb
         .from('audits')
-        .select('*')
+        .select('id, site_id, overall_score, performance_score, seo_score, accessibility_score, best_practices_score, speed_mobile, speed_desktop, fcp, lcp, issues, created_at')
         .eq('site_id', site.id)
         .order('created_at', { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
       auditScore = audit;
     }
 
@@ -78,6 +78,6 @@ module.exports = async function handler(req, res) {
     });
   } catch (err) {
     console.error('Profile error:', err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 };

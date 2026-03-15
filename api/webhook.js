@@ -2,9 +2,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { createAdminClient } = require('./_lib/supabase');
 const { sendWelcomeEmail, sendPaymentFailedEmail } = require('./_lib/emails');
 
-// Disable body parsing — Stripe needs raw body for signature verification
-module.exports.config = { api: { bodyParser: false } };
-
 async function buffer(readable) {
   var chunks = [];
   for await (var chunk of readable) {
@@ -13,7 +10,7 @@ async function buffer(readable) {
   return Buffer.concat(chunks);
 }
 
-module.exports = async function handler(req, res) {
+async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
   var rawBody = await buffer(req);
@@ -55,7 +52,7 @@ module.exports = async function handler(req, res) {
       case 'customer.subscription.updated': {
         var sub = event.data.object;
         var customerId = sub.customer;
-        var status = sub.status; // active, past_due, canceled, trialing
+        var status = sub.status;
         var planStatus = 'inactive';
         if (status === 'active' || status === 'trialing') planStatus = 'active';
         else if (status === 'past_due') planStatus = 'past_due';
@@ -75,7 +72,6 @@ module.exports = async function handler(req, res) {
       }
 
       case 'invoice.payment_succeeded': {
-        // Reset monthly article count on successful payment
         var invoice = event.data.object;
         if (invoice.billing_reason === 'subscription_cycle') {
           await sb.from('profiles')
@@ -91,7 +87,6 @@ module.exports = async function handler(req, res) {
           .update({ plan_status: 'past_due' })
           .eq('stripe_customer_id', failedInvoice.customer);
 
-        // Send payment failed email (non-blocking)
         try {
           var custEmail = failedInvoice.customer_email;
           var custName = failedInvoice.customer_name || '';
@@ -102,7 +97,12 @@ module.exports = async function handler(req, res) {
     }
   } catch (err) {
     console.error('Webhook handler error:', err);
+    return res.status(500).json({ error: 'Processing error' });
   }
 
   res.status(200).json({ received: true });
-};
+}
+
+// Disable body parsing — Stripe needs raw body for signature verification
+module.exports = handler;
+module.exports.config = { api: { bodyParser: false } };

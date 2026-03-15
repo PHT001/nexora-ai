@@ -170,5 +170,23 @@ alter table public.articles add column if not exists cms_post_url text;
 alter table public.articles add column if not exists published_at timestamptz;
 
 -- =============================================
+-- 8. AUTOPILOT COLUMNS
+-- =============================================
+alter table public.settings add column if not exists autopilot boolean default false;
+alter table public.settings add column if not exists last_autopilot_at timestamptz;
+
+-- =============================================
+-- 9. ATOMIC DECREMENT for article slot rollback
+-- =============================================
+create or replace function public.decrement_articles_used(uid uuid)
+returns void as $$
+begin
+  update public.profiles
+  set articles_used = greatest(articles_used - 1, 0)
+  where id = uid;
+end;
+$$ language plpgsql security definer;
+
+-- =============================================
 -- DONE! All tables created with RLS policies.
 -- =============================================

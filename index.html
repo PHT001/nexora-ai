@@ -3,574 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seora — Rendez votre entreprise visible sur Google et l'IA (SEO + GEO)</title>
-  <meta name="description" content="Seora rend votre entreprise visible sur Google, ChatGPT, Perplexity et Gemini. SEO + GEO automatis&eacute;. +340% de visiteurs en moyenne. Essai gratuit 3 jours.">
+  <title>Seora — SEO Autopilot & Content Writer</title>
+  <meta name="description" content="Seora écrit, optimise et publie du contenu SEO qui se positionne sur Google et ChatGPT, tout en pilote automatique.">
   <link rel="canonical" href="https://tryseora.com/">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tryseora.com/">
-  <meta property="og:title" content="Seora — Rendez votre entreprise visible sur Google et l'IA">
-  <meta property="og:description" content="SEO + GEO automatisé. +340% de visiteurs en moyenne. Articles IA publiés automatiquement sur votre site.">
+  <meta property="og:title" content="Seora — SEO Autopilot & Content Writer">
+  <meta property="og:description" content="Seora écrit, optimise et publie du contenu SEO sur Google et ChatGPT, en pilote automatique.">
   <meta property="og:image" content="https://tryseora.com/logo/seora-logo-120.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Seora — SEO + GEO automatisé pour votre entreprise">
-  <meta name="twitter:description" content="Rendez votre entreprise visible sur Google, ChatGPT, Perplexity et Gemini. Essai gratuit 3 jours.">
-  <meta name="theme-color" content="#5855FF">
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#000000">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
-<nav class="navbar">
-  <div class="navbar-progress"></div>
-  <div class="navbar-inner">
-    <a href="index.html" class="navbar-logo">
-      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- ========== NAVBAR — Soro pill ========== -->
+<nav class="s-nav">
+  <div class="s-nav-inner">
+    <button class="s-burger" onclick="document.querySelector('.s-mobile-menu').classList.toggle('open')">
+      <svg viewBox="0 0 28 28" width="28" height="28" fill="none">
+        <rect width="28" height="28" rx="8" fill="#5855FF"/>
+        <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="s-burger-text">Seora</span>
+    </button>
+    <a href="index.html" class="s-nav-logo">
+      <svg viewBox="0 0 28 28" width="28" height="28" fill="none">
         <rect width="28" height="28" rx="8" fill="#5855FF"/>
         <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
       </svg>
       Seora
     </a>
-
-    <div class="navbar-links">
-      <a href="success-story.html">Résultats clients</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="affiliate.html">Programme partenaire</a>
-    </div>
-
-    <div class="navbar-actions">
-      <a href="signin.html" class="signin-link">Se connecter</a>
-      <a href="signup.html" class="btn btn-primary btn-sm">Essayer gratuitement</a>
-      <div class="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+    <a href="pricing.html" class="s-nav-link">Tarifs</a>
+    <a href="blog.html" class="s-nav-link">Blog</a>
+    <a href="signin.html" class="s-nav-link">Connexion</a>
+    <a href="pricing.html" class="s-nav-cta"><span class="s-nav-cta-text">Acheter</span></a>
   </div>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu">
-    <a href="success-story.html">Résultats clients</a>
+  <div class="s-mobile-menu">
     <a href="pricing.html">Tarifs</a>
-    <a href="affiliate.html">Programme partenaire</a>
-    <a href="signin.html">Se connecter</a>
-    <a href="signup.html" class="btn btn-primary">Essayer gratuitement</a>
+    <a href="blog.html">Blog</a>
+    <a href="signin.html">Connexion</a>
+    <a href="pricing.html" class="s-nav-cta" style="margin-top:8px;">Acheter</a>
   </div>
 </nav>
 
-<!-- ========== HERO ========== -->
-<section class="hero section-dark">
-  <div class="container">
-    <div class="hero-laurel-badge hero-anim hero-anim-1">
-      <div class="laurel-wrap">
-        <span class="laurel-line"></span>
-        <div class="laurel-content">
-          <span class="laurel-top">Outil #1</span>
-          <span class="laurel-main">SEO + IA</span>
-          <div class="laurel-stars">
-            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-          </div>
-          <span class="laurel-sub">+1 200 entreprises</span>
-        </div>
-        <span class="laurel-line"></span>
-      </div>
-    </div>
-    <h1 class="hero-anim hero-anim-2">Vos clients vous cherchent.<br><span class="accent">Ils trouvent vos concurrents.</span></h1>
-    <p class="hero-subtitle hero-anim hero-anim-3">Vos clients cherchent sur Google et l'IA. S'ils ne vous trouvent pas, <strong>ils vont chez le concurrent.</strong></p>
-    <div class="hero-cta hero-anim hero-anim-4">
-      <a href="signup.html" class="btn btn-primary btn-lg">Devenir visible maintenant &rarr;</a>
-      <a href="signup.html" class="demo-link">&#9654; Essayer gratuitement (3 jours)</a>
-    </div>
-    <p class="hero-reassurance hero-anim hero-anim-4">Sans engagement &middot; R&eacute;sultats en 30 jours</p>
+<main class="soro-main">
 
-    <!-- Hero Duo Mockups: SEO + GEO -->
-    <div class="hero-duo hero-anim hero-anim-5">
-      <!-- Left: Google mockup -->
-      <div class="hero-duo-card">
-        <div class="hero-duo-label">SEO — Google</div>
-        <div class="hero-duo-frame hero-duo-google">
-          <div class="hero-duo-topbar">
-            <div class="hero-duo-dots"><span></span><span></span><span></span></div>
-            <div class="hero-duo-url">
-              <svg width="12" height="12" viewBox="0 0 16 16"><path d="M8 1a5 5 0 00-5 5v2a2 2 0 00-2 2v3a2 2 0 002 2h10a2 2 0 002-2v-3a2 2 0 00-2-2V6a5 5 0 00-5-5zm-3 5a3 3 0 116 0v2H5V6z" fill="rgba(0,0,0,0.3)"/></svg>
-              google.com
-            </div>
-          </div>
-          <div class="hero-duo-body">
-            <div class="hd-searchbar">
-              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5z" fill="#9aa0a6"/></svg>
-              salon de beaut&eacute; lyon
-            </div>
-            <div class="hd-result hd-result-hero">
-              <div class="hd-r-url">votre-site.fr</div>
-              <div class="hd-r-title">Votre Salon — Le meilleur salon de beaut&eacute; &agrave; Lyon</div>
-              <div class="hd-r-desc">Soins visage, coiffure, maquillage. Not&eacute; 4.9/5 par +200 clients. Prenez rendez-vous en ligne.</div>
-              <span class="hd-r-badge">&#10003; Optimis&eacute; par Seora</span>
-            </div>
-            <div class="hd-result hd-result-grey">
-              <div class="hd-r-url">concurrent-1.fr</div>
-              <div class="hd-r-title">Salon Concurrent — Institut de beaut&eacute;</div>
-              <div class="hd-r-desc">Soins esth&eacute;tiques et bien-&ecirc;tre &agrave; Lyon...</div>
-            </div>
-            <div class="hd-result hd-result-grey">
-              <div class="hd-r-url">concurrent-2.fr</div>
-              <div class="hd-r-title">Autre Salon — Beaut&eacute; et soins</div>
-              <div class="hd-r-desc">Salon de beaut&eacute; ouvert 7j/7...</div>
-            </div>
+<!-- ========== SECTION 1: HERO ========== -->
+<section class="soro-hero">
+  <div class="soro-hero-inner">
+    <div class="soro-hero-content">
+      <div class="soro-hero-text">
+        <h1 class="soro-h1 soro-anim" data-anim="fade">Attirez des clients depuis<br>Google &amp; ChatGPT</h1>
+        <p class="soro-subtitle soro-anim" data-anim="fade" data-delay="100">Seora &eacute;crit, optimise et publie du contenu SEO qui se positionne sur Google et ChatGPT, tout en pilote automatique.</p>
+        <div class="soro-anim" data-anim="fade" data-delay="300">
+          <a href="pricing.html" class="soro-btn-gradient">
+            <span class="soro-btn-text">Acheter</span>
+          </a>
+        </div>
+        <div class="soro-proof soro-anim" data-anim="fade" data-delay="300">
+          <img src="logo/customers.webp" alt="Clients" class="soro-proof-avatars">
+          <div class="soro-proof-info">
+            <span class="soro-proof-rating"><b>4.9</b>/5 par <b>1 200+</b> clients</span>
+            <img src="logo/blue-badge.svg" alt="V&eacute;rifi&eacute;" width="16" height="16" class="soro-proof-badge">
           </div>
         </div>
       </div>
-      <!-- Right: ChatGPT mockup -->
-      <div class="hero-duo-card">
-        <div class="hero-duo-label">GEO — Intelligence Artificielle <span class="hero-duo-new">NOUVEAU</span></div>
-        <div class="hero-duo-frame hero-duo-chatgpt">
-          <div class="hero-duo-topbar hero-duo-topbar-dark">
-            <div class="hero-duo-dots"><span></span><span></span><span></span></div>
-            <div class="hero-duo-ai-title">
-              <img src="logo/chatgpt.png" alt="ChatGPT" width="18" height="18" class="hero-duo-ai-logo" style="border-radius:50%;">
-              <span class="hero-duo-ai-name">ChatGPT</span>
-            </div>
-          </div>
-          <div class="hero-duo-body">
-            <div class="hd-msg">
-              <div class="hd-avatar-user">V</div>
-              <div class="hd-bubble-user">Quel est le meilleur salon de beaut&eacute; &agrave; Lyon ?</div>
-            </div>
-            <div class="hd-msg">
-              <div class="hd-avatar-ai"><img src="logo/chatgpt.png" alt="AI" width="20" height="20" class="hd-ai-icon" style="border-radius:50%;"></div>
-              <div class="hd-bubble-ai">
-                <p>Je recommande <strong>votre-site.fr</strong> — le salon le mieux not&eacute; de Lyon avec un excellent service client et des avis v&eacute;rifi&eacute;s.</p>
-                <span class="hd-r-badge hd-r-badge-ai">&#10003; Cit&eacute; et recommand&eacute; par l'IA</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="hero-duo-tagline hero-anim hero-anim-5">Le SEO, c'est bien. &Ecirc;tre recommand&eacute; par l'IA, c'est l'avenir. <strong>Seora fait les deux.</strong></p>
-    <div class="founders-pill hero-anim hero-anim-5" style="margin: 16px auto 28px;">
-      <div class="founders-avatars">
-        <img src="logo/mrs.jpg" alt="Marius" class="founder-avatar">
-        <img src="logo/igr.jpg" alt="Igor" class="founder-avatar">
-      </div>
-      <div class="founders-info">
-        <span class="founders-name">Fond&eacute; par Marius &amp; Igor</span>
-        <span class="founders-loc">&#9737; Paris, France</span>
-      </div>
-    </div>
-    <a href="#testi" class="hero-social-proof hero-anim hero-anim-5">
-      <img src="logo/customers.webp" alt="Clients" class="hero-customers-img">
-      <span class="hero-proof-text"><strong>4.9</strong>/5 par <strong>+1 200</strong> clients</span>
-      <img src="logo/blue-badge.svg" alt="Vérifié" class="hero-blue-badge">
-    </a>
-
-  </div>
-</section>
-
-<!-- ========== STATS BANNER ========== -->
-<section class="stats-banner">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item"><div class="stat-number" data-count="6562">0</div><div class="stat-label">Pages créées pour nos clients en 2026</div></div>
-      <div class="stat-item"><div class="stat-number" data-count="1200" data-prefix="+">0</div><div class="stat-label">Entreprises qui nous font confiance</div></div>
-      <div class="stat-item"><div class="stat-number" data-count="18">0</div><div class="stat-label">Pays couverts</div></div>
-      <div class="stat-item"><div class="stat-number" data-count="340" data-prefix="+" data-suffix="%">0%</div><div class="stat-label">De visiteurs en plus (en moyenne)</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== ON S'OCCUPE DE TOUT ========== -->
-<section class="section section-light noworry-section">
-  <div class="container" style="text-align:center;">
-    <p class="label">ZÉRO PRISE DE TÊTE</p>
-    <h2 class="section-title">Vous n'y comprenez rien ?<br><span class="accent">C'est normal.</span></h2>
-    <div class="noworry-words">
-      <span class="nw-word">SEO</span>
-      <span class="nw-word">GEO</span>
-      <span class="nw-word">Backlinks</span>
-      <span class="nw-word">Maillage interne</span>
-      <span class="nw-word">Indexation</span>
-    </div>
-    <p class="noworry-sub">On sait, c'est du charabia.<br>Bonne nouvelle : <strong>vous n'avez pas besoin de comprendre.</strong></p>
-
-    <div class="noworry-grid">
-      <div class="noworry-card">
-        <div class="noworry-jargon"><span class="strikethrough">SEO technique</span></div>
-        <div class="noworry-simple">On rend votre site visible sur Google</div>
-        <div class="noworry-tag">&#10003; Seora s'en occupe</div>
-      </div>
-      <div class="noworry-card">
-        <div class="noworry-jargon"><span class="strikethrough">Backlinks & netlinking</span></div>
-        <div class="noworry-simple">D'autres sites recommandent le vôtre</div>
-        <div class="noworry-tag">&#10003; Seora s'en occupe</div>
-      </div>
-      <div class="noworry-card">
-        <div class="noworry-jargon"><span class="strikethrough">GEO & Présence IA</span></div>
-        <div class="noworry-simple">ChatGPT, Perplexity & Gemini recommandent votre entreprise</div>
-        <div class="noworry-tag">&#10003; Seora s'en occupe</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ========== LE PROBLEME ========== -->
-<section class="section section-dark problem-section">
-  <div class="container">
-    <p class="label">LE VRAI PROBLÈME</p>
-    <h2 class="section-title">Vos clients vous cherchent en ligne.<br><span class="accent">Ils ne vous trouvent pas.</span></h2>
-    <p class="section-subtitle-light" style="max-width:600px;margin:16px auto 40px;text-align:center;">40% des recherches passent par l'IA. Si vous n'&ecirc;tes pas cit&eacute;, <strong>vous n'existez pas.</strong></p>
-
-    <!-- Mockup 1: Google -->
-    <div class="mockup-block mockup-block-google">
-      <div class="mockup-block-header">
-        <span class="mockup-block-icon">
-          <svg width="24" height="24" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.34 2.49 10.5l8.04-5.91z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-        </span>
-        <div>
-          <h3 class="mockup-block-title">Sur Google</h3>
-          <p class="mockup-block-sub">Recherche classique — SEO</p>
-        </div>
-      </div>
-      <div class="mockup-frame mockup-animate" data-mockup="google">
-        <div class="mockup-topbar">
-          <div class="mockup-dots"><span></span><span></span><span></span></div>
-          <div class="mockup-url-bar">
-            <svg width="12" height="12" viewBox="0 0 16 16" style="opacity:0.4;flex-shrink:0"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 1.5A6.5 6.5 0 0114.5 8M8 1.5A6.5 6.5 0 001.5 8M8 14.5A6.5 6.5 0 0014.5 8M8 14.5A6.5 6.5 0 011.5 8M1.5 8h13M8 1.5c1.7 1.8 2.7 4 2.7 6.5s-1 4.7-2.7 6.5M8 1.5C6.3 3.3 5.3 5.5 5.3 8s1 4.7 2.7 6.5" stroke="currentColor" stroke-width="1"/></svg>
-            google.com
-          </div>
-        </div>
-        <div class="mockup-content mockup-google">
-          <div class="mg-searchbar">
-            <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5" stroke="#9aa0a6" stroke-width="1.5" fill="none"/><line x1="9.5" y1="9.5" x2="12" y2="12" stroke="#9aa0a6" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span class="mg-query" data-text="salon de beauté lyon"></span><span class="mg-cursor">|</span>
-          </div>
-          <div class="mg-results">
-            <div class="mg-result mg-r1">
-              <div class="mg-r-url">www.concurrent-lyon.fr</div>
-              <div class="mg-r-title">Salon &Eacute;l&eacute;gance Lyon — Coiffure &amp; Beaut&eacute; &#11088;</div>
-              <div class="mg-r-desc">Le salon n&deg;1 &agrave; Lyon depuis 2019. R&eacute;servez en ligne.</div>
-            </div>
-            <div class="mg-result mg-r2">
-              <div class="mg-r-url">www.beaute-pro.fr</div>
-              <div class="mg-r-title">BeautyPro — Soins haut de gamme &agrave; Lyon</div>
-              <div class="mg-r-desc">D&eacute;couvrez nos prestations exclusives. 800+ avis 5 &eacute;toiles.</div>
-            </div>
-            <div class="mg-result mg-r3">
-              <div class="mg-r-url">www.studio-belle.fr</div>
-              <div class="mg-r-title">Studio Belle — R&eacute;servation instantan&eacute;e</div>
-              <div class="mg-r-desc">Votre beaut&eacute;, notre passion. Ouvert 7j/7.</div>
-            </div>
-          </div>
-          <div class="mg-missing">
-            <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" stroke="#ef4444" stroke-width="1.5" fill="none"/><line x1="4.5" y1="4.5" x2="9.5" y2="9.5" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/><line x1="9.5" y1="4.5" x2="4.5" y2="9.5" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg>
-            Votre entreprise ? <strong>Introuvable.</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mockup 2: ChatGPT / IA -->
-    <div class="mockup-block mockup-block-ai">
-      <div class="mockup-block-header">
-        <span class="mockup-block-icon mockup-block-icon-img">
-          <img src="logo/chatgipti-white.png" alt="ChatGPT" width="32" height="32" style="border-radius:50%;object-fit:cover;">
-        </span>
-        <div>
-          <h3 class="mockup-block-title">Sur ChatGPT &amp; les IA</h3>
-          <p class="mockup-block-sub">Recherche par IA — GEO <span class="mockup-block-new">NOUVEAU</span></p>
-        </div>
-      </div>
-      <div class="mockup-frame mockup-animate" data-mockup="chatgpt">
-        <div class="mockup-topbar mockup-topbar-chatgpt">
-          <div class="mockup-dots"><span></span><span></span><span></span></div>
-          <div class="mockup-chatgpt-title">
-            <img src="logo/chatgipti-white.png" alt="ChatGPT" width="18" height="18" style="object-fit:contain;">
-            ChatGPT
-          </div>
-        </div>
-        <div class="mockup-content mockup-chatgpt">
-          <div class="mc-messages">
-            <div class="mc-msg mc-user mc-hidden">
-              <div class="mc-avatar mc-avatar-user">M</div>
-              <div class="mc-bubble mc-bubble-user" data-text="Quel est le meilleur salon de beauté à Lyon ?"></div>
-            </div>
-            <div class="mc-msg mc-ai mc-hidden">
-              <div class="mc-avatar mc-avatar-ai">
-                <img src="logo/chatgipti-white.png" alt="ChatGPT" width="20" height="20" style="object-fit:contain;">
-              </div>
-              <div class="mc-bubble mc-bubble-ai">
-                <p class="mc-ai-intro mc-type-hidden">Voici les meilleurs salons de beaut&eacute; &agrave; Lyon :</p>
-                <div class="mc-ai-list">
-                  <div class="mc-ai-item mc-type-hidden"><strong>1. Salon &Eacute;l&eacute;gance</strong> — Tr&egrave;s bien not&eacute;, service premium</div>
-                  <div class="mc-ai-item mc-type-hidden"><strong>2. BeautyPro Lyon</strong> — Sp&eacute;cialiste soins haut de gamme</div>
-                  <div class="mc-ai-item mc-type-hidden"><strong>3. Studio Belle</strong> — Excellent rapport qualit&eacute;-prix</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="mg-missing mc-missing-gpt">
-            <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" stroke="#ef4444" stroke-width="1.5" fill="none"/><line x1="4.5" y1="4.5" x2="9.5" y2="9.5" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/><line x1="9.5" y1="4.5" x2="4.5" y2="9.5" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg>
-            Votre entreprise ? <strong>M&ecirc;me pas cit&eacute;e.</strong>
-          </div>
-          <div class="mc-inputbar">
-            <span class="mc-input-placeholder">Envoyer un message...</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L7 9M14 2l-5 12-2-5-5-2 12-5z" stroke="#999" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="geo-urgency" style="margin-top:32px;">
-      <strong style="color:#ef4444;">&#9888; 97% des entreprises ne sont pas optimis&eacute;es pour l'IA.</strong><br>
-      <span style="color:#aaa;">Celles qui s'y mettent maintenant prennent une avance d&eacute;cisive.</span>
-    </p>
-
-    <div class="problem-bottom-line">
-      <p>La bonne nouvelle ? <strong class="accent">&Ccedil;a se corrige en 30 jours.</strong></p>
-      <a href="signup.html" class="btn btn-primary" style="margin-top:16px;">Corriger &ccedil;a maintenant &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ========== URGENCE — LA RÉVOLUTION IA ========== -->
-<section class="section urgency-section">
-  <div class="container">
-    <p class="label" style="text-align:center;">POURQUOI MAINTENANT</p>
-    <h2 class="section-title">Le référencement a changé.<br><span class="accent">Pour toujours.</span></h2>
-    <p class="section-subtitle" style="text-align:center;max-width:600px;margin:0 auto 32px;color:#666;font-size:17px;line-height:1.7;">Google a chang&eacute; ses r&egrave;gles. L'IA a tout boulevers&eacute;. Les entreprises qui n'agissent pas <strong>maintenant</strong> resteront invisibles.</p>
-
-    <!-- Inline stats -->
-    <div class="urgency-inline reveal-up">
-      <div class="urgency-inline-item">
-        <span class="urgency-inline-num">68%</span>
-        <span class="urgency-inline-text">recherches Google sans clic</span>
-      </div>
-      <span class="urgency-inline-sep"></span>
-      <div class="urgency-inline-item">
-        <span class="urgency-inline-num">4x</span>
-        <span class="urgency-inline-text">plus de recherches via IA</span>
-      </div>
-      <span class="urgency-inline-sep"></span>
-      <div class="urgency-inline-item">
-        <span class="urgency-inline-num">50%</span>
-        <span class="urgency-inline-text">par IA d'ici 2027</span>
-      </div>
-    </div>
-
-    <!-- Soft CTA -->
-    <div class="soft-cta-box">
-      <p>Chaque jour d'attente, ce sont des clients que vous perdez.</p>
-      <a href="signup.html" class="btn btn-primary btn-lg">Agir maintenant — c'est gratuit &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ========== AVANT / APRÈS ========== -->
-<section class="section section-dark before-after-section">
-  <div class="container">
-    <p class="label label-dark">LA DIFFÉRENCE</p>
-    <h2 class="section-title">Votre entreprise sans Seora.<br>Et <span class="accent">avec Seora.</span></h2>
-
-    <div class="ba-grid">
-      <!-- AVANT -->
-      <div class="ba-card ba-before reveal-up">
-        <div class="ba-header ba-header-before">
-          <span class="ba-badge-before">AVANT</span>
-          <span class="ba-emoji">&#128542;</span>
-        </div>
-        <div class="ba-body">
-          <div class="ba-line">
-            <span class="ba-x">&#10005;</span>
-            <span>Votre site est en page 5 de Google</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-x">&#10005;</span>
-            <span>0 visiteur par jour depuis les moteurs de recherche</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-x">&#10005;</span>
-            <span>Les gens cherchent sur Google — ils ne vous trouvent pas</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-x">&#10005;</span>
-            <span>Vos concurrents apparaissent en premier partout</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-x">&#10005;</span>
-            <span>Vous dépendez du bouche-à-oreille et des réseaux sociaux</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-x">&#10005;</span>
-            <span>Vous payez des publicités qui coûtent de plus en plus cher</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-x">&#10005;</span>
-            <span>ChatGPT et Perplexity ne mentionnent jamais votre entreprise</span>
-          </div>
-        </div>
-        <div class="ba-bottom ba-bottom-before">
-          <span class="ba-result-label">Résultat :</span>
-          <span class="ba-result-text">Des clients potentiels qui ne savent même pas que vous existez.</span>
-        </div>
-      </div>
-
-      <!-- APRÈS -->
-      <div class="ba-card ba-after reveal-up">
-        <div class="ba-header ba-header-after">
-          <span class="ba-badge-after">APRÈS</span>
-          <span class="ba-emoji">&#128640;</span>
-        </div>
-        <div class="ba-body">
-          <div class="ba-line">
-            <span class="ba-check">&#10003;</span>
-            <span>Votre site apparaît en page 1 pour vos services</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-check">&#10003;</span>
-            <span>Des centaines de visiteurs qualifiés chaque mois</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-check">&#10003;</span>
-            <span>Google recommande votre entreprise en priorité</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-check">&#10003;</span>
-            <span>Vous êtes au-dessus de vos concurrents dans les résultats</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-check">&#10003;</span>
-            <span>Les clients vous trouvent naturellement, sans pub</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-check">&#10003;</span>
-            <span>ChatGPT, Perplexity et Gemini recommandent votre entreprise</span>
-          </div>
-          <div class="ba-line">
-            <span class="ba-check">&#10003;</span>
-            <span>Votre téléphone sonne. Votre boite mail se remplit.</span>
-          </div>
-        </div>
-        <div class="ba-bottom ba-bottom-after">
-          <span class="ba-result-label">Résultat :</span>
-          <span class="ba-result-text">Un flux constant de nouveaux clients, en pilote automatique.</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:40px;">
-      <a href="signup.html" class="btn btn-primary btn-lg">Je veux que mes clients me trouvent &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ========== PRODUCT DEMO ========== -->
-<section class="section section-light">
-  <div class="container">
-    <p class="label" style="text-align:center;">DÉCOUVREZ LA PLATEFORME</p>
-    <h2 class="section-title">Tout est automatis&eacute;.<br>Vous n'avez <span class="accent">rien</span> &agrave; faire.</h2>
-
-    <div class="demo-wrapper">
-      <div class="demo-tabs">
-        <button class="demo-tab active" data-tab="articles"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Contenu automatique</button>
-        <button class="demo-tab" data-tab="backlinks"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg> Recommandations web</button>
-        <button class="demo-tab" data-tab="visibility"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg> Visibilité GEO</button>
-        <button class="demo-tab" data-tab="audit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Diagnostic de votre site</button>
-      </div>
-      <div class="demo-dashboard">
-        <div class="browser-frame">
-          <div class="browser-bar"><div class="browser-dots"><span style="background:#ff5f57;"></span><span style="background:#febc2e;"></span><span style="background:#28c840;"></span></div><div class="browser-url">app.seora.ai</div></div>
-          <div class="browser-content">
-            <!-- Panel 1: Articles -->
-            <div class="demo-panel active" data-panel="articles">
-              <div class="demo-panel-split">
-                <div class="demo-panel-left">
-                  <div class="fv-article-preview" style="margin:0;">
-                    <div class="fv-article-header"><div class="fv-dot-row"><span class="fv-dot" style="background:#ff5f57;"></span><span class="fv-dot" style="background:#febc2e;"></span><span class="fv-dot" style="background:#28c840;"></span></div></div>
-                    <div class="fv-article-body">
-                      <div class="fv-tag">SEO</div><div class="fv-title-line"></div><div class="fv-title-line short"></div><div class="fv-spacer"></div><div class="fv-text-line"></div><div class="fv-text-line"></div><div class="fv-text-line medium"></div><div class="fv-spacer"></div>
-                      <div class="fv-metrics-row">
-                        <div class="fv-metric"><span class="fv-metric-num" style="color:var(--accent);">92</span><span class="fv-metric-label">Score SEO</span></div>
-                        <div class="fv-metric"><span class="fv-metric-num" style="color:var(--green);">1.2k</span><span class="fv-metric-label">Mots</span></div>
-                        <div class="fv-metric"><span class="fv-metric-num" style="color:#6366f1;">8</span><span class="fv-metric-label">Backlinks</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="demo-panel-right">
-                  <div class="fv-calendar" style="margin:0;">
-                    <div class="fv-cal-header"><span style="font-weight:600;font-size:11px;color:#333;">Mars 2026</span><div class="fv-cal-nav"><span>&lsaquo;</span><span>&rsaquo;</span></div></div>
-                    <div class="fv-cal-grid">
-                      <span class="fv-cal-day head">L</span><span class="fv-cal-day head">M</span><span class="fv-cal-day head">M</span><span class="fv-cal-day head">J</span><span class="fv-cal-day head">V</span><span class="fv-cal-day head">S</span><span class="fv-cal-day head">D</span>
-                      <span class="fv-cal-day"></span><span class="fv-cal-day"></span><span class="fv-cal-day"></span><span class="fv-cal-day"></span><span class="fv-cal-day"></span><span class="fv-cal-day"></span><span class="fv-cal-day">1</span>
-                      <span class="fv-cal-day published">2</span><span class="fv-cal-day published">3</span><span class="fv-cal-day">4</span><span class="fv-cal-day published">5</span><span class="fv-cal-day">6</span><span class="fv-cal-day published">7</span><span class="fv-cal-day">8</span>
-                      <span class="fv-cal-day today">9</span><span class="fv-cal-day scheduled">10</span><span class="fv-cal-day scheduled">11</span><span class="fv-cal-day scheduled">12</span><span class="fv-cal-day">13</span><span class="fv-cal-day scheduled">14</span><span class="fv-cal-day">15</span>
-                      <span class="fv-cal-day scheduled">16</span><span class="fv-cal-day scheduled">17</span><span class="fv-cal-day">18</span><span class="fv-cal-day scheduled">19</span><span class="fv-cal-day scheduled">20</span><span class="fv-cal-day">21</span><span class="fv-cal-day scheduled">22</span>
-                    </div>
-                    <div class="fv-cal-legend"><span><span class="fv-cal-dot" style="background:var(--green);"></span> Publié</span><span><span class="fv-cal-dot" style="background:var(--accent);"></span> Aujourd'hui</span><span><span class="fv-cal-dot" style="background:#6366f1;"></span> Planifié</span></div>
-                  </div>
-                </div>
-              </div>
-              <p class="demo-caption">Chaque semaine, de nouvelles pages sont publiées sur votre site. Automatiquement.</p>
-            </div>
-            <!-- Panel 2: Backlinks -->
-            <div class="demo-panel" data-panel="backlinks">
-              <div class="fv-backlinks" style="height:280px;">
-                <svg viewBox="0 0 280 200" width="100%" height="100%" class="fv-network-svg">
-                  <circle cx="140" cy="100" r="20" fill="#5855FF" opacity="0.15"/><circle cx="140" cy="100" r="12" fill="#5855FF" opacity="0.3"/><circle cx="140" cy="100" r="6" fill="#5855FF"/>
-                  <text x="140" y="126" text-anchor="middle" font-size="8" fill="#5855FF" font-weight="600">Votre site</text>
-                  <line x1="140" y1="100" x2="50" y2="40" stroke="#E8562A" stroke-width="1" opacity="0.3" stroke-dasharray="4 2"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
-                  <line x1="140" y1="100" x2="230" y2="35" stroke="#22C55E" stroke-width="1" opacity="0.3" stroke-dasharray="4 2"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.5s" repeatCount="indefinite"/></line>
-                  <line x1="140" y1="100" x2="45" y2="120" stroke="#6366f1" stroke-width="1" opacity="0.3" stroke-dasharray="4 2"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1.8s" repeatCount="indefinite"/></line>
-                  <line x1="140" y1="100" x2="240" y2="130" stroke="#E8562A" stroke-width="1" opacity="0.3" stroke-dasharray="4 2"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.2s" repeatCount="indefinite"/></line>
-                  <line x1="140" y1="100" x2="80" y2="170" stroke="#22C55E" stroke-width="1" opacity="0.3" stroke-dasharray="4 2"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.7s" repeatCount="indefinite"/></line>
-                  <line x1="140" y1="100" x2="210" y2="175" stroke="#6366f1" stroke-width="1" opacity="0.3" stroke-dasharray="4 2"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1.5s" repeatCount="indefinite"/></line>
-                  <circle cx="50" cy="40" r="8" fill="#5855FF" opacity="0.2"/><circle cx="50" cy="40" r="4" fill="#5855FF" opacity="0.6"/>
-                  <circle cx="230" cy="35" r="10" fill="#22C55E" opacity="0.2"/><circle cx="230" cy="35" r="5" fill="#22C55E" opacity="0.6"/>
-                  <circle cx="45" cy="120" r="7" fill="#6366f1" opacity="0.2"/><circle cx="45" cy="120" r="3.5" fill="#6366f1" opacity="0.6"/>
-                  <circle cx="240" cy="130" r="9" fill="#5855FF" opacity="0.2"/><circle cx="240" cy="130" r="4.5" fill="#5855FF" opacity="0.6"/>
-                  <circle cx="80" cy="170" r="6" fill="#22C55E" opacity="0.2"/><circle cx="80" cy="170" r="3" fill="#22C55E" opacity="0.6"/>
-                  <circle cx="210" cy="175" r="8" fill="#6366f1" opacity="0.2"/><circle cx="210" cy="175" r="4" fill="#6366f1" opacity="0.6"/>
-                  <text x="50" y="28" text-anchor="middle" font-size="7" fill="#666">DA 72</text>
-                  <text x="230" y="23" text-anchor="middle" font-size="7" fill="#666">DA 85</text>
-                  <text x="45" y="138" text-anchor="middle" font-size="7" fill="#666">DA 64</text>
-                  <text x="240" y="148" text-anchor="middle" font-size="7" fill="#666">DA 78</text>
-                </svg>
-              </div>
-              <p class="demo-caption">Plus de 2 500 sites recommandent le vôtre à Google. Votre crédibilité augmente.</p>
-            </div>
-            <!-- Panel 3: Visibility -->
-            <div class="demo-panel" data-panel="visibility">
-              <div class="fv-llm-dashboard" style="max-width:100%;padding:24px;">
-                <div class="fv-llm-header"><span style="font-weight:600;font-size:13px;color:#333;">Visibilité IA</span><span class="fv-llm-badge">Live</span></div>
-                <div class="fv-llm-platforms" style="gap:16px;">
-                  <div class="fv-llm-row"><span class="fv-llm-icon" style="background:#4285F422;color:#4285F4;">G</span><span class="fv-llm-name">Google Search</span><div class="fv-llm-bar-wrap"><div class="fv-llm-bar" style="width:82%;background:#4285F4;"></div></div><span class="fv-llm-pct">82%</span></div>
-                  <div class="fv-llm-row"><span class="fv-llm-icon" style="background:#34A85322;color:#34A853;">M</span><span class="fv-llm-name">Google Maps</span><div class="fv-llm-bar-wrap"><div class="fv-llm-bar" style="width:71%;background:#34A853;"></div></div><span class="fv-llm-pct">71%</span></div>
-                  <div class="fv-llm-row"><span class="fv-llm-icon" style="background:#EA433522;color:#EA4335;">I</span><span class="fv-llm-name">Google Images</span><div class="fv-llm-bar-wrap"><div class="fv-llm-bar" style="width:58%;background:#EA4335;"></div></div><span class="fv-llm-pct">58%</span></div>
-                  <div class="fv-llm-row"><span class="fv-llm-icon" style="background:#FBBC0522;color:#FBBC05;">D</span><span class="fv-llm-name">Google Discover</span><div class="fv-llm-bar-wrap"><div class="fv-llm-bar" style="width:43%;background:#FBBC05;"></div></div><span class="fv-llm-pct">43%</span></div>
-                </div>
-                <div class="fv-llm-trend"><span style="color:var(--green);font-weight:600;font-size:13px;">&#9650; +23%</span><span style="font-size:11px;color:#999;">vs mois dernier</span></div>
-              </div>
-              <p class="demo-caption">Voyez exactement où vous apparaissez sur Google Search, Maps, Images et Discover.</p>
-            </div>
-            <!-- Panel 4: Audit -->
-            <div class="demo-panel" data-panel="audit">
-              <div class="fv-audit" style="max-width:100%;padding:16px;">
-                <div class="fv-audit-score-wrap" style="margin-bottom:20px;">
-                  <svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="34" fill="none" stroke="#e5e5e5" stroke-width="6"/><circle cx="40" cy="40" r="34" fill="none" stroke="#E8562A" stroke-width="6" stroke-dasharray="170 214" stroke-linecap="round" transform="rotate(-90 40 40)"><animate attributeName="stroke-dasharray" from="0 214" to="170 214" dur="1.5s" fill="freeze"/></circle><text x="40" y="38" text-anchor="middle" font-size="16" font-weight="700" fill="#111">79</text><text x="40" y="50" text-anchor="middle" font-size="7" fill="#999">/100</text></svg>
-                </div>
-                <div class="fv-audit-items" style="gap:12px;">
-                  <div class="fv-audit-row"><span class="fv-audit-check pass">&#10003;</span><span>Meta descriptions</span><span class="fv-audit-status pass">OK</span></div>
-                  <div class="fv-audit-row"><span class="fv-audit-check warn">!</span><span>Schema markup</span><span class="fv-audit-status warn">À corriger</span></div>
-                  <div class="fv-audit-row"><span class="fv-audit-check pass">&#10003;</span><span>Vitesse mobile</span><span class="fv-audit-status pass">OK</span></div>
-                  <div class="fv-audit-row"><span class="fv-audit-check fail">&#10005;</span><span>Liens cassés</span><span class="fv-audit-status fail">3 erreurs</span></div>
-                  <div class="fv-audit-row"><span class="fv-audit-check pass">&#10003;</span><span>Sitemap XML</span><span class="fv-audit-status pass">OK</span></div>
-                </div>
-              </div>
-              <p class="demo-caption">On détecte ce qui empêche Google de montrer votre site. Et on corrige.</p>
-            </div>
+      <div class="soro-hero-visual soro-anim" data-anim="fade" data-delay="400">
+        <div class="soro-mascot-wrap">
+          <!-- Mascot placeholder — replace with 3D video/image -->
+          <div class="soro-mascot">
+            <svg viewBox="0 0 200 200" width="300" height="300" fill="none">
+              <ellipse cx="100" cy="170" rx="80" ry="12" fill="#e8e7ff" opacity="0.5"/>
+              <path d="M60 140c0-40 20-90 40-90s40 50 40 90c0 20-18 30-40 30s-40-10-40-30z" fill="#5855FF"/>
+              <rect x="78" y="95" width="44" height="30" rx="15" fill="#fff"/>
+              <circle cx="88" cy="110" r="4" fill="#1a1a2e"/>
+              <circle cx="112" cy="110" r="4" fill="#1a1a2e"/>
+              <path d="M50 120c-10-5-20 0-25 10" stroke="#5855FF" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <path d="M150 120c10-5 20 0 25 10" stroke="#5855FF" stroke-width="8" stroke-linecap="round" fill="none"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -578,341 +90,121 @@
   </div>
 </section>
 
-<!-- ========== COMPARISON ========== -->
-<section class="section">
-  <div class="container">
-    <p class="label" style="text-align:center;">POURQUOI SEORA</p>
-    <h2 class="section-title">Tout ce qu'une agence fait. Pour <span class="accent">50x moins cher.</span></h2>
-    <div class="compare-cards">
-      <!-- Seora -->
-      <div class="compare-card compare-card-highlight">
-        <div class="compare-card-head">
-          <span class="compare-card-badge">Recommandé</span>
-          <h3>Seora</h3>
-          <div class="compare-card-price"><span class="accent">99&euro;</span>/mois</div>
-        </div>
-        <ul class="compare-list">
-          <li><span class="comp-check">&#10003;</span> Contenu publié chaque jour</li>
-          <li><span class="comp-check">&#10003;</span> Backlinks de sites partenaires</li>
-          <li><span class="comp-check">&#10003;</span> Google Search, Maps & Discover</li>
-          <li><span class="comp-check">&#10003;</span> Diagnostic et corrections techniques</li>
-          <li><span class="comp-check">&#10003;</span> Publication automatique</li>
-          <li><span class="comp-check">&#10003;</span> Présence sur les forums</li>
-          <li><span class="comp-check">&#10003;</span> Optimisation GEO (ChatGPT, Perplexity, Gemini)</li>
-          <li><span class="comp-check">&#10003;</span> Aucune action requise</li>
-        </ul>
-      </div>
-
-      <!-- Agence -->
-      <div class="compare-card">
-        <div class="compare-card-head">
-          <h3>Agence classique</h3>
-          <div class="compare-card-price">2 000 à 5 000&euro;/mois</div>
-        </div>
-        <ul class="compare-list">
-          <li><span class="comp-check">&#10003;</span> Contenu publié chaque jour</li>
-          <li><span class="comp-check">&#10003;</span> Backlinks de sites partenaires</li>
-          <li><span class="comp-cross">&#10005;</span> Google Search, Maps & Discover</li>
-          <li><span class="comp-check">&#10003;</span> Diagnostic et corrections techniques</li>
-          <li><span class="comp-cross">&#10005;</span> Publication automatique</li>
-          <li><span class="comp-cross">&#10005;</span> Présence sur les forums</li>
-          <li><span class="comp-cross">&#10005;</span> Optimisation GEO (ChatGPT, Perplexity, Gemini)</li>
-          <li><span class="comp-cross">&#10005;</span> Aucune action requise</li>
-        </ul>
-      </div>
-
-      <!-- DIY -->
-      <div class="compare-card">
-        <div class="compare-card-head">
-          <h3>Le faire soi-même</h3>
-          <div class="compare-card-price">Vos soirées & week-ends</div>
-        </div>
-        <ul class="compare-list">
-          <li><span class="comp-cross">&#10005;</span> Contenu publié chaque jour</li>
-          <li><span class="comp-cross">&#10005;</span> Backlinks de sites partenaires</li>
-          <li><span class="comp-cross">&#10005;</span> Google Search, Maps & Discover</li>
-          <li><span class="comp-cross">&#10005;</span> Diagnostic et corrections techniques</li>
-          <li><span class="comp-cross">&#10005;</span> Publication automatique</li>
-          <li><span class="comp-cross">&#10005;</span> Présence sur les forums</li>
-          <li><span class="comp-cross">&#10005;</span> Optimisation GEO (ChatGPT, Perplexity, Gemini)</li>
-          <li><span class="comp-cross">&#10005;</span> Aucune action requise</li>
-        </ul>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:48px;">
-      <a href="signup.html" class="btn btn-primary btn-lg">Commencer avec Seora — c'est gratuit &rarr;</a>
-      <p style="color:#888;font-size:13px;margin-top:12px;">&#10003; Sans engagement &middot; &#10003; Satisfait ou rembours&eacute; 30 jours</p>
-    </div>
+<!-- ========== SECTION 2: VALUE PROPOSITION (word-by-word) ========== -->
+<section class="soro-valueprop">
+  <div class="soro-vp-inner">
+    <h2 class="soro-vp-line" data-vp>
+      <span>Seora</span>
+      <span class="soro-vp-emoji">&#128270;</span>
+      <span>trouve</span>
+      <span>les</span>
+      <span>mots-cl&eacute;s</span>
+      <span>exacts</span>
+      <span>qui</span>
+      <span>attirent</span>
+      <span>vos</span>
+      <span>acheteurs.</span>
+    </h2>
+    <h2 class="soro-vp-line" data-vp>
+      <span>Puis</span>
+      <span>elle</span>
+      <span class="soro-vp-emoji">&#128221;</span>
+      <span>&eacute;crit</span>
+      <span>et</span>
+      <span>publie</span>
+      <span>du</span>
+      <span>contenu</span>
+      <span>chaque</span>
+      <span>jour</span>
+      <span>sur</span>
+      <span>votre</span>
+      <span>site.</span>
+    </h2>
+    <h2 class="soro-vp-line" data-vp>
+      <span>Qui</span>
+      <span>appara&icirc;t</span>
+      <span>sur</span>
+      <span class="soro-vp-logo"><img src="logo/google.png" alt="Google" width="48" height="48"></span>
+      <span>Google</span>
+      <span>et</span>
+      <span class="soro-vp-logo"><img src="logo/chatgpt.png" alt="ChatGPT" width="48" height="48"></span>
+      <span>ChatGPT,</span>
+      <span>augmentant</span>
+      <span>votre</span>
+      <span>trafic.</span>
+    </h2>
   </div>
 </section>
 
-
-<!-- ========== TESTIMONIALS ========== -->
-<section id="testi" class="section section-light testi-section">
-  <div class="testi-header">
-    <p class="label" style="text-align:center;">Témoignages</p>
-    <h2 class="section-title">Ils l'ont fait.<br>Regardez <span class="accent">leurs r&eacute;sultats.</span></h2>
+<!-- ========== SECTION 3: ANALYTICS EXAMPLES ========== -->
+<section class="soro-examples">
+  <div class="soro-examples-header">
+    <h2 class="soro-h2 soro-anim" data-anim="scroll">Ils re&ccedil;oivent des clics. Et vous ?</h2>
+    <p class="soro-subtitle soro-anim" data-anim="scroll">Des visiteurs qualifi&eacute;s gr&acirc;ce &agrave; des articles taill&eacute;s pour votre business. Aucune comp&eacute;tence requise.</p>
   </div>
-
-  <!-- Row 1 → scroll left -->
-  <div class="testi-marquee">
-    <div class="testi-track testi-track-left">
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=11" alt="" class="testi-avatar"><div><div class="testi-name">Gaspar Babnik</div><div class="testi-handle">@gaspar_hair</div></div></div>
-        <p class="testi-text">On a commencé à apparaître sur Google et nos métriques organiques ont explosé. Presque 20% de notre trafic vient de là maintenant !</p>
-        <div class="testi-chart"><svg viewBox="0 0 200 60" width="100%" preserveAspectRatio="none"><polyline points="0,55 30,50 60,48 90,42 120,30 150,20 180,12 200,5" fill="none" stroke="var(--accent)" stroke-width="2"/><polyline points="0,55 30,50 60,48 90,42 120,30 150,20 180,12 200,5 200,60 0,60" fill="url(#chartGrad)" opacity="0.15"/><defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--accent)"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs></svg></div>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=32" alt="" class="testi-avatar"><div><div class="testi-name">Marusa L.</div><div class="testi-handle">Fondatrice, BeautyPro</div></div></div>
-        <p class="testi-text">Notre Domain Rating est passé de 30 à 38 en moins de 60 jours ! Et ce n'est que le début.</p>
-        <div class="testi-stats-row"><div class="testi-stat"><div class="testi-stat-label">Domain Rating</div><div class="testi-stat-value">38 <span class="testi-stat-up">+8</span></div></div><div class="testi-stat"><div class="testi-stat-label">Domaines référents</div><div class="testi-stat-value">713 <span class="testi-stat-up">+71</span></div></div></div>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=47" alt="" class="testi-avatar"><div><div class="testi-name">Amelia Wilson</div><div class="testi-handle">@AmeliaWilson</div></div><svg class="testi-social" viewBox="0 0 24 24" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/></svg></div>
-        <p class="testi-text">Leur programme de backlinks est incroyable. Chaque mois on obtient environ 7 backlinks de qualité et 30 articles optimisés.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=60" alt="" class="testi-avatar"><div><div class="testi-name">Mariam M.</div><div class="testi-handle">CEO, StudioM</div></div></div>
-        <p class="testi-text">J'ai testé plein d'outils et c'est de loin le meilleur. Les articles ont une bonne structure et des citations pertinentes.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Row 2 → scroll right -->
-  <div class="testi-marquee">
-    <div class="testi-track testi-track-right">
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=53" alt="" class="testi-avatar"><div><div class="testi-name">Michael Rupp</div><div class="testi-handle">Fondateur, ThreeZapper</div></div></div>
-        <p class="testi-text">J'utilise Seora depuis quelques semaines et j'ai déjà vu des résultats. Les articles et backlinks sont de grande qualité !</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=14" alt="" class="testi-avatar"><div><div class="testi-name">Ramom Babic</div><div class="testi-handle">@mightycruzagency</div></div><svg class="testi-social" viewBox="0 0 48 48" width="20" height="20"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.34 2.49 10.5l8.04-5.91z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></div>
-        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testi-text">On a réussi à intégrer 15 nouveaux clients en 2 mois. Tout le processus est automatisé.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=68" alt="" class="testi-avatar"><div><div class="testi-name">Dimeji Iwalesin</div><div class="testi-handle">Directeur, StoMart</div></div></div>
-        <p class="testi-text">J'utilise Seora depuis plus de 3 mois et je suis sincèrement satisfait. Le programme de publication d'articles est fantastique.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=5" alt="" class="testi-avatar"><div><div class="testi-name">Lucas Moreau</div><div class="testi-handle">Fondateur, PixelForge</div></div></div>
-        <p class="testi-text">En 6 semaines on est passé de la page 4 à la page 1 sur nos mots-clés principaux. Le ROI est incroyable.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Row 3 → scroll left -->
-  <div class="testi-marquee">
-    <div class="testi-track testi-track-left">
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=33" alt="" class="testi-avatar"><div><div class="testi-name">Gaurav M.</div><div class="testi-handle">CEO, TechFlow</div></div></div>
-        <p class="testi-text">Le trafic venant des résultats IA est inattendu mais très bienvenu. Google nous affiche dans les résultats enrichis maintenant.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=36" alt="" class="testi-avatar"><div><div class="testi-name">Sophie Dubois</div><div class="testi-handle">CMO, GreenLeaf</div></div></div>
-        <p class="testi-text">Notre trafic organique a été multiplié par 3 en 2 mois. On reçoit des demandes de clients qu'on n'aurait jamais atteints autrement.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=41" alt="" class="testi-avatar"><div><div class="testi-name">Thomas Keller</div><div class="testi-handle">Gérant, AutoParts Lyon</div></div></div>
-        <p class="testi-text">On ne connaissait rien au référencement. Seora a tout géré. En 3 mois, nos appels entrants ont doublé.</p>
-      </div>
-
-      <div class="testi-card">
-        <div class="testi-head"><img src="https://i.pravatar.cc/48?img=29" alt="" class="testi-avatar"><div><div class="testi-name">Claire Fontaine</div><div class="testi-handle">Fondatrice, BioSoins</div></div></div>
-        <p class="testi-text">Le meilleur investissement qu'on ait fait cette année. Les résultats sont visibles chaque semaine et je n'ai rien eu à faire.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ========== PRICING ========== -->
-<section class="section section-light pricing-section-v2">
-  <div class="container">
-    <h2 class="section-title">Moins de 3&euro; par jour.<br>Des r&eacute;sultats qui durent <span class="accent">des ann&eacute;es.</span></h2>
-
-    <div class="pricing-v2">
-      <div class="pricing-v2-inner">
-        <!-- Left -->
-        <div class="pricing-v2-left">
-          <span class="pricing-v2-label">POUR LES ENTREPRENEURS</span>
-          <div class="pricing-v2-name">Tout-en-un</div>
-          <div class="pricing-v2-price">
-            <span class="pv2-old">&euro;247</span>
-            <span class="pv2-current">&euro;99</span>
-            <span class="pv2-period">/mois</span>
+  <div class="soro-examples-slider soro-anim" data-anim="scroll">
+    <div class="soro-examples-track">
+      <!-- Example cards (Search Console style) -->
+      <div class="soro-example-card">
+        <div class="soro-gsc-header">
+          <div class="soro-gsc-tabs"><span class="soro-gsc-tab active">Quotidien</span></div>
+          <div class="soro-gsc-stats">
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Clics totaux</span><span class="soro-gsc-stat-value" style="color:#4285f4">76k</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Impressions</span><span class="soro-gsc-stat-value" style="color:#e8710a">865k</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">CTR moyen</span><span class="soro-gsc-stat-value">8.8%</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Position moy.</span><span class="soro-gsc-stat-value">8.5</span></div>
           </div>
-          <div class="pricing-v2-spots">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <div>
-              <strong class="urgency-spots"></strong>
-              <small>Nous limitons les inscriptions pour maintenir la qualité des résultats.</small>
-            </div>
-          </div>
-          <a href="signup.html" class="btn btn-primary btn-lg" style="width:100%;">Commencer mon essai gratuit &rarr;</a>
-          <p style="text-align:center;font-size:12px;color:#888;margin-top:8px;">Soit moins de 3,30&euro;/jour. Annulation en 1 clic.</p>
         </div>
-
-        <!-- Right -->
-        <div class="pricing-v2-right">
-          <h4 class="pricing-v2-included">Ce qui est inclus :</h4>
-          <div class="pricing-v2-features">
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> 30 articles SEO optimisés générés et publiés automatiquement</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Articles avec citations, liens internes et infographies</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Backlinks de qualité via notre réseau de +2 500 sites partenaires</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Audit technique : on trouve et corrige ce qui bloque Google</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Articles basés sur des recherches en temps réel</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Recherche de mots-clés automatisée et clustering SERP</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Votre marque mentionnée sur les forums et Reddit</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Compatible WordPress, Webflow, Shopify, Wix et API</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Balisage JSON-LD pour les extraits enrichis</div>
-            <div class="pv2-feat"><span class="pv2-check">&#10003;</span> Articles disponibles en +20 langues</div>
+        <div class="soro-gsc-chart">
+          <svg viewBox="0 0 600 150" class="soro-chart-svg">
+            <polyline points="20,140 80,135 140,120 200,100 260,70 320,50 380,35 440,25 500,15 560,10" fill="none" stroke="#4285f4" stroke-width="2.5"/>
+            <polyline points="20,140 80,130 140,115 200,95 260,75 320,60 380,45 440,40 500,30 560,20" fill="none" stroke="#e8710a" stroke-width="2.5" stroke-dasharray="6,4"/>
+          </svg>
+          <div class="soro-gsc-annotation">
+            <span class="soro-gsc-ann-dot"></span>
+            <span class="soro-gsc-ann-text">Utilise Seora depuis ici</span>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Agency plan -->
-    <div class="agency-v2">
-      <div class="agency-v2-info">
-        <span class="agency-v2-label">POUR LES AGENCES</span>
-        <h3>Plan Agence</h3>
-        <p>Pour les entreprises qui souhaitent revendre nos services à leurs clients.</p>
-      </div>
-      <div class="agency-v2-btns">
-        <a href="success-story.html" class="btn btn-dark btn-sm">En savoir plus &rarr;</a>
-        <a href="success-story.html" class="btn btn-outline btn-sm">Voir l'étude de cas</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== GARANTIE ========== -->
-<section class="section guarantee-section">
-  <div class="container">
-    <div class="guarantee-card">
-      <div class="guarantee-shield">
-        <svg viewBox="0 0 80 96" width="80" height="96" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M40 4 L8 20 L8 52 C8 72 24 88 40 92 C56 88 72 72 72 52 L72 20 Z" fill="#22C55E" opacity="0.1" stroke="#22C55E" stroke-width="2"/>
-          <path d="M40 12 L16 24 L16 50 C16 66 28 80 40 84 C52 80 64 66 64 50 L64 24 Z" fill="#22C55E" opacity="0.08"/>
-          <path d="M28 48 L36 56 L54 38" stroke="#22C55E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="guarantee-content">
-        <h2>Satisfait ou remboursé. <span class="accent">Sans conditions.</span></h2>
-        <p>On est tellement confiants dans nos r&eacute;sultats qu'on prend le risque &agrave; votre place. Testez Seora pendant 3 jours gratuitement. Si vous n'&ecirc;tes pas convaincu dans les 30 premiers jours, on vous rembourse int&eacute;gralement. <strong>Pas de questions, pas de complications, pas de pi&egrave;ge.</strong></p>
-        <div class="guarantee-points">
-          <div class="guarantee-point"><span class="guarantee-check">&#10003;</span> 3 jours d'essai 100% gratuit</div>
-          <div class="guarantee-point"><span class="guarantee-check">&#10003;</span> Garantie satisfait ou remboursé 30 jours</div>
-          <div class="guarantee-point"><span class="guarantee-check">&#10003;</span> Annulation en 1 clic, sans justification</div>
-          <div class="guarantee-point"><span class="guarantee-check">&#10003;</span> Aucun risque — vous ne perdez rien à essayer</div>
+      <div class="soro-example-card">
+        <div class="soro-gsc-header">
+          <div class="soro-gsc-tabs"><span class="soro-gsc-tab active">Quotidien</span></div>
+          <div class="soro-gsc-stats">
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Clics totaux</span><span class="soro-gsc-stat-value" style="color:#4285f4">125k</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Impressions</span><span class="soro-gsc-stat-value" style="color:#e8710a">1.45m</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">CTR moyen</span><span class="soro-gsc-stat-value">8.6%</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Position moy.</span><span class="soro-gsc-stat-value">9.3</span></div>
+          </div>
+        </div>
+        <div class="soro-gsc-chart">
+          <svg viewBox="0 0 600 150" class="soro-chart-svg">
+            <polyline points="20,140 80,130 140,110 200,85 260,60 320,45 380,30 440,20 500,15 560,10" fill="none" stroke="#4285f4" stroke-width="2.5"/>
+            <polyline points="20,140 80,125 140,100 200,80 260,55 320,40 380,28 440,18 500,12 560,8" fill="none" stroke="#e8710a" stroke-width="2.5" stroke-dasharray="6,4"/>
+          </svg>
+          <div class="soro-gsc-annotation">
+            <span class="soro-gsc-ann-dot"></span>
+            <span class="soro-gsc-ann-text">Utilise Seora depuis ici</span>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FAQs ========== -->
-<section class="section section-light">
-  <div class="container">
-    <div class="faq-section">
-      <!-- Left -->
-      <div class="faq-left">
-        <h2>Vos questions, nos r&eacute;ponses.</h2>
-        <p>Une question ? On r&eacute;pond en moins de 2h. <a href="mailto:contact@seora.ai">&Eacute;crivez-nous</a></p>
-      </div>
-
-      <!-- Right -->
-      <div class="faq-right">
-        <div class="accordion-item active">
-          <button class="accordion-header">
-            Je n'y connais rien en technologie. C'est un problème ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">Pas du tout. C'est justement pour ça que Seora existe. Vous n'avez rien à faire. On s'occupe de tout, de A à Z. Si vous savez décrire votre activité en 2 phrases, c'est suffisant.</div>
+      <div class="soro-example-card">
+        <div class="soro-gsc-header">
+          <div class="soro-gsc-tabs"><span class="soro-gsc-tab active">Quotidien</span></div>
+          <div class="soro-gsc-stats">
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Clics totaux</span><span class="soro-gsc-stat-value" style="color:#4285f4">156k</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Impressions</span><span class="soro-gsc-stat-value" style="color:#e8710a">1.8m</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">CTR moyen</span><span class="soro-gsc-stat-value">8.7%</span></div>
+            <div class="soro-gsc-stat"><span class="soro-gsc-stat-label">Position moy.</span><span class="soro-gsc-stat-value">7.8</span></div>
           </div>
         </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header">
-            Je peux voir comment ça marche avant de m'inscrire ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">Bien sûr. On a une vidéo d'une minute qui vous montre tout. Cliquez sur "Voir comment ça marche" en haut de cette page.</div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header">
-            Comment faites-vous pour que Google me fasse apparaître plus haut ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">On utilise deux leviers. D'abord, on publie du contenu de qualité sur votre site pour que Google comprenne ce que vous faites. Ensuite, on fait en sorte que d'autres sites de confiance recommandent le vôtre. C'est comme le bouche-à-oreille, mais pour internet.</div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header">
-            Le contenu que vous créez, il est de bonne qualité ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">Oui. Chaque page est basée sur des recherches réelles. Google a confirmé qu'il n'y a aucun problème avec du contenu assisté par l'IA, tant qu'il est utile pour le lecteur. C'est exactement ce qu'on fait.</div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header">
-            Qu'est-ce que vous publiez exactement sur mon site ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">Des pages et articles qui répondent aux questions que vos futurs clients se posent. Par exemple, si vous êtes coiffeuse à Lyon, on publierait "Comment choisir sa coloration selon son type de peau". Ce contenu attire les personnes qui cherchent vos services.</div>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button class="accordion-header">
-            Est-ce que ça marche vraiment ? En combien de temps ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">Oui. La plupart de nos clients voient des résultats en 2 à 4 semaines. Les premiers visiteurs arrivent rapidement, puis les résultats s'accumulent mois après mois.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-header">
-            Mon site est en français. Ça fonctionne ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">Parfaitement. On travaille en français, en anglais, et dans plus de 18 autres langues. Le contenu est créé nativement, pas simplement traduit. 🇫🇷 🇬🇧 🇪🇸 🇩🇪 🇵🇹 🇮🇹 🇳🇱 🇧🇷 🇯🇵</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-header">
-            C'est quoi le GEO ? Et pourquoi c'est important ?
-            <span class="icon">+</span>
-          </button>
-          <div class="accordion-body">
-            <div class="accordion-body-inner">Le GEO (Generative Engine Optimization) est l'optimisation de votre présence sur les moteurs de recherche IA comme ChatGPT, Perplexity et Gemini. Aujourd'hui, de plus en plus de personnes posent directement leurs questions à l'IA au lieu de chercher sur Google. Si votre entreprise n'est pas optimisée pour ces outils, elle n'apparaîtra tout simplement pas dans leurs réponses. Seora optimise automatiquement votre visibilité sur Google ET sur l'IA — c'est la seule solution du marché qui fait les deux.</div>
+        <div class="soro-gsc-chart">
+          <svg viewBox="0 0 600 150" class="soro-chart-svg">
+            <polyline points="20,140 80,125 140,100 200,70 260,50 320,35 380,20 440,15 500,10 560,8" fill="none" stroke="#4285f4" stroke-width="2.5"/>
+            <polyline points="20,140 80,120 140,95 200,65 260,45 320,30 380,18 440,12 500,8 560,5" fill="none" stroke="#e8710a" stroke-width="2.5" stroke-dasharray="6,4"/>
+          </svg>
+          <div class="soro-gsc-annotation">
+            <span class="soro-gsc-ann-dot"></span>
+            <span class="soro-gsc-ann-text">Utilise Seora depuis ici</span>
           </div>
         </div>
       </div>
@@ -920,52 +212,512 @@
   </div>
 </section>
 
-<!-- ========== FINAL CTA ========== -->
-<section class="section section-dark final-cta-section">
-  <div class="container" style="text-align:center;">
-    <h2 class="section-title" style="font-size:38px;">Pendant que vous h&eacute;sitez,<br><span class="accent">vos concurrents avancent.</span></h2>
-    <p style="max-width:600px;margin:0 auto 32px;color:#777;font-size:17px;line-height:1.7;">Chaque jour sans Seora, ce sont des clients qui trouvent vos concurrents &agrave; votre place. Testez gratuitement. Voyez les r&eacute;sultats. D&eacute;cidez apr&egrave;s.</p>
-    <a href="signup.html" class="btn btn-primary btn-lg">Commencer gratuitement maintenant &rarr;</a>
-    <p class="hero-reassurance" style="margin-top:16px;color:#999;">&#10003; 3 jours gratuits &nbsp;&middot;&nbsp; &#10003; Sans carte bancaire &nbsp;&middot;&nbsp; &#10003; R&eacute;sultats en 30 jours</p>
+<!-- ========== SECTION 4: 3 STEPS ========== -->
+<section class="soro-steps-section">
+  <div class="soro-steps-inner">
+    <h2 class="soro-h2 soro-anim" data-anim="scroll">3 &eacute;tapes pour commencer</h2>
+    <div class="soro-steps">
+      <div class="soro-step">
+        <h3>1. Ajoutez votre site</h3>
+        <p>Collez le lien de votre site et Seora apprend votre activit&eacute; en quelques minutes.</p>
+      </div>
+      <div class="soro-step">
+        <h3>2. Recevez du contenu</h3>
+        <p>Notre IA SEO g&eacute;n&egrave;re du contenu optimis&eacute; chaque jour, adapt&eacute; &agrave; votre secteur.</p>
+      </div>
+      <div class="soro-step">
+        <h3>3. Publiez &amp; grandissez</h3>
+        <p>Lancez 10x plus de contenu SEO qui se positionne sur Google et ChatGPT.</p>
+      </div>
+    </div>
+    <div class="soro-steps-badges soro-anim" data-anim="scroll">
+      <span class="soro-badge">Id&eacute;es d'articles illimit&eacute;es</span>
+      <span class="soro-badge">100% du SEO automatis&eacute;</span>
+    </div>
   </div>
 </section>
+
+<!-- ========== SECTION 5: AUTOMATION FEATURES ========== -->
+<section class="soro-features soro-anim" data-anim="scroll">
+  <div class="soro-features-inner">
+    <div class="soro-features-header" style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:32px;margin-bottom:48px;flex-wrap:wrap;">
+      <h2 class="soro-h2" style="text-align:left;margin:0;">100% du SEO automatis&eacute;</h2>
+      <p class="soro-subtitle" style="text-align:left;margin:0;">Seora analyse votre site et cr&eacute;e votre strat&eacute;gie SEO compl&egrave;te.</p>
+    </div>
+    <div class="soro-feature-cards">
+      <div class="soro-feature-card">
+        <h3>Trouve les meilleurs mots-cl&eacute;s</h3>
+        <p>Va au-del&agrave; de la g&eacute;n&eacute;ration de contenu. Notre IA apprend quoi &eacute;crire pour vous rendre visible.</p>
+      </div>
+      <div class="soro-feature-card">
+        <h3>Apprend votre contenu</h3>
+        <p>Comprend votre ton et votre voix. Chaque contenu semble venir de vous.</p>
+      </div>
+      <div class="soro-feature-card">
+        <h3>Conna&icirc;t votre audience</h3>
+        <p>Comprend l'&eacute;tat d'esprit de vos clients et cr&eacute;e du contenu qui les int&eacute;resse.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 6: PUBLISH ========== -->
+<section class="soro-publish">
+  <div class="soro-publish-inner">
+    <h2 class="soro-h2 soro-anim" data-anim="scroll">Publiez en toute confiance</h2>
+    <p class="soro-subtitle soro-anim" data-anim="scroll">Vous vous reposez. Seora travaille en arri&egrave;re-plan pour g&eacute;n&eacute;rer du contenu SEO. Publiez vos articles le matin.</p>
+    <div class="soro-publish-cards">
+      <div class="soro-publish-card soro-anim" data-anim="scroll">
+        <h3>Modifiez &amp; personnalisez</h3>
+        <p>Changez tout, aucune comp&eacute;tence SEO requise.</p>
+      </div>
+      <div class="soro-publish-card soro-anim" data-anim="scroll">
+        <h3>Modifiez &amp; personnalisez</h3>
+        <p>Changez tout, aucune comp&eacute;tence SEO requise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 7: SERP RESULTS ========== -->
+<section class="soro-serp-section">
+  <div class="soro-serp-inner">
+    <h2 class="soro-h2 soro-anim" data-anim="scroll">Du contenu qui se positionne sur Google &amp; ChatGPT</h2>
+    <p class="soro-subtitle soro-anim" data-anim="scroll">Plus de 50k articles, 0.6 milliard d'impressions &amp; 13 millions de clics.</p>
+    <div class="soro-serp-scroll">
+      <div class="soro-serp-track">
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">bluebottlecoffee.com</div>
+            <div class="soro-serp-pos">Top 1</div>
+            <div class="soro-serp-title">Specialty Coffee Beans</div>
+            <div class="soro-serp-desc">Shop our specialty coffee collection online. Stock up on your favorite single origin coffee, espresso, decaf, and more.</div>
+          </div>
+        </div>
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">chessodoro.com</div>
+            <div class="soro-serp-pos">Top 2</div>
+            <div class="soro-serp-title">Professional Chess Coaches</div>
+            <div class="soro-serp-desc">Work with FIDE-titled chess coaches online. Get personalized training plans and expert guidance.</div>
+          </div>
+        </div>
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">invoics.com</div>
+            <div class="soro-serp-pos">Top 3</div>
+            <div class="soro-serp-title">Create, edit and export Stripe invoices</div>
+            <div class="soro-serp-desc">Set up in 2 minutes. Edit and save all invoices as PDF. Generate multiple invoices in seconds.</div>
+          </div>
+        </div>
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">hemden.de</div>
+            <div class="soro-serp-pos">Top 1</div>
+            <div class="soro-serp-title">Buy lumberjack shirts online</div>
+            <div class="soro-serp-desc">Real men wear lumberjack shirts. The checked shirts made of soft flannel fabric were first known as workwear.</div>
+          </div>
+        </div>
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">keyla.ai</div>
+            <div class="soro-serp-pos">Top 5</div>
+            <div class="soro-serp-title">UGC Rates - The Ultimate Guide</div>
+            <div class="soro-serp-desc">Looking to create UGC for your brand or hire UGC creators? Here's your comprehensive guide to UGC rates.</div>
+          </div>
+        </div>
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">atlasmic.com</div>
+            <div class="soro-serp-pos">Top 4</div>
+            <div class="soro-serp-title">COB vs EOD: Key Differences</div>
+            <div class="soro-serp-desc">COB stands for the close of business, while EOD stands for the end of day. In this article, we explain their meaning.</div>
+          </div>
+        </div>
+        <!-- Duplicate set for infinite scroll -->
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">bluebottlecoffee.com</div>
+            <div class="soro-serp-pos">Top 1</div>
+            <div class="soro-serp-title">Specialty Coffee Beans</div>
+            <div class="soro-serp-desc">Shop our specialty coffee collection online. Stock up on your favorite single origin coffee.</div>
+          </div>
+        </div>
+        <div class="soro-serp-card">
+          <div class="soro-serp-tabs"><span>All</span><span>Images</span><span>Videos</span><span>Maps</span><span>News</span></div>
+          <div class="soro-serp-result">
+            <div class="soro-serp-url">chessodoro.com</div>
+            <div class="soro-serp-pos">Top 2</div>
+            <div class="soro-serp-title">Professional Chess Coaches</div>
+            <div class="soro-serp-desc">Work with FIDE-titled chess coaches online. Get personalized training plans.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 8: INTEGRATIONS ========== -->
+<section class="soro-integrations">
+  <div class="soro-int-inner">
+    <h2 class="soro-h2 soro-anim" data-anim="scroll">Fonctionne avec votre site</h2>
+    <p class="soro-subtitle soro-anim" data-anim="scroll">Publiez sur tous les CMS majeurs ou exportez votre contenu.</p>
+    <div class="soro-cms-grid soro-anim" data-anim="scroll">
+      <div class="soro-cms-item">WordPress</div>
+      <div class="soro-cms-item">Shopify</div>
+      <div class="soro-cms-item">Wix</div>
+      <div class="soro-cms-item">Webflow</div>
+      <div class="soro-cms-item">Notion</div>
+      <div class="soro-cms-item">HubSpot</div>
+      <div class="soro-cms-item">Ghost</div>
+      <div class="soro-cms-item">Next.js</div>
+      <div class="soro-cms-item">Autres</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 9: LANGUAGES ========== -->
+<section class="soro-languages">
+  <div class="soro-lang-inner">
+    <h2 class="soro-h2 soro-anim" data-anim="scroll">Supporte 50+ langues</h2>
+    <p class="soro-subtitle soro-anim" data-anim="scroll">&Eacute;largissez votre audience avec des articles optimis&eacute;s pour le monde entier.</p>
+  </div>
+  <div class="soro-lang-scroll">
+    <div class="soro-lang-track soro-lang-track-1">
+      <span>English</span><span>Fran&ccedil;ais</span><span>Deutsch</span><span>Espa&ntilde;ol</span><span>Portugu&ecirc;s</span><span>Italiano</span><span>Nederlands</span><span>Polski</span><span>T&uuml;rk&ccedil;e</span><span>&#26085;&#26412;&#35486;</span><span>&#54620;&#44397;&#50612;</span><span>&#20013;&#25991;</span><span>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</span>
+      <span>English</span><span>Fran&ccedil;ais</span><span>Deutsch</span><span>Espa&ntilde;ol</span><span>Portugu&ecirc;s</span><span>Italiano</span><span>Nederlands</span><span>Polski</span><span>T&uuml;rk&ccedil;e</span><span>&#26085;&#26412;&#35486;</span><span>&#54620;&#44397;&#50612;</span><span>&#20013;&#25991;</span><span>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</span>
+    </div>
+    <div class="soro-lang-track soro-lang-track-2">
+      <span>Svenska</span><span>Dansk</span><span>Norsk</span><span>Suomi</span><span>&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;</span><span>&#268;e&scaron;tina</span><span>Rom&acirc;n&#259;</span><span>Magyar</span><span>&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;</span><span>Sloven&#269;ina</span><span>&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;</span><span>Hrvatski</span><span>Srpski</span>
+      <span>Svenska</span><span>Dansk</span><span>Norsk</span><span>Suomi</span><span>&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;</span><span>&#268;e&scaron;tina</span><span>Rom&acirc;n&#259;</span><span>Magyar</span><span>&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;</span><span>Sloven&#269;ina</span><span>&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;</span><span>Hrvatski</span><span>Srpski</span>
+    </div>
+    <div class="soro-lang-track soro-lang-track-3">
+      <span>Thai</span><span>Vietnamese</span><span>Indonesian</span><span>Malay</span><span>Filipino</span><span>Hindi</span><span>Bengali</span><span>Georgian</span><span>Armenian</span><span>Hebrew</span><span>Swahili</span><span>Amharic</span>
+      <span>Thai</span><span>Vietnamese</span><span>Indonesian</span><span>Malay</span><span>Filipino</span><span>Hindi</span><span>Bengali</span><span>Georgian</span><span>Armenian</span><span>Hebrew</span><span>Swahili</span><span>Amharic</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 10: COMPARISON ========== -->
+<section class="soro-compare soro-anim" data-anim="scroll">
+  <div class="soro-compare-inner">
+    <h2 class="soro-h2">Un outil pour tout faire</h2>
+    <p class="soro-subtitle">&Eacute;conomisez 5 000&euro;/mois. Prenez Seora.</p>
+    <div class="soro-compare-table-wrap">
+      <table class="soro-compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="soro-col-highlight">Seora</th>
+            <th>Agence</th>
+            <th>Vous-m&ecirc;me</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Travaille pendant que vous dormez</td><td class="soro-col-highlight soro-check">&#10003;</td><td class="soro-cross">&times;</td><td class="soro-cross">&times;</td></tr>
+          <tr><td>Contenu haute performance</td><td class="soro-col-highlight soro-check">&#10003;</td><td class="soro-check-grey">&#10003;</td><td class="soro-cross">&times;</td></tr>
+          <tr><td>Personnalis&eacute; pour votre marque</td><td class="soro-col-highlight soro-check">&#10003;</td><td class="soro-check-grey">&#10003;</td><td class="soro-check-grey">&#10003;</td></tr>
+          <tr><td>Z&eacute;ro effort, configuration simple</td><td class="soro-col-highlight soro-check">&#10003;</td><td class="soro-cross">&times;</td><td class="soro-cross">&times;</td></tr>
+          <tr><td>Support multi-langues</td><td class="soro-col-highlight soro-check">&#10003;</td><td class="soro-cross">&times;</td><td class="soro-cross">&times;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 11: TEAM ========== -->
+<section class="soro-team soro-anim" data-anim="scroll">
+  <div class="soro-team-inner">
+    <div class="soro-team-photos">
+      <div class="soro-team-photo">
+        <div class="soro-team-avatar">S</div>
+        <div class="soro-team-name">Samuel<br><span>Co-Fondateur</span></div>
+      </div>
+      <div class="soro-team-photo">
+        <div class="soro-team-avatar">A</div>
+        <div class="soro-team-name">Alex<br><span>Co-Fondateur</span></div>
+      </div>
+    </div>
+    <h2 class="soro-h2 soro-anim" data-anim="scroll" data-delay="200">Salut ! On est l'&eacute;quipe derri&egrave;re Seora</h2>
+    <div class="soro-team-text soro-anim" data-anim="scroll" data-delay="300">
+      <p>On a cr&eacute;&eacute; Seora parce qu'on en avait marre de voir de bonnes entreprises se faire &eacute;craser par de moins bonnes qui rankent mieux sur Google.</p>
+      <p>Vous savez que le SEO est important. Vous avez essay&eacute; de blogger &mdash; &eacute;crit trois articles, pris une &eacute;ternit&eacute;, sans savoir si c'&eacute;tait bien fait. Ou vous avez regard&eacute; les agences &agrave; 5k&euro;/mois et pens&eacute; &laquo; non merci &raquo;.</p>
+      <p>Seora fait tout le travail. &Eacute;crit les articles, les publie sur votre site, chaque jour. Vous n'y touchez pas.</p>
+      <p>Vous commencez &agrave; appara&icirc;tre quand les gens cherchent. Les clients vous trouvent au lieu de vos concurrents.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 12: TESTIMONIALS ========== -->
+<section class="soro-testimonials soro-anim" data-anim="scroll">
+  <div class="soro-testi-inner">
+    <h2 class="soro-h2">Utilis&eacute; par ceux qui grandissent vite</h2>
+    <div class="soro-testi-scroll">
+      <div class="soro-testi-track">
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">M</div>
+            <div><strong>Marc D.</strong><br><span>FR &mdash; D&eacute;c 14, 2025</span></div>
+          </div>
+          <p>On a remplac&eacute; notre agence SEO par Seora. M&ecirc;me r&eacute;sultat, 10x moins cher. Le contenu est publi&eacute; automatiquement.</p>
+        </div>
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">S</div>
+            <div><strong>Sophie L.</strong><br><span>FR &mdash; Nov 3, 2025</span></div>
+          </div>
+          <p>En 3 semaines, notre site est pass&eacute; de la page 5 &agrave; la page 1 sur Google. On re&ccedil;oit 3x plus d'appels.</p>
+        </div>
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">A</div>
+            <div><strong>Antoine R.</strong><br><span>FR &mdash; Nov 28, 2025</span></div>
+          </div>
+          <p>Je ne comprenais rien au SEO. Avec Seora, j'ai juste ajout&eacute; mon site et tout s'est fait tout seul.</p>
+        </div>
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">L</div>
+            <div><strong>Laura H.</strong><br><span>CA &mdash; Oct 25, 2025</span></div>
+          </div>
+          <p>Premiers r&eacute;sultats en 3 semaines. J'ai arr&ecirc;t&eacute; les pubs payantes imm&eacute;diatement. Installation en 5 minutes.</p>
+        </div>
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">J</div>
+            <div><strong>Jonas B.</strong><br><span>CA &mdash; Oct 5, 2025</span></div>
+          </div>
+          <p>L'&eacute;quipe Seora est top. Ils ont chang&eacute; notre vision du SEO et c'est compl&egrave;tement non technique.</p>
+        </div>
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">G</div>
+            <div><strong>Gabriel C.</strong><br><span>LT &mdash; Nov 22, 2025</span></div>
+          </div>
+          <p>On avait un content marketer mais maintenant on a juste Seora. &Ccedil;a nous fait gagner des heures.</p>
+        </div>
+        <!-- Duplicate for infinite scroll -->
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">M</div>
+            <div><strong>Marc D.</strong><br><span>FR &mdash; D&eacute;c 14, 2025</span></div>
+          </div>
+          <p>On a remplac&eacute; notre agence SEO par Seora. M&ecirc;me r&eacute;sultat, 10x moins cher.</p>
+        </div>
+        <div class="soro-testi-card">
+          <div class="soro-testi-author">
+            <div class="soro-testi-avatar">S</div>
+            <div><strong>Sophie L.</strong><br><span>FR &mdash; Nov 3, 2025</span></div>
+          </div>
+          <p>En 3 semaines, notre site est pass&eacute; de la page 5 &agrave; la page 1 sur Google.</p>
+        </div>
+      </div>
+    </div>
+    <div class="soro-testi-footer">
+      <span>1,000+ clients adorent Seora</span>
+      <span>|</span>
+      <a href="success-story.html">Voir plus</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 13: FAQ ========== -->
+<section class="soro-faq soro-anim" data-anim="scroll">
+  <div class="soro-faq-inner">
+    <h2 class="soro-h2">FAQ</h2>
+    <div class="soro-faq-list">
+      <details class="soro-faq-item" open>
+        <summary>Que fait exactement Seora ?</summary>
+        <p>Seora est une plateforme d'IA qui recherche automatiquement les mots-cl&eacute;s, &eacute;crit des articles optimis&eacute;s SEO, et les publie directement sur votre site &mdash; le tout en pilote automatique. Vous devenez visible sur Google et ChatGPT sans effort.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Combien d'articles par mois ?</summary>
+        <p>De 30 &agrave; un nombre illimit&eacute; d'articles selon votre plan. Chaque article est optimis&eacute; pour le SEO et adapt&eacute; &agrave; votre marque.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Est-ce que &ccedil;a fonctionne avec mon site ?</summary>
+        <p>Oui ! WordPress, Shopify, Webflow, Wix, Notion, HubSpot, Ghost, Next.js et bien d'autres. Vous pouvez aussi exporter le contenu.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Est-ce que Seora g&egrave;re le SEO technique ?</summary>
+        <p>Absolument. Seora g&egrave;re automatiquement les meta descriptions, title tags, liens internes et externes, optimisation d'images, et tous les pr&eacute;requis techniques SEO.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Quelles langues sont support&eacute;es ?</summary>
+        <p>Seora supporte 50+ langues, vous permettant de cr&eacute;er du contenu pour une audience mondiale.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Puis-je utiliser mon propre ton de marque ?</summary>
+        <p>Oui ! Seora apprend la voix unique de votre marque. Vous pouvez personnaliser le style d'&eacute;criture pour qu'il corresponde parfaitement &agrave; votre identit&eacute;.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Faut-il des comp&eacute;tences en SEO ?</summary>
+        <p>Pas du tout ! Seora est con&ccedil;u pour tout le monde. Notre IA g&egrave;re tous les aspects techniques automatiquement.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Est-ce que Seora g&eacute;n&egrave;re des images ?</summary>
+        <p>Oui ! Seora cr&eacute;e des images IA qui correspondent &agrave; votre marque et compl&egrave;tent chaque article.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Y a-t-il un engagement ?</summary>
+        <p>Aucun contrat requis ! Vous pouvez annuler &agrave; tout moment. Plans mensuels flexibles.</p>
+      </details>
+      <details class="soro-faq-item">
+        <summary>Qu'est-ce qui diff&eacute;rencie Seora ?</summary>
+        <p>Contrairement aux outils SEO classiques qui ne donnent que des donn&eacute;es, Seora fait le travail pour vous. Recherche, r&eacute;daction, optimisation et publication &mdash; tout est automatis&eacute;.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 14: FINAL CTA ========== -->
+<section class="soro-final-cta">
+  <div class="soro-cta-inner">
+    <h1 class="soro-h1 soro-anim" data-anim="scroll">Pr&ecirc;t &agrave; devenir<br>visible sur Google ?</h1>
+    <p class="soro-subtitle soro-anim" data-anim="scroll">(Sans les frais d'agence)</p>
+    <div class="soro-anim" data-anim="scroll" data-delay="100">
+      <a href="pricing.html" class="soro-btn-gradient">
+        <span class="soro-btn-text">Acheter</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <!-- ========== FOOTER ========== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-links">
-      <a href="index.html">Accueil</a>
-      <a href="affiliate.html">Programme partenaire</a>
-      <a href="success-story.html">Résultats clients</a>
-      <a href="ai-audit.html">Diagnostic gratuit</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="blog.html">Blog</a>
-      <a href="terms.html">Conditions générales</a>
-      <a href="privacy.html">Politique de confidentialité</a>
+<footer class="soro-footer">
+  <div class="soro-footer-inner">
+    <div class="soro-footer-brand">
+      <a href="index.html" class="soro-footer-logo">
+        <svg viewBox="0 0 120 36" width="120" height="36">
+          <rect x="0" y="4" width="28" height="28" rx="8" fill="#5855FF"/>
+          <path d="M18 13.5C17 12 15 11.5 13.5 11.5C11 11.5 9 12.8 9 14.8C9 17 11 17.8 14 18.8C17 19.8 19 20.8 19 22.8C19 24.8 17 25.5 14.5 25.5C13 25.5 11 25 10 23.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <text x="36" y="26" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="800" fill="#000">Seora</text>
+        </svg>
+      </a>
+      <p class="soro-footer-copy">Copyright &copy; 2026 Seora<br>Tous droits r&eacute;serv&eacute;s.</p>
     </div>
-
-    <div class="footer-bottom">
-      <div class="footer-bottom-left">
-        <div class="footer-logo">
-          <svg viewBox="0 0 28 28" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="28" height="28" rx="8" fill="#5855FF"/>
-            <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          </svg>
-          Seora
-        </div>
-        <div class="footer-address">12 Rue de la Paix, 75002 Paris &middot; SEORA SAS</div>
+    <div class="soro-footer-links">
+      <div class="soro-footer-col">
+        <h4>Produit</h4>
+        <a href="pricing.html">Tarifs</a>
+        <a href="success-story.html">R&eacute;sultats</a>
+        <a href="blog.html">Blog</a>
       </div>
-      <div class="footer-bottom-right">
-        <div class="footer-social">
-          <a href="https://www.linkedin.com/company/seora-seo" target="_blank" title="LinkedIn">in</a>
-          <a href="https://x.com/seora_seo" target="_blank" title="Twitter">&#120143;</a>
-        </div>
-        <span class="footer-copy">Copyright &copy; 2026 Seora</span>
+      <div class="soro-footer-col">
+        <h4>L&eacute;gal</h4>
+        <a href="terms.html">Conditions</a>
+        <a href="privacy.html">Confidentialit&eacute;</a>
+      </div>
+      <div class="soro-footer-col">
+        <h4>Partenaires</h4>
+        <a href="affiliate.html">Programme affili&eacute;</a>
+      </div>
+      <div class="soro-footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@tryseora.com">contact@tryseora.com</a>
       </div>
     </div>
+  </div>
+  <div class="soro-footer-bottom">
+    <p>&copy; 2026 Seora. Tous droits r&eacute;serv&eacute;s.</p>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* ---- Hero fade-in animations ---- */
+  setTimeout(function() {
+    document.querySelectorAll('.soro-hero [data-anim="fade"]').forEach(function(el) {
+      var delay = parseInt(el.dataset.delay || 0);
+      setTimeout(function() {
+        el.classList.add('soro-visible');
+      }, delay);
+    });
+  }, 100);
+
+  /* ---- Scroll-triggered fade-in (sections) ---- */
+  var scrollObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(function() {
+          entry.target.classList.add('soro-visible');
+        }, delay);
+        scrollObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('[data-anim="scroll"]').forEach(function(el) {
+    scrollObserver.observe(el);
+  });
+
+  /* ---- Value Proposition: word-by-word reveal ---- */
+  var vpLines = document.querySelectorAll('[data-vp]');
+  var vpObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var spans = entry.target.querySelectorAll('span');
+        spans.forEach(function(span, i) {
+          setTimeout(function() {
+            span.classList.add('soro-word-visible');
+          }, i * 60);
+        });
+        vpObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '0px 0px -80px 0px' });
+
+  vpLines.forEach(function(line) { vpObserver.observe(line); });
+
+  /* ---- Navbar scroll shadow ---- */
+  var nav = document.querySelector('.s-nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 10) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  /* ---- Auto-scroll SERP cards ---- */
+  var serpTrack = document.querySelector('.soro-serp-track');
+  if (serpTrack) {
+    var scrollPos = 0;
+    var speed = 0.5;
+    function animateSerp() {
+      scrollPos += speed;
+      if (scrollPos >= serpTrack.scrollWidth / 2) scrollPos = 0;
+      serpTrack.style.transform = 'translateX(-' + scrollPos + 'px)';
+      requestAnimationFrame(animateSerp);
+    }
+    animateSerp();
+  }
+
+  /* ---- Auto-scroll testimonials ---- */
+  var testiTrack = document.querySelector('.soro-testi-track');
+  if (testiTrack) {
+    var tPos = 0;
+    function animateTesti() {
+      tPos += 0.4;
+      if (tPos >= testiTrack.scrollWidth / 2) tPos = 0;
+      testiTrack.style.transform = 'translateX(-' + tPos + 'px)';
+      requestAnimationFrame(animateTesti);
+    }
+    animateTesti();
+  }
+});
+</script>
+
 </body>
 </html>

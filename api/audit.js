@@ -1,7 +1,7 @@
-const { createAdminClient, getUser, cors } = require('./_lib/supabase');
+const { createAdminClient, getUser, cors, isPublicUrl } = require('./_lib/supabase');
 
 module.exports = async function handler(req, res) {
-  cors(res);
+  cors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -10,11 +10,12 @@ module.exports = async function handler(req, res) {
 
   try {
     var sb = createAdminClient();
-    var { data: site } = await sb.from('sites').select('*').eq('user_id', user.id).single();
+    var { data: site } = await sb.from('sites').select('id, url').eq('user_id', user.id).maybeSingle();
     if (!site) return res.status(400).json({ error: 'Aucun site configuré.' });
 
     var url = site.url;
     if (!url) return res.status(400).json({ error: 'URL du site manquante.' });
+    if (!isPublicUrl(url)) return res.status(400).json({ error: 'URL du site invalide.' });
 
     // === 1. Fetch and parse HTML ===
     var issues = [];
@@ -186,7 +187,7 @@ module.exports = async function handler(req, res) {
       fcp: fcp,
       lcp: lcp,
       issues: issues
-    }).select().single();
+    }).select().maybeSingle();
 
     return res.status(200).json({
       audit: audit,
@@ -203,6 +204,6 @@ module.exports = async function handler(req, res) {
     });
   } catch (err) {
     console.error('Audit error:', err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 };

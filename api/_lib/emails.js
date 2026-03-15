@@ -6,6 +6,11 @@ function getResend() {
   return resend;
 }
 
+// HTML escape helper to prevent XSS in email templates
+function escHtml(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 // Use custom domain if verified, otherwise fallback to Resend default
 var FROM = process.env.RESEND_FROM_EMAIL || 'Seora <onboarding@resend.dev>';
 
@@ -17,7 +22,7 @@ async function sendWelcomeEmail(email, name) {
     to: email,
     subject: 'Bienvenue sur Seora ! 🚀',
     html: wrapLayout(
-      '<h1 style="font-size:24px;color:#1a1a1a;margin:0 0 8px;">Bienvenue, ' + (name || 'là') + ' !</h1>'
+      '<h1 style="font-size:24px;color:#1a1a1a;margin:0 0 8px;">Bienvenue, ' + escHtml(name || 'là') + ' !</h1>'
       + '<p style="font-size:15px;color:#666;line-height:1.7;margin:0 0 24px;">Votre compte Seora est maintenant actif. Vous pouvez commencer à générer du contenu SEO pour votre site.</p>'
       + '<h2 style="font-size:16px;color:#1a1a1a;margin:0 0 12px;">Pour bien démarrer :</h2>'
       + '<ol style="font-size:14px;color:#555;line-height:2;padding-left:20px;margin:0 0 24px;">'
@@ -33,20 +38,21 @@ async function sendWelcomeEmail(email, name) {
 // ─── Article published notification ───
 async function sendArticlePublishedEmail(email, name, articleTitle, cmsPostUrl, siteDomain) {
   var r = getResend();
-  var viewBtn = cmsPostUrl
-    ? '<a href="' + cmsPostUrl + '" style="display:inline-block;padding:12px 28px;background:#16a34a;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;margin-right:10px;">Voir l\'article sur votre site</a>'
+  var safePostUrl = /^https?:\/\//i.test(cmsPostUrl || '') ? escHtml(cmsPostUrl) : '';
+  var viewBtn = safePostUrl
+    ? '<a href="' + safePostUrl + '" style="display:inline-block;padding:12px 28px;background:#16a34a;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;margin-right:10px;">Voir l\'article sur votre site</a>'
     : '';
 
   return r.emails.send({
     from: FROM,
     to: email,
-    subject: '✅ Article publié : ' + (articleTitle || 'Nouvel article'),
+    subject: '✅ Article publié : ' + escHtml(articleTitle || 'Nouvel article'),
     html: wrapLayout(
       '<h1 style="font-size:22px;color:#1a1a1a;margin:0 0 8px;">Article publié avec succès !</h1>'
-      + '<p style="font-size:15px;color:#666;line-height:1.7;margin:0 0 20px;">' + (name || 'Bonjour') + ', votre nouvel article a été publié automatiquement sur <strong>' + (siteDomain || 'votre site') + '</strong>.</p>'
+      + '<p style="font-size:15px;color:#666;line-height:1.7;margin:0 0 20px;">' + escHtml(name || 'Bonjour') + ', votre nouvel article a été publié automatiquement sur <strong>' + escHtml(siteDomain || 'votre site') + '</strong>.</p>'
       + '<div style="background:#f9fafb;border-radius:10px;padding:18px 22px;margin:0 0 24px;border:1px solid #e8e8ec;">'
       + '<div style="font-size:12px;color:#999;margin-bottom:4px;">TITRE</div>'
-      + '<div style="font-size:16px;font-weight:600;color:#1a1a1a;">' + (articleTitle || 'Sans titre') + '</div>'
+      + '<div style="font-size:16px;font-weight:600;color:#1a1a1a;">' + escHtml(articleTitle || 'Sans titre') + '</div>'
       + '</div>'
       + '<div style="margin-bottom:16px;">' + viewBtn
       + '<a href="https://tryseora.com/dashboard" style="display:inline-block;padding:12px 28px;background:#E8562A;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Dashboard Seora</a>'
@@ -64,7 +70,7 @@ async function sendPaymentFailedEmail(email, name) {
     subject: '⚠️ Problème de paiement — Action requise',
     html: wrapLayout(
       '<h1 style="font-size:22px;color:#ef4444;margin:0 0 8px;">Problème de paiement</h1>'
-      + '<p style="font-size:15px;color:#666;line-height:1.7;margin:0 0 20px;">' + (name || 'Bonjour') + ', votre dernier paiement a échoué. Veuillez mettre à jour vos informations de paiement pour continuer à utiliser Seora.</p>'
+      + '<p style="font-size:15px;color:#666;line-height:1.7;margin:0 0 20px;">' + escHtml(name || 'Bonjour') + ', votre dernier paiement a échoué. Veuillez mettre à jour vos informations de paiement pour continuer à utiliser Seora.</p>'
       + '<a href="https://tryseora.com/dashboard" style="display:inline-block;padding:14px 32px;background:#E8562A;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Mettre à jour le paiement</a>'
       + '<p style="font-size:13px;color:#999;margin-top:20px;">Si vous pensez qu\'il s\'agit d\'une erreur, contactez-nous à support@tryseora.com</p>'
     )
@@ -97,4 +103,4 @@ function wrapLayout(bodyContent) {
     + '</body></html>';
 }
 
-module.exports = { sendWelcomeEmail, sendArticlePublishedEmail, sendPaymentFailedEmail };
+module.exports = { sendWelcomeEmail, sendArticlePublishedEmail, sendPaymentFailedEmail, wrapLayout };

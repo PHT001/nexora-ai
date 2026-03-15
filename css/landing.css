@@ -1,0 +1,2638 @@
+/* ========================================
+   Seora Landing — 1:1 Soro-style Design
+   Fonts: Cal Sans (headings) + Inter (body)
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/cal-sans@1.0.1/index.css');
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul, ol { list-style: none; }
+button, input, textarea { font-family: inherit; border: none; outline: none; }
+button { cursor: pointer; background: none; }
+
+/* ---- Accent ---- */
+:root {
+  --accent: #5855FF;
+  --accent2: #8B3DFF;
+  --gradient: linear-gradient(to right, #5855FF 0%, #8B3DFF 100%);
+  --grey: #777;
+  --light-grey: #f7f7f7;
+  --border: #eee;
+  --white: #fff;
+  --light-gray: #f7f7f7;
+  --text-dark: #111;
+  --text-muted: #777;
+  --green: #22C55E;
+}
+
+/* ---- Legacy layout classes (used by marketing pages) ---- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.section { padding: 80px 0; }
+.section-light { background: #f7f7f7; }
+.section-title {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 36px; font-weight: 400; text-align: center;
+  margin-bottom: 16px; color: #000;
+}
+.section-subtitle {
+  text-align: center; font-size: 16px; color: #777;
+  max-width: 600px; margin: 0 auto 48px; line-height: 1.6;
+}
+.accent { color: #5855FF; }
+.label-badge {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; color: #5855FF;
+  background: #f0efff; padding: 4px 12px; border-radius: 6px; margin-bottom: 12px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 24px; border-radius: 9999px; font-weight: 600;
+  font-size: 15px; transition: all 0.2s ease; text-decoration: none;
+  cursor: pointer; border: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #5855FF, #8B3DFF); color: #fff;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-lg { padding: 16px 32px; font-size: 16px; }
+.btn-sm { padding: 10px 20px; font-size: 14px; }
+.btn-dark { background: #111; color: #fff; }
+.btn-dark:hover { background: #333; }
+.btn-outline { background: transparent; border: 2px solid #5855FF; color: #5855FF; }
+.btn-outline:hover { background: #f0efff; }
+
+/* Cards / Grids */
+.aff-how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.aff-how-card {
+  background: #fff; border: 1px solid #eee; border-radius: 16px;
+  padding: 32px; text-align: center;
+}
+.aff-how-card h4 {
+  font-size: 18px; font-weight: 700; margin-bottom: 10px;
+  font-family: 'Cal Sans', system-ui, sans-serif; font-weight: 400;
+}
+.aff-how-card p { font-size: 14px; color: #777; line-height: 1.6; }
+.aff-how-img {
+  height: 180px; border-radius: 12px; margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.core-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.core-card {
+  background: #fff; border: 1px solid #eee; border-radius: 16px;
+  padding: 28px; overflow: hidden;
+}
+.core-card h4 {
+  font-size: 17px; font-weight: 700; margin-bottom: 8px;
+  font-family: 'Cal Sans', system-ui, sans-serif; font-weight: 400;
+}
+.core-card p { font-size: 14px; color: #777; line-height: 1.5; margin-bottom: 16px; }
+.core-img {
+  height: 160px; border-radius: 12px; overflow: hidden;
+}
+
+.who-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.who-grid h4 {
+  font-family: 'Cal Sans', system-ui, sans-serif; font-weight: 400;
+  font-size: 18px; margin-bottom: 8px;
+}
+
+/* Testimonials Grid */
+.testimonials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.testimonial-card {
+  background: #fff; border: 1px solid #eee; border-radius: 14px;
+  padding: 24px;
+}
+.tc-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.tc-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #5855FF; color: #fff; display: flex;
+  align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+}
+.tc-name { font-size: 14px; font-weight: 700; }
+.tc-role { font-size: 12px; color: #777; }
+.tc-stars { color: #5855FF; font-size: 14px; margin-bottom: 8px; }
+.tc-text { font-size: 13px; color: #555; line-height: 1.6; }
+
+/* Pricing Cards */
+.pricing-card {
+  background: #fff; border: 1px solid #eee; border-radius: 20px;
+  padding: 0; overflow: hidden; margin-bottom: 24px;
+}
+.pricing-inner { display: flex; }
+.pricing-left { flex: 1; padding: 40px; border-right: 1px solid #eee; }
+.pricing-right { flex: 1; padding: 40px; }
+.pricing-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #5855FF; margin-bottom: 8px;
+}
+.pricing-name {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 28px; font-weight: 400; margin-bottom: 16px;
+}
+.pricing-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px; }
+.price-old { font-size: 18px; color: #bbb; text-decoration: line-through; }
+.price-current { font-size: 42px; font-weight: 800; }
+.price-period { font-size: 16px; color: #777; }
+.pricing-spots {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 13px; color: #555; margin-bottom: 16px;
+}
+.pricing-spots .fire { font-size: 18px; }
+.pricing-features { display: flex; flex-direction: column; gap: 12px; }
+.pf-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #555; }
+.pf-check { color: #22C55E; font-weight: 700; }
+
+.agency-card {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #111; border-radius: 16px; padding: 32px 40px;
+  color: #fff; flex-wrap: wrap; gap: 24px;
+}
+.agency-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #5855FF;
+}
+.agency-card h3 { font-size: 22px; margin-bottom: 4px; }
+.agency-card p { font-size: 14px; color: #999; }
+.agency-btns { display: flex; gap: 12px; }
+
+/* FAQ */
+.faq-section { display: flex; gap: 60px; }
+.faq-left { flex: 0 0 280px; }
+.faq-left h2 { font-size: 32px; margin-bottom: 12px; }
+.faq-left p { font-size: 14px; color: #777; }
+.faq-left a { color: #5855FF; }
+.faq-right { flex: 1; }
+.accordion-item { border-bottom: 1px solid #eee; }
+.accordion-header {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 20px 0; font-size: 15px; font-weight: 600;
+  color: #000; background: none; border: none; cursor: pointer;
+  text-align: left; gap: 16px;
+}
+.accordion-header .icon { font-size: 20px; color: #999; transition: transform 0.2s; flex-shrink: 0; }
+.accordion-item.active .accordion-header .icon { transform: rotate(45deg); }
+.accordion-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion-item.active .accordion-body { max-height: 300px; }
+.accordion-body-inner {
+  padding: 0 0 20px; font-size: 14px; color: #666; line-height: 1.6;
+}
+
+/* Marquee */
+.marquee-wrap { overflow: hidden; margin-top: 24px; }
+.marquee-track {
+  display: flex; gap: 32px; animation: marqueeScroll 20s linear infinite;
+  width: max-content;
+}
+@keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.logo-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #555; white-space: nowrap; }
+.logo-dot { font-size: 18px; }
+.trusted-bar { text-align: center; background: #f7f7f7; }
+.trusted-bar p { font-size: 14px; color: #888; margin-bottom: 8px; }
+
+/* Hero (marketing pages) */
+.hero { padding: 120px 0 80px; }
+.hero h1 {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 44px; font-weight: 400; margin-bottom: 16px; line-height: 1.15;
+}
+.hero p { font-size: 18px; color: #777; max-width: 600px; margin-bottom: 32px; line-height: 1.5; }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+
+/* Affiliate dashboard mockup */
+.affiliate-dashboard {
+  max-width: 480px; background: #fff; border-radius: 20px;
+  border: 1px solid #eee; padding: 32px; margin-top: 32px;
+}
+.dash-header { margin-bottom: 12px; }
+.dash-slider {
+  height: 6px; background: #f0f0f0; border-radius: 3px;
+  margin-bottom: 16px; position: relative;
+}
+.dash-slider::after {
+  content: ''; position: absolute; left: 0; top: 0;
+  height: 6px; width: 60%; background: linear-gradient(to right, #5855FF, #8B3DFF);
+  border-radius: 3px;
+}
+.dash-earnings { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dash-earning-card {
+  background: #f7f7f7; border-radius: 12px; padding: 20px; text-align: center;
+}
+.dash-earning-card.highlight { background: #f0efff; }
+.de-label { font-size: 12px; color: #777; margin-bottom: 4px; }
+.de-value { font-size: 24px; font-weight: 800; }
+
+/* Urgency spots */
+.urgency-spots::before {
+  content: 'Plus que 12 places disponibles ce mois-ci';
+  font-weight: 700; color: #e53e3e; display: block;
+}
+
+/* Responsive for marketing page grids */
+@media (max-width: 900px) {
+  .aff-how-grid { grid-template-columns: 1fr; }
+  .core-grid { grid-template-columns: 1fr !important; }
+  .who-grid { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-inner { flex-direction: column; }
+  .pricing-left { border-right: none; border-bottom: 1px solid #eee; }
+  .faq-section { flex-direction: column; gap: 32px; }
+  .faq-left { flex: none; }
+  .hero h1 { font-size: 32px; }
+}
+@media (max-width: 600px) {
+  .who-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 20px; }
+  .section { padding: 60px 0; }
+}
+
+/* ---- Containers ---- */
+.s-container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.s-container-sm { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+/* ==============================
+   NAVBAR — Floating pill (Soro)
+   ============================== */
+.s-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 16px 0;
+}
+.s-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 78px;
+  padding: 12px 24px;
+  background: #fff;
+  border: 1px solid #f7f7f7;
+  border-radius: 32px;
+  box-shadow: rgb(247, 247, 247) 0px 1px 1px 0px;
+  transition: box-shadow 0.3s;
+}
+.s-nav.scrolled .s-nav-inner {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.s-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+  white-space: nowrap;
+}
+.s-nav-logo svg { flex-shrink: 0; }
+.s-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.s-nav-links a {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  transition: opacity 0.2s;
+}
+.s-nav-links a:hover { opacity: 0.6; }
+.s-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  border: 2px solid var(--accent);
+  border-radius: 9999px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.s-nav-cta:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Burger */
+.s-burger { display: none; flex-direction: column; gap: 4px; padding: 8px; }
+.s-burger span { display: block; width: 20px; height: 2px; background: #000; border-radius: 1px; }
+.s-mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 24px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  margin-top: 8px;
+  width: 100%;
+  max-width: 320px;
+}
+.s-mobile-menu a { font-size: 16px; font-weight: 500; color: #000; padding: 8px 0; }
+.s-mobile-menu.open { display: flex; }
+
+/* ==============================
+   HERO — Soro-style centered
+   ============================== */
+.s-hero {
+  padding: 160px 0 80px;
+  text-align: center;
+}
+.s-hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.s-hero-h1 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 72px;
+  letter-spacing: -0.5px;
+  color: #000;
+  margin-bottom: 24px;
+}
+.s-hero-sub {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  color: var(--grey);
+  margin-bottom: 40px;
+}
+.s-inline-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  vertical-align: baseline;
+}
+.s-inline-logo img {
+  display: inline-block;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+/* Primary CTA — Soro gradient pill */
+.s-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 64px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--gradient);
+  border-radius: 9999px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.s-btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(88, 85, 255, 0.35);
+}
+
+/* Social proof */
+.s-social-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+.s-proof-avatars {
+  height: 36px;
+  border-radius: 20px;
+}
+.s-proof-text {
+  font-size: 16px;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.s-proof-badge { vertical-align: middle; }
+
+/* ==============================
+   FADE-IN ANIMATIONS — Soro-style
+   ============================== */
+.s-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.s-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.s-delay-1 { transition-delay: 0.15s; }
+.s-delay-2 { transition-delay: 0.3s; }
+.s-delay-3 { transition-delay: 0.45s; }
+
+/* Scroll reveal */
+.s-scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.s-scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==============================
+   VALUE PROPOSITION — Soro big text
+   ============================== */
+.s-value-prop {
+  padding: 80px 0 120px;
+}
+.s-value-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center;
+}
+.s-vp-heading {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 56px;
+  color: #d0d0d0;
+  transition: color 0.6s ease;
+}
+.s-vp-heading.visible {
+  color: #000;
+}
+.s-vp-spacer {
+  height: 200px;
+}
+
+/* ==============================
+   SECTIONS — Soro-style spacing
+   ============================== */
+.s-section {
+  padding: 100px 0;
+}
+.s-section-gray {
+  background: #FAFAFA;
+}
+.s-section-title {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 56px;
+  color: #000;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.s-section-sub {
+  font-size: 18px;
+  color: var(--grey);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 28px;
+}
+
+/* ==============================
+   ANALYTICS CARD
+   ============================== */
+.s-analytics-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  padding: 48px;
+  margin-top: 24px;
+}
+.s-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+.s-analytics-num {
+  display: block;
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 4px;
+}
+.s-analytics-label {
+  font-size: 14px;
+  color: var(--grey);
+}
+
+/* ==============================
+   STEPS — Soro 3-step
+   ============================== */
+.s-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 48px;
+}
+.s-step { text-align: center; }
+.s-step:nth-child(2) .s-scroll-reveal,
+.s-step:nth-child(2) { transition-delay: 0.1s; }
+.s-step:nth-child(3) .s-scroll-reveal,
+.s-step:nth-child(3) { transition-delay: 0.2s; }
+
+.s-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.s-step-title {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 12px;
+}
+.s-step-desc {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--grey);
+}
+
+/* ==============================
+   AUTOMATION CARDS
+   ============================== */
+.s-auto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.s-auto-card {
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  background: #fff;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.s-auto-card:hover {
+  border-color: #ddd;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+.s-auto-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f0efff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.s-auto-card h3 {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 8px;
+}
+.s-auto-card p {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--grey);
+}
+
+/* ==============================
+   PUBLISH FEATURES
+   ============================== */
+.s-publish-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+}
+.s-publish-card {
+  padding: 32px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+.s-publish-card h3 {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 12px;
+}
+.s-publish-card p {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--grey);
+}
+
+/* ==============================
+   CMS GRID
+   ============================== */
+.s-cms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.s-cms-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  transition: border-color 0.2s;
+}
+.s-cms-item:hover { border-color: #ccc; }
+.s-cms-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--light-grey);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grey);
+  flex-shrink: 0;
+}
+
+/* ==============================
+   COMPARISON TABLE — Soro-style
+   ============================== */
+.s-compare {
+  margin-top: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  background: #fff;
+}
+.s-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.s-compare-table thead th {
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;
+  text-align: center;
+  background: #FAFAFA;
+  border-bottom: 1px solid #eee;
+}
+.s-compare-table thead th:first-child { text-align: left; }
+.s-compare-table thead th.s-compare-hl {
+  background: var(--accent);
+  color: #fff;
+}
+.s-compare-table tbody td {
+  padding: 16px 20px;
+  font-size: 15px;
+  color: #444;
+  text-align: center;
+  border-bottom: 1px solid #f5f5f5;
+}
+.s-compare-table tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: #000;
+}
+.s-compare-table tbody tr:last-child td { border-bottom: none; }
+.s-compare-hl { background: #f8f7ff; }
+.s-ck { color: var(--accent); font-weight: 700; font-size: 18px; }
+.s-ck-grey { color: #ccc; font-size: 18px; }
+.s-x { color: #ddd; font-size: 20px; }
+
+/* ==============================
+   TESTIMONIALS — Soro-style
+   ============================== */
+.s-testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.s-testi {
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  background: #fff;
+}
+.s-testi:nth-child(2) { transition-delay: 0.1s; }
+.s-testi:nth-child(3) { transition-delay: 0.2s; }
+.s-testi-stars {
+  color: #f59e0b;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.s-testi-text {
+  font-size: 15px;
+  line-height: 26px;
+  color: #444;
+  margin-bottom: 20px;
+}
+.s-testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.s-testi-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.s-testi-author strong { font-size: 14px; color: #000; }
+.s-testi-author span { font-size: 13px; color: #999; }
+
+/* ==============================
+   FAQ — Soro-style accordion
+   ============================== */
+.s-faq { margin-top: 32px; }
+.s-faq-item {
+  border-bottom: 1px solid #eee;
+}
+.s-faq-item:first-child { border-top: 1px solid #eee; }
+.s-faq-item summary {
+  padding: 24px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.s-faq-item summary::-webkit-details-marker { display: none; }
+.s-faq-item summary::after {
+  content: '+';
+  font-size: 24px;
+  color: #ccc;
+  font-weight: 300;
+  transition: transform 0.2s;
+}
+.s-faq-item[open] summary::after { content: '\2212'; }
+.s-faq-item p {
+  padding: 0 0 24px;
+  font-size: 16px;
+  line-height: 28px;
+  color: var(--grey);
+}
+
+/* ==============================
+   CTA — Final section
+   ============================== */
+.s-cta {
+  padding: 120px 0;
+  text-align: center;
+  background: #fff;
+}
+.s-cta-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.s-cta-title {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 60px;
+  color: #000;
+  margin-bottom: 32px;
+}
+.s-cta-note {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* ==============================
+   FOOTER — Soro-style
+   ============================== */
+.s-footer {
+  padding: 64px 0 40px;
+  border-top: 1px solid #eee;
+}
+.s-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.s-footer-brand p {
+  font-size: 13px;
+  color: #999;
+  margin-top: 12px;
+}
+.s-footer-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  margin-bottom: 16px;
+}
+.s-footer-col a {
+  display: block;
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.s-footer-col a:hover { color: #000; }
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media (max-width: 900px) {
+  .s-nav-links { display: none; }
+  .s-nav-cta { display: none; }
+  .s-burger { display: flex; }
+  .s-nav-inner { gap: 12px; }
+
+  .s-hero { padding: 130px 0 60px; }
+  .s-hero-h1 { font-size: 36px; line-height: 44px; }
+  .s-hero-h1 .s-inline-logo img { width: 28px; height: 28px; }
+  .s-hero-sub { font-size: 17px; line-height: 28px; }
+  .s-btn-primary { padding: 14px 40px; font-size: 16px; }
+
+  .s-vp-heading { font-size: 28px; line-height: 38px; }
+  .s-vp-spacer { height: 100px; }
+
+  .s-section { padding: 64px 0; }
+  .s-section-title { font-size: 28px; line-height: 38px; }
+  .s-section-sub { font-size: 16px; }
+
+  .s-analytics-grid { grid-template-columns: repeat(2, 1fr); }
+  .s-analytics-num { font-size: 28px; }
+
+  .s-steps { grid-template-columns: 1fr; gap: 32px; }
+  .s-auto-grid { grid-template-columns: 1fr; }
+  .s-publish-features { grid-template-columns: 1fr; }
+  .s-cms-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .s-compare-table thead th,
+  .s-compare-table tbody td { padding: 12px 10px; font-size: 13px; }
+
+  .s-testimonials { grid-template-columns: 1fr; }
+  .s-cta-title { font-size: 32px; line-height: 42px; }
+
+  .s-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 480px) {
+  .s-hero-h1 { font-size: 28px; line-height: 36px; }
+  .s-hero-h1 .s-inline-logo img { width: 22px; height: 22px; }
+  .s-vp-heading { font-size: 24px; line-height: 34px; }
+  .s-section-title { font-size: 24px; line-height: 34px; }
+  .s-analytics-grid { grid-template-columns: 1fr 1fr; }
+  .s-cms-grid { grid-template-columns: 1fr 1fr; }
+  .s-footer-grid { grid-template-columns: 1fr; }
+  .s-cta-title { font-size: 28px; line-height: 36px; }
+  .s-btn-primary { padding: 14px 32px; font-size: 15px; }
+}
+
+
+/* ========================================
+   Blog Page — Soro-style
+   ======================================== */
+
+/* Blog Header */
+.s-blog-header {
+  text-align: center;
+  padding: 140px 24px 0;
+  margin-bottom: 64px;
+}
+.s-blog-header h1 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 72px;
+  color: #000;
+  margin-bottom: 16px;
+}
+.s-blog-header p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  color: #777;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Blog Section */
+.s-blog-section {
+  padding: 0 0 80px;
+}
+.s-blog-container {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Blog Grid */
+.s-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Blog Card */
+.s-blog-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0;
+}
+.s-blog-card:hover h3 {
+  color: var(--accent);
+}
+
+/* Category tag */
+.s-blog-cat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.s-blog-cat span {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+}
+
+/* Card Title */
+.s-blog-card h3 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #111;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+/* Card Excerpt */
+.s-blog-card p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+/* Author row */
+.s-blog-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+.s-blog-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.s-blog-meta-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #777;
+}
+.s-blog-name {
+  color: #333;
+  font-weight: 500;
+}
+.s-blog-dot {
+  color: #777;
+}
+.s-blog-meta-text time {
+  color: #777;
+}
+
+/* Pagination */
+.s-blog-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 64px;
+}
+.s-blog-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.s-blog-page:hover {
+  background: var(--light-grey);
+  color: #000;
+}
+.s-blog-page.active {
+  background: var(--accent);
+  color: #fff;
+}
+.s-blog-page-next {
+  font-size: 18px;
+}
+
+/* Blog Responsive */
+@media (max-width: 900px) {
+  .s-blog-header h1 { font-size: 44px; line-height: 52px; }
+  .s-blog-header p { font-size: 18px; line-height: 28px; }
+  .s-blog-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .s-blog-card h3 { font-size: 24px; line-height: 28px; }
+}
+@media (max-width: 480px) {
+  .s-blog-header { padding-top: 110px; margin-bottom: 40px; }
+  .s-blog-header h1 { font-size: 36px; line-height: 44px; }
+  .s-blog-header p { font-size: 16px; line-height: 24px; }
+  .s-blog-grid { grid-template-columns: 1fr; gap: 32px; }
+  .s-blog-card h3 { font-size: 26px; line-height: 30px; }
+}
+
+
+/* ========================================
+   Auth Pages (signin, signup)
+   ======================================== */
+
+.s-auth-page {
+  display: flex;
+  min-height: 100vh;
+}
+.s-auth-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.s-auth-left h1 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+  color: #000;
+  margin-bottom: 8px;
+}
+.s-auth-switch {
+  font-size: 15px;
+  color: #777;
+  margin-bottom: 28px;
+}
+.s-auth-switch a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.s-auth-switch a:hover { text-decoration: underline; }
+
+.s-auth-error {
+  display: none;
+  color: #e53e3e;
+  background: #fef2f2;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* Google sign-in */
+.s-auth-google {
+  min-height: 44px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.s-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+  font-size: 13px;
+  color: #aaa;
+  text-transform: lowercase;
+}
+.s-auth-divider::before,
+.s-auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* Auth form fields */
+.s-auth-field {
+  margin-bottom: 16px;
+}
+.s-auth-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
+}
+.s-auth-field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #111;
+  background: #fff;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.s-auth-field input:focus {
+  border-color: var(--accent);
+}
+.s-auth-field input::placeholder {
+  color: #bbb;
+}
+
+.s-auth-submit {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 9999px;
+  background: var(--gradient);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 8px;
+}
+.s-auth-submit:hover { opacity: 0.9; }
+.s-auth-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.s-auth-forgot {
+  text-align: right;
+  margin-top: -4px;
+  margin-bottom: 12px;
+}
+.s-auth-forgot a {
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+}
+.s-auth-forgot a:hover { text-decoration: underline; }
+
+.s-auth-terms {
+  font-size: 12px;
+  color: #999;
+  margin-top: 24px;
+  line-height: 1.6;
+}
+.s-auth-terms a { color: #777; text-decoration: underline; }
+
+/* Auth right side — testimonial panel */
+.s-auth-right {
+  flex: 1;
+  background: var(--light-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.s-auth-testimonial {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 400px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.s-at-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.s-at-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+.s-at-name { font-size: 15px; font-weight: 600; color: #111; }
+.s-at-role { font-size: 13px; color: #777; }
+.s-at-quote {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 12px;
+}
+.s-at-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #777;
+}
+
+/* Auth responsive */
+@media (max-width: 900px) {
+  .s-auth-right { display: none; }
+  .s-auth-left { max-width: 100%; padding: 100px 24px 40px; }
+}
+
+
+/* ========================================
+   Legal Pages (privacy, terms)
+   ======================================== */
+
+.s-legal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 140px 24px 80px;
+}
+.s-legal-page h1 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 52px;
+  color: #000;
+  margin-bottom: 8px;
+}
+.s-legal-date {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 40px;
+}
+.s-legal-page h2 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #111;
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+.s-legal-page p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 16px;
+}
+.s-legal-page a { color: var(--accent); text-decoration: none; }
+.s-legal-page a:hover { text-decoration: underline; }
+.s-legal-page ul, .s-legal-page ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+.s-legal-page li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 480px) {
+  .s-legal-page { padding-top: 110px; }
+  .s-legal-page h1 { font-size: 32px; line-height: 40px; }
+}
+
+
+/* ========================================
+   404 Page
+   ======================================== */
+
+.s-404-page {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 24px 60px;
+}
+.s-404-page h1 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #111;
+  margin-bottom: 12px;
+}
+.s-404-page p {
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+.s-404-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.s-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border: 2px solid var(--accent);
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--accent);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.s-btn-outline:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+
+/* ========================================
+   Page Header (reusable centered)
+   ======================================== */
+
+.s-page-header {
+  text-align: center;
+  padding: 140px 24px 0;
+  margin-bottom: 48px;
+}
+.s-page-header h1 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 60px;
+  color: #000;
+  margin-bottom: 16px;
+}
+.s-page-header p {
+  font-size: 20px;
+  line-height: 30px;
+  color: #777;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .s-page-header { padding-top: 110px; }
+  .s-page-header h1 { font-size: 32px; line-height: 40px; }
+  .s-page-header p { font-size: 16px; }
+}
+
+
+/* ========================================
+   Generic Card & Container
+   ======================================== */
+
+.s-container {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.s-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+/* Secondary CTA Section (for marketing pages) */
+.s-section-light {
+  background: var(--light-grey);
+  padding: 80px 24px;
+}
+
+
+
+/* ================================================
+   SORO-STYLE INDEX — Exact trysoro.com replica
+   All values measured from trysoro.com production
+   ================================================ */
+
+/* ---- Soro Main Layout ---- */
+.soro-main {
+  padding-bottom: 0;
+}
+.soro-main > section {
+  margin-bottom: 192px;
+}
+
+/* ---- Soro Typography (exact Soro values) ---- */
+.soro-h1 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 72px;
+  color: #000;
+}
+.soro-h2 {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 56px;
+  color: #000;
+  text-align: center;
+}
+.soro-subtitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #777;
+  text-align: center;
+}
+
+/* ---- Soro Animations (exact: transition-all 1s cubic-bezier(0,0,0.2,1)) ---- */
+[data-anim="fade"],
+[data-anim="scroll"] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0, 0, 0.2, 1);
+}
+[data-anim="fade"].soro-visible,
+[data-anim="scroll"].soro-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger delays — exact Soro values */
+[data-delay="100"] { transition-delay: 0.1s; }
+[data-delay="150"] { transition-delay: 0.15s; }
+[data-delay="200"] { transition-delay: 0.2s; }
+[data-delay="300"] { transition-delay: 0.3s; }
+[data-delay="400"] { transition-delay: 0.4s; }
+[data-delay="500"] { transition-delay: 0.5s; }
+
+/* ---- Soro Gradient Button (exact: glow shadow) ---- */
+.soro-btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 64px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #fff;
+  background: linear-gradient(to right, #5855ff 0%, #8b3dff 100%);
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgb(255, 255, 255) 0px 0px 10px 0px inset,
+              rgba(88, 85, 255, 0.4) 0px 8px 24px 0px;
+}
+.soro-btn-gradient:hover {
+  background: linear-gradient(to right, #4a42e6, #7c2ff0);
+}
+.soro-btn-gradient:active {
+  transform: scale(0.95);
+}
+.soro-btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Nav updates for Soro style (exact: #777 links, 78px height) ---- */
+.s-nav-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: #777;
+  transition: color 0.2s;
+  white-space: nowrap;
+  padding: 12px 16px;
+}
+.s-nav-link:hover { color: #000; }
+.s-nav-cta-text { position: relative; z-index: 1; }
+
+/* Desktop: show logo + links + cta, hide burger */
+@media (min-width: 768px) {
+  .s-nav .s-burger { display: none !important; }
+  .s-nav-logo { display: flex !important; }
+  .s-nav-link { display: block; }
+  .s-nav-cta { display: inline-flex; }
+}
+/* Mobile: show burger, hide everything else */
+@media (max-width: 767px) {
+  .s-nav .s-burger { display: flex !important; align-items: center; gap: 8px; padding: 4px; }
+  .s-burger-text { font-size: 20px; font-weight: 800; color: #000; }
+  .s-nav-logo { display: none !important; }
+  .s-nav-link { display: none !important; }
+  .s-nav-inner > .s-nav-cta { display: none !important; }
+}
+
+/* ================================================
+   HERO — Soro-style (exact values)
+   ================================================ */
+.soro-hero {
+  padding-top: 120px;
+  margin-bottom: 192px;
+}
+.soro-hero-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 32px 0;
+}
+.soro-hero-content {
+  display: flex;
+  flex-direction: column;
+}
+.soro-hero-text {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;
+}
+.soro-hero-text .soro-h1 {
+  margin-bottom: 16px;
+}
+.soro-hero-text .soro-subtitle {
+  padding: 0 16px;
+  margin-bottom: 32px;
+}
+
+/* Social proof */
+.soro-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: 24px;
+}
+.soro-proof-avatars {
+  height: 32px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.soro-proof-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.soro-proof-rating {
+  font-size: 14px;
+  color: #555;
+}
+.soro-proof-badge {
+  display: inline-block;
+  margin-left: 2px;
+}
+
+/* Mascot */
+.soro-hero-visual {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+.soro-mascot-wrap {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.soro-mascot {
+  display: flex;
+  justify-content: center;
+}
+
+/* ================================================
+   VALUE PROPOSITION — word-by-word reveal (exact Soro)
+   max-width: 700px, space-y-16 (64px gap between lines)
+   ================================================ */
+.soro-valueprop {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 8px;
+  margin-bottom: 192px;
+}
+.soro-vp-inner {
+  text-align: center;
+}
+.soro-vp-line {
+  font-family: 'Cal Sans', system-ui, -apple-system, sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 56px;
+  color: #000;
+  margin-bottom: 64px;
+}
+.soro-vp-line:last-child {
+  margin-bottom: 0;
+}
+.soro-vp-line span {
+  display: inline;
+  color: #d4d4d4;
+  transition: color 0.5s ease;
+}
+.soro-vp-line span.soro-word-visible {
+  color: #000;
+}
+.soro-vp-emoji {
+  font-size: 48px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+.soro-vp-logo {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+.soro-vp-logo img {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+/* ================================================
+   EXAMPLES — Analytics carousel (exact Soro)
+   ================================================ */
+.soro-examples {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-bottom: 192px;
+}
+.soro-examples-header {
+  max-width: 720px;
+  margin: 0 auto 16px;
+  text-align: center;
+}
+.soro-examples-header .soro-subtitle {
+  margin-top: 16px;
+}
+.soro-examples-slider {
+  overflow: hidden;
+  padding: 32px 0;
+}
+.soro-examples-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.7s ease-out;
+}
+.soro-example-card {
+  min-width: 600px;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 24px;
+  flex-shrink: 0;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+}
+.soro-gsc-header {
+  margin-bottom: 16px;
+}
+.soro-gsc-tabs {
+  margin-bottom: 16px;
+}
+.soro-gsc-tab {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+.soro-gsc-tab.active {
+  background: #fff;
+  border-color: #ccc;
+  color: #000;
+}
+.soro-gsc-stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.soro-gsc-stat {
+  display: flex;
+  flex-direction: column;
+}
+.soro-gsc-stat-label {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 2px;
+}
+.soro-gsc-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+}
+.soro-gsc-chart {
+  position: relative;
+  border-top: 1px solid #f5f5f5;
+  padding-top: 16px;
+}
+.soro-chart-svg {
+  width: 100%;
+  height: auto;
+}
+.soro-gsc-annotation {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999;
+}
+.soro-gsc-ann-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5855ff;
+  flex-shrink: 0;
+}
+
+/* ================================================
+   STEPS — 3-step flow (exact Soro)
+   max-width: 1440px, gap: 48px, h3: 32px Cal Sans
+   ================================================ */
+.soro-steps-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-bottom: 192px;
+}
+.soro-steps-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+.soro-steps-inner .soro-h2 {
+  margin-bottom: 64px;
+}
+.soro-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 0;
+}
+.soro-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.soro-step h3 {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #000;
+  margin-bottom: 12px;
+}
+.soro-step p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #777;
+}
+.soro-steps-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+.soro-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  border: 1px solid #eee;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  background: #fff;
+}
+
+/* ================================================
+   FEATURES — Automation cards (exact Soro)
+   bg: #f4f4f5 (zinc-100), p: 48px, rounded-2xl, gap: 48px
+   h4: Inter 22px semibold, desc: 20px #777
+   ================================================ */
+.soro-features {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  margin-bottom: 192px;
+}
+.soro-features-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.soro-feature-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  width: 100%;
+  background: #f4f4f5;
+  border-radius: 16px;
+  padding: 48px;
+}
+.soro-feature-card {
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+.soro-feature-card h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #000;
+  margin-bottom: 16px;
+}
+.soro-feature-card p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #777;
+}
+
+/* ================================================
+   PUBLISH (exact Soro)
+   2-column grid, left text + right visual
+   ================================================ */
+.soro-publish {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-bottom: 192px;
+}
+.soro-publish-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.soro-publish .soro-h2 {
+  text-align: left;
+  margin-bottom: 32px;
+}
+.soro-publish .soro-subtitle {
+  text-align: left;
+  margin-top: 0;
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.soro-publish-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.soro-publish-card {
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid #ebebeb;
+  background: #fff;
+  transition: border-color 0.3s;
+}
+.soro-publish-card:hover {
+  border-color: #d4d4d4;
+}
+.soro-publish-card h3 {
+  font-family: 'Cal Sans', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 8px;
+}
+.soro-publish-card p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #777;
+}
+
+/* ================================================
+   SERP RESULTS — Scrolling cards (exact Soro)
+   Article cards: 384px wide, rounded-2xl, border #E5E7EB
+   ================================================ */
+.soro-serp-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+  margin-bottom: 192px;
+}
+.soro-serp-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 32px;
+}
+.soro-serp-inner .soro-subtitle {
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+.soro-serp-scroll {
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 32px 0;
+}
+.soro-serp-track {
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+}
+.soro-serp-card {
+  min-width: 384px;
+  max-width: 384px;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 24px;
+  flex-shrink: 0;
+  text-align: left;
+  transition: all 0.3s;
+  height: 375px;
+  display: flex;
+  flex-direction: column;
+}
+.soro-serp-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+}
+.soro-serp-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.soro-serp-tabs span {
+  font-size: 12px;
+  color: #999;
+}
+.soro-serp-tabs span:first-child {
+  color: #4285f4;
+  font-weight: 600;
+}
+.soro-serp-url {
+  font-size: 14px;
+  color: #3c4043;
+  margin-bottom: 4px;
+}
+.soro-serp-pos {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(to right, #5E35B1, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.soro-serp-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a0dab;
+  margin-bottom: 4px;
+}
+.soro-serp-desc {
+  font-size: 16px;
+  line-height: 24px;
+  color: #777;
+}
+
+/* ================================================
+   INTEGRATIONS (exact Soro)
+   CMS icons: flex-wrap, gap: 32px, items: 120px min-width
+   ================================================ */
+.soro-integrations {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-bottom: 192px;
+}
+.soro-int-inner {
+  text-align: center;
+}
+.soro-int-inner .soro-subtitle {
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+.soro-cms-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.soro-cms-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  min-width: 120px;
+  width: 120px;
+  height: 120px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  transition: opacity 0.2s;
+}
+.soro-cms-item:hover {
+  opacity: 0.7;
+}
+
+/* ================================================
+   LANGUAGES — Scrolling ticker (exact Soro)
+   Pills: bg #f4f4f5, rounded-lg (8px), 140px wide
+   4 rows with alternating directions
+   ================================================ */
+.soro-languages {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-bottom: 192px;
+  overflow: hidden;
+  position: relative;
+}
+.soro-lang-inner {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.soro-lang-inner .soro-subtitle {
+  margin-top: 16px;
+}
+.soro-lang-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+.soro-lang-track {
+  display: flex;
+  gap: 12px;
+  animation: scrollLang 50s linear infinite;
+  width: max-content;
+}
+.soro-lang-track-2 {
+  animation-direction: reverse;
+  animation-duration: 55s;
+}
+.soro-lang-track-3 {
+  animation-duration: 45s;
+}
+.soro-lang-track span {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #f4f4f5;
+  border-radius: 8px;
+  margin: 0 3px;
+  width: 140px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  white-space: nowrap;
+}
+@keyframes scrollLang {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ================================================
+   COMPARISON TABLE (exact Soro)
+   Grid 4-col, highlight stripe on Soro column
+   Feature rows: py-5 (20px), gap-8 (32px)
+   ================================================ */
+.soro-compare {
+  margin-bottom: 192px;
+}
+.soro-compare-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.soro-compare-inner .soro-h2 {
+  margin-bottom: 16px;
+}
+.soro-compare-inner .soro-subtitle {
+  margin-bottom: 64px;
+}
+.soro-compare-table-wrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.soro-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.soro-compare-table thead th {
+  padding: 20px 32px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  border-bottom: none;
+}
+.soro-compare-table thead th:first-child {
+  text-align: left;
+}
+.soro-col-highlight {
+  background: #F8F7FF;
+}
+.soro-compare-table thead .soro-col-highlight {
+  background: #F8F7FF;
+  color: #000;
+}
+.soro-compare-table tbody td {
+  padding: 20px 32px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  border-bottom: 1px solid #f5f5f5;
+}
+.soro-compare-table tbody td:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: #000;
+}
+.soro-compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.soro-check {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 18px;
+}
+.soro-check-grey {
+  color: #ccc;
+  font-size: 18px;
+}
+.soro-cross {
+  color: #ddd;
+  font-size: 20px;
+}
+
+/* ================================================
+   TEAM (exact Soro)
+   max-width: 720px, team cards with border gray-200
+   Avatar: 96px, name 20px semibold, role 20px #777
+   ================================================ */
+.soro-team {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-bottom: 192px;
+}
+.soro-team-inner {
+  text-align: center;
+}
+.soro-team-photos {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.soro-team-photo {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+  padding: 0;
+}
+.soro-team-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 0;
+  background: var(--accent);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.soro-team-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  padding-right: 24px;
+}
+.soro-team-name span {
+  font-weight: 400;
+  color: #777;
+  font-size: 20px;
+}
+.soro-team .soro-h2 {
+  margin-bottom: 48px;
+}
+.soro-team-text {
+  text-align: left;
+  margin-top: 0;
+}
+.soro-team-text p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+/* ================================================
+   TESTIMONIALS — Masonry columns (exact Soro)
+   3 columns, gap 24px, cards: border #ebebeb, rounded-2xl
+   Author avatar: 40px, quote: 16px/24px #666
+   ================================================ */
+.soro-testimonials {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  margin-bottom: 192px;
+  overflow: visible;
+}
+.soro-testi-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.soro-testi-inner .soro-h2 {
+  margin-bottom: 48px;
+}
+.soro-testi-scroll {
+  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+.soro-testi-track {
+  display: flex;
+  gap: 16px;
+  will-change: transform;
+}
+.soro-testi-card {
+  min-width: 340px;
+  max-width: 340px;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #ebebeb;
+  background: #fff;
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+}
+.soro-testi-card:hover {
+  border-color: #d4d4d4;
+}
+.soro-testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.soro-testi-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.soro-testi-author strong {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  display: block;
+}
+.soro-testi-author span {
+  font-size: 13px;
+  color: #999;
+}
+.soro-testi-card p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #666;
+}
+.soro-testi-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+  font-size: 14px;
+  color: #999;
+}
+.soro-testi-footer a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ================================================
+   FAQ — Inside a card (exact Soro)
+   Card: border #ebebeb, rounded-2xl
+   Questions: 20px/28px, answers: 20px/28px #777
+   Chevron: rotates 180deg on open
+   ================================================ */
+.soro-faq {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px;
+  margin-bottom: 192px;
+}
+.soro-faq-inner {
+  text-align: center;
+}
+.soro-faq-inner .soro-h2 {
+  margin-bottom: 48px;
+}
+.soro-faq-list {
+  text-align: left;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.soro-faq-item {
+  border-bottom: 1px solid #ebebeb;
+}
+.soro-faq-item:last-child {
+  border-bottom: none;
+}
+.soro-faq-item:first-child {
+  border-top: none;
+}
+.soro-faq-item summary {
+  padding: 24px 32px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.2s;
+}
+.soro-faq-item summary::-webkit-details-marker { display: none; }
+.soro-faq-item summary::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px;
+  transition: transform 0.3s ease;
+}
+.soro-faq-item[open] summary::after {
+  transform: rotate(180deg);
+}
+.soro-faq-item p {
+  padding: 0 32px 24px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #777;
+}
+
+/* ================================================
+   FINAL CTA (exact Soro)
+   margin-bottom: -80px (overlaps into footer)
+   ================================================ */
+.soro-main > .soro-final-cta {
+  text-align: center;
+  position: relative;
+  margin-bottom: -80px;
+}
+.soro-cta-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 10;
+}
+.soro-cta-inner .soro-h1 {
+  margin-bottom: 16px;
+}
+.soro-cta-inner .soro-subtitle {
+  margin-bottom: 32px;
+  margin-top: 16px;
+}
+
+/* ================================================
+   FOOTER — Soro-style (exact: bg #f5f5f5)
+   ================================================ */
+.soro-footer {
+  background: #f5f5f5;
+  padding: 64px 0 0;
+}
+.soro-footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.soro-footer-brand {
+  margin-bottom: 48px;
+}
+.soro-footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.soro-footer-copy {
+  font-size: 16px;
+  line-height: 24px;
+  color: #999;
+}
+.soro-footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.soro-footer-col h4 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #000;
+  margin-bottom: 24px;
+}
+.soro-footer-col a {
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  color: #999;
+  margin-bottom: 16px;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.soro-footer-col a:hover { color: #000; }
+.soro-footer-bottom {
+  border-top: 1px solid #E5E5E5;
+  padding: 32px 16px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.soro-footer-bottom p {
+  font-size: 16px;
+  line-height: 24px;
+  color: #999;
+  text-align: left;
+}
+
+/* ================================================
+   RESPONSIVE — Soro sections
+   ================================================ */
+@media (max-width: 900px) {
+  .soro-main > section { margin-bottom: 96px; }
+  .soro-h1 { font-size: 40px; line-height: 48px; }
+  .soro-h2 { font-size: 28px; line-height: 38px; }
+  .soro-subtitle { font-size: 18px; line-height: 28px; }
+  .soro-btn-gradient { padding: 14px 40px; font-size: 16px; }
+
+  .soro-hero { margin-bottom: 96px; }
+  .soro-hero-inner { padding: 16px 8px 0; }
+  .soro-valueprop { margin-bottom: 96px; }
+  .soro-vp-line { font-size: 28px; line-height: 40px; margin-bottom: 48px; }
+  .soro-vp-emoji { font-size: 32px; }
+  .soro-vp-logo img { width: 48px; height: 48px; }
+
+  .soro-examples { margin-bottom: 96px; padding: 0 8px; }
+  .soro-example-card { min-width: 330px; }
+  .soro-steps-section { margin-bottom: 96px; padding: 0 16px; }
+  .soro-steps { grid-template-columns: 1fr; gap: 24px; }
+  .soro-step h3 { font-size: 24px; }
+  .soro-step p { font-size: 16px; }
+  .soro-features { margin-bottom: 96px; }
+  .soro-feature-cards { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+  .soro-feature-card h3 { font-size: 18px; }
+  .soro-feature-card p { font-size: 16px; }
+  .soro-publish { margin-bottom: 96px; padding: 0 16px; }
+  .soro-publish-cards { grid-template-columns: 1fr; }
+  .soro-serp-section { margin-bottom: 96px; }
+  .soro-serp-card { min-width: 300px; max-width: 300px; }
+  .soro-integrations { margin-bottom: 96px; padding: 0 16px; }
+  .soro-languages { margin-bottom: 96px; }
+  .soro-lang-track span { width: 110px; padding: 8px 12px; }
+  .soro-compare { margin-bottom: 96px; }
+  .soro-compare-table thead th,
+  .soro-compare-table tbody td { padding: 12px 10px; font-size: 14px; }
+  .soro-team { margin-bottom: 96px; padding: 0 16px; }
+  .soro-team-photos { flex-direction: column; align-items: center; }
+  .soro-testimonials { margin-bottom: 96px; }
+  .soro-testi-card { min-width: 280px; max-width: 280px; }
+  .soro-faq { margin-bottom: 96px; }
+  .soro-faq-item summary { padding: 20px 24px; font-size: 16px; }
+  .soro-faq-item p { padding: 0 24px 20px; font-size: 16px; }
+  .soro-main > .soro-final-cta { margin-bottom: -40px; }
+  .soro-footer-inner { flex-direction: column; gap: 32px; }
+  .soro-footer-links { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+}
+
+@media (max-width: 480px) {
+  .soro-h1 { font-size: 32px; line-height: 40px; }
+  .soro-h2 { font-size: 24px; line-height: 34px; }
+  .soro-subtitle { font-size: 16px; line-height: 24px; }
+  .soro-vp-line { font-size: 24px; line-height: 36px; }
+  .soro-btn-gradient { padding: 14px 32px; font-size: 15px; }
+  .soro-footer-links { grid-template-columns: 1fr 1fr; }
+  .soro-gsc-stats { gap: 12px; }
+  .soro-gsc-stat-value { font-size: 18px; }
+}

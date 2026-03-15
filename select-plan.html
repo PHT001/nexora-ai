@@ -3,753 +3,310 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choisir un plan — Seora.ai</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Choisir un plan — Seora</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
+  <link rel="stylesheet" href="css/landing.css">
   <style>
-    .pricing-topbar {
-      padding: 20px 32px;
-      display: flex;
-      align-items: center;
+    .sp-topbar { padding: 20px 32px; display: flex; align-items: center; }
+    .sp-ready {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: #5855FF; margin-bottom: 12px;
     }
-
-    /* Left content */
-    .pricing-ready {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 12px;
+    .sp-title {
+      font-family: 'Cal Sans', system-ui, sans-serif;
+      font-size: 32px; font-weight: 400; line-height: 1.2;
+      color: #000; margin-bottom: 8px;
     }
-
-    .pricing-title {
-      font-size: 32px;
-      font-weight: 800;
-      color: #1a1a1a;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-    .pricing-title span { color: var(--accent); }
-
-    .pricing-subtitle {
-      font-size: 15px;
-      color: #888;
-      margin-bottom: 32px;
-      line-height: 1.5;
-    }
+    .sp-title span { color: #5855FF; }
+    .sp-subtitle { font-size: 15px; color: #777; margin-bottom: 32px; line-height: 1.5; }
 
     /* Plan card */
-    .plan-card {
-      background: #fff;
-      border: 1.5px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 24px;
+    .sp-card {
+      background: #fff; border: 1px solid #eee; border-radius: 16px;
+      padding: 32px; margin-bottom: 24px;
     }
-    .plan-badge {
-      font-size: 11px;
-      font-weight: 600;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+    .sp-badge {
+      font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 8px;
     }
-    .plan-name {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 12px;
+    .sp-plan-name {
+      font-family: 'Cal Sans', system-ui, sans-serif;
+      font-size: 22px; font-weight: 400; color: #5855FF; margin-bottom: 12px;
     }
-    .plan-price {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-    .plan-old {
-      font-size: 16px;
-      color: #bbb;
-      text-decoration: line-through;
-    }
-    .plan-amount {
-      font-size: 42px;
-      font-weight: 800;
-      color: #1a1a1a;
-    }
-    .plan-period {
-      font-size: 16px;
-      color: #888;
-    }
+    .sp-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px; }
+    .sp-old { font-size: 16px; color: #bbb; text-decoration: line-through; }
+    .sp-amount { font-size: 42px; font-weight: 800; color: #000; }
+    .sp-period { font-size: 16px; color: #777; }
 
-    .plan-cta {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: opacity 0.2s;
-      text-align: center;
-      margin-bottom: 8px;
-      box-sizing: border-box;
+    .sp-cta {
+      display: block; width: 100%; padding: 16px;
+      background: linear-gradient(135deg, #5855FF, #8B3DFF); color: #fff;
+      border: none; border-radius: 9999px; font-size: 16px; font-weight: 600;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s; text-align: center; margin-bottom: 8px;
     }
-    .plan-cta:hover { opacity: 0.9; }
-
-    .plan-cancel {
-      text-align: center;
-      font-size: 13px;
-      color: #999;
-      margin-bottom: 24px;
-    }
-    .plan-cancel span { font-style: italic; }
+    .sp-cta:hover { opacity: 0.9; }
+    .sp-cancel { text-align: center; font-size: 13px; color: #999; margin-bottom: 24px; }
 
     /* Features */
-    .features-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #1a1a1a;
-      text-align: center;
-      margin-bottom: 16px;
+    .sp-feat-title {
+      font-size: 14px; font-weight: 600; color: #111; text-align: center; margin-bottom: 16px;
     }
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 20px;
+    .sp-feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+    .sp-feat {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: #555; line-height: 1.4;
     }
-    .feature-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 13px;
-      color: #555;
-      line-height: 1.4;
+    .sp-check {
+      width: 18px; height: 18px; border-radius: 50%; background: #eeedff;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
     }
-    .feature-check {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #EFF6FF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .feature-check svg {
-      width: 10px;
-      height: 10px;
-    }
+    .sp-check svg { width: 10px; height: 10px; }
 
     /* Guarantee */
-    .guarantee {
-      background: #f8f9fa;
-      border-radius: 12px;
-      padding: 16px 24px;
-      text-align: center;
-      margin-top: 20px;
+    .sp-guarantee {
+      background: #f7f7f7; border-radius: 12px; padding: 16px 24px;
+      text-align: center; margin-top: 20px;
     }
-    .guarantee-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #1a1a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 4px;
+    .sp-guarantee-t {
+      font-size: 14px; font-weight: 600; color: #111;
+      display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px;
     }
-    .guarantee p {
-      font-size: 13px;
-      color: #888;
-    }
+    .sp-guarantee p { font-size: 13px; color: #777; }
 
     /* Right side */
-    .pricing-right-content {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 420px;
-    }
+    .sp-right-content { position: relative; z-index: 1; width: 100%; max-width: 420px; }
 
-    /* Stats row */
-    .stats-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
+    /* Stats */
+    .sp-stats { display: flex; gap: 12px; margin-bottom: 24px; }
+    .sp-stat {
+      flex: 1; background: #fff; border-radius: 12px; padding: 16px 12px;
+      text-align: center; border: 1px solid #eee;
     }
-    .stat-card {
-      flex: 1;
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      border: 1px solid #f0f0f0;
-    }
-    .stat-card .stat-val {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-card .stat-lbl {
-      font-size: 11px;
-      color: #888;
-      margin-top: 4px;
-      line-height: 1.3;
-    }
+    .sp-stat-val { font-size: 24px; font-weight: 800; color: #5855FF; }
+    .sp-stat-lbl { font-size: 11px; color: #777; margin-top: 4px; }
 
-    /* Testimonial card */
-    .testimonial-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px 24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      border: 1px solid #f0f0f0;
-      position: relative;
-      transition: opacity 0.3s;
+    /* Testimonial */
+    .sp-testi {
+      background: #fff; border-radius: 16px; padding: 28px 24px;
+      border: 1px solid #eee; transition: opacity 0.3s;
     }
-    .testi-brand {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+    .sp-testi-brand { font-size: 16px; font-weight: 700; color: #5855FF; letter-spacing: 1px; margin-bottom: 8px; }
+    .sp-testi-stars { display: flex; gap: 2px; margin-bottom: 12px; }
+    .sp-testi-star { color: #5855FF; font-size: 16px; }
+    .sp-testi-text { font-size: 14px; color: #333; line-height: 1.6; margin-bottom: 8px; font-style: italic; }
+    .sp-testi-detail { font-size: 13px; color: #777; line-height: 1.5; margin-bottom: 16px; }
+    .sp-testi-author { display: flex; align-items: center; gap: 12px; }
+    .sp-testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%; background: #5855FF;
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 16px;
     }
-    .testi-stars {
-      display: flex;
-      gap: 2px;
-      margin-bottom: 12px;
-    }
-    .testi-star {
-      color: #3B82F6;
-      font-size: 16px;
-    }
-    .testi-text {
-      font-size: 14px;
-      color: #333;
-      line-height: 1.6;
-      margin-bottom: 8px;
-      font-style: italic;
-    }
-    .testi-detail {
-      font-size: 13px;
-      color: #888;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-    .testi-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .testi-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-    }
-    .testi-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: #1a1a1a;
-    }
-    .testi-role {
-      font-size: 12px;
-      color: #888;
-    }
-    .testi-verified {
-      margin-left: auto;
-      font-size: 11px;
-      color: var(--accent);
-      font-weight: 600;
-    }
+    .sp-testi-name { font-size: 14px; font-weight: 600; color: #111; }
+    .sp-testi-role { font-size: 12px; color: #777; }
+    .sp-testi-verified { margin-left: auto; font-size: 11px; color: #5855FF; font-weight: 600; }
 
     /* Arrows */
-    .testi-arrows {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 16px;
+    .sp-arrows { display: flex; justify-content: center; gap: 12px; margin-top: 16px; }
+    .sp-arrow {
+      width: 36px; height: 36px; border-radius: 50%; border: 1px solid #eee;
+      background: #fff; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #555; font-size: 14px; transition: all 0.2s;
     }
-    .testi-arrow {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid #ddd;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #666;
-      font-size: 14px;
-      transition: all 0.2s;
-    }
-    .testi-arrow:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .sp-arrow:hover { border-color: #5855FF; color: #5855FF; }
 
-    /* Rating bar */
-    .rating-bar {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 13px;
-      color: #666;
-    }
-    .rating-bar .stars {
-      color: #3B82F6;
-    }
-    .rating-bar strong {
-      color: #1a1a1a;
-    }
+    .sp-rating { text-align: center; margin-top: 16px; font-size: 13px; color: #555; }
+    .sp-rating .stars { color: #5855FF; }
+    .sp-rating strong { color: #111; }
 
-    /* Map background */
-    .map-bg {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      opacity: 0.08;
-    }
+    /* Map bg */
+    .sp-map { position: absolute; inset: 0; overflow: hidden; opacity: 0.06; }
 
-    @keyframes pricingIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .pricing-content { animation: pricingIn 0.4s ease; }
-
-    /* Admin bypass */
-    .admin-bypass {
-      background: #f0f0f2;
-      border: 1px dashed #ccc;
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .admin-bypass label {
-      font-size: 11px;
-      font-weight: 600;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-    .admin-bypass input {
-      flex: 1;
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 13px;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .admin-bypass input:focus { border-color: var(--accent); }
-    .admin-bypass button {
-      padding: 8px 16px;
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
-    }
-    .admin-bypass button:hover { background: #555; }
+    @keyframes spIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .sp-content { animation: spIn 0.4s ease; }
 
     /* Welcome overlay */
-    .welcome-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #fff;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .sp-welcome {
+      display: none; position: fixed; inset: 0; z-index: 9999; background: #fff;
+      flex-direction: column; align-items: center; justify-content: center;
     }
-    .welcome-overlay.show {
-      display: flex;
-      animation: welcomeFadeIn 0.3s ease;
+    .sp-welcome.show { display: flex; animation: spIn 0.3s ease; }
+    .sp-welcome-logo {
+      width: 64px; height: 64px; margin-bottom: 32px;
+      animation: spLogoIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
     }
-
-    @keyframes welcomeFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes spLogoIn { from { opacity: 0; transform: scale(0.5) rotate(-10deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
+    .sp-welcome-spinner {
+      width: 40px; height: 40px; border: 3px solid #f0f0f0; border-top-color: #5855FF;
+      border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 28px;
     }
-
-    .welcome-logo {
-      width: 64px; height: 64px;
-      margin-bottom: 32px;
-      animation: welcomeLogoIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
-    }
-
-    @keyframes welcomeLogoIn {
-      from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
-      to { opacity: 1; transform: scale(1) rotate(0deg); }
-    }
-
-    .welcome-spinner {
-      width: 40px; height: 40px;
-      border: 3px solid #f0f0f0;
-      border-top-color: #E8562A;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin-bottom: 28px;
-    }
-    .welcome-spinner.done {
-      border-color: #22c55e;
-      border-top-color: #22c55e;
-      animation: none;
-    }
-
+    .sp-welcome-spinner.done { border-color: #22c55e; border-top-color: #22c55e; animation: none; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    .welcome-status {
-      font-size: 14px;
-      color: #999;
-      margin-bottom: 8px;
-      transition: all 0.3s;
+    .sp-welcome-status { font-size: 14px; color: #999; margin-bottom: 8px; }
+    .sp-welcome-title {
+      font-family: 'Cal Sans', system-ui, sans-serif;
+      font-size: 32px; font-weight: 400; color: #000;
+      opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-
-    .welcome-title {
-      font-size: 32px;
-      font-weight: 800;
-      color: #1a1a1a;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .sp-welcome-title.show { opacity: 1; transform: translateY(0); }
+    .sp-welcome-sub { font-size: 15px; color: #777; margin-top: 8px; opacity: 0; transform: translateY(10px); transition: all 0.5s ease 0.2s; }
+    .sp-welcome-sub.show { opacity: 1; transform: translateY(0); }
+    .sp-welcome-checks { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; margin-bottom: 32px; }
+    .sp-wc {
+      display: flex; align-items: center; gap: 10px; font-size: 14px; color: #555;
+      opacity: 0; transform: translateX(-10px); transition: all 0.4s ease;
     }
-    .welcome-title.show {
-      opacity: 1;
-      transform: translateY(0);
+    .sp-wc.show { opacity: 1; transform: translateX(0); }
+    .sp-wc-icon {
+      width: 22px; height: 22px; border-radius: 50%; background: #f0fdf4;
+      color: #22c55e; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
     }
-
-    .welcome-subtitle {
-      font-size: 15px;
-      color: #888;
-      margin-top: 8px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.5s ease 0.2s;
+    .sp-welcome-btn {
+      display: none; padding: 14px 40px;
+      background: linear-gradient(135deg, #5855FF, #8B3DFF); color: #fff;
+      border: none; border-radius: 9999px; font-size: 15px; font-weight: 600;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      opacity: 0; transform: translateY(10px); transition: all 0.3s;
     }
-    .welcome-subtitle.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .welcome-checkmarks {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 32px;
-      margin-bottom: 32px;
-    }
-    .welcome-check {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: #555;
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: all 0.4s ease;
-    }
-    .welcome-check.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .welcome-check-icon {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: #f0fdf4;
-      color: #22c55e;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .welcome-enter-btn {
-      display: none;
-      padding: 14px 40px;
-      background: #E8562A;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.3s;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    .welcome-enter-btn.show {
-      display: inline-flex;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .welcome-enter-btn:hover { background: #d14a22; }
+    .sp-welcome-btn.show { display: inline-flex; opacity: 1; transform: translateY(0); }
+    .sp-welcome-btn:hover { opacity: 0.9; }
 
     @media (max-width: 768px) {
-      .pricing-topbar { padding: 16px 20px; }
-      .pricing-title { font-size: 24px; }
-      .features-grid { grid-template-columns: 1fr; }
-      .stats-row { flex-direction: column; }
-      .welcome-title { font-size: 24px; }
+      .sp-topbar { padding: 16px 20px; }
+      .sp-title { font-size: 24px; }
+      .sp-feat-grid { grid-template-columns: 1fr; }
+      .sp-stats { flex-direction: column; }
+      .sp-welcome-title { font-size: 24px; }
     }
   </style>
 </head>
 <body>
 
   <!-- Top bar -->
-  <div class="pricing-topbar">
-    <a href="index.html" class="navbar-logo">
-      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="28" height="28" rx="8" fill="#5855FF"/>
-        <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      </svg>
-      Seora.ai
+  <div class="sp-topbar">
+    <a href="index.html" class="s-nav-logo">
+      <svg viewBox="0 0 28 28" width="28" height="28" fill="none"><rect width="28" height="28" rx="8" fill="#5855FF"/><path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+      Seora
     </a>
   </div>
 
   <!-- Main Layout -->
-  <div class="auth-page" style="display:none;">
+  <div class="s-auth-page" style="display:none;">
 
     <!-- Left: Pricing -->
-    <div class="auth-left pricing-content" style="max-width:520px;">
+    <div class="s-auth-left sp-content" style="max-width:520px;">
+      <div class="sp-ready">&#10024; Tout est prêt pour vous</div>
+      <h1 class="sp-title">Commencez à <span>Grandir</span> Aujourd'hui</h1>
+      <p class="sp-subtitle">Rejoignez plus de 2 000 entreprises qui obtiennent du trafic organique depuis Google et ChatGPT chaque mois.</p>
 
-      <!-- Admin bypass -->
-      <div class="admin-bypass" style="display:none;">
-        <label>&#128274; Admin</label>
-        <input type="password" id="admin-code" placeholder="Code d'accès">
-        <button onclick="adminBypass()">Valider</button>
-      </div>
-
-      <div class="pricing-ready">&#10024; Tout est prêt pour vous</div>
-      <h1 class="pricing-title">Commencez à <span>Grandir</span> Aujourd'hui</h1>
-      <p class="pricing-subtitle">Rejoignez plus de 2 000 entreprises qui obtiennent du trafic organique depuis Google et ChatGPT chaque mois.</p>
-
-      <div class="plan-card">
-        <div class="plan-badge">Meilleur rapport qualité-prix</div>
-        <div class="plan-name">Plan Tout-en-un</div>
-        <div class="plan-price">
-          <span class="plan-old">247&euro;</span>
-          <span class="plan-amount">99&euro;</span>
-          <span class="plan-period">/mois</span>
+      <div class="sp-card">
+        <div class="sp-badge">Meilleur rapport qualité-prix</div>
+        <div class="sp-plan-name">Plan Tout-en-un</div>
+        <div class="sp-price">
+          <span class="sp-old">247&euro;</span>
+          <span class="sp-amount">99&euro;</span>
+          <span class="sp-period">/mois</span>
         </div>
-        <button class="plan-cta" onclick="startTrial()">Commencer l'essai gratuit de 3 jours &rarr;</button>
-        <div class="plan-cancel">Annulez à tout moment. <span>Sans engagement.</span></div>
+        <button class="sp-cta" onclick="startTrial()">Commencer l'essai gratuit de 3 jours &rarr;</button>
+        <div class="sp-cancel">Annulez à tout moment. <em>Sans engagement.</em></div>
 
-        <div class="features-title">Tout ce qu'il vous faut pour réussir :</div>
-        <div class="features-grid">
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            30 articles SEO/LLM par mois
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Infographies et vidéos YouTube
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            800&euro;+ de backlinks offerts/mois
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Audit technique automatisé
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Articles basés sur des recherches
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Recherche de mots-clés IA
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Agent Reddit pour la visibilité
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Publication en 1 clic
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Schema JSON-LD inclus
-          </div>
-          <div class="feature-item">
-            <span class="feature-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#E8562A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Surpasser vos concurrents
-          </div>
+        <div class="sp-feat-title">Tout ce qu'il vous faut pour réussir :</div>
+        <div class="sp-feat-grid">
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30 articles SEO/LLM par mois</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Infographies et vidéos YouTube</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>800&euro;+ de backlinks offerts/mois</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Audit technique automatisé</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Articles basés sur des recherches</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Recherche de mots-clés IA</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Agent Reddit pour la visibilité</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Publication en 1 clic</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Schema JSON-LD inclus</div>
+          <div class="sp-feat"><span class="sp-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#5855FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Surpasser vos concurrents</div>
         </div>
       </div>
 
-      <div class="guarantee">
-        <div class="guarantee-title">
-          <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M10 1l2.5 5.5L18 7.5l-4 4 1 5.5L10 14.5 5 17l1-5.5-4-4 5.5-1z" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <div class="sp-guarantee">
+        <div class="sp-guarantee-t">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none"><path d="M10 1l2.5 5.5L18 7.5l-4 4 1 5.5L10 14.5 5 17l1-5.5-4-4 5.5-1z" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/></svg>
           Garantie sans risque
         </div>
         <p>Annulez à tout moment pendant votre essai de 3 jours. Sans engagement.</p>
       </div>
-
     </div>
 
     <!-- Right: Social Proof -->
-    <div class="auth-right" style="background:#f8fafb;">
-      <div class="map-bg">
+    <div class="s-auth-right" style="background:#f7f7f7;">
+      <div class="sp-map">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern id="world-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-              <circle cx="12" cy="12" r="2" fill="#888"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#world-dots)"/>
+          <defs><pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="2" fill="#888"/></pattern></defs>
+          <rect width="100%" height="100%" fill="url(#dots)"/>
         </svg>
       </div>
-
-      <div class="pricing-right-content">
-        <!-- Stats -->
-        <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-val">2 000+</div>
-            <div class="stat-lbl">Clients satisfaits</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-val">40%</div>
-            <div class="stat-lbl">Augmentation trafic moy.</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-val">90 jours</div>
-            <div class="stat-lbl">Temps moy. 1er résultat</div>
+      <div class="sp-right-content">
+        <div class="sp-stats">
+          <div class="sp-stat"><div class="sp-stat-val">2 000+</div><div class="sp-stat-lbl">Clients satisfaits</div></div>
+          <div class="sp-stat"><div class="sp-stat-val">40%</div><div class="sp-stat-lbl">Augmentation trafic moy.</div></div>
+          <div class="sp-stat"><div class="sp-stat-val">90 jours</div><div class="sp-stat-lbl">Temps moy. 1er résultat</div></div>
+        </div>
+        <div class="sp-testi" id="testi-card">
+          <div class="sp-testi-brand">TECHFLOW</div>
+          <div class="sp-testi-stars"><span class="sp-testi-star">&#9733;</span><span class="sp-testi-star">&#9733;</span><span class="sp-testi-star">&#9733;</span><span class="sp-testi-star">&#9733;</span><span class="sp-testi-star">&#9733;</span></div>
+          <div class="sp-testi-text">"Seora c'est comme avoir une équipe SEO dédiée qui ne dort jamais. Chaque jour on reçoit des articles optimisés avec des citations, infographies et données structurées."</div>
+          <div class="sp-testi-detail">Le programme de backlinks est incroyable ! On obtient 600-800&euro; de backlinks de qualité pour 99&euro;. Le ROI est absolument insensé.</div>
+          <div class="sp-testi-author">
+            <div class="sp-testi-avatar">M</div>
+            <div><div class="sp-testi-name">Marc Dubois</div><div class="sp-testi-role">CEO @ TechFlow</div></div>
+            <span class="sp-testi-verified">&#10003; Client vérifié</span>
           </div>
         </div>
-
-        <!-- Testimonial -->
-        <div class="testimonial-card" id="testi-card">
-          <div class="testi-brand">TECHFLOW</div>
-          <div class="testi-stars">
-            <span class="testi-star">&#9733;</span>
-            <span class="testi-star">&#9733;</span>
-            <span class="testi-star">&#9733;</span>
-            <span class="testi-star">&#9733;</span>
-            <span class="testi-star">&#9733;</span>
-          </div>
-          <div class="testi-text">"Seora c'est comme avoir une équipe SEO dédiée qui ne dort jamais. Chaque jour on reçoit des articles optimisés avec des citations, infographies et données structurées."</div>
-          <div class="testi-detail">Le programme de backlinks est incroyable ! On obtient 600-800&euro; de backlinks de qualité pour 99&euro;. Le ROI est absolument insensé.</div>
-          <div class="testi-author">
-            <div class="testi-avatar">M</div>
-            <div>
-              <div class="testi-name">Marc Dubois</div>
-              <div class="testi-role">CEO @ TechFlow</div>
-            </div>
-            <span class="testi-verified">&#10003; Client vérifié</span>
-          </div>
+        <div class="sp-arrows">
+          <span class="sp-arrow" onclick="prevTesti()">&#8592;</span>
+          <span class="sp-arrow" onclick="nextTesti()">&#8594;</span>
         </div>
-
-        <!-- Arrows for carousel -->
-        <div class="testi-arrows">
-          <span class="testi-arrow" onclick="prevTesti()">&#8592;</span>
-          <span class="testi-arrow" onclick="nextTesti()">&#8594;</span>
-        </div>
-
-        <!-- Rating -->
-        <div class="rating-bar">
-          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <strong>4.75/5</strong> à partir de 400+ avis
-        </div>
+        <div class="sp-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong>4.75/5</strong> à partir de 400+ avis</div>
       </div>
     </div>
-
   </div>
 
   <!-- Welcome Overlay -->
-  <div class="welcome-overlay" id="welcome-overlay">
-    <svg class="welcome-logo" viewBox="0 0 64 64" fill="none"><rect width="64" height="64" rx="16" fill="#5855FF"/><path d="M40 22C38 19 34 18 31 18C26 18 22 20.6 22 24.6C22 29 26 30.6 32 32.6C38 34.6 42 36.6 42 40.6C42 44.6 38 46 33 46C30 46 26 45 24 42" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/></svg>
-    <div class="welcome-spinner" id="welcome-spinner"></div>
-    <div class="welcome-status" id="welcome-status">Configuration de votre espace...</div>
-    <h1 class="welcome-title" id="welcome-title">Bienvenue sur votre Dashboard &#127881;</h1>
-    <p class="welcome-subtitle" id="welcome-subtitle">Tout est prêt. Votre stratégie SEO commence maintenant.</p>
-    <div class="welcome-checkmarks" id="welcome-checks">
-      <div class="welcome-check" id="wc-1"><span class="welcome-check-icon">&#10003;</span> Espace personnel créé</div>
-      <div class="welcome-check" id="wc-2"><span class="welcome-check-icon">&#10003;</span> Plan de contenu généré</div>
-      <div class="welcome-check" id="wc-3"><span class="welcome-check-icon">&#10003;</span> Audit technique lancé</div>
-      <div class="welcome-check" id="wc-4"><span class="welcome-check-icon">&#10003;</span> Dashboard personnalisé</div>
+  <div class="sp-welcome" id="welcome-overlay">
+    <svg class="sp-welcome-logo" viewBox="0 0 64 64" fill="none"><rect width="64" height="64" rx="16" fill="#5855FF"/><path d="M40 22C38 19 34 18 31 18C26 18 22 20.6 22 24.6C22 29 26 30.6 32 32.6C38 34.6 42 36.6 42 40.6C42 44.6 38 46 33 46C30 46 26 45 24 42" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/></svg>
+    <div class="sp-welcome-spinner" id="welcome-spinner"></div>
+    <div class="sp-welcome-status" id="welcome-status">Configuration de votre espace...</div>
+    <h1 class="sp-welcome-title" id="welcome-title">Bienvenue sur votre Dashboard &#127881;</h1>
+    <p class="sp-welcome-sub" id="welcome-subtitle">Tout est prêt. Votre stratégie SEO commence maintenant.</p>
+    <div class="sp-welcome-checks" id="welcome-checks">
+      <div class="sp-wc" id="wc-1"><span class="sp-wc-icon">&#10003;</span> Espace personnel créé</div>
+      <div class="sp-wc" id="wc-2"><span class="sp-wc-icon">&#10003;</span> Plan de contenu généré</div>
+      <div class="sp-wc" id="wc-3"><span class="sp-wc-icon">&#10003;</span> Audit technique lancé</div>
+      <div class="sp-wc" id="wc-4"><span class="sp-wc-icon">&#10003;</span> Dashboard personnalisé</div>
     </div>
-    <button class="welcome-enter-btn" id="welcome-enter" onclick="enterDashboard()">Accéder à mon Dashboard &rarr;</button>
+    <button class="sp-welcome-btn" id="welcome-enter" onclick="enterDashboard()">Accéder à mon Dashboard &rarr;</button>
   </div>
 
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="js/auth.js"></script>
   <script src="js/api.js"></script>
   <script>
-    // --- Auth Guard ---
     requireAuth().then(function(user) {
       if (!user) return;
-      // Check plan status from API
       apiCall('GET', 'profile').then(function(data) {
         if (data.profile && data.profile.plan_status === 'active') {
           window.location.href = 'dashboard.html';
           return;
         }
-        document.querySelector('.auth-page').style.display = 'flex';
+        document.querySelector('.s-auth-page').style.display = 'flex';
       }).catch(function() {
-        // Fallback: show page anyway
-        document.querySelector('.auth-page').style.display = 'flex';
+        document.querySelector('.s-auth-page').style.display = 'flex';
       });
     });
 
-    // --- Testimonial carousel ---
     var testimonials = [
-      {
-        brand: 'TECHFLOW',
-        text: '"Seora c\'est comme avoir une équipe SEO dédiée qui ne dort jamais. Chaque jour on reçoit des articles optimisés avec des citations, infographies et données structurées."',
-        detail: 'Le programme de backlinks est incroyable ! On obtient 600-800\u20ac de backlinks de qualité pour 99\u20ac. Le ROI est absolument insensé.',
-        name: 'Marc Dubois',
-        role: 'CEO @ TechFlow',
-        initial: 'M'
-      },
-      {
-        brand: 'GREENLEAF',
-        text: '"En 3 mois, notre trafic organique a augmenté de 65%. Les articles générés sont d\'une qualité impressionnante et parfaitement optimisés pour le SEO."',
-        detail: 'L\'audit technique a identifié des problèmes que nos développeurs n\'avaient jamais vus. Résultats immédiats après correction.',
-        name: 'Sophie Martin',
-        role: 'CMO @ GreenLeaf',
-        initial: 'S'
-      },
-      {
-        brand: 'STARTUPLAB',
-        text: '"On publie 30 articles par mois sans lever le petit doigt. L\'IA comprend parfaitement notre secteur et le ton de notre marque."',
-        detail: 'Le support est réactif et l\'intégration WordPress fonctionne parfaitement. On a automatisé 100% de notre création de contenu.',
-        name: 'Lucas Bernard',
-        role: 'Fondateur @ StartupLab',
-        initial: 'L'
-      }
+      { brand: 'TECHFLOW', text: '"Seora c\'est comme avoir une équipe SEO dédiée qui ne dort jamais. Chaque jour on reçoit des articles optimisés avec des citations, infographies et données structurées."', detail: 'Le programme de backlinks est incroyable ! On obtient 600-800\u20ac de backlinks de qualité pour 99\u20ac. Le ROI est absolument insensé.', name: 'Marc Dubois', role: 'CEO @ TechFlow', initial: 'M' },
+      { brand: 'GREENLEAF', text: '"En 3 mois, notre trafic organique a augmenté de 65%. Les articles générés sont d\'une qualité impressionnante et parfaitement optimisés pour le SEO."', detail: 'L\'audit technique a identifié des problèmes que nos développeurs n\'avaient jamais vus. Résultats immédiats après correction.', name: 'Sophie Martin', role: 'CMO @ GreenLeaf', initial: 'S' },
+      { brand: 'STARTUPLAB', text: '"On publie 30 articles par mois sans lever le petit doigt. L\'IA comprend parfaitement notre secteur et le ton de notre marque."', detail: 'Le support est réactif et l\'intégration WordPress fonctionne parfaitement. On a automatisé 100% de notre création de contenu.', name: 'Lucas Bernard', role: 'Fondateur @ StartupLab', initial: 'L' }
     ];
-
     var testiIdx = 0;
 
     function renderTesti() {
@@ -757,117 +314,37 @@
       var card = document.getElementById('testi-card');
       card.style.opacity = '0';
       setTimeout(function() {
-        card.querySelector('.testi-brand').textContent = t.brand;
-        card.querySelector('.testi-text').textContent = t.text;
-        card.querySelector('.testi-detail').textContent = t.detail;
-        card.querySelector('.testi-name').textContent = t.name;
-        card.querySelector('.testi-role').textContent = t.role;
-        card.querySelector('.testi-avatar').textContent = t.initial;
+        card.querySelector('.sp-testi-brand').textContent = t.brand;
+        card.querySelector('.sp-testi-text').textContent = t.text;
+        card.querySelector('.sp-testi-detail').textContent = t.detail;
+        card.querySelector('.sp-testi-name').textContent = t.name;
+        card.querySelector('.sp-testi-role').textContent = t.role;
+        card.querySelector('.sp-testi-avatar').textContent = t.initial;
         card.style.opacity = '1';
       }, 200);
     }
+    function nextTesti() { testiIdx = (testiIdx + 1) % testimonials.length; renderTesti(); }
+    function prevTesti() { testiIdx = (testiIdx - 1 + testimonials.length) % testimonials.length; renderTesti(); }
 
-    function nextTesti() {
-      testiIdx = (testiIdx + 1) % testimonials.length;
-      renderTesti();
-    }
-    function prevTesti() {
-      testiIdx = (testiIdx - 1 + testimonials.length) % testimonials.length;
-      renderTesti();
-    }
-
-    // --- Admin Bypass ---
-    document.getElementById('admin-code').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') adminBypass();
-    });
-
-    function adminBypass() {
-      var code = document.getElementById('admin-code').value.trim();
-      if (code === '123') {
-        activateAccount();
-      } else {
-        var input = document.getElementById('admin-code');
-        input.style.borderColor = '#e53e3e';
-        input.value = '';
-        input.placeholder = 'Code incorrect';
-        setTimeout(function() { input.style.borderColor = ''; input.placeholder = 'Code d\'accès'; }, 1500);
-      }
-    }
-
-    // --- Trial CTA (Stripe Checkout) ---
     async function startTrial() {
-      var btn = document.querySelector('.plan-cta');
+      var btn = document.querySelector('.sp-cta');
       btn.textContent = 'Redirection vers le paiement...';
       btn.style.opacity = '0.7';
       btn.disabled = true;
-
       try {
-        var data = await apiCall('POST', 'checkout');
-        if (data.url) {
-          window.location.href = data.url;
-        } else {
-          throw new Error('No checkout URL');
-        }
+        var data = await apiCall('POST', 'stripe', { action: 'checkout' });
+        if (data.url) { window.location.href = data.url; }
+        else { throw new Error('No checkout URL'); }
       } catch (err) {
         console.error('Checkout error:', err);
         btn.textContent = 'Commencer l\'essai gratuit de 3 jours \u2192';
         btn.style.opacity = '1';
         btn.disabled = false;
-        // Fallback to admin bypass for testing
-        alert('Erreur de paiement: ' + err.message + '\nUtilisez le code admin pour tester.');
+        alert('Erreur de paiement. Veuillez réessayer ou contacter le support.');
       }
     }
 
-    // --- Admin Bypass Activate (for testing) ---
-    function activateAccount() {
-      // Show welcome overlay
-      var overlay = document.getElementById('welcome-overlay');
-      overlay.classList.add('show');
-
-      var status = document.getElementById('welcome-status');
-      var spinner = document.getElementById('welcome-spinner');
-      var checks = ['wc-1', 'wc-2', 'wc-3', 'wc-4'];
-      var statuses = [
-        'Création de votre espace...',
-        'Génération de votre plan de contenu...',
-        'Lancement de l\'audit technique...',
-        'Personnalisation du dashboard...'
-      ];
-
-      // Animate checkmarks one by one
-      var delay = 800;
-      checks.forEach(function(id, i) {
-        setTimeout(function() {
-          status.textContent = statuses[i];
-          document.getElementById(id).classList.add('show');
-        }, delay + (i * 900));
-      });
-
-      // After all checks, show welcome title
-      setTimeout(function() {
-        spinner.classList.add('done');
-        status.style.opacity = '0';
-        setTimeout(function() {
-          status.style.display = 'none';
-          spinner.style.display = 'none';
-          document.getElementById('welcome-title').classList.add('show');
-          document.getElementById('welcome-subtitle').classList.add('show');
-          // Show enter button
-          setTimeout(function() {
-            var btn = document.getElementById('welcome-enter');
-            btn.classList.add('show');
-          }, 600);
-        }, 300);
-      }, delay + (checks.length * 900) + 400);
-
-      // Set paid flag (localStorage as fallback + update DB)
-      localStorage.setItem('seora_paid', 'true');
-      localStorage.setItem('seora_plan_selected', 'all-in-one');
-    }
-
-    function enterDashboard() {
-      window.location.href = 'dashboard.html';
-    }
+    function enterDashboard() { window.location.href = 'dashboard.html'; }
   </script>
 </body>
 </html>

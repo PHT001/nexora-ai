@@ -3,51 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programme d'Affiliation — Seora.ai</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/style.css">
+  <title>Programme d'Affiliation — Seora</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
-  <!-- ========== NAVBAR ========== -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="28" height="28" rx="8" fill="#5855FF"/>
-          <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        Seora.ai
+  <nav class="s-nav">
+    <div class="s-nav-inner">
+      <a href="index.html" class="s-nav-logo">
+        <svg viewBox="0 0 28 28" width="28" height="28" fill="none"><rect width="28" height="28" rx="8" fill="#5855FF"/><path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        Seora
       </a>
-
-      <div class="navbar-links">
-        <a href="success-story.html">Résultats clients</a>
-        <a href="pricing.html">Tarifs</a>
-        <a href="affiliate.html">Programme partenaire</a>
-      </div>
-
-      <div class="navbar-actions">
-        <a href="signin.html" class="signin-link">Se connecter</a>
-        <a href="signup.html" class="btn btn-primary btn-sm">Essai gratuit 3 jours</a>
-        <div class="burger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      <a href="select-plan.html" class="s-nav-link">Tarifs</a>
+      <a href="blog.html" class="s-nav-link">Blog</a>
+      <a href="signin.html" class="s-nav-link">Connexion</a>
+      <a href="signup.html" class="s-nav-cta">Essai gratuit</a>
+      <button class="s-burger" onclick="document.querySelector('.s-mobile-menu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-      <a href="success-story.html">Résultats clients</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="affiliate.html">Programme partenaire</a>
-      <a href="signin.html">Se connecter</a>
-      <a href="signup.html" class="btn btn-primary">Essai gratuit 3 jours</a>
+    <div class="s-mobile-menu">
+      <a href="select-plan.html">Tarifs</a>
+      <a href="blog.html">Blog</a>
+      <a href="signin.html">Connexion</a>
+      <a href="signup.html" class="s-nav-cta" style="margin-top:8px;">Essai gratuit</a>
     </div>
   </nav>
 
   <!-- ========== HERO ========== -->
-  <section class="hero section-dark affiliate-hero">
+  <section class="hero affiliate-hero" style="background:#fff;color:#111;">
     <div class="container">
       <h1>Gagnez <span class="accent">30%</span> de Commission <span class="accent">Récurrente</span></h1>
       <p>Gagnez de l'argent passivement en promouvant l'une des plateformes SEO/GEO à la croissance la plus rapide.</p>
@@ -117,7 +102,7 @@
   <section class="section">
     <div class="container">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;flex-wrap:wrap;gap:24px;">
-        <h2 class="section-title" style="text-align:left;margin-bottom:0;">Comment fonctionne le<br>programme d'affiliation</h2>
+        <h2 class="section-title" style="text-align:left;margin-bottom:0;font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Comment fonctionne le<br>programme d'affiliation</h2>
         <div>
           <p style="color:var(--text-muted);max-width:400px;margin-bottom:20px;font-size:15px;">Gagnez un revenu récurrent en promouvant un outil qui aide les entreprises à se développer</p>
           <a href="#" class="btn btn-primary">Devenir Partenaire Affilié</a>
@@ -126,10 +111,11 @@
 
       <div class="aff-how-grid">
         <div class="aff-how-card">
-          <div class="aff-how-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fef3f0,#fff5f2);">
-            <svg viewBox="0 0 80 80" width="64" height="64"><circle cx="40" cy="40" r="32" fill="#5855FF" opacity="0.1"/><circle cx="40" cy="30" r="10" fill="#5855FF" opacity="0.25"/><rect x="25" y="44" width="30" height="18" rx="9" fill="#5855FF" opacity="0.2"/><path d="M36 56l4 4 8-10" stroke="#E8562A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <div class="aff-how-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0efff,#f5f4ff);">
+            <svg viewBox="0 0 80 80" width="64" height="64"><circle cx="40" cy="40" r="32" fill="#5855FF" opacity="0.1"/><circle cx="40" cy="30" r="10" fill="#5855FF" opacity="0.25"/><rect x="25" y="44" width="30" height="18" rx="9" fill="#5855FF" opacity="0.2"/><path d="M36 56l4 4 8-10" stroke="#5855FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           </div>
-          <h4>Inscrivez-vous sur Seora.ai</h4>
+          <h4>Inscrivez-vous sur Seora</h4>
+
           <p>Créez votre compte affilié gratuitement en quelques minutes. Aucune compétence technique requise pour commencer.</p>
         </div>
         <div class="aff-how-card">
@@ -153,39 +139,39 @@
   <!-- ========== CORE FEATURES TO BRAG ABOUT ========== -->
   <section class="section" style="background:var(--white);">
     <div class="container">
-      <h2 class="section-title">Fonctionnalités clés dont vous pouvez être fier</h2>
+      <h2 class="section-title" style="font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Fonctionnalités clés dont vous pouvez être fier</h2>
       <p class="section-subtitle">Des outils puissants que vos parrainages adoreront utiliser au quotidien.</p>
 
       <div class="core-grid">
         <div class="core-card">
           <h4>Agent IA Reddit</h4>
           <p>Analysez les conversations Reddit et engagez automatiquement les utilisateurs intéressés par vos produits.</p>
-          <div class="core-img" style="background:linear-gradient(135deg,#1a1a1a,#2a1a14);padding:16px;display:flex;flex-direction:column;gap:6px;">
+          <div class="core-img" style="background:linear-gradient(135deg,#f7f7f7,#eeedff);padding:16px;display:flex;flex-direction:column;gap:6px;">
             <div style="display:flex;align-items:center;gap:6px;"><svg viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="8" fill="#FF4500"/><circle cx="5.5" cy="7" r="1" fill="#fff"/><circle cx="10.5" cy="7" r="1" fill="#fff"/></svg><span style="font-size:9px;color:#FF4500;font-weight:600;">r/saas</span></div>
-            <div style="height:4px;background:#fff;opacity:0.1;border-radius:2px;width:80%;"></div>
-            <div style="height:3px;background:#fff;opacity:0.06;border-radius:2px;width:60%;"></div>
-            <div style="margin-top:4px;padding-left:10px;border-left:2px solid #E8562A55;">
-              <div style="font-size:8px;color:#E8562A;">Seora Agent</div>
-              <div style="height:3px;background:#fff;opacity:0.08;border-radius:2px;width:90%;margin-top:3px;"></div>
+            <div style="height:4px;background:#000;opacity:0.08;border-radius:2px;width:80%;"></div>
+            <div style="height:3px;background:#000;opacity:0.05;border-radius:2px;width:60%;"></div>
+            <div style="margin-top:4px;padding-left:10px;border-left:2px solid #5855FF55;">
+              <div style="font-size:8px;color:#5855FF;">Seora Agent</div>
+              <div style="height:3px;background:#000;opacity:0.06;border-radius:2px;width:90%;margin-top:3px;"></div>
             </div>
           </div>
         </div>
         <div class="core-card">
           <h4>Votre Plan SEO, Personnalisé</h4>
           <p>Un plan d'action SEO sur mesure généré par l'IA pour chaque entreprise, basé sur le secteur et les objectifs.</p>
-          <div class="core-img" style="background:linear-gradient(135deg,#0f1628,#1a2744);padding:16px;display:flex;flex-direction:column;gap:8px;">
-            <div style="font-size:9px;color:#6366f1;font-weight:600;">Plan SEO - Mars 2026</div>
+          <div class="core-img" style="background:linear-gradient(135deg,#f0efff,#e8e7ff);padding:16px;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:9px;color:#5855FF;font-weight:600;">Plan SEO - Mars 2026</div>
             <div style="display:flex;gap:6px;">
-              <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:12px;font-weight:700;color:#6366f1;">28</div><div style="font-size:7px;color:#666;">Articles</div></div>
-              <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:12px;font-weight:700;color:#E8562A;">142</div><div style="font-size:7px;color:#666;">Mots-clés</div></div>
-              <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:12px;font-weight:700;color:#22C55E;">92</div><div style="font-size:7px;color:#666;">Score</div></div>
+              <div style="flex:1;background:rgba(88,85,255,0.06);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:12px;font-weight:700;color:#5855FF;">28</div><div style="font-size:7px;color:#777;">Articles</div></div>
+              <div style="flex:1;background:rgba(88,85,255,0.06);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:12px;font-weight:700;color:#8B3DFF;">142</div><div style="font-size:7px;color:#777;">Mots-clés</div></div>
+              <div style="flex:1;background:rgba(88,85,255,0.06);border-radius:6px;padding:8px;text-align:center;"><div style="font-size:12px;font-weight:700;color:#22C55E;">92</div><div style="font-size:7px;color:#777;">Score</div></div>
             </div>
           </div>
         </div>
         <div class="core-card">
           <h4>Obtenez des Backlinks en pilote automatique</h4>
           <p>Système d'échange de backlinks automatisé qui construit l'autorité de votre site jour après jour.</p>
-          <div class="core-img" style="background:linear-gradient(135deg,#111,#1a2a1a);padding:16px;display:flex;flex-direction:column;gap:6px;">
+          <div class="core-img" style="background:linear-gradient(135deg,#f0fdf4,#e8f5e9);padding:16px;display:flex;flex-direction:column;gap:6px;">
             <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:9px;color:#22C55E;font-weight:600;">Backlinks actifs</span><span style="font-size:11px;font-weight:700;color:#22C55E;">+12</span></div>
             <div style="height:4px;background:#22C55E;opacity:0.3;border-radius:2px;width:78%;"></div>
             <div style="height:4px;background:#22C55E;opacity:0.2;border-radius:2px;width:65%;"></div>
@@ -198,7 +184,7 @@
         <div class="core-card">
           <h4>Observez vos classements grimper</h4>
           <p>Suivi en temps réel de vos positions sur Google et les moteurs de recherche IA, avec des rapports détaillés.</p>
-          <div class="core-img" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a);padding:16px;display:flex;align-items:flex-end;gap:4px;">
+          <div class="core-img" style="background:linear-gradient(135deg,#f7f7f7,#eeedff);padding:16px;display:flex;align-items:flex-end;gap:4px;">
             <div style="width:14%;height:25%;background:var(--accent);opacity:0.3;border-radius:3px 3px 0 0;"></div>
             <div style="width:14%;height:35%;background:var(--accent);opacity:0.4;border-radius:3px 3px 0 0;"></div>
             <div style="width:14%;height:30%;background:var(--accent);opacity:0.5;border-radius:3px 3px 0 0;"></div>
@@ -211,11 +197,11 @@
         <div class="core-card">
           <h4>Publiez en un seul clic</h4>
           <p>Intégration directe avec WordPress, Shopify et d'autres CMS pour publier vos articles automatiquement.</p>
-          <div class="core-img" style="background:linear-gradient(135deg,#1a1a2a,#111);padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;">
-            <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:8px 14px;font-size:9px;color:#21759b;font-weight:600;">WordPress</div>
-            <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:8px 14px;font-size:9px;color:#4353ff;font-weight:600;">Webflow</div>
-            <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:8px 14px;font-size:9px;color:#96bf48;font-weight:600;">Shopify</div>
-            <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:8px 14px;font-size:9px;color:#E8562A;font-weight:600;">+12 autres</div>
+          <div class="core-img" style="background:linear-gradient(135deg,#f5f4ff,#eeedff);padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;">
+            <div style="background:rgba(0,0,0,0.04);border-radius:8px;padding:8px 14px;font-size:9px;color:#21759b;font-weight:600;">WordPress</div>
+            <div style="background:rgba(0,0,0,0.04);border-radius:8px;padding:8px 14px;font-size:9px;color:#4353ff;font-weight:600;">Webflow</div>
+            <div style="background:rgba(0,0,0,0.04);border-radius:8px;padding:8px 14px;font-size:9px;color:#96bf48;font-weight:600;">Shopify</div>
+            <div style="background:rgba(0,0,0,0.04);border-radius:8px;padding:8px 14px;font-size:9px;color:#5855FF;font-weight:600;">+12 autres</div>
           </div>
         </div>
       </div>
@@ -223,33 +209,33 @@
   </section>
 
   <!-- ========== WHO IS OUR PROGRAM PERFECT FOR? ========== -->
-  <section class="section section-dark">
+  <section class="section" style="background:#f7f7f7;">
     <div class="container">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;flex-wrap:wrap;gap:24px;">
-        <h2 class="section-title" style="text-align:left;margin-bottom:0;color:var(--white);">Pour qui notre programme<br>est-il parfait ?</h2>
+        <h2 class="section-title" style="text-align:left;margin-bottom:0;font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Pour qui notre programme<br>est-il parfait ?</h2>
         <a href="#" class="btn btn-primary">Devenir Partenaire Affilié</a>
       </div>
 
       <div class="who-grid">
-        <div class="who-card" style="background:#1a1a1a;border-radius:16px;border:1px solid #2a2a2a;padding:32px;">
+        <div class="who-card" style="background:#fff;border-radius:16px;border:1px solid #eee;padding:32px;">
           <div style="font-size:32px;margin-bottom:16px;">✍️</div>
-          <h4 style="color:var(--white);">Blogueurs</h4>
-          <p style="color:#999;">Monétisez votre audience en recommandant un outil SEO premium que vos lecteurs adoreront utiliser.</p>
+          <h4>Blogueurs</h4>
+          <p style="color:#555;">Monétisez votre audience en recommandant un outil SEO premium que vos lecteurs adoreront utiliser.</p>
         </div>
-        <div class="who-card" style="background:#1a1a1a;border-radius:16px;border:1px solid #2a2a2a;padding:32px;">
+        <div class="who-card" style="background:#fff;border-radius:16px;border:1px solid #eee;padding:32px;">
           <div style="font-size:32px;margin-bottom:16px;">📢</div>
-          <h4 style="color:var(--white);">Marketeurs</h4>
-          <p style="color:#999;">Ajoutez une source de revenu passif à votre activité en recommandant un outil que vous connaissez.</p>
+          <h4>Marketeurs</h4>
+          <p style="color:#555;">Ajoutez une source de revenu passif à votre activité en recommandant un outil que vous connaissez.</p>
         </div>
-        <div class="who-card" style="background:#1a1a1a;border-radius:16px;border:1px solid #2a2a2a;padding:32px;">
+        <div class="who-card" style="background:#fff;border-radius:16px;border:1px solid #eee;padding:32px;">
           <div style="font-size:32px;margin-bottom:16px;">🎬</div>
-          <h4 style="color:var(--white);">Youtubeurs</h4>
-          <p style="color:#999;">Gagnez des commissions récurrentes grâce à vos vidéos et descriptions avec un outil à forte conversion.</p>
+          <h4>Youtubeurs</h4>
+          <p style="color:#555;">Gagnez des commissions récurrentes grâce à vos vidéos et descriptions avec un outil à forte conversion.</p>
         </div>
-        <div class="who-card" style="background:#1a1a1a;border-radius:16px;border:1px solid #2a2a2a;padding:32px;">
+        <div class="who-card" style="background:#fff;border-radius:16px;border:1px solid #eee;padding:32px;">
           <div style="font-size:32px;margin-bottom:16px;">💼</div>
-          <h4 style="color:var(--white);">Propriétaires d'entreprises</h4>
-          <p style="color:#999;">Recommandez un outil qui génère des résultats concrets et gagnez une commission sur chaque client.</p>
+          <h4>Propriétaires d'entreprises</h4>
+          <p style="color:#555;">Recommandez un outil qui génère des résultats concrets et gagnez une commission sur chaque client.</p>
         </div>
       </div>
     </div>
@@ -258,8 +244,8 @@
   <!-- ========== BACKLINKS THAT DELIVER REAL RESULTS ========== -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Des Backlinks qui Livrent de <span class="accent">Vrais Résultats</span></h2>
-      <p class="section-subtitle">Découvrez ce que nos utilisateurs disent de leur expérience avec Seora.ai</p>
+      <h2 class="section-title" style="font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Des Backlinks qui Livrent de <span class="accent">Vrais Résultats</span></h2>
+      <p class="section-subtitle">Découvrez ce que nos utilisateurs disent de leur expérience avec Seora</p>
 
       <div class="testimonials-grid">
         <!-- Row 1 -->
@@ -294,7 +280,7 @@
             </div>
           </div>
           <div class="tc-stars">★★★★★</div>
-          <div class="tc-text">« Notre trafic organique a explosé depuis que nous utilisons Seora.ai. Un investissement qui en vaut la peine. »</div>
+          <div class="tc-text">« Notre trafic organique a explosé depuis que nous utilisons Seora. Un investissement qui en vaut la peine. »</div>
         </div>
         <div class="testimonial-card">
           <div class="tc-header">
@@ -386,7 +372,7 @@
             </div>
           </div>
           <div class="tc-stars">★★★★★</div>
-          <div class="tc-text">« Simple, efficace et puissant. Je recommande Seora.ai à tous mes clients sans hésitation. »</div>
+          <div class="tc-text">« Simple, efficace et puissant. Je recommande Seora à tous mes clients sans hésitation. »</div>
         </div>
         <div class="testimonial-card">
           <div class="tc-header">
@@ -406,7 +392,7 @@
   <!-- ========== PRICING ========== -->
   <section class="section section-light" id="pricing">
     <div class="container">
-      <h2 class="section-title">Investissez dans une Croissance <span class="accent">à Long Terme</span></h2>
+      <h2 class="section-title" style="font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Investissez dans une Croissance <span class="accent">à Long Terme</span></h2>
       <p class="section-subtitle">Le plan tout-en-un pour les entrepreneurs ambitieux qui veulent dominer les résultats de recherche.</p>
 
       <!-- Tout-en-un Card -->
@@ -466,8 +452,8 @@
     <div class="container">
       <div class="faq-section">
         <div class="faq-left">
-          <h2>Questions<br>Fréquentes</h2>
-          <p>Vous ne trouvez pas votre réponse ? <a href="mailto:support@seora.ai">Contactez-nous</a></p>
+          <h2 style="font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Questions<br>Fréquentes</h2>
+          <p>Vous ne trouvez pas votre réponse ? <a href="mailto:contact@tryseora.com">Contactez-nous</a></p>
         </div>
         <div class="faq-right">
           <div class="accordion-item active">
@@ -488,7 +474,7 @@
             </button>
             <div class="accordion-body">
               <div class="accordion-body-inner">
-                Un échange de backlinks est une stratégie SEO où deux sites web s'accordent mutuellement des liens retour. Avec Seora.ai, ce processus est entièrement automatisé et géré par notre IA. Les liens sont placés de manière naturelle dans du contenu pertinent, ce qui renforce l'autorité de votre domaine aux yeux de Google et des autres moteurs de recherche.
+                Un échange de backlinks est une stratégie SEO où deux sites web s'accordent mutuellement des liens retour. Avec Seora, ce processus est entièrement automatisé et géré par notre IA. Les liens sont placés de manière naturelle dans du contenu pertinent, ce qui renforce l'autorité de votre domaine aux yeux de Google et des autres moteurs de recherche.
               </div>
             </div>
           </div>
@@ -508,58 +494,46 @@
     </div>
   </section>
 
-  <!-- ========== FOOTER CTA + FOOTER ========== -->
-  <div class="footer-cta">
-    <div class="container">
-      <div class="footer-cta-banner">
-        <div class="grow-label">DÉVELOPPEZ VOTRE ACTIVITÉ</div>
-        <h2>SEO Intelligent, Croissance <span class="accent">Plus Rapide</span> !</h2>
-        <div class="footer-cta-btn">
-          <a href="signup.html" class="btn btn-primary btn-lg">Commencer l'Essai de 3 Jours</a>
+  <footer class="soro-footer">
+    <div class="soro-footer-inner">
+      <div class="soro-footer-col">
+        <div class="soro-footer-logo">
+          <svg viewBox="0 0 28 28" width="22" height="22" fill="none"><rect width="28" height="28" rx="8" fill="#5855FF"/><path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+          Seora
         </div>
-        <div class="footer-checks">
-          <span><span class="check-icon">✓</span> Pas de carte de crédit requise</span>
-          <span><span class="check-icon">✓</span> Annulation à tout moment</span>
-          <span><span class="check-icon">✓</span> Support 24/7</span>
-        </div>
+        <p class="soro-footer-copy">&copy; 2026 Seora. Tous droits reservés.</p>
       </div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-links">
-        <a href="index.html">Accueil</a>
-        <a href="pricing.html">Tarifs</a>
-        <a href="blog.html">Blog</a>
-        <a href="affiliate.html">Affiliation</a>
+      <div class="soro-footer-col">
+        <h4>PRODUIT</h4>
+        <a href="select-plan.html">Tarifs</a>
         <a href="success-story.html">Résultats clients</a>
-        <a href="ai-audit.html">Audit IA</a>
-        <a href="terms.html">Conditions d'utilisation</a>
-        <a href="privacy.html">Politique de confidentialité</a>
+        <a href="affiliate.html">Programme partenaire</a>
       </div>
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">
-          <div class="footer-logo">
-            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="28" height="28" rx="8" fill="#5855FF"/>
-              <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            </svg>
-            Seora.ai
-          </div>
-          <div class="footer-address">SEORA INC. — 835 Fifth Avenue, San Rafael CA 94901</div>
-        </div>
-        <div class="footer-bottom-right">
-          <div class="footer-social">
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Twitter">𝕏</a>
-          </div>
-          <div class="footer-copy">© 2024 SEORA INC. Tous droits réservés.</div>
-        </div>
+      <div class="soro-footer-col">
+        <h4>LÉGAL</h4>
+        <a href="terms.html">Conditions</a>
+        <a href="privacy.html">Confidentialité</a>
+      </div>
+      <div class="soro-footer-col">
+        <h4>CONTACT</h4>
+        <a href="mailto:contact@tryseora.com">contact@tryseora.com</a>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+    window.addEventListener('scroll', () => {
+      document.querySelector('.s-nav').classList.toggle('scrolled', window.scrollY > 10);
+    });
+    // Accordion
+    document.querySelectorAll('.accordion-header').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>

@@ -26,8 +26,8 @@ async function handleGoogleCredential(response) {
       localStorage.removeItem('seora_onboarding_data');
       window.location.href = 'onboarding.html';
     } else {
-      var dest = localStorage.getItem('seora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
-      window.location.href = dest;
+      // Sign-in: always go to dashboard — it handles plan/onboarding checks server-side
+      window.location.href = 'dashboard.html';
     }
   } catch (err) {
     console.error('Google credential error:', err);
@@ -98,8 +98,8 @@ async function signInWithEmail(email, password) {
     showAuthError(error.message);
     return false;
   }
-  var dest = localStorage.getItem('seora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
-  window.location.href = dest;
+  // Always go to dashboard after sign-in — dashboard handles plan/onboarding checks server-side
+  window.location.href = 'dashboard.html';
   return data;
 }
 
@@ -142,7 +142,7 @@ function hideAuthError() {
 var _skipAuthRedirect = false;
 
 _sb.auth.onAuthStateChange(function(event, session) {
-  if (_skipAuthRedirect || window.location.search.includes('preview')) return;
+  if (_skipAuthRedirect || new URLSearchParams(window.location.search).has('preview')) return;
   if (event === 'SIGNED_IN' && session) {
     var page = window.location.pathname;
     if (page.includes('signup') || page.includes('signup.html')) {
@@ -150,11 +150,33 @@ _sb.auth.onAuthStateChange(function(event, session) {
       localStorage.removeItem('seora_onboarding_data');
       window.location.href = 'onboarding.html';
     } else if (page.includes('signin') || page.includes('signin.html')) {
-      var dest = localStorage.getItem('seora_onboarding_complete') === 'true' ? 'dashboard.html' : 'onboarding.html';
-      window.location.href = dest;
+      window.location.href = 'dashboard.html';
     }
   }
 });
+
+// --- Password Reset ---
+
+async function resetPassword(email) {
+  var { error } = await _sb.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/signin.html?reset=true'
+  });
+  if (error) {
+    console.error('Password reset error:', error.message);
+    showAuthError(error.message);
+    return false;
+  }
+  return true;
+}
+
+async function changePassword(newPassword) {
+  var { data, error } = await _sb.auth.updateUser({ password: newPassword });
+  if (error) {
+    console.error('Change password error:', error.message);
+    return { error: error.message };
+  }
+  return { success: true };
+}
 
 // --- OTP Verification ---
 
@@ -188,7 +210,7 @@ async function resendOtp(email) {
 // --- Protect Dashboard ---
 
 async function requireAuth() {
-  if (window.location.search.includes('preview')) return null;
+  if (new URLSearchParams(window.location.search).has('preview')) return null;
   var user = await getUser();
   if (!user) {
     window.location.href = 'signin.html';

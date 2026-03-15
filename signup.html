@@ -3,73 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S'inscrire — Seora.ai</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/style.css">
+  <title>S'inscrire — Seora</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="28" height="28" rx="8" fill="#5855FF"/>
-          <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        Seora.ai
+  <div class="s-auth-page">
+
+    <!-- Left Side — Form -->
+    <div class="s-auth-left">
+      <a href="index.html" class="s-nav-logo" style="margin-bottom:40px;">
+        <svg viewBox="0 0 28 28" width="28" height="28" fill="none"><rect width="28" height="28" rx="8" fill="#5855FF"/><path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        Seora
       </a>
-      <div class="navbar-links">
-        <a href="success-story.html">Résultats clients</a>
-        <a href="pricing.html">Tarifs</a>
-        <a href="affiliate.html">Programme partenaire</a>
-      </div>
-      <div class="navbar-actions">
-        <a href="signin.html" class="signin-link">Se connecter</a>
-        <a href="signup.html" class="btn btn-primary btn-pill">Essayer gratuitement</a>
-      </div>
-      <div class="burger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <div class="mobile-menu">
-      <a href="success-story.html">Résultats clients</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="affiliate.html">Programme partenaire</a>
-      <a href="signin.html">Se connecter</a>
-      <a href="signup.html" class="btn btn-primary btn-pill">Essayer gratuitement</a>
-    </div>
-  </nav>
 
-  <!-- Auth Page -->
-  <div class="auth-page">
-
-    <!-- Left Side -->
-    <div class="auth-left">
-
-      <div id="auth-error" style="display:none;color:#e53e3e;background:#fee;padding:10px 14px;border-radius:8px;margin-bottom:16px;font-size:14px;"></div>
+      <div id="auth-error" class="s-auth-error"></div>
 
       <!-- Signup Form -->
       <div class="signup-section">
         <h1>S'inscrire</h1>
-        <p class="auth-switch">Vous avez d&eacute;j&agrave; un compte ? <a href="signin.html"><strong>Se connecter</strong></a></p>
+        <p class="s-auth-switch">Vous avez déjà un compte ? <a href="signin.html">Se connecter</a></p>
 
-        <div class="g-signin-btn" data-text="signup_with" style="min-height:44px;display:flex;justify-content:center;width:100%;"></div>
+        <div class="g-signin-btn s-auth-google" data-text="signup_with"></div>
 
-        <div class="auth-divider">ou</div>
+        <div class="s-auth-divider">ou</div>
 
         <form id="signup-form" onsubmit="handleSignup(event)">
-          <div class="auth-field">
+          <div class="s-auth-field">
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="votre@email.com" required>
           </div>
-          <div class="auth-field">
+          <div class="s-auth-field">
             <label for="password">Mot de passe</label>
             <input type="password" id="password" placeholder="6 caractères minimum" required minlength="6">
           </div>
-          <button type="submit" class="auth-submit">S'inscrire avec l'email</button>
+          <button type="submit" class="s-auth-submit">S'inscrire avec l'email</button>
         </form>
 
-        <p class="auth-terms">En cr&eacute;ant un compte, vous acceptez les <a href="terms.html">Conditions d'utilisation</a> et <a href="privacy.html">Politique de confidentialit&eacute;</a>.</p>
+        <p class="s-auth-terms">En créant un compte, vous acceptez les <a href="terms.html">Conditions d'utilisation</a> et <a href="privacy.html">Politique de confidentialité</a>.</p>
       </div>
 
       <!-- OTP Verification -->
@@ -80,7 +52,7 @@
         </a>
         <div class="otp-icon">&#128233;</div>
         <h1>Vérifiez votre email</h1>
-        <p style="color:#666;font-size:15px;line-height:1.6;margin:0 0 8px;">Un code de vérification a été envoyé à :</p>
+        <p style="color:#777;font-size:15px;line-height:1.6;margin:0 0 8px;">Un code de vérification a été envoyé à :</p>
         <div class="otp-email-badge" id="otp-email-display"></div>
 
         <div class="otp-single-wrap">
@@ -98,59 +70,25 @@
 
     </div>
 
-    <!-- Right Side -->
-    <div class="auth-right">
-      <div class="network-bg">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="net" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="4" fill="#ddd"/>
-              <circle cx="100" cy="40" r="3" fill="#ccc"/>
-              <circle cx="180" cy="20" r="5" fill="#ddd"/>
-              <circle cx="60" cy="100" r="3" fill="#ccc"/>
-              <circle cx="140" cy="90" r="4" fill="#ddd"/>
-              <circle cx="40" cy="170" r="5" fill="#ddd"/>
-              <circle cx="120" cy="160" r="3" fill="#ccc"/>
-              <circle cx="180" cy="140" r="4" fill="#ddd"/>
-              <circle cx="160" cy="180" r="3" fill="#ccc"/>
-              <circle cx="80" cy="60" r="3" fill="#ddd"/>
-              <line x1="20" y1="20" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="100" y1="40" x2="180" y2="20" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="100" y1="40" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="20" y1="20" x2="60" y2="100" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="60" y1="100" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="140" y1="90" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="60" y1="100" x2="40" y2="170" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="40" y1="170" x2="120" y2="160" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="120" y1="160" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="120" y1="160" x2="160" y2="180" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="80" y1="60" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="80" y1="60" x2="20" y2="20" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="80" y1="60" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="180" y1="20" x2="180" y2="140" stroke="#ddd" stroke-width="0.5"/>
-              <line x1="40" y1="170" x2="160" y2="180" stroke="#ddd" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#net)"/>
-        </svg>
-      </div>
-      <div class="auth-testimonial">
-        <div class="at-header">
-          <div class="at-avatar">AB</div>
+    <!-- Right Side — Testimonial -->
+    <div class="s-auth-right">
+      <div class="s-auth-testimonial">
+        <div class="s-at-header">
+          <div class="s-at-avatar">AB</div>
           <div>
-            <div class="at-name">Anis Bennaceur</div>
-            <div class="at-role">CEO @ Attention</div>
+            <div class="s-at-name">Anis Bennaceur</div>
+            <div class="s-at-role">CEO @ Attention</div>
           </div>
         </div>
-        <p class="at-quote">"Seora s'occupe de tout pour nous. De la recherche de contenu à la publication. C'est une solution qui nous fait gagner un temps fou !"</p>
-        <p class="at-desc">"Le plan de contenu sur 30 jours était parfait. Chaque article est pertinent et optimisé."</p>
+        <p class="s-at-quote">"Seora s'occupe de tout pour nous. De la recherche de contenu à la publication. C'est une solution qui nous fait gagner un temps fou !"</p>
+        <p class="s-at-desc">"Le plan de contenu sur 30 jours était parfait. Chaque article est pertinent et optimisé."</p>
       </div>
     </div>
 
   </div>
 
   <style>
-    /* OTP Verification Styles */
+    /* OTP Verification Styles — Soro-themed */
     .otp-section { display: none; }
     .otp-section.active { display: block; }
     .signup-section { display: block; }
@@ -158,32 +96,31 @@
 
     .otp-icon {
       width: 64px; height: 64px; border-radius: 16px;
-      background: linear-gradient(135deg, #FFF3ED, #FFE0D0);
+      background: linear-gradient(135deg, #eeedff, #d9d8ff);
       display: flex; align-items: center; justify-content: center;
       font-size: 28px; margin-bottom: 20px;
     }
     .otp-email-badge {
-      display: inline-block; background: #f5f5f5; padding: 6px 14px;
+      display: inline-block; background: #f7f7f7; padding: 6px 14px;
       border-radius: 20px; font-size: 13px; color: #555;
       font-weight: 500; margin-bottom: 24px;
     }
-    .otp-single-wrap {
-      margin: 24px 0;
-    }
+    .otp-single-wrap { margin: 24px 0; }
     .otp-single-input {
-      width: 100%; height: 60px; border: 2px solid #e0e0e0;
+      width: 100%; height: 60px; border: 2px solid #eee;
       border-radius: 12px; text-align: center; font-size: 28px;
       font-weight: 700; color: #1a1a1a; background: #fafafa;
       outline: none; transition: all 0.2s ease;
-      caret-color: #E8562A; letter-spacing: 12px;
+      caret-color: #5855FF; letter-spacing: 12px;
       padding: 0 20px; box-sizing: border-box;
+      font-family: 'Inter', system-ui, sans-serif;
     }
     .otp-single-input::placeholder {
       font-size: 15px; font-weight: 400; letter-spacing: 0; color: #bbb;
     }
     .otp-single-input:focus {
-      border-color: #E8562A; background: #fff;
-      box-shadow: 0 0 0 3px rgba(232,86,42,0.12);
+      border-color: #5855FF; background: #fff;
+      box-shadow: 0 0 0 3px rgba(88,85,255,0.12);
     }
     .otp-single-input.error {
       border-color: #e53e3e; background: #fff5f5;
@@ -195,15 +132,13 @@
       40%, 80% { transform: translateX(6px); }
     }
     .otp-verify-btn {
-      width: 100%; padding: 14px; border: none; border-radius: 12px;
-      background: #E8562A; color: #fff; font-size: 16px;
-      font-weight: 600; cursor: pointer; transition: all 0.2s;
-      margin-top: 8px;
+      width: 100%; padding: 14px; border: none; border-radius: 9999px;
+      background: linear-gradient(135deg, #5855FF, #8B3DFF); color: #fff;
+      font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s;
+      margin-top: 8px; font-family: 'Inter', system-ui, sans-serif;
     }
-    .otp-verify-btn:hover { background: #d14a22; }
-    .otp-verify-btn:disabled {
-      background: #ccc; cursor: not-allowed;
-    }
+    .otp-verify-btn:hover { opacity: 0.9; }
+    .otp-verify-btn:disabled { opacity: 0.4; cursor: not-allowed; }
     .otp-verify-btn .spinner {
       display: inline-block; width: 18px; height: 18px;
       border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
@@ -215,16 +150,11 @@
       text-align: center; margin-top: 20px; font-size: 14px; color: #888;
     }
     .otp-resend a {
-      color: #E8562A; font-weight: 600; cursor: pointer;
-      text-decoration: none;
+      color: #5855FF; font-weight: 600; cursor: pointer; text-decoration: none;
     }
     .otp-resend a:hover { text-decoration: underline; }
-    .otp-resend a.disabled {
-      color: #bbb; pointer-events: none;
-    }
-    .otp-timer {
-      display: inline; color: #999; font-size: 13px;
-    }
+    .otp-resend a.disabled { color: #bbb; pointer-events: none; }
+    .otp-timer { display: inline; color: #999; font-size: 13px; }
     .otp-back {
       display: inline-flex; align-items: center; gap: 6px;
       color: #888; font-size: 14px; text-decoration: none;
@@ -246,15 +176,23 @@
       hideAuthError();
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
-      var btn = document.querySelector('.auth-submit');
+      var btn = document.querySelector('.s-auth-submit');
       btn.disabled = true;
-      btn.innerHTML = '<span class="spinner" style="display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:8px;"></span>Envoi...';
+      btn.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:8px;"></span>Envoi...';
 
       signUpWithEmail(email, password).then(function(data) {
         if (data) {
-          localStorage.removeItem('seora_onboarding_complete');
-          localStorage.removeItem('seora_onboarding_data');
-          window.location.href = 'onboarding.html';
+          if (data.session) {
+            localStorage.removeItem('seora_onboarding_complete');
+            localStorage.removeItem('seora_onboarding_data');
+            window.location.href = 'onboarding.html';
+          } else {
+            _signupEmail = email;
+            _skipAuthRedirect = true;
+            showOtpScreen(email);
+            btn.disabled = false;
+            btn.textContent = "S'inscrire avec l'email";
+          }
         } else {
           btn.disabled = false;
           btn.textContent = "S'inscrire avec l'email";

@@ -1,27 +1,78 @@
+const Anthropic = require('@anthropic-ai/sdk');
 const { createAdminClient, getUser, cors } = require('./_lib/supabase');
 
 module.exports = async function handler(req, res) {
-  cors(res);
+  cors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
   var user = await getUser(req);
   if (!user) return res.status(401).json({ error: 'Non authentifié' });
 
+  var sb = createAdminClient();
+
   try {
-    var sb = createAdminClient();
-    var { data: site } = await sb.from('sites').select('id').eq('user_id', user.id).single();
+    var { data: site } = await sb.from('sites').select('*').eq('user_id', user.id).maybeSingle();
     if (!site) return res.status(400).json({ error: 'Aucun site configuré.' });
 
-    var { data: keywords } = await sb
-      .from('keywords')
-      .select('*')
-      .eq('site_id', site.id)
-      .order('volume', { ascending: false });
+    // GET — list keywords
+    if (req.method === 'GET') {
+      var { data: keywords } = await sb
+        .from('keywords')
+        .select('*')
+        .eq('site_id', site.id)
+        .order('volume', { ascending: false });
 
-    return res.status(200).json({ keywords: keywords || [] });
+      return res.status(200).json({ keywords: keywords || [] });
+    }
+
+    // POST — generate new keywords
+    if (req.method === 'POST') {
+      var { data: existing } = await sb.from('keywords').select('keyword').eq('site_id', site.id);
+      var existingList = (existing || []).map(function(k) { return k.keyword.toLowerCase(); });
+
+      var { topic, count } = req.body;
+      var safeCount = Math.min(Math.max(parseInt(count) || 5, 1), 20);
+      var safeTopic = topic ? String(topic).substring(0, 200) : '';
+      var lang = site.language === 'en' ? 'English' : 'French';
+
+      var prompt = 'Tu es un expert SEO. Pour le site "' + site.domain + '" (' + (site.description || site.niche || '') + '), '
+        + 'génère exactement ' + safeCount + ' nouveaux mots-clés SEO en ' + lang;
+
+      if (safeTopic) {
+        prompt += ' autour du thème "' + safeTopic + '"';
+      }
+
+      prompt += '. Mots-clés existants à NE PAS répéter : ' + existingList.join(', ') + '. '
+        + 'Pour chaque mot-clé, estime le volume de recherche mensuel (100-10000) et la difficulté SEO (10-90). '
+        + 'Réponds UNIQUEMENT en JSON : [{"keyword":"...","volume":...,"difficulty":...}]';
+
+      var anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+      var msg = await anthropic.messages.create({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1024,
+        messages: [{ role: 'user', content: prompt }]
+      });
+
+      var text = msg.content[0].text;
+      var jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (!jsonMatch) {
+        return res.status(500).json({ error: 'Réponse IA invalide' });
+      }
+
+      var keywords;
+      try { keywords = JSON.parse(jsonMatch[0]); } catch(e) { return res.status(500).json({ error: 'Réponse IA invalide' }); }
+      if (!Array.isArray(keywords) || keywords.length === 0) return res.status(500).json({ error: 'Réponse IA invalide' });
+      var rows = keywords.map(function(k) {
+        return { site_id: site.id, keyword: k.keyword, volume: k.volume || 0, difficulty: k.difficulty || 50 };
+      });
+      var { data: saved } = await sb.from('keywords').insert(rows).select();
+
+      return res.status(200).json({ keywords: saved || rows });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
   } catch (err) {
     console.error('Keywords error:', err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 };

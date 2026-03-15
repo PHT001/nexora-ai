@@ -5,417 +5,974 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seora Admin</title>
   <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/admin.css">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f8f9fa; color:#1a1a1a; min-height:100vh; }
-
-    /* ── Header ── */
-    .admin-header {
-      background:#fff; border-bottom:1px solid #e8e8e8; padding:16px 32px;
-      display:flex; align-items:center; justify-content:space-between;
-    }
-    .admin-header-left { display:flex; align-items:center; gap:12px; }
-    .admin-logo { font-size:22px; font-weight:800; color:#E8562A; }
-    .admin-badge { background:#E8562A; color:#fff; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; }
-    .admin-header-right { display:flex; gap:12px; }
-    .btn-admin { padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid #e0e0e0; background:#fff; color:#555; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
-    .btn-admin:hover { background:#f5f5f5; }
-
-    /* ── Container ── */
-    .admin-container { max-width:1200px; margin:0 auto; padding:32px 24px; }
-
-    /* ── KPI Grid ── */
-    .kpi-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:32px; }
-    .kpi-card {
-      background:#fff; border-radius:12px; padding:24px; border:1px solid #f0f0f0;
-      box-shadow:0 1px 3px rgba(0,0,0,0.04);
-    }
-    .kpi-label { font-size:12px; font-weight:600; color:#999; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
-    .kpi-value { font-size:32px; font-weight:800; color:#1a1a1a; }
-    .kpi-sub { font-size:12px; color:#999; margin-top:4px; }
-    .kpi-value.green { color:#16a34a; }
-    .kpi-value.orange { color:#E8562A; }
-    .kpi-value.blue { color:#3b82f6; }
-
-    /* ── Chart ── */
-    .chart-section { background:#fff; border-radius:12px; padding:24px; border:1px solid #f0f0f0; margin-bottom:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
-    .chart-title { font-size:16px; font-weight:700; margin-bottom:20px; }
-    .chart-container { display:flex; align-items:flex-end; gap:6px; height:140px; }
-    .chart-bar-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
-    .chart-bar { width:100%; border-radius:4px 4px 0 0; background:#E8562A; min-height:2px; transition:height 0.3s; }
-    .chart-bar-label { font-size:10px; color:#999; }
-    .chart-bar-count { font-size:10px; font-weight:600; color:#555; }
-
-    /* ── Table ── */
-    .table-section { background:#fff; border-radius:12px; border:1px solid #f0f0f0; box-shadow:0 1px 3px rgba(0,0,0,0.04); overflow:hidden; }
-    .table-header { padding:20px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #f0f0f0; }
-    .table-title { font-size:16px; font-weight:700; }
-    .table-search { padding:8px 14px; border:1px solid #e0e0e0; border-radius:8px; font-size:13px; width:280px; outline:none; }
-    .table-search:focus { border-color:#E8562A; }
-    table { width:100%; border-collapse:collapse; }
-    thead th { text-align:left; padding:12px 16px; font-size:11px; font-weight:700; color:#999; text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid #f0f0f0; background:#fafafa; }
-    tbody td { padding:14px 16px; font-size:13px; border-bottom:1px solid #f5f5f5; }
-    tbody tr:hover { background:#fafafa; }
-    .user-name { font-weight:600; color:#1a1a1a; }
-    .user-email { font-size:12px; color:#999; }
-    .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; }
-    .badge-active { background:#f0fdf4; color:#16a34a; }
-    .badge-trial { background:#eff6ff; color:#3b82f6; }
-    .badge-inactive { background:#f5f5f5; color:#999; }
-    .badge-past-due { background:#fef2f2; color:#ef4444; }
-    .badge-cms { background:#f5f3ff; color:#7c3aed; }
-    .badge-autopilot { background:#fef3c7; color:#d97706; }
-    .usage-bar { width:60px; height:6px; background:#f0f0f0; border-radius:3px; display:inline-block; vertical-align:middle; margin-right:6px; }
-    .usage-fill { height:100%; border-radius:3px; background:#E8562A; }
-
-    /* ── Pagination ── */
-    .table-footer { padding:16px 24px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid #f0f0f0; }
-    .table-info { font-size:12px; color:#999; }
-    .pagination { display:flex; gap:4px; }
-    .page-btn { padding:6px 12px; border:1px solid #e0e0e0; border-radius:6px; font-size:12px; cursor:pointer; background:#fff; color:#555; }
-    .page-btn:hover { background:#f5f5f5; }
-    .page-btn.active { background:#E8562A; color:#fff; border-color:#E8562A; }
-
-    /* ── Recent signups ── */
-    .recent-section { margin-top:32px; }
-    .recent-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:16px; }
-    .recent-card { background:#fff; border-radius:12px; padding:20px; border:1px solid #f0f0f0; }
-    .recent-card h4 { font-size:14px; font-weight:700; margin-bottom:12px; }
-    .recent-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #f5f5f5; }
-    .recent-item:last-child { border-bottom:none; }
-    .recent-name { font-size:13px; font-weight:500; }
-    .recent-date { font-size:11px; color:#999; }
-
-    /* ── Loading ── */
-    .loading-overlay {
-      position:fixed; inset:0; background:#fff; z-index:9999;
-      display:flex; align-items:center; justify-content:center;
-      font-size:18px; font-weight:600; color:#999;
-    }
-    .loading-overlay.hidden { display:none; }
-
-    /* ── Responsive ── */
-    @media (max-width:900px) {
-      .kpi-grid { grid-template-columns:repeat(2, 1fr); }
-      .recent-grid { grid-template-columns:1fr; }
-    }
-    @media (max-width:600px) {
-      .kpi-grid { grid-template-columns:1fr; }
-      .admin-container { padding:16px; }
-      .table-header { flex-direction:column; gap:12px; }
-      .table-search { width:100%; }
-    }
+    /* All styles moved to css/admin.css */
   </style>
 </head>
 <body>
 
   <!-- Loading -->
-  <div class="loading-overlay" id="loading">Chargement...</div>
+  <div class="loading-overlay" id="loading">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Chargement du CRM...</div>
+  </div>
 
-  <!-- Header -->
-  <header class="admin-header">
-    <div class="admin-header-left">
-      <span class="admin-logo">Seora</span>
-      <span class="admin-badge">Admin</span>
+  <!-- Mobile Toggle -->
+  <button class="mobile-toggle" id="mobile-toggle" onclick="toggleSidebar()">&#9776;</button>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-brand-logo">Seora</span>
+      <span class="sidebar-brand-badge">Admin</span>
     </div>
-    <div class="admin-header-right">
-      <button class="btn-admin" onclick="loadData()">&#8635; Refresh</button>
+    <nav class="sidebar-nav">
+      <a class="sidebar-item active" data-section="overview" onclick="showSection('overview')">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Vue d'ensemble
+      </a>
+      <a class="sidebar-item" data-section="users" onclick="showSection('users')">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Utilisateurs
+        <span class="sidebar-count" id="sidebar-user-count">—</span>
+      </a>
+      <a class="sidebar-item" data-section="content" onclick="showSection('content')">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Contenu
+      </a>
+      <a class="sidebar-item" data-section="activity" onclick="showSection('activity')">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Activit&eacute;
+      </a>
+      <div class="sidebar-divider"></div>
+      <a class="sidebar-link" href="/dashboard.html">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+        Dashboard client
+        <svg style="width:14px;height:14px;margin-left:auto;opacity:0.5;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="sidebar-avatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-name">Admin</div>
+          <div class="sidebar-user-role">Administrateur</div>
+        </div>
+      </div>
     </div>
-  </header>
+  </aside>
 
   <!-- Main -->
-  <div class="admin-container">
-
-    <!-- KPI Cards -->
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-label">Total Utilisateurs</div>
-        <div class="kpi-value" id="kpi-total">-</div>
-        <div class="kpi-sub" id="kpi-total-sub"></div>
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="topbar-title">Vue d'ensemble</div>
+        <div class="topbar-sub" id="topbar-sub">Tableau de bord administrateur</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Abonnés Actifs</div>
-        <div class="kpi-value green" id="kpi-active">-</div>
-        <div class="kpi-sub" id="kpi-active-sub"></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Articles Générés</div>
-        <div class="kpi-value orange" id="kpi-articles">-</div>
-        <div class="kpi-sub" id="kpi-articles-sub"></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Autopilot Actifs</div>
-        <div class="kpi-value blue" id="kpi-autopilot">-</div>
-        <div class="kpi-sub" id="kpi-autopilot-sub"></div>
+      <div class="topbar-actions">
+        <button class="btn-refresh" onclick="refreshCurrentSection()">
+          <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          Rafra&icirc;chir
+        </button>
       </div>
     </div>
 
-    <!-- Second row KPIs -->
-    <div class="kpi-grid" style="margin-top:-16px;">
-      <div class="kpi-card">
-        <div class="kpi-label">CMS Connectés</div>
-        <div class="kpi-value" id="kpi-cms">-</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Articles Publiés</div>
-        <div class="kpi-value green" id="kpi-published">-</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Impayés</div>
-        <div class="kpi-value" id="kpi-pastdue" style="color:#ef4444;">-</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Churned</div>
-        <div class="kpi-value" id="kpi-churned" style="color:#999;">-</div>
-      </div>
-    </div>
+    <div class="content-area">
 
-    <!-- Chart -->
-    <div class="chart-section">
-      <div class="chart-title">Articles générés — 14 derniers jours</div>
-      <div class="chart-container" id="chart"></div>
-    </div>
-
-    <!-- Users Table -->
-    <div class="table-section">
-      <div class="table-header">
-        <div class="table-title">Utilisateurs <span id="user-count" style="font-weight:400;color:#999;font-size:14px;"></span></div>
-        <input type="text" class="table-search" id="search-input" placeholder="Rechercher par nom, email ou site..." oninput="handleSearch()">
-      </div>
-      <div style="overflow-x:auto;">
-        <table>
-          <thead>
-            <tr>
-              <th>Utilisateur</th>
-              <th>Site</th>
-              <th>Plan</th>
-              <th>Articles</th>
-              <th>CMS</th>
-              <th>Autopilot</th>
-              <th>Inscrit</th>
-            </tr>
-          </thead>
-          <tbody id="users-tbody"></tbody>
-        </table>
-      </div>
-      <div class="table-footer">
-        <div class="table-info" id="table-info">-</div>
-        <div class="pagination" id="pagination"></div>
-      </div>
-    </div>
-
-    <!-- Recent Signups -->
-    <div class="recent-section">
-      <div class="recent-grid">
-        <div class="recent-card">
-          <h4>Inscriptions récentes</h4>
-          <div id="recent-signups"></div>
+      <!-- ═══ OVERVIEW ═══ -->
+      <div class="section active" id="section-overview">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div class="kpi-content"><div class="kpi-label">Total Utilisateurs</div><div class="kpi-value" id="kpi-total" style="color:#3b82f6;">—</div><div class="kpi-sub" id="kpi-total-sub"></div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap" style="background:#f0fdf4;"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="kpi-content"><div class="kpi-label">Abonn&eacute;s Actifs</div><div class="kpi-value" id="kpi-active" style="color:#16a34a;">—</div><div class="kpi-sub" id="kpi-active-sub"></div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap" style="background:#fff7ed;"><svg viewBox="0 0 24 24" fill="none" stroke="#5855FF" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <div class="kpi-content"><div class="kpi-label">Articles G&eacute;n&eacute;r&eacute;s</div><div class="kpi-value" id="kpi-articles" style="color:#5855FF;">—</div><div class="kpi-sub" id="kpi-articles-sub"></div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon-wrap" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="kpi-content"><div class="kpi-label">Autopilot Actifs</div><div class="kpi-value" id="kpi-autopilot" style="color:#3b82f6;">—</div><div class="kpi-sub" id="kpi-autopilot-sub"></div></div>
+          </div>
         </div>
-        <div class="recent-card">
-          <h4>Répartition des plans</h4>
-          <div id="plan-breakdown"></div>
+        <div class="kpi-secondary">
+          <div class="kpi-mini"><div class="kpi-mini-label">CMS</div><div class="kpi-mini-value" id="kpi-cms" style="color:#7c3aed;">—</div></div>
+          <div class="kpi-mini"><div class="kpi-mini-label">Publi&eacute;s</div><div class="kpi-mini-value" id="kpi-published" style="color:#16a34a;">—</div></div>
+          <div class="kpi-mini"><div class="kpi-mini-label">Impay&eacute;s</div><div class="kpi-mini-value" id="kpi-pastdue" style="color:#ef4444;">—</div></div>
+          <div class="kpi-mini"><div class="kpi-mini-label">Churned</div><div class="kpi-mini-value" id="kpi-churned" style="color:#9ca3af;">—</div></div>
+          <div class="kpi-mini"><div class="kpi-mini-label">MRR</div><div class="kpi-mini-value" id="kpi-mrr" style="color:#5855FF;">—</div></div>
+          <div class="kpi-mini"><div class="kpi-mini-label">Conversion</div><div class="kpi-mini-value" id="kpi-conversion" style="color:#16a34a;">—</div></div>
+          <div class="kpi-mini"><div class="kpi-mini-label">Churn</div><div class="kpi-mini-value" id="kpi-churn" style="color:#ef4444;">—</div></div>
+        </div>
+        <div class="charts-row">
+          <div class="chart-card"><div class="chart-card-title">Articles g&eacute;n&eacute;r&eacute;s — 14 derniers jours</div><div class="chart-container" id="chart-bars"></div></div>
+          <div class="chart-card"><div class="chart-card-title">R&eacute;partition des plans</div><div class="donut-wrap"><svg class="donut-svg" viewBox="0 0 42 42" id="donut-chart"><circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#e5e7eb" stroke-width="5"/></svg><div class="donut-legend" id="donut-legend"></div></div></div>
+        </div>
+        <div class="mini-feed"><div class="mini-feed-title">Activit&eacute; r&eacute;cente</div><div id="mini-feed-list"><div class="empty-state"><div class="empty-state-text">Chargement...</div></div></div></div>
+      </div>
+
+      <!-- ═══ USERS ═══ -->
+      <div class="section" id="section-users">
+        <div class="filter-bar">
+          <input type="text" class="filter-input" id="users-search" placeholder="Rechercher par nom, email ou site..." oninput="handleUsersSearch()">
+          <select class="filter-select" id="users-plan-filter" onchange="handleUsersFilter()">
+            <option value="all">Tous les plans</option>
+            <option value="active">Actifs</option>
+            <option value="free">Free</option>
+            <option value="past_due">Impay&eacute;s</option>
+            <option value="inactive">Churned</option>
+          </select>
+        </div>
+        <div class="table-card">
+          <div style="overflow-x:auto;">
+            <table><thead><tr><th>Utilisateur</th><th>Site</th><th>Plan</th><th>Articles</th><th>CMS</th><th>Autopilot</th><th>Derni&egrave;re activit&eacute;</th><th>Inscrit</th></tr></thead><tbody id="users-tbody"></tbody></table>
+          </div>
+          <div class="table-footer"><div class="table-info" id="users-table-info">—</div><div class="pagination" id="users-pagination"></div></div>
         </div>
       </div>
-    </div>
 
+      <!-- ═══ CONTENT ═══ -->
+      <div class="section" id="section-content">
+        <div class="filter-bar">
+          <input type="text" class="filter-input" id="content-search" placeholder="Rechercher par titre d'article..." oninput="handleContentSearch()">
+          <select class="filter-select" id="content-status-filter" onchange="handleContentFilter()">
+            <option value="all">Tous les statuts</option>
+            <option value="draft">Brouillons</option>
+            <option value="published">Publi&eacute;s</option>
+          </select>
+          <div style="margin-left:auto;font-size:13px;color:#999;" id="content-total-info"></div>
+        </div>
+        <div id="content-grouped"></div>
+        <div style="display:flex;justify-content:center;margin-top:20px;"><div class="pagination" id="content-pagination"></div></div>
+      </div>
+
+      <!-- ═══ ACTIVITY ═══ -->
+      <div class="section" id="section-activity">
+        <div class="table-card" style="padding:24px;"><div class="timeline" id="activity-timeline"><div class="empty-state"><div class="empty-state-text">Chargement...</div></div></div></div>
+      </div>
+
+    </div>
   </div>
+
+  <!-- Drawer Overlay -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+  <!-- Drawer -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div class="drawer-user-info">
+        <div class="drawer-user-name" id="drawer-name">—</div>
+        <div class="drawer-user-email" id="drawer-email">—</div>
+        <div class="drawer-user-meta" id="drawer-meta"></div>
+      </div>
+      <button class="drawer-close" onclick="closeDrawer()">&times;</button>
+    </div>
+    <div class="drawer-tabs">
+      <div class="drawer-tab active" data-tab="profile" onclick="showDrawerTab('profile')">Profil</div>
+      <div class="drawer-tab" data-tab="stats" onclick="showDrawerTab('stats')">Stats</div>
+      <div class="drawer-tab" data-tab="articles" onclick="showDrawerTab('articles')">Articles</div>
+      <div class="drawer-tab" data-tab="keywords" onclick="showDrawerTab('keywords')">Mots-cl&eacute;s</div>
+      <div class="drawer-tab" data-tab="audit" onclick="showDrawerTab('audit')">Audit</div>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-loading" id="drawer-loading">Chargement...</div>
+      <div class="drawer-section active" id="drawer-profile"></div>
+      <div class="drawer-section" id="drawer-stats"></div>
+      <div class="drawer-section" id="drawer-articles"></div>
+      <div class="drawer-section" id="drawer-keywords"></div>
+      <div class="drawer-section" id="drawer-audit"></div>
+    </div>
+  </div>
+
+  <!-- Modal: Delete User -->
+  <div class="modal-overlay" id="modal-delete-user">
+    <div class="modal">
+      <div class="modal-title" style="color:#ef4444;">Supprimer cet utilisateur</div>
+      <div class="modal-sub">Cette action est irr&eacute;versible.</div>
+      <div id="delete-user-info"></div>
+      <div class="form-group" style="margin-top:16px;">
+        <div class="form-label">Tapez SUPPRIMER pour confirmer</div>
+        <input type="text" class="form-input" id="delete-confirm-input" oninput="document.getElementById('delete-confirm-btn').disabled = this.value.trim() !== 'SUPPRIMER'" placeholder="SUPPRIMER" autocomplete="off">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('modal-delete-user')">Annuler</button>
+        <button class="btn-danger" id="delete-confirm-btn" disabled onclick="confirmDeleteUser()">Supprimer d&eacute;finitivement</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Email -->
+  <div class="modal-overlay" id="modal-email">
+    <div class="modal">
+      <div class="modal-title">Envoyer un email</div>
+      <div class="modal-sub">Un email sera envoy&eacute; au client via Resend.</div>
+      <div class="form-label" style="margin-bottom:8px;">Templates rapides</div>
+      <div class="template-chips">
+        <span class="template-chip" onclick="applyEmailTemplate('bienvenue')">Bienvenue</span>
+        <span class="template-chip" onclick="applyEmailTemplate('relance')">Relance</span>
+        <span class="template-chip" onclick="applyEmailTemplate('upgrade')">Offre upgrade</span>
+        <span class="template-chip" onclick="applyEmailTemplate('support')">Support</span>
+      </div>
+      <div class="form-group">
+        <div class="form-label">Sujet</div>
+        <input type="text" class="form-input" id="email-subject" placeholder="Objet de l'email...">
+      </div>
+      <div class="form-group">
+        <div class="form-label">Message</div>
+        <textarea class="form-textarea" id="email-message" placeholder="Votre message..."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('modal-email')">Annuler</button>
+        <button class="btn-primary" onclick="sendEmail()">Envoyer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Edit User -->
+  <div class="modal-overlay" id="modal-edit-user">
+    <div class="modal">
+      <div class="modal-title">Modifier l'utilisateur</div>
+      <div class="modal-sub">Modifiez les informations du client.</div>
+      <div class="form-group">
+        <div class="form-label">Nom complet</div>
+        <input type="text" class="form-input" id="edit-full-name" placeholder="Nom complet">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <div class="form-label">Plan</div>
+          <select class="form-select" id="edit-plan">
+            <option value="free">Free</option>
+            <option value="starter">Starter</option>
+            <option value="pro">Pro</option>
+            <option value="business">Business</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Statut</div>
+          <select class="form-select" id="edit-plan-status">
+            <option value="active">Actif</option>
+            <option value="inactive">Inactif</option>
+            <option value="past_due">Impay&eacute;</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">Limite d'articles</div>
+        <input type="number" class="form-input" id="edit-articles-limit" min="0" max="9999" placeholder="30">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('modal-edit-user')">Annuler</button>
+        <button class="btn-primary" onclick="saveUserEdit()">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="/js/auth.js"></script>
   <script src="/js/api.js"></script>
   <script>
-    var _currentPage = 1;
+    // ── XSS Protection ──
+    function esc(s) {
+      if (s == null) return '';
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+    }
+    function safeHref(url) {
+      if (!url) return '#';
+      var s = String(url).trim();
+      if (/^https?:\/\//i.test(s)) return esc(s);
+      return '#';
+    }
+
+    // ── State ──
+    var _currentSection = 'overview';
+    var _sectionsLoaded = { overview:false, users:false, content:false, activity:false };
+    var _usersPage = 1;
+    var _contentPage = 1;
     var _searchTimeout = null;
     var _dashData = null;
+    var _currentDrawerUserId = null;
+    var _currentDrawerData = null;
 
-    // ── Init ──
+    var _sectionMeta = {
+      overview: { title: "Vue d'ensemble", sub: 'Tableau de bord administrateur' },
+      users: { title: 'Utilisateurs', sub: 'G\u00e9rez vos clients et leurs abonnements' },
+      content: { title: 'Contenu', sub: 'Tous les articles g\u00e9n\u00e9r\u00e9s sur la plateforme' },
+      activity: { title: 'Activit\u00e9', sub: "Flux d'\u00e9v\u00e9nements en temps r\u00e9el" }
+    };
+
+    // ══════════════ INIT ══════════════
     document.addEventListener('DOMContentLoaded', async function() {
       try {
         var session = await _sb.auth.getSession();
-        if (!session.data.session) {
-          window.location.href = '/signin';
-          return;
-        }
-        await loadData();
+        if (!session.data.session) { window.location.href = 'signin.html'; return; }
+        var user = session.data.session.user;
+        var name = (user.user_metadata && user.user_metadata.full_name) || (user.email || '').split('@')[0];
+        document.getElementById('sidebar-name').textContent = name;
+        document.getElementById('sidebar-avatar').textContent = name.charAt(0).toUpperCase();
+        await loadOverview();
+        document.getElementById('loading').classList.add('hidden');
       } catch (err) {
         console.error('Init error:', err);
-        document.getElementById('loading').innerHTML = 'Accès refusé. <a href="/dashboard">Retour</a>';
+        document.getElementById('loading').innerHTML = '<div style="text-align:center;"><div style="font-size:16px;font-weight:600;color:#ef4444;margin-bottom:8px;">Acc\u00e8s refus\u00e9</div><a href="/dashboard.html" style="color:#5855FF;">Retour</a></div>';
       }
     });
 
-    // ── Load all data ──
-    async function loadData() {
+    // ══════════════ NAVIGATION ══════════════
+    function showSection(id) {
+      _currentSection = id;
+      closeDrawer();
+      document.querySelectorAll('.sidebar-item').forEach(function(el) { el.classList.toggle('active', el.getAttribute('data-section') === id); });
+      document.querySelectorAll('.section').forEach(function(el) { el.classList.toggle('active', el.id === 'section-' + id); });
+      var meta = _sectionMeta[id];
+      document.getElementById('topbar-title').textContent = meta.title;
+      document.getElementById('topbar-sub').textContent = meta.sub;
+      if (!_sectionsLoaded[id]) {
+        if (id === 'overview') loadOverview();
+        else if (id === 'users') loadUsers();
+        else if (id === 'content') loadContent();
+        else if (id === 'activity') loadActivity();
+      }
+      document.getElementById('sidebar').classList.remove('open');
+    }
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+    function refreshCurrentSection() { _sectionsLoaded[_currentSection] = false; showSection(_currentSection); }
+
+    // ══════════════ OVERVIEW ══════════════
+    async function loadOverview() {
       try {
-        var [dashResult, usersResult] = await Promise.all([
+        var [dashResult, actResult] = await Promise.all([
           apiCall('GET', 'admin?action=dashboard'),
-          apiCall('GET', 'admin?action=users&page=' + _currentPage)
+          apiCall('GET', 'admin?action=activity&limit=5')
         ]);
         _dashData = dashResult;
         renderKPIs(dashResult.stats);
-        renderChart(dashResult.dailyArticles);
-        renderRecentSignups(dashResult.recentSignups);
-        renderPlanBreakdown(dashResult.stats);
-        renderUsers(usersResult);
-        document.getElementById('loading').classList.add('hidden');
-      } catch (err) {
-        console.error('Load error:', err);
-        document.getElementById('loading').innerHTML = 'Erreur : ' + err.message + '. <a href="/dashboard">Retour</a>';
-      }
+        renderBarChart(dashResult.dailyArticles);
+        renderDonut(dashResult.stats);
+        renderMiniFeed(actResult.events);
+        document.getElementById('sidebar-user-count').textContent = dashResult.stats.totalUsers;
+        _sectionsLoaded.overview = true;
+      } catch (err) { console.error('Overview error:', err); }
     }
 
-    // ── KPIs ──
     function renderKPIs(s) {
       document.getElementById('kpi-total').textContent = s.totalUsers;
-      document.getElementById('kpi-total-sub').textContent = s.totalSites + ' sites créés';
+      document.getElementById('kpi-total-sub').textContent = s.totalSites + ' sites cr\u00e9\u00e9s';
       document.getElementById('kpi-active').textContent = s.activeUsers;
-      document.getElementById('kpi-active-sub').textContent = s.pastDueUsers + ' impayés';
+      document.getElementById('kpi-active-sub').textContent = s.conversionRate + '% du total';
       document.getElementById('kpi-articles').textContent = s.totalArticles;
-      document.getElementById('kpi-articles-sub').textContent = s.articlesThisWeek + ' cette semaine · ' + s.articlesThisMonth + ' ce mois';
+      document.getElementById('kpi-articles-sub').textContent = s.articlesThisWeek + ' cette semaine \u00b7 ' + s.articlesThisMonth + ' ce mois';
       document.getElementById('kpi-autopilot').textContent = s.autopilotUsers;
       document.getElementById('kpi-autopilot-sub').textContent = 'sur ' + s.activeUsers + ' actifs';
       document.getElementById('kpi-cms').textContent = s.cmsUsers;
       document.getElementById('kpi-published').textContent = s.publishedArticles;
       document.getElementById('kpi-pastdue').textContent = s.pastDueUsers;
       document.getElementById('kpi-churned').textContent = s.churnedUsers;
+      document.getElementById('kpi-mrr').textContent = s.estimatedMRR + '\u20ac';
+      document.getElementById('kpi-conversion').textContent = s.conversionRate + '%';
+      document.getElementById('kpi-churn').textContent = s.churnRate + '%';
     }
 
-    // ── Chart ──
-    function renderChart(daily) {
-      var container = document.getElementById('chart');
+    function renderBarChart(daily) {
+      var c = document.getElementById('chart-bars');
       var keys = Object.keys(daily);
       var max = Math.max.apply(null, keys.map(function(k) { return daily[k]; })) || 1;
-
-      container.innerHTML = keys.map(function(k) {
-        var val = daily[k];
-        var pct = Math.max((val / max) * 100, 2);
-        var day = k.split('-');
-        var label = day[2] + '/' + day[1];
-        return '<div class="chart-bar-wrap">'
-          + '<div class="chart-bar-count">' + val + '</div>'
-          + '<div class="chart-bar" style="height:' + pct + '%"></div>'
-          + '<div class="chart-bar-label">' + label + '</div>'
-          + '</div>';
+      c.innerHTML = keys.map(function(k) {
+        var v = daily[k], pct = Math.max((v / max) * 100, 3), p = k.split('-');
+        return '<div class="chart-bar-wrap"><div class="chart-bar-count">' + v + '</div><div class="chart-bar" style="height:' + pct + '%"></div><div class="chart-bar-label">' + p[2] + '/' + p[1] + '</div></div>';
       }).join('');
     }
 
-    // ── Users Table ──
-    function renderUsers(data) {
-      var tbody = document.getElementById('users-tbody');
-      document.getElementById('user-count').textContent = '(' + data.total + ')';
-      document.getElementById('table-info').textContent = 'Page ' + data.page + ' sur ' + data.totalPages + ' — ' + data.total + ' utilisateurs';
+    function renderDonut(s) {
+      var total = s.totalUsers || 1;
+      var items = [
+        { label:'Actifs', count:s.activeUsers, color:'#16a34a' },
+        { label:'Free', count:s.freeUsers, color:'#3b82f6' },
+        { label:'Impay\u00e9s', count:s.pastDueUsers, color:'#ef4444' },
+        { label:'Churned', count:s.churnedUsers, color:'#9ca3af' }
+      ];
+      var circ = 2 * Math.PI * 15.9, offset = 0;
+      var circles = '<circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#e5e7eb" stroke-width="5"/>';
+      items.forEach(function(item) {
+        var dash = (item.count / total) * circ;
+        if (dash > 0.1) { circles += '<circle cx="21" cy="21" r="15.9" fill="transparent" stroke="' + item.color + '" stroke-width="5" stroke-dasharray="' + dash + ' ' + (circ - dash) + '" stroke-dashoffset="' + (-offset) + '" transform="rotate(-90 21 21)"/>'; }
+        offset += dash;
+      });
+      document.getElementById('donut-chart').innerHTML = circles;
+      document.getElementById('donut-legend').innerHTML = items.map(function(item) {
+        return '<div class="donut-legend-item"><div class="donut-dot" style="background:' + item.color + ';"></div><span>' + item.label + '</span><span class="donut-legend-val">' + item.count + ' (' + Math.round((item.count / total) * 100) + '%)</span></div>';
+      }).join('');
+    }
 
-      if (!data.users.length) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:#999;">Aucun utilisateur trouvé</td></tr>';
-        document.getElementById('pagination').innerHTML = '';
+    function renderMiniFeed(events) {
+      var c = document.getElementById('mini-feed-list');
+      if (!events || !events.length) { c.innerHTML = '<div class="empty-state"><div class="empty-state-text">Aucune activit\u00e9</div></div>'; return; }
+      c.innerHTML = events.slice(0, 5).map(function(e) {
+        var info = getEventInfo(e);
+        return '<div class="mini-feed-item"><div class="feed-dot" style="background:' + info.color + ';"></div><div class="feed-text">' + info.text + '</div><div class="feed-time">' + getTimeAgo(new Date(e.timestamp)) + '</div></div>';
+      }).join('');
+    }
+
+    // ══════════════ USERS ══════════════
+    async function loadUsers() {
+      try {
+        var search = document.getElementById('users-search').value.trim();
+        var plan = document.getElementById('users-plan-filter').value;
+        var url = 'admin?action=users&page=' + _usersPage;
+        if (search) url += '&search=' + encodeURIComponent(search);
+        if (plan && plan !== 'all') url += '&plan_status=' + plan;
+        var data = await apiCall('GET', url);
+        renderUsersTable(data);
+        _sectionsLoaded.users = true;
+      } catch (err) { console.error('Users error:', err); }
+    }
+
+    function renderUsersTable(data) {
+      var tbody = document.getElementById('users-tbody');
+      document.getElementById('users-table-info').textContent = 'Page ' + data.page + ' sur ' + (data.totalPages || 1) + ' \u2014 ' + data.total + ' utilisateurs';
+      if (!data.users || !data.users.length) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:#999;">Aucun utilisateur trouv\u00e9</td></tr>';
+        document.getElementById('users-pagination').innerHTML = '';
+        return;
+      }
+      tbody.innerHTML = data.users.map(function(u) {
+        var sb = '';
+        if (u.plan_status === 'active') sb = '<span class="badge badge-active">Actif</span>';
+        else if (u.plan_status === 'past_due') sb = '<span class="badge badge-past-due">Impay\u00e9</span>';
+        else if (u.has_stripe) sb = '<span class="badge badge-inactive">Churned</span>';
+        else sb = '<span class="badge badge-inactive">Free</span>';
+        var pct = u.articles_limit > 0 ? Math.min(100, Math.round((u.articles_used / u.articles_limit) * 100)) : 0;
+        var uc = pct > 80 ? '#ef4444' : pct > 50 ? '#f59e0b' : '#5855FF';
+        var cms = u.cms_type ? '<span class="badge badge-cms">' + esc(u.cms_type) + '</span>' : '<span style="color:#ccc;">\u2014</span>';
+        var ap = u.autopilot ? '<span class="badge badge-autopilot">ON</span>' : '<span style="color:#ccc;">OFF</span>';
+        var dt = new Date(u.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'short', year:'numeric' });
+        var la = u.last_activity ? getTimeAgo(new Date(u.last_activity)) : '\u2014';
+        return '<tr onclick="openDrawer(\'' + esc(u.id) + '\')">'
+          + '<td><div class="user-cell"><span class="user-name">' + esc(u.full_name || 'Sans nom') + '</span><span class="user-email">' + esc(u.email) + '</span></div></td>'
+          + '<td>' + (u.domain ? '<span style="color:#5855FF;">' + esc(u.domain) + '</span>' : '<span style="color:#ccc;">\u2014</span>') + '</td>'
+          + '<td>' + sb + '</td>'
+          + '<td><div class="usage-bar"><div class="usage-fill" style="width:' + pct + '%;background:' + uc + ';"></div></div>' + u.articles_used + '/' + u.articles_limit + '</td>'
+          + '<td>' + cms + '</td><td>' + ap + '</td>'
+          + '<td style="font-size:12px;color:#777;">' + la + '</td>'
+          + '<td style="font-size:12px;color:#777;">' + dt + '</td></tr>';
+      }).join('');
+      renderPagination('users-pagination', data.page, data.totalPages, function(p) { _usersPage = p; _sectionsLoaded.users = false; loadUsers(); });
+    }
+
+    function handleUsersSearch() { clearTimeout(_searchTimeout); _searchTimeout = setTimeout(function() { _usersPage = 1; _sectionsLoaded.users = false; loadUsers(); }, 300); }
+    function handleUsersFilter() { _usersPage = 1; _sectionsLoaded.users = false; loadUsers(); }
+
+    // ══════════════ CONTENT ══════════════
+    async function loadContent() {
+      try {
+        var search = document.getElementById('content-search').value.trim();
+        var status = document.getElementById('content-status-filter').value;
+        var url = 'admin?action=articles&page=' + _contentPage;
+        if (search) url += '&search=' + encodeURIComponent(search);
+        if (status && status !== 'all') url += '&status=' + status;
+        var data = await apiCall('GET', url);
+        renderContentTable(data);
+        _sectionsLoaded.content = true;
+      } catch (err) { console.error('Content error:', err); }
+    }
+
+    function renderContentTable(data) {
+      var container = document.getElementById('content-grouped');
+      document.getElementById('content-total-info').textContent = data.total + ' articles au total';
+      if (!data.articles || !data.articles.length) {
+        container.innerHTML = '<div class="table-card"><div class="empty-state"><div class="empty-state-text">Aucun article trouv\u00e9</div></div></div>';
+        document.getElementById('content-pagination').innerHTML = '';
         return;
       }
 
-      tbody.innerHTML = data.users.map(function(u) {
-        var statusBadge = '';
-        if (u.plan_status === 'active') statusBadge = '<span class="badge badge-active">Actif</span>';
-        else if (u.plan_status === 'past_due') statusBadge = '<span class="badge badge-past-due">Impayé</span>';
-        else if (u.has_stripe) statusBadge = '<span class="badge badge-inactive">Churned</span>';
-        else statusBadge = '<span class="badge badge-inactive">Free</span>';
-
-        var usagePercent = u.articles_limit > 0 ? Math.min(100, Math.round((u.articles_used / u.articles_limit) * 100)) : 0;
-        var usageColor = usagePercent > 80 ? '#ef4444' : usagePercent > 50 ? '#f59e0b' : '#E8562A';
-
-        var cmsBadge = u.cms_type ? '<span class="badge badge-cms">' + u.cms_type + '</span>' : '<span style="color:#ccc;">—</span>';
-        var autopilotBadge = u.autopilot ? '<span class="badge badge-autopilot">ON</span>' : '<span style="color:#ccc;">OFF</span>';
-
-        var date = new Date(u.created_at);
-        var dateStr = date.toLocaleDateString('fr-FR', { day:'numeric', month:'short', year:'numeric' });
-
-        return '<tr>'
-          + '<td><div class="user-name">' + (u.full_name || 'Sans nom') + '</div><div class="user-email">' + u.email + '</div></td>'
-          + '<td>' + (u.domain ? '<a href="https://' + u.domain + '" target="_blank" style="color:#E8562A;text-decoration:none;">' + u.domain + '</a>' : '<span style="color:#ccc;">—</span>') + '</td>'
-          + '<td>' + statusBadge + '</td>'
-          + '<td><div class="usage-bar"><div class="usage-fill" style="width:' + usagePercent + '%;background:' + usageColor + ';"></div></div>' + u.articles_used + '/' + u.articles_limit + '</td>'
-          + '<td>' + cmsBadge + '</td>'
-          + '<td>' + autopilotBadge + '</td>'
-          + '<td style="font-size:12px;color:#777;">' + dateStr + '</td>'
-          + '</tr>';
-      }).join('');
-
-      // Pagination
-      var pag = document.getElementById('pagination');
-      if (data.totalPages <= 1) { pag.innerHTML = ''; return; }
-      var html = '';
-      if (data.page > 1) html += '<button class="page-btn" onclick="goToPage(' + (data.page - 1) + ')">&#8592;</button>';
-      for (var i = 1; i <= data.totalPages; i++) {
-        if (i === data.page) html += '<button class="page-btn active">' + i + '</button>';
-        else if (Math.abs(i - data.page) <= 2 || i === 1 || i === data.totalPages) {
-          html += '<button class="page-btn" onclick="goToPage(' + i + ')">' + i + '</button>';
-        } else if (Math.abs(i - data.page) === 3) {
-          html += '<span style="padding:6px;color:#999;">...</span>';
+      // Group articles by user
+      var groups = {};
+      var groupOrder = [];
+      data.articles.forEach(function(a) {
+        var key = a.user_email || 'unknown';
+        if (!groups[key]) {
+          groups[key] = { name: a.user_name || 'Sans nom', email: a.user_email || '\u2014', domain: a.domain || null, articles: [] };
+          groupOrder.push(key);
         }
+        groups[key].articles.push(a);
+      });
+
+      var html = '';
+      groupOrder.forEach(function(key, idx) {
+        var g = groups[key];
+        var initial = esc(g.name.charAt(0).toUpperCase());
+        var totalWords = 0, totalSeo = 0, pubCount = 0;
+        g.articles.forEach(function(a) { totalWords += (a.word_count || 0); totalSeo += (a.seo_score || 0); if (a.status === 'published') pubCount++; });
+        var avgSeo = Math.round(totalSeo / g.articles.length);
+        var seoColor = avgSeo >= 80 ? '#16a34a' : avgSeo >= 50 ? '#f59e0b' : '#ef4444';
+
+        html += '<div class="client-card">';
+        html += '<div class="client-card-header" onclick="toggleClientCard(this)">';
+        html += '<div class="client-avatar">' + initial + '</div>';
+        html += '<div class="client-info"><div class="client-name">' + esc(g.name) + '</div><div class="client-email">' + esc(g.email) + '</div></div>';
+        if (g.domain) html += '<a class="client-domain" href="' + safeHref('https://' + g.domain) + '" target="_blank" rel="noopener" onclick="event.stopPropagation();">' + esc(g.domain) + '</a>';
+        html += '<div class="client-meta">';
+        html += '<div class="client-stat"><div class="client-stat-val">' + g.articles.length + '</div><div class="client-stat-label">Articles</div></div>';
+        html += '<div class="client-stat"><div class="client-stat-val">' + pubCount + '</div><div class="client-stat-label">Publi\u00e9s</div></div>';
+        html += '<div class="client-stat"><div class="client-stat-val" style="color:' + seoColor + ';">' + avgSeo + '</div><div class="client-stat-label">SEO moy.</div></div>';
+        html += '<div class="client-stat"><div class="client-stat-val">' + totalWords.toLocaleString('fr-FR') + '</div><div class="client-stat-label">Mots</div></div>';
+        html += '</div>';
+        html += '<div class="client-toggle open">\u25BE</div>';
+        html += '</div>';
+
+        html += '<div class="client-card-body">';
+        html += '<table><thead><tr><th>Titre</th><th>Mots</th><th>SEO</th><th>Statut</th><th>CMS</th><th>Date</th></tr></thead><tbody>';
+        g.articles.forEach(function(a) {
+          var sc = (a.seo_score || 0) >= 80 ? '#16a34a' : (a.seo_score || 0) >= 50 ? '#f59e0b' : '#ef4444';
+          var sb = a.status === 'published' ? '<span class="badge badge-published">Publi\u00e9</span>' : '<span class="badge badge-draft">Brouillon</span>';
+          var dt = new Date(a.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'short' });
+          var t = a.title || 'Sans titre'; if (t.length > 55) t = t.substring(0, 55) + '...';
+          var cmsLink = a.cms_post_url ? '<a href="' + safeHref(a.cms_post_url) + '" target="_blank" rel="noopener" style="color:#7c3aed;font-size:11px;">Voir</a>' : '\u2014';
+          html += '<tr>'
+            + '<td style="font-weight:500;max-width:320px;">' + esc(t) + '</td>'
+            + '<td>' + (a.word_count || 0) + '</td>'
+            + '<td><div class="seo-circle" style="background:' + sc + ';">' + (a.seo_score || '\u2014') + '</div></td>'
+            + '<td>' + sb + '</td>'
+            + '<td>' + cmsLink + '</td>'
+            + '<td style="color:#777;">' + dt + '</td></tr>';
+        });
+        html += '</tbody></table></div></div>';
+      });
+
+      container.innerHTML = html;
+      renderPagination('content-pagination', data.page, data.totalPages, function(p) { _contentPage = p; _sectionsLoaded.content = false; loadContent(); });
+    }
+
+    function toggleClientCard(header) {
+      var body = header.nextElementSibling;
+      var toggle = header.querySelector('.client-toggle');
+      if (body.style.display === 'none') {
+        body.style.display = '';
+        toggle.classList.add('open');
+      } else {
+        body.style.display = 'none';
+        toggle.classList.remove('open');
       }
-      if (data.page < data.totalPages) html += '<button class="page-btn" onclick="goToPage(' + (data.page + 1) + ')">&#8594;</button>';
-      pag.innerHTML = html;
     }
 
-    // ── Recent signups ──
-    function renderRecentSignups(signups) {
-      var container = document.getElementById('recent-signups');
-      if (!signups.length) { container.innerHTML = '<p style="color:#999;font-size:13px;">Aucune inscription</p>'; return; }
-      container.innerHTML = signups.map(function(s) {
-        var date = new Date(s.created_at);
-        var timeAgo = getTimeAgo(date);
-        return '<div class="recent-item">'
-          + '<div><div class="recent-name">' + (s.full_name || s.email.split('@')[0]) + '</div><div style="font-size:11px;color:#999;">' + s.email + '</div></div>'
-          + '<div class="recent-date">' + timeAgo + '</div>'
-          + '</div>';
-      }).join('');
+    function handleContentSearch() { clearTimeout(_searchTimeout); _searchTimeout = setTimeout(function() { _contentPage = 1; _sectionsLoaded.content = false; loadContent(); }, 300); }
+    function handleContentFilter() { _contentPage = 1; _sectionsLoaded.content = false; loadContent(); }
+
+    // ══════════════ ACTIVITY ══════════════
+    async function loadActivity() {
+      try {
+        var data = await apiCall('GET', 'admin?action=activity&limit=50');
+        renderTimeline(data.events);
+        _sectionsLoaded.activity = true;
+      } catch (err) { console.error('Activity error:', err); }
     }
 
-    // ── Plan breakdown ──
-    function renderPlanBreakdown(s) {
-      var container = document.getElementById('plan-breakdown');
-      var total = s.totalUsers || 1;
-      var items = [
-        { label: 'Actifs', count: s.activeUsers, color: '#16a34a' },
-        { label: 'Free', count: s.freeUsers, color: '#e5e7eb' },
-        { label: 'Impayés', count: s.pastDueUsers, color: '#ef4444' },
-        { label: 'Churned', count: s.churnedUsers, color: '#9ca3af' }
+    function renderTimeline(events) {
+      var c = document.getElementById('activity-timeline');
+      if (!events || !events.length) { c.innerHTML = '<div class="empty-state"><div class="empty-state-text">Aucune activit\u00e9</div></div>'; return; }
+      var grouped = {};
+      events.forEach(function(e) { var k = new Date(e.timestamp).toISOString().split('T')[0]; if (!grouped[k]) grouped[k] = []; grouped[k].push(e); });
+      var html = '', today = new Date().toISOString().split('T')[0], yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+      Object.keys(grouped).forEach(function(dk) {
+        var label = dk === today ? "Aujourd'hui" : dk === yesterday ? 'Hier' : new Date(dk).toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long' });
+        html += '<div class="timeline-date-header">' + label + '</div>';
+        grouped[dk].forEach(function(e) {
+          var info = getEventInfo(e);
+          var time = new Date(e.timestamp).toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+          html += '<div class="timeline-item"><div class="timeline-icon" style="background:' + info.bg + ';">' + info.icon + '</div><div class="timeline-content"><div class="timeline-text">' + info.text + '</div><div class="timeline-meta">' + time + '</div></div></div>';
+        });
+      });
+      c.innerHTML = html;
+    }
+
+    // ══════════════ DRAWER ══════════════
+    async function openDrawer(userId) {
+      _currentDrawerUserId = userId;
+      document.getElementById('drawer-overlay').classList.add('open');
+      document.getElementById('drawer').classList.add('open');
+      document.getElementById('drawer-loading').style.display = 'flex';
+      document.querySelectorAll('.drawer-section').forEach(function(el) { el.innerHTML = ''; el.classList.remove('active'); });
+      document.querySelectorAll('.drawer-tab').forEach(function(el) { el.classList.toggle('active', el.getAttribute('data-tab') === 'profile'); });
+      try {
+        var data = await apiCall('GET', 'admin?action=user-detail&id=' + userId);
+        _currentDrawerData = data;
+        document.getElementById('drawer-loading').style.display = 'none';
+        renderDrawerProfile(data);
+        renderDrawerStats(data);
+        renderDrawerArticles(data.articles);
+        renderDrawerKeywords(data.keywords);
+        renderDrawerAudit(data.audit);
+        document.getElementById('drawer-profile').classList.add('active');
+      } catch (err) {
+        console.error('Drawer error:', err);
+        document.getElementById('drawer-loading').textContent = 'Erreur de chargement';
+      }
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer-overlay').classList.remove('open');
+      document.getElementById('drawer').classList.remove('open');
+    }
+
+    function showDrawerTab(tabId) {
+      document.querySelectorAll('.drawer-tab').forEach(function(el) { el.classList.toggle('active', el.getAttribute('data-tab') === tabId); });
+      document.querySelectorAll('.drawer-section').forEach(function(el) { el.classList.toggle('active', el.id === 'drawer-' + tabId); });
+    }
+
+    // ── Drawer: Profile Tab ──
+    function renderDrawerProfile(data) {
+      var p = data.profile, s = data.site, st = data.settings || {};
+      document.getElementById('drawer-name').textContent = p.full_name || 'Sans nom';
+      document.getElementById('drawer-email').textContent = p.email;
+
+      var statusBadge = '';
+      if (p.plan_status === 'active') statusBadge = '<span class="badge badge-active">Actif</span>';
+      else if (p.plan_status === 'past_due') statusBadge = '<span class="badge badge-past-due">Impay\u00e9</span>';
+      else if (p.stripe_customer_id) statusBadge = '<span class="badge badge-inactive">Churned</span>';
+      else statusBadge = '<span class="badge badge-inactive">Free</span>';
+      document.getElementById('drawer-meta').innerHTML = statusBadge + (p.plan ? ' <span class="badge" style="background:#f5f5f5;color:#555;">' + esc(p.plan) + '</span>' : '');
+
+      var dt = new Date(p.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+      var stripeLink = p.stripe_customer_id ? '<a href="https://dashboard.stripe.com/customers/' + esc(p.stripe_customer_id) + '" target="_blank" rel="noopener" style="color:#5855FF;text-decoration:none;font-size:12px;">' + esc(p.stripe_customer_id) + '</a>' : '\u2014';
+
+      var html = '<div class="drawer-actions">'
+        + '<button class="drawer-action-btn" onclick="openEditUserModal()">&#9998; Modifier</button>'
+        + '<button class="drawer-action-btn" onclick="openEmailModal()">&#9993; Email</button>'
+        + '<button class="drawer-action-btn" onclick="adminToggleAutopilot()">\u26a1 Autopilot</button>'
+        + (s && s.cms_type ? '<button class="drawer-action-btn" onclick="adminDisconnectCms()">\u26d4 CMS</button>' : '')
+        + '<button class="drawer-action-btn danger" onclick="openDeleteUserModal()">&#128465; Supprimer</button>'
+        + '</div>';
+
+      html += '<div class="detail-grid">';
+      html += '<div class="detail-section-title">Informations</div>';
+      html += detailItem('Inscrit le', dt);
+      html += detailItem('Articles', (p.articles_used || 0) + ' / ' + (p.articles_limit || 0));
+      html += detailItem('Domaine', s ? '<a href="' + safeHref('https://' + s.domain) + '" target="_blank" rel="noopener" style="color:#5855FF;text-decoration:none;">' + esc(s.domain) + '</a>' : '\u2014');
+      html += detailItem('Stripe', stripeLink);
+
+      if (s) {
+        html += '<div class="detail-section-title">Site</div>';
+        html += detailItem('Langue', esc(s.language) || '\u2014');
+        html += detailItem('Niche', esc(s.niche) || '\u2014');
+        if (s.description) html += '<div class="detail-full">' + detailItemInner('Description', esc(s.description)) + '</div>';
+        if (s.audiences && s.audiences.length) html += '<div class="detail-full">' + detailItemInner('Audiences', esc(s.audiences.join(', '))) + '</div>';
+        if (s.goals && s.goals.length) html += '<div class="detail-full">' + detailItemInner('Objectifs', esc(s.goals.join(', '))) + '</div>';
+      }
+
+      html += '<div class="detail-section-title">CMS</div>';
+      html += detailItem('Type', s && s.cms_type ? '<span class="badge badge-cms">' + esc(s.cms_type) + '</span>' : 'Non connect\u00e9');
+      html += detailItem('Connect\u00e9 le', s && s.cms_connected_at ? new Date(s.cms_connected_at).toLocaleDateString('fr-FR') : '\u2014');
+      if (s && s.cms_url) html += '<div class="detail-full">' + detailItemInner('URL CMS', esc(s.cms_url)) + '</div>';
+
+      html += '<div class="detail-section-title">Param\u00e8tres</div>';
+      html += detailItem('Ton', esc(st.tone) || '\u2014');
+      html += detailItem('Longueur', esc(st.article_length) || '\u2014');
+      html += detailItem('Fr\u00e9quence', esc(st.publish_frequency) || '\u2014');
+      html += detailItem('Autopilot', st.autopilot ? '<span class="badge badge-autopilot">Activ\u00e9</span>' : 'D\u00e9sactiv\u00e9');
+      if (st.brand_name) {
+        var colorSwatch = (st.brand_color && /^#[0-9a-fA-F]{3,8}$/.test(st.brand_color)) ? ' <span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:' + esc(st.brand_color) + ';vertical-align:middle;margin-left:6px;border:1px solid #eee;"></span>' : '';
+        html += detailItem('Marque', esc(st.brand_name) + colorSwatch);
+      }
+      if (st.competitors && st.competitors.length) html += '<div class="detail-full">' + detailItemInner('Concurrents', esc(st.competitors.join(', '))) + '</div>';
+
+      html += '</div>';
+      document.getElementById('drawer-profile').innerHTML = html;
+    }
+
+    function detailItem(label, value) { return '<div class="detail-item"><div class="detail-item-label">' + label + '</div><div class="detail-item-value">' + value + '</div></div>'; }
+    function detailItemInner(label, value) { return '<div class="detail-item-label">' + label + '</div><div class="detail-item-value">' + value + '</div>'; }
+
+    // ── Drawer: Stats Tab ──
+    function renderDrawerStats(data) {
+      var articles = data.articles || [];
+      var published = articles.filter(function(a) { return a.status === 'published'; });
+      var totalSeo = 0, totalWords = 0;
+      articles.forEach(function(a) { totalSeo += (a.seo_score || 0); totalWords += (a.word_count || 0); });
+      var avgSeo = articles.length ? Math.round(totalSeo / articles.length) : 0;
+      var avgWords = articles.length ? Math.round(totalWords / articles.length) : 0;
+      var publishRate = articles.length ? Math.round((published.length / articles.length) * 100) : 0;
+      var st = data.settings || {};
+      var site = data.site;
+      var seoColor = avgSeo >= 80 ? '#16a34a' : avgSeo >= 50 ? '#f59e0b' : '#ef4444';
+
+      var html = '<div class="stat-grid">';
+      html += statCard('Articles cr\u00e9\u00e9s', articles.length, '');
+      html += statCard('Publi\u00e9s', published.length, publishRate + '% de publication');
+      html += statCard('Score SEO moyen', '<span style="color:' + seoColor + ';">' + avgSeo + '</span>', avgSeo >= 80 ? 'Excellent' : avgSeo >= 50 ? 'Correct' : '\u00c0 am\u00e9liorer');
+      html += statCard('Mots/article', avgWords, '');
+      html += statCard('Dernier autopilot', st.last_autopilot_at ? new Date(st.last_autopilot_at).toLocaleDateString('fr-FR', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) : 'Jamais', '');
+      html += statCard('CMS', site && site.cms_type ? site.cms_type : 'Non connect\u00e9', site && site.cms_connected_at ? 'Depuis le ' + new Date(site.cms_connected_at).toLocaleDateString('fr-FR') : '');
+      html += '</div>';
+      document.getElementById('drawer-stats').innerHTML = html;
+    }
+
+    function statCard(label, value, sub) {
+      return '<div class="stat-card"><div class="stat-card-label">' + label + '</div><div class="stat-card-value">' + value + '</div>' + (sub ? '<div class="stat-card-sub">' + sub + '</div>' : '') + '</div>';
+    }
+
+    // ── Drawer: Articles Tab ──
+    function renderDrawerArticles(articles) {
+      var c = document.getElementById('drawer-articles');
+      if (!articles || !articles.length) { c.innerHTML = '<div class="empty-state"><div class="empty-state-text">Aucun article</div></div>'; return; }
+      var html = '<table class="drawer-table"><thead><tr><th>Titre</th><th>Type</th><th>Mots</th><th>SEO</th><th>Statut</th><th>CMS</th><th></th></tr></thead><tbody>';
+      articles.forEach(function(a) {
+        var t = a.title || 'Sans titre'; if (t.length > 35) t = t.substring(0, 35) + '...';
+        var sc = (a.seo_score || 0) >= 80 ? '#16a34a' : (a.seo_score || 0) >= 50 ? '#f59e0b' : '#ef4444';
+        var sb = a.status === 'published' ? '<span class="badge badge-published">Publi\u00e9</span>' : '<span class="badge badge-draft">Brouillon</span>';
+        var cmsLink = a.cms_post_url ? '<a href="' + safeHref(a.cms_post_url) + '" target="_blank" rel="noopener" style="color:#7c3aed;font-size:11px;">Voir</a>' : '\u2014';
+        html += '<tr><td style="font-weight:500;">' + esc(t) + '</td>'
+          + '<td style="font-size:11px;color:#999;">' + esc(a.article_type || 'blog') + '</td>'
+          + '<td>' + (a.word_count || 0) + '</td>'
+          + '<td><span style="color:' + sc + ';font-weight:700;">' + (a.seo_score || '\u2014') + '</span></td>'
+          + '<td>' + sb + '</td><td>' + cmsLink + '</td>'
+          + '<td><button class="del-btn" onclick="event.stopPropagation();adminDeleteArticle(\'' + esc(a.id) + '\')" title="Supprimer">&#128465;</button></td></tr>';
+      });
+      html += '</tbody></table>';
+      c.innerHTML = html;
+    }
+
+    // ── Drawer: Keywords Tab ──
+    function renderDrawerKeywords(keywords) {
+      var c = document.getElementById('drawer-keywords');
+      if (!keywords || !keywords.length) { c.innerHTML = '<div class="empty-state"><div class="empty-state-text">Aucun mot-cl\u00e9</div></div>'; return; }
+      var html = '<table class="drawer-table"><thead><tr><th>Mot-cl\u00e9</th><th>Volume</th><th>Difficult\u00e9</th><th>Position</th><th>Tendance</th></tr></thead><tbody>';
+      keywords.forEach(function(k) {
+        var dc = (k.difficulty || 0) >= 70 ? '#ef4444' : (k.difficulty || 0) >= 40 ? '#f59e0b' : '#16a34a';
+        var trend = k.trend === 'up' ? '<span style="color:#16a34a;">&#9650;</span>' : k.trend === 'down' ? '<span style="color:#ef4444;">&#9660;</span>' : '<span style="color:#999;">&#9654;</span>';
+        html += '<tr><td style="font-weight:500;">' + esc(k.keyword) + '</td>'
+          + '<td>' + (k.volume || 0) + '</td>'
+          + '<td><span style="color:' + dc + ';font-weight:600;">' + (k.difficulty || '\u2014') + '</span></td>'
+          + '<td>' + (k.position || '\u2014') + '</td>'
+          + '<td>' + trend + '</td></tr>';
+      });
+      html += '</tbody></table>';
+      c.innerHTML = html;
+    }
+
+    // ── Drawer: Audit Tab ──
+    function renderDrawerAudit(audit) {
+      var c = document.getElementById('drawer-audit');
+      if (!audit) { c.innerHTML = '<div class="empty-state"><div class="empty-state-text">Aucun audit</div></div>'; return; }
+      var scores = [
+        { label:'Score Global', value:audit.overall_score },
+        { label:'Performance', value:audit.performance_score },
+        { label:'SEO', value:audit.seo_score },
+        { label:'Accessibilit\u00e9', value:audit.accessibility_score },
+        { label:'Bonnes Pratiques', value:audit.best_practices_score }
       ];
-      container.innerHTML = items.map(function(item) {
-        var pct = Math.round((item.count / total) * 100);
-        return '<div class="recent-item">'
-          + '<div style="display:flex;align-items:center;gap:8px;">'
-          + '<div style="width:10px;height:10px;border-radius:50%;background:' + item.color + ';"></div>'
-          + '<span class="recent-name">' + item.label + '</span>'
-          + '</div>'
-          + '<div><strong>' + item.count + '</strong> <span style="font-size:11px;color:#999;">(' + pct + '%)</span></div>'
+      var date = new Date(audit.created_at).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+      var html = '<div style="font-size:12px;color:#999;margin-bottom:16px;">Dernier audit : ' + date + '</div><div class="detail-grid">';
+      scores.forEach(function(s) {
+        var v = s.value || 0;
+        var bc = v >= 80 ? '#16a34a' : v >= 50 ? '#f59e0b' : '#ef4444';
+        html += '<div class="detail-item"><div class="detail-item-label">' + s.label + '</div><div style="display:flex;align-items:center;gap:10px;"><div style="flex:1;height:8px;background:#f0f0f0;border-radius:4px;"><div style="height:100%;width:' + v + '%;background:' + bc + ';border-radius:4px;"></div></div><span style="font-size:16px;font-weight:800;color:' + bc + ';">' + v + '</span></div></div>';
+      });
+      html += '</div>';
+
+      // Speed metrics
+      if (audit.speed_mobile || audit.speed_desktop || audit.fcp || audit.lcp) {
+        html += '<div style="margin-top:20px;padding-top:16px;border-top:1px solid #eee;"><div style="font-size:14px;font-weight:700;margin-bottom:12px;">Vitesse</div><div class="detail-grid">';
+        html += detailItem('Mobile', (audit.speed_mobile || 0) + ' ms');
+        html += detailItem('Desktop', (audit.speed_desktop || 0) + ' ms');
+        html += detailItem('FCP', (audit.fcp || 0) + ' s');
+        html += detailItem('LCP', (audit.lcp || 0) + ' s');
+        html += '</div></div>';
+      }
+
+      // Issues
+      if (audit.issues && audit.issues.length > 0) {
+        html += '<div style="margin-top:20px;padding-top:16px;border-top:1px solid #eee;"><div style="font-size:14px;font-weight:700;margin-bottom:12px;">Probl\u00e8mes (' + audit.issues.length + ')</div>';
+        html += '<ul style="font-size:12px;color:#555;line-height:1.8;padding-left:18px;">';
+        audit.issues.forEach(function(issue) {
+          var text = typeof issue === 'string' ? issue : (issue.title || issue.description || JSON.stringify(issue));
+          html += '<li>' + esc(text) + '</li>';
+        });
+        html += '</ul></div>';
+      }
+
+      c.innerHTML = html;
+    }
+
+    // ══════════════ ADMIN ACTIONS ══════════════
+
+    // ── Delete User ──
+    async function openDeleteUserModal() {
+      openModal('modal-delete-user');
+      document.getElementById('delete-user-info').innerHTML = '<div style="color:#999;">Chargement...</div>';
+      document.getElementById('delete-confirm-input').value = '';
+      document.getElementById('delete-confirm-btn').disabled = true;
+      try {
+        var counts = await apiCall('GET', 'admin?action=user-counts&id=' + _currentDrawerUserId);
+        var p = _currentDrawerData.profile;
+        document.getElementById('delete-user-info').innerHTML =
+          '<div style="font-weight:600;font-size:15px;margin-bottom:4px;">' + esc(p.full_name || 'Sans nom') + '</div>'
+          + '<div style="font-size:13px;color:#999;margin-bottom:12px;">' + esc(p.email) + '</div>'
+          + '<div class="danger-box">'
+          + 'Cette action supprimera d\u00e9finitivement :<br>'
+          + '\u2022 ' + counts.sites + ' site(s)<br>'
+          + '\u2022 ' + counts.articles + ' article(s)<br>'
+          + '\u2022 ' + counts.keywords + ' mot(s)-cl\u00e9(s)<br>'
+          + '\u2022 ' + counts.audits + ' audit(s)<br>'
+          + '\u2022 Param\u00e8tres et profil<br>'
+          + '\u2022 Compte authentification'
           + '</div>';
-      }).join('');
+      } catch (err) {
+        document.getElementById('delete-user-info').innerHTML = '<div style="color:#ef4444;">Erreur: ' + esc(err.message) + '</div>';
+      }
     }
 
-    // ── Pagination ──
-    function goToPage(page) {
-      _currentPage = page;
-      var search = document.getElementById('search-input').value.trim();
-      var url = 'admin?action=users&page=' + page;
-      if (search) url += '&search=' + encodeURIComponent(search);
-      apiCall('GET', url).then(renderUsers).catch(function(err) { console.error(err); });
+    async function confirmDeleteUser() {
+      if (document.getElementById('delete-confirm-input').value.trim() !== 'SUPPRIMER') return;
+      try {
+        await apiCall('POST', 'admin', { action: 'delete-user', userId: _currentDrawerUserId });
+        closeModal('modal-delete-user');
+        closeDrawer();
+        showToast('Utilisateur supprim\u00e9 avec succ\u00e8s');
+        _sectionsLoaded.users = false;
+        _sectionsLoaded.overview = false;
+        if (_currentSection === 'users') loadUsers();
+        else if (_currentSection === 'overview') loadOverview();
+      } catch (err) { showToast('Erreur lors de la suppression', 'error'); }
     }
 
-    // ── Search ──
-    function handleSearch() {
-      clearTimeout(_searchTimeout);
-      _searchTimeout = setTimeout(function() {
-        _currentPage = 1;
-        var search = document.getElementById('search-input').value.trim();
-        var url = 'admin?action=users&page=1';
-        if (search) url += '&search=' + encodeURIComponent(search);
-        apiCall('GET', url).then(renderUsers).catch(function(err) { console.error(err); });
-      }, 300);
+    // ── Edit User ──
+    function openEditUserModal() {
+      var p = _currentDrawerData.profile;
+      document.getElementById('edit-full-name').value = p.full_name || '';
+      document.getElementById('edit-plan').value = p.plan || 'free';
+      document.getElementById('edit-plan-status').value = p.plan_status || 'inactive';
+      document.getElementById('edit-articles-limit').value = p.articles_limit || 0;
+      openModal('modal-edit-user');
     }
 
-    // ── Time ago helper ──
+    async function saveUserEdit() {
+      try {
+        await apiCall('POST', 'admin', {
+          action: 'update-user',
+          userId: _currentDrawerUserId,
+          full_name: document.getElementById('edit-full-name').value.trim(),
+          plan: document.getElementById('edit-plan').value,
+          plan_status: document.getElementById('edit-plan-status').value,
+          articles_limit: document.getElementById('edit-articles-limit').value
+        });
+        closeModal('modal-edit-user');
+        showToast('Utilisateur mis \u00e0 jour');
+        openDrawer(_currentDrawerUserId);
+        _sectionsLoaded.users = false;
+      } catch (err) { showToast('Erreur lors de la mise \u00e0 jour', 'error'); }
+    }
+
+    // ── Send Email ──
+    function openEmailModal() {
+      document.getElementById('email-subject').value = '';
+      document.getElementById('email-message').value = '';
+      openModal('modal-email');
+    }
+
+    function applyEmailTemplate(template) {
+      var templates = {
+        bienvenue: { subject: 'Bienvenue sur Seora !', message: "Bonjour,\n\nBienvenue sur Seora ! Votre compte est maintenant actif.\n\nVoici comment bien d\u00e9marrer :\n1. Connectez votre CMS\n2. Lancez un audit SEO\n3. G\u00e9n\u00e9rez votre premier article\n\nN'h\u00e9sitez pas \u00e0 nous contacter si vous avez des questions.\n\nL'\u00e9quipe Seora" },
+        relance: { subject: 'On ne vous oublie pas !', message: "Bonjour,\n\nNous avons remarqu\u00e9 que vous n'avez pas encore g\u00e9n\u00e9r\u00e9 d'articles r\u00e9cemment.\n\nSeora peut vous aider \u00e0 booster votre SEO automatiquement. Connectez-vous et d\u00e9couvrez les nouvelles fonctionnalit\u00e9s !\n\nL'\u00e9quipe Seora" },
+        upgrade: { subject: 'Offre sp\u00e9ciale pour vous', message: "Bonjour,\n\nNous avons une offre exclusive pour vous : passez au plan Pro et b\u00e9n\u00e9ficiez de 50% de r\u00e9duction le premier mois !\n\nAvec le plan Pro, vous obtenez :\n- 30 articles par mois\n- Autopilot automatis\u00e9\n- Support prioritaire\n\nL'\u00e9quipe Seora" },
+        support: { subject: 'Support Seora', message: "Bonjour,\n\nNous revenons vers vous concernant votre demande.\n\n[Votre r\u00e9ponse ici]\n\nN'h\u00e9sitez pas si vous avez d'autres questions.\n\nL'\u00e9quipe Seora" }
+      };
+      var t = templates[template];
+      if (t) { document.getElementById('email-subject').value = t.subject; document.getElementById('email-message').value = t.message; }
+    }
+
+    async function sendEmail() {
+      var subject = document.getElementById('email-subject').value.trim();
+      var message = document.getElementById('email-message').value.trim();
+      if (!subject || !message) { showToast('Sujet et message requis', 'error'); return; }
+      try {
+        var result = await apiCall('POST', 'admin', { action: 'send-email', userId: _currentDrawerUserId, subject: subject, message: message });
+        closeModal('modal-email');
+        showToast('Email envoy\u00e9 \u00e0 ' + result.sentTo);
+      } catch (err) { showToast('Erreur lors de l\'envoi', 'error'); }
+    }
+
+    // ── Delete Article ──
+    async function adminDeleteArticle(articleId) {
+      if (!confirm('Supprimer cet article ?')) return;
+      try {
+        await apiCall('POST', 'admin', { action: 'delete-article', articleId: articleId });
+        showToast('Article supprim\u00e9');
+        openDrawer(_currentDrawerUserId);
+        _sectionsLoaded.content = false;
+      } catch (err) { showToast('Erreur lors de la suppression', 'error'); }
+    }
+
+    // ── Toggle Autopilot ──
+    async function adminToggleAutopilot() {
+      var st = _currentDrawerData.settings;
+      var newState = !(st && st.autopilot);
+      if (!confirm(newState ? 'Activer autopilot pour cet utilisateur ?' : 'D\u00e9sactiver autopilot ?')) return;
+      try {
+        await apiCall('POST', 'admin', { action: 'toggle-autopilot', userId: _currentDrawerUserId, enabled: newState });
+        showToast('Autopilot ' + (newState ? 'activ\u00e9' : 'd\u00e9sactiv\u00e9'));
+        openDrawer(_currentDrawerUserId);
+        _sectionsLoaded.users = false;
+      } catch (err) { showToast('Erreur autopilot', 'error'); }
+    }
+
+    // ── Disconnect CMS ──
+    async function adminDisconnectCms() {
+      if (!confirm('D\u00e9connecter le CMS de cet utilisateur ?')) return;
+      try {
+        await apiCall('POST', 'admin', { action: 'disconnect-cms', userId: _currentDrawerUserId });
+        showToast('CMS d\u00e9connect\u00e9');
+        openDrawer(_currentDrawerUserId);
+        _sectionsLoaded.users = false;
+      } catch (err) { showToast('Erreur CMS', 'error'); }
+    }
+
+    // ══════════════ HELPERS ══════════════
+    function getEventInfo(e) {
+      switch (e.type) {
+        case 'signup': return { icon:'\ud83d\udc64', color:'#3b82f6', bg:'#eff6ff', text:'<strong>' + esc(e.user_name || '\u2014') + '</strong> s\'est inscrit' };
+        case 'article_created': return { icon:'\u270f\ufe0f', color:'#5855FF', bg:'#fff7ed', text:'Article cr\u00e9\u00e9 : <strong>' + esc(e.title || '\u2014') + '</strong> sur ' + esc(e.domain || '\u2014') };
+        case 'article_published': return { icon:'\ud83d\ude80', color:'#16a34a', bg:'#f0fdf4', text:'Article publi\u00e9 : <strong>' + esc(e.title || '\u2014') + '</strong> sur ' + esc(e.domain || '\u2014') };
+        case 'cms_connected': return { icon:'\ud83d\udd17', color:'#7c3aed', bg:'#f5f3ff', text:'<strong>' + esc(e.user_email || '\u2014') + '</strong> a connect\u00e9 ' + esc(e.cms_type || 'CMS') };
+        case 'autopilot_run': return { icon:'\u26a1', color:'#d97706', bg:'#fef3c7', text:'Autopilot ex\u00e9cut\u00e9 pour <strong>' + esc(e.user_email || '\u2014') + '</strong>' };
+        default: return { icon:'\u25cf', color:'#999', bg:'#f5f5f5', text:esc(e.type) };
+      }
+    }
+
+    function renderPagination(containerId, page, totalPages, callback) {
+      var pag = document.getElementById(containerId);
+      if (totalPages <= 1) { pag.innerHTML = ''; return; }
+      var btns = [];
+      if (page > 1) btns.push({ label:'\u2190', p:page - 1 });
+      for (var i = 1; i <= totalPages; i++) {
+        if (i === page) btns.push({ label:'' + i, p:i, active:true });
+        else if (Math.abs(i - page) <= 2 || i === 1 || i === totalPages) btns.push({ label:'' + i, p:i });
+        else if (Math.abs(i - page) === 3) btns.push({ label:'...', p:null });
+      }
+      if (page < totalPages) btns.push({ label:'\u2192', p:page + 1 });
+      pag.innerHTML = '';
+      btns.forEach(function(b) {
+        var btn = document.createElement('button');
+        btn.className = 'page-btn' + (b.active ? ' active' : '');
+        btn.textContent = b.label;
+        if (b.p !== null && !b.active) btn.onclick = function() { callback(b.p); };
+        if (b.p === null) { btn.style.border = 'none'; btn.style.cursor = 'default'; }
+        pag.appendChild(btn);
+      });
+    }
+
     function getTimeAgo(date) {
       var diff = Date.now() - date.getTime();
       var mins = Math.floor(diff / 60000);
+      if (mins < 1) return "\u00e0 l'instant";
       if (mins < 60) return mins + ' min';
       var hours = Math.floor(mins / 60);
       if (hours < 24) return hours + 'h';
@@ -423,6 +980,28 @@
       if (days < 30) return days + 'j';
       return Math.floor(days / 30) + ' mois';
     }
+
+    function showToast(message, type) {
+      var toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast toast-' + (type || 'success') + ' show';
+      setTimeout(function() { toast.classList.remove('show'); }, 3500);
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        // Priority: close modal first, then drawer
+        var openModals = document.querySelectorAll('.modal-overlay.open');
+        if (openModals.length > 0) {
+          openModals.forEach(function(m) { m.classList.remove('open'); });
+        } else {
+          closeDrawer();
+        }
+      }
+    });
   </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ const { publishToCms, markdownToHtml } = require('./_lib/cms-publish');
 const { sendArticlePublishedEmail } = require('./_lib/emails');
 
 module.exports = async function handler(req, res) {
-  cors(res);
+  cors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -14,8 +14,9 @@ module.exports = async function handler(req, res) {
   try {
     var sb = createAdminClient();
 
-    // Check plan & limits
-    var { data: profile } = await sb.from('profiles').select('plan_status, articles_used, articles_limit').eq('id', user.id).single();
+    // Check plan & limits with optimistic concurrency lock
+    var { data: profile } = await sb.from('profiles').select('plan_status, articles_used, articles_limit').eq('id', user.id).maybeSingle();
+    if (!profile) return res.status(404).json({ error: 'Profil introuvable' });
     if (profile.plan_status !== 'active') {
       return res.status(403).json({ error: 'Abonnement inactif. Veuillez activer votre plan.' });
     }
@@ -23,15 +24,30 @@ module.exports = async function handler(req, res) {
       return res.status(403).json({ error: 'Limite d\'articles atteinte ce mois-ci (' + profile.articles_limit + ').' });
     }
 
+    // Atomically claim a slot using optimistic concurrency
+    var { data: claimed } = await sb.from('profiles')
+      .update({ articles_used: profile.articles_used + 1 })
+      .eq('id', user.id)
+      .eq('articles_used', profile.articles_used)
+      .lt('articles_used', profile.articles_limit)
+      .select('articles_used')
+      .maybeSingle();
+    if (!claimed) {
+      return res.status(409).json({ error: 'Limite atteinte ou requête concurrente. Réessayez.' });
+    }
+
     // Get site info
-    var { data: site } = await sb.from('sites').select('*').eq('user_id', user.id).single();
+    var { data: site } = await sb.from('sites').select('*').eq('user_id', user.id).maybeSingle();
     if (!site) return res.status(400).json({ error: 'Aucun site configuré.' });
 
     // Get settings
-    var { data: settings } = await sb.from('settings').select('tone, article_length').eq('user_id', user.id).single();
+    var { data: settings } = await sb.from('settings').select('tone, article_length, auto_publish').eq('user_id', user.id).maybeSingle();
 
     var { keyword, article_type, keyword_id } = req.body;
     if (!keyword) return res.status(400).json({ error: 'Mot-clé requis' });
+    var safeKeyword = String(keyword).substring(0, 200);
+    var VALID_TYPES = ['blog', 'guide', 'listicle', 'how-to', 'review', 'comparison', 'pillar'];
+    var safeType = VALID_TYPES.indexOf(article_type) !== -1 ? article_type : 'blog';
 
     var lengthMap = { court: '800-1000', moyen: '1200-1500', long: '1800-2500' };
     var targetLength = lengthMap[(settings && settings.article_length) || 'moyen'] || '1200-1500';
@@ -42,7 +58,7 @@ module.exports = async function handler(req, res) {
       + 'Tu produis du contenu unique, informatif et engageant. Tu structures toujours tes articles avec des titres H2 et H3 pertinents. '
       + 'Tu inclus naturellement le mot-clé principal et des variantes sémantiques.';
 
-    var userPrompt = 'Écris un article ' + (article_type || 'blog') + ' en ' + lang + ' sur le sujet : "' + keyword + '"\n\n'
+    var userPrompt = 'Écris un article ' + safeType + ' en ' + lang + ' sur le sujet : "' + safeKeyword + '"\n\n'
       + 'Contexte du site : ' + (site.description || site.domain) + '\n'
       + 'Domaine : ' + site.domain + '\n'
       + 'Ton : ' + tone + '\n'
@@ -57,20 +73,46 @@ module.exports = async function handler(req, res) {
       + 'Réponds UNIQUEMENT avec le JSON, sans texte avant ou après.';
 
     var anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-    var msg = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }]
-    });
+    var msg;
+    try {
+      msg = await anthropic.messages.create({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4096,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      });
+    } catch (aiErr) {
+      // Rollback the claimed slot on AI failure
+      await sb.rpc('decrement_articles_used', { uid: user.id }).catch(function() {
+        // Fallback if RPC not available: use optimistic rollback
+        sb.from('profiles').update({ articles_used: profile.articles_used }).eq('id', user.id).eq('articles_used', profile.articles_used + 1);
+      });
+      console.error('AI generation error:', aiErr);
+      return res.status(500).json({ error: 'Erreur de génération IA' });
+    }
 
     var text = msg.content[0].text;
     var jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
+      // Rollback the claimed slot on invalid response
+      await sb.rpc('decrement_articles_used', { uid: user.id }).catch(function() {
+        // Fallback if RPC not available: use optimistic rollback
+        sb.from('profiles').update({ articles_used: profile.articles_used }).eq('id', user.id).eq('articles_used', profile.articles_used + 1);
+      });
       return res.status(500).json({ error: 'Réponse IA invalide' });
     }
 
-    var article = JSON.parse(jsonMatch[0]);
+    var article;
+    try {
+      article = JSON.parse(jsonMatch[0]);
+    } catch (parseErr) {
+      // Rollback the claimed slot on parse failure
+      await sb.rpc('decrement_articles_used', { uid: user.id }).catch(function() {
+        // Fallback if RPC not available: use optimistic rollback
+        sb.from('profiles').update({ articles_used: profile.articles_used }).eq('id', user.id).eq('articles_used', profile.articles_used + 1);
+      });
+      return res.status(500).json({ error: 'Réponse IA invalide' });
+    }
     var wordCount = (article.content || '').split(/\s+/).length;
 
     // Save to database
@@ -82,25 +124,25 @@ module.exports = async function handler(req, res) {
       meta_description: article.meta_description,
       word_count: wordCount,
       seo_score: article.seo_score || 80,
-      article_type: article_type || 'blog',
+      article_type: safeType,
       status: 'draft',
       scheduled_date: new Date().toISOString().split('T')[0]
-    }).select().single();
+    }).select().maybeSingle();
 
-    if (saveErr) throw saveErr;
-
-    // Increment articles_used
-    await sb.from('profiles').update({
-      articles_used: profile.articles_used + 1
-    }).eq('id', user.id);
+    if (saveErr) {
+      // Rollback the claimed slot on save failure
+      await sb.rpc('decrement_articles_used', { uid: user.id }).catch(function() {
+        // Fallback if RPC not available: use optimistic rollback
+        sb.from('profiles').update({ articles_used: profile.articles_used }).eq('id', user.id).eq('articles_used', profile.articles_used + 1);
+      });
+      throw saveErr;
+    }
 
     // --- AUTO-PUBLISH: if enabled and CMS connected ---
     var autoPublished = false;
     var publishError = null;
 
-    var { data: settingsData } = await sb.from('settings').select('auto_publish').eq('user_id', user.id).single();
-
-    if (settingsData && settingsData.auto_publish && site.cms_type && site.cms_connected_at) {
+    if (settings && settings.auto_publish && site.cms_type && site.cms_connected_at) {
       try {
         var htmlContent = markdownToHtml(saved.content);
         var pubResult = await publishToCms(site, saved, htmlContent);
@@ -128,18 +170,18 @@ module.exports = async function handler(req, res) {
       } catch (pubErr) {
         // Non-blocking: article stays as draft
         console.error('Auto-publish failed:', pubErr.message);
-        publishError = pubErr.message;
+        publishError = 'Échec de la publication automatique';
       }
     }
 
     return res.status(200).json({
       article: saved,
-      remaining: profile.articles_limit - profile.articles_used - 1,
+      remaining: profile.articles_limit - (profile.articles_used + 1),
       auto_published: autoPublished,
       publish_error: publishError
     });
   } catch (err) {
     console.error('Generate article error:', err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'Erreur interne du serveur' });
   }
 };

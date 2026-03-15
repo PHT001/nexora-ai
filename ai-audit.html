@@ -3,51 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Audit de Visibilité IA — Seora.ai</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/style.css">
+  <title>Audit de Visibilité IA — Seora</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
-<nav class="navbar">
-  <div class="navbar-inner">
-    <a href="index.html" class="navbar-logo">
-      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="28" height="28" rx="8" fill="#5855FF"/>
-        <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      </svg>
-      Seora.ai
+<nav class="s-nav">
+  <div class="s-nav-inner">
+    <a href="index.html" class="s-nav-logo">
+      <svg viewBox="0 0 28 28" width="28" height="28" fill="none"><rect width="28" height="28" rx="8" fill="#5855FF"/><path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+      Seora
     </a>
-
-    <div class="navbar-links">
-      <a href="success-story.html">Résultats clients</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="affiliate.html">Programme partenaire</a>
-    </div>
-
-    <div class="navbar-actions">
-      <a href="signin.html" class="signin-link">Se connecter</a>
-      <a href="signup.html" class="btn btn-primary btn-sm">Essai 3 jours</a>
-      <div class="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+    <a href="select-plan.html" class="s-nav-link">Tarifs</a>
+    <a href="blog.html" class="s-nav-link">Blog</a>
+    <a href="signin.html" class="s-nav-link">Connexion</a>
+    <a href="signup.html" class="s-nav-cta">Essai gratuit</a>
+    <button class="s-burger" onclick="document.querySelector('.s-mobile-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu">
-    <a href="success-story.html">Résultats clients</a>
-    <a href="pricing.html">Tarifs</a>
-    <a href="affiliate.html">Programme partenaire</a>
-    <a href="signin.html">Se connecter</a>
-    <a href="signup.html" class="btn btn-primary">Essai 3 jours</a>
+  <div class="s-mobile-menu">
+    <a href="select-plan.html">Tarifs</a>
+    <a href="blog.html">Blog</a>
+    <a href="signin.html">Connexion</a>
+    <a href="signup.html" class="s-nav-cta" style="margin-top:8px;">Essai gratuit</a>
   </div>
 </nav>
 
 <!-- ========== AUDIT HERO ========== -->
-<section class="hero section-dark audit-hero" style="text-align:center;">
+<section class="hero audit-hero" style="text-align:center;background:#fff;color:#111;">
   <div class="container">
     <h1>Audit GEO &amp; Visibilité Recherche IA</h1>
     <p class="audit-desc">Entrez l'URL de votre site web pour obtenir un <strong>audit GEO gratuit</strong> montrant à quel point <strong>votre marque est visible</strong> sur Google et les moteurs de recherche IA comme ChatGPT, Claude, Perplexity et Gemini.</p>
@@ -76,7 +61,7 @@
 <!-- ========== HOW IT WORKS ========== -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title" style="text-align:center;">Comment ça marche</h2>
+    <h2 class="section-title" style="text-align:center;font-family:'Cal Sans',system-ui,sans-serif;font-weight:400;">Comment ça marche</h2>
 
     <div class="how-it-works-grid">
       <!-- Card 1 -->
@@ -92,7 +77,7 @@
             </div>
             <div style="display:flex;gap:8px;">
               <input type="text" value="VotreEntreprise.com" readonly style="flex:1;padding:8px 12px;border:1px solid #e5e5e5;border-radius:6px;font-size:12px;background:#fafafa;color:#666;">
-              <button style="padding:8px 14px;background:#E8562A;color:#fff;border-radius:6px;font-size:11px;font-weight:600;white-space:nowrap;">Analyse gratuite</button>
+              <button style="padding:8px 14px;background:#5855FF;color:#fff;border-radius:6px;font-size:11px;font-weight:600;white-space:nowrap;">Analyse gratuite</button>
             </div>
             <div style="display:flex;gap:6px;margin-top:4px;">
               <span style="font-size:12px;">&#128302;</span>
@@ -114,8 +99,8 @@
             <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#22C55E;"><span>&#10003;</span> Citations faisant autorité</div>
             <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#22C55E;"><span>&#10003;</span> Optimisation des balises Méta</div>
             <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#22C55E;"><span>&#10003;</span> Données structurées</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#E8562A;"><span>&#10007;</span> Compatibilité IA</div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#E8562A;"><span>&#10007;</span> Maillage interne</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5855FF;"><span>&#10007;</span> Compatibilité IA</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5855FF;"><span>&#10007;</span> Maillage interne</div>
           </div>
         </div>
       </div>
@@ -127,9 +112,9 @@
         <p>Consultez votre rapport montrant votre <strong>score de visibilité</strong>, où vous <strong>apparaissez sur Google et la recherche IA</strong>, quels concurrents sont en avance, et <strong>comment améliorer vos classements</strong> et citations.</p>
         <div class="hiw-illustration">
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;">
-            <div style="font-size:36px;font-weight:800;color:#E8562A;">45<span style="font-size:18px;color:#888;">/100</span></div>
+            <div style="font-size:36px;font-weight:800;color:#5855FF;">45<span style="font-size:18px;color:#888;">/100</span></div>
             <div style="width:80%;height:8px;background:#e5e5e5;border-radius:4px;overflow:hidden;">
-              <div style="width:45%;height:100%;background:#E8562A;border-radius:4px;"></div>
+              <div style="width:45%;height:100%;background:#5855FF;border-radius:4px;"></div>
             </div>
             <div style="font-size:12px;color:#888;margin-top:4px;">Score de visibilité</div>
           </div>
@@ -146,7 +131,7 @@
       <!-- Left -->
       <div class="faq-left">
         <h2>FAQs</h2>
-        <p>Vous n'avez pas trouvé ce que vous cherchez ? <a href="mailto:contact@seora.ai">Envoyez-nous un e-mail</a></p>
+        <p>Vous n'avez pas trouvé ce que vous cherchez ? <a href="mailto:contact@tryseora.com">Envoyez-nous un e-mail</a></p>
       </div>
 
       <!-- Right -->
@@ -205,42 +190,46 @@
   </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-links">
-      <a href="index.html">Accueil</a>
-      <a href="affiliate.html">Backlinks</a>
-      <a href="success-story.html">Résultats clients</a>
-      <a href="ai-audit.html">Audit de recherche IA</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="blog.html">Blog</a>
-      <a href="terms.html">Conditions générales</a>
-      <a href="privacy.html">Politique de confidentialité</a>
+<footer class="soro-footer">
+  <div class="soro-footer-inner">
+    <div class="soro-footer-col">
+      <div class="soro-footer-logo">
+        <svg viewBox="0 0 28 28" width="22" height="22" fill="none"><rect width="28" height="28" rx="8" fill="#5855FF"/><path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        Seora
+      </div>
+      <p class="soro-footer-copy">&copy; 2026 Seora. Tous droits reservés.</p>
     </div>
-
-    <div class="footer-bottom">
-      <div class="footer-bottom-left">
-        <div class="footer-logo">
-          <svg viewBox="0 0 28 28" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="28" height="28" rx="8" fill="#5855FF"/>
-            <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          </svg>
-          Seora.ai
-        </div>
-        <div class="footer-address">835 Fifth Avenue, San Rafael CA 94901 &middot; SEORA INC.</div>
-      </div>
-      <div class="footer-bottom-right">
-        <div class="footer-social">
-          <a href="#" title="LinkedIn">in</a>
-          <a href="#" title="Twitter">&#120143;</a>
-        </div>
-        <span class="footer-copy">Copyright &copy; 2026 Seora.ai</span>
-      </div>
+    <div class="soro-footer-col">
+      <h4>PRODUIT</h4>
+      <a href="select-plan.html">Tarifs</a>
+      <a href="success-story.html">Résultats clients</a>
+      <a href="affiliate.html">Programme partenaire</a>
+    </div>
+    <div class="soro-footer-col">
+      <h4>LÉGAL</h4>
+      <a href="terms.html">Conditions</a>
+      <a href="privacy.html">Confidentialité</a>
+    </div>
+    <div class="soro-footer-col">
+      <h4>CONTACT</h4>
+      <a href="mailto:contact@tryseora.com">contact@tryseora.com</a>
     </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+  window.addEventListener('scroll', () => {
+    document.querySelector('.s-nav').classList.toggle('scrolled', window.scrollY > 10);
+  });
+  // Accordion
+  document.querySelectorAll('.accordion-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+      if (!wasActive) item.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>

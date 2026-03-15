@@ -3,118 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Se connecter — Seora.ai</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">  <link rel="stylesheet" href="css/style.css">
+  <title>Se connecter — Seora</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='8' fill='%235855FF'/><path d='M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5' stroke='white' stroke-width='2.5' stroke-linecap='round' fill='none'/></svg>">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="28" height="28" rx="8" fill="#5855FF"/>
-          <path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        Seora.ai
+  <div class="s-auth-page">
+
+    <!-- Left Side — Form -->
+    <div class="s-auth-left">
+      <a href="index.html" class="s-nav-logo" style="margin-bottom:40px;">
+        <svg viewBox="0 0 28 28" width="28" height="28" fill="none"><rect width="28" height="28" rx="8" fill="#5855FF"/><path d="M18 9.5C17 8 15 7.5 13.5 7.5C11 7.5 9 8.8 9 10.8C9 13 11 13.8 14 14.8C17 15.8 19 16.8 19 18.8C19 20.8 17 21.5 14.5 21.5C13 21.5 11 21 10 19.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        Seora
       </a>
-      <div class="navbar-links">
-        <a href="success-story.html">Résultats clients</a>
-        <a href="pricing.html">Tarifs</a>
-        <a href="affiliate.html">Programme partenaire</a>
-      </div>
-      <div class="navbar-actions">
-        <a href="signin.html" class="signin-link">Se connecter</a>
-        <a href="signup.html" class="btn btn-primary btn-pill">Essayer gratuitement</a>
-      </div>
-      <div class="burger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <div class="mobile-menu">
-      <a href="success-story.html">Résultats clients</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="affiliate.html">Programme partenaire</a>
-      <a href="signin.html">Se connecter</a>
-      <a href="signup.html" class="btn btn-primary btn-pill">Essayer gratuitement</a>
-    </div>
-  </nav>
 
-  <!-- Auth Page -->
-  <div class="auth-page">
-
-    <!-- Left Side -->
-    <div class="auth-left">
       <h1>Se connecter</h1>
-      <p class="auth-switch">Pas encore de compte ? <a href="signup.html"><strong>S'inscrire</strong></a></p>
+      <p class="s-auth-switch">Pas encore de compte ? <a href="signup.html">S'inscrire</a></p>
 
-      <div id="auth-error" style="display:none;color:#e53e3e;background:#fee;padding:10px 14px;border-radius:8px;margin-bottom:16px;font-size:14px;"></div>
+      <div id="auth-error" class="s-auth-error"></div>
 
-      <div class="g-signin-btn" data-text="signin_with" style="min-height:44px;display:flex;justify-content:center;width:100%;"></div>
+      <div class="g-signin-btn s-auth-google" data-text="signin_with"></div>
 
-      <div class="auth-divider">ou</div>
+      <div class="s-auth-divider">ou</div>
 
       <form id="signin-form" onsubmit="handleSignin(event)">
-        <div class="auth-field">
+        <div class="s-auth-field">
           <label for="email">Email</label>
           <input type="email" id="email" placeholder="votre@email.com" required>
         </div>
-        <div class="auth-field">
+        <div class="s-auth-field">
           <label for="password">Mot de passe</label>
           <input type="password" id="password" placeholder="Votre mot de passe" required>
         </div>
-        <button type="submit" class="auth-submit">Se connecter</button>
+        <div class="s-auth-forgot">
+          <a href="#" onclick="showForgotPassword(event)">Mot de passe oublié ?</a>
+        </div>
+        <button type="submit" class="s-auth-submit">Se connecter</button>
       </form>
 
-      <p class="auth-terms">En vous connectant, vous acceptez les <a href="terms.html">Conditions d'utilisation</a> et <a href="privacy.html">Politique de confidentialit&eacute;</a>.</p>
+      <!-- Forgot Password Form (hidden) -->
+      <div id="forgot-password-form" style="display:none;">
+        <h2 style="font-family:'Cal Sans',system-ui,sans-serif;font-size:24px;font-weight:400;margin-bottom:8px;">Réinitialiser le mot de passe</h2>
+        <p style="font-size:15px;color:#777;margin-bottom:20px;">Entrez votre email et nous vous enverrons un lien de réinitialisation.</p>
+        <form onsubmit="handleForgotPassword(event)">
+          <div class="s-auth-field">
+            <label for="reset-email">Email</label>
+            <input type="email" id="reset-email" placeholder="votre@email.com" required>
+          </div>
+          <button type="submit" class="s-auth-submit" id="reset-btn">Envoyer le lien</button>
+        </form>
+        <p style="text-align:center;margin-top:16px;">
+          <a href="#" onclick="hideForgotPassword(event)" style="font-size:13px;color:#5855FF;text-decoration:none;">&larr; Retour à la connexion</a>
+        </p>
+      </div>
+
+      <!-- Reset Success Message (hidden) -->
+      <div id="reset-success" style="display:none;">
+        <div style="text-align:center;padding:20px 0;">
+          <div style="font-size:48px;margin-bottom:12px;">&#9993;</div>
+          <h2 style="font-family:'Cal Sans',system-ui,sans-serif;font-size:24px;font-weight:400;margin-bottom:8px;">Email envoyé !</h2>
+          <p style="font-size:15px;color:#777;margin-bottom:20px;">Si un compte existe avec cette adresse, vous recevrez un lien de réinitialisation.</p>
+          <a href="#" onclick="hideForgotPassword(event)" style="font-size:13px;color:#5855FF;text-decoration:none;">&larr; Retour à la connexion</a>
+        </div>
+      </div>
+
+      <!-- New Password Form (for reset link callback) -->
+      <div id="new-password-form" style="display:none;">
+        <h2 style="font-family:'Cal Sans',system-ui,sans-serif;font-size:24px;font-weight:400;margin-bottom:8px;">Nouveau mot de passe</h2>
+        <p style="font-size:15px;color:#777;margin-bottom:20px;">Choisissez votre nouveau mot de passe.</p>
+        <form onsubmit="handleNewPassword(event)">
+          <div class="s-auth-field">
+            <label for="new-password">Nouveau mot de passe</label>
+            <input type="password" id="new-password" placeholder="Minimum 6 caractères" required minlength="6">
+          </div>
+          <div class="s-auth-field">
+            <label for="confirm-password">Confirmer</label>
+            <input type="password" id="confirm-password" placeholder="Confirmez le mot de passe" required minlength="6">
+          </div>
+          <button type="submit" class="s-auth-submit" id="new-pwd-btn">Changer le mot de passe</button>
+        </form>
+      </div>
+
+      <p class="s-auth-terms">En vous connectant, vous acceptez les <a href="terms.html">Conditions d'utilisation</a> et <a href="privacy.html">Politique de confidentialité</a>.</p>
     </div>
 
-    <!-- Right Side -->
-    <div class="auth-right">
-      <div class="network-bg">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="net" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="4" fill="#ddd"/>
-              <circle cx="100" cy="40" r="3" fill="#ccc"/>
-              <circle cx="180" cy="20" r="5" fill="#ddd"/>
-              <circle cx="60" cy="100" r="3" fill="#ccc"/>
-              <circle cx="140" cy="90" r="4" fill="#ddd"/>
-              <circle cx="40" cy="170" r="5" fill="#ddd"/>
-              <circle cx="120" cy="160" r="3" fill="#ccc"/>
-              <circle cx="180" cy="140" r="4" fill="#ddd"/>
-              <circle cx="160" cy="180" r="3" fill="#ccc"/>
-              <circle cx="80" cy="60" r="3" fill="#ddd"/>
-              <line x1="20" y1="20" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="100" y1="40" x2="180" y2="20" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="100" y1="40" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="20" y1="20" x2="60" y2="100" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="60" y1="100" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="140" y1="90" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="60" y1="100" x2="40" y2="170" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="40" y1="170" x2="120" y2="160" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="120" y1="160" x2="180" y2="140" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="120" y1="160" x2="160" y2="180" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="80" y1="60" x2="140" y2="90" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="80" y1="60" x2="20" y2="20" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="80" y1="60" x2="100" y2="40" stroke="#ddd" stroke-width="0.8"/>
-              <line x1="180" y1="20" x2="180" y2="140" stroke="#ddd" stroke-width="0.5"/>
-              <line x1="40" y1="170" x2="160" y2="180" stroke="#ddd" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#net)"/>
-        </svg>
-      </div>
-      <div class="auth-testimonial">
-        <div class="at-header">
-          <div class="at-avatar">AB</div>
+    <!-- Right Side — Testimonial -->
+    <div class="s-auth-right">
+      <div class="s-auth-testimonial">
+        <div class="s-at-header">
+          <div class="s-at-avatar">AB</div>
           <div>
-            <div class="at-name">Anis Bennaceur</div>
-            <div class="at-role">CEO @ Attention</div>
+            <div class="s-at-name">Anis Bennaceur</div>
+            <div class="s-at-role">CEO @ Attention</div>
           </div>
         </div>
-        <p class="at-quote">"Seora s'occupe de tout pour nous. De la recherche de contenu à la publication. C'est une solution qui nous fait gagner un temps fou !"</p>
-        <p class="at-desc">"Le plan de contenu sur 30 jours était parfait. Chaque article est pertinent et optimisé."</p>
+        <p class="s-at-quote">"Seora s'occupe de tout pour nous. De la recherche de contenu à la publication. C'est une solution qui nous fait gagner un temps fou !"</p>
+        <p class="s-at-desc">"Le plan de contenu sur 30 jours était parfait. Chaque article est pertinent et optimisé."</p>
       </div>
     </div>
 
@@ -124,13 +109,100 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="js/auth.js"></script>
   <script>
-    function handleSignin(e) {
+    async function handleSignin(e) {
       e.preventDefault();
       hideAuthError();
+      var btn = document.querySelector('.s-auth-submit');
+      btn.disabled = true;
+      btn.textContent = 'Connexion...';
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
-      signInWithEmail(email, password);
+      var result = await signInWithEmail(email, password);
+      if (!result) {
+        btn.disabled = false;
+        btn.textContent = 'Se connecter';
+      }
     }
+
+    function showForgotPassword(e) {
+      if (e) e.preventDefault();
+      hideAuthError();
+      document.getElementById('signin-form').style.display = 'none';
+      document.querySelector('.s-auth-google').style.display = 'none';
+      document.querySelector('.s-auth-divider').style.display = 'none';
+      document.querySelector('.s-auth-switch').style.display = 'none';
+      document.querySelector('.s-auth-left h1').style.display = 'none';
+      document.getElementById('forgot-password-form').style.display = 'block';
+      document.getElementById('reset-success').style.display = 'none';
+      document.getElementById('new-password-form').style.display = 'none';
+    }
+
+    function hideForgotPassword(e) {
+      if (e) e.preventDefault();
+      hideAuthError();
+      document.getElementById('signin-form').style.display = '';
+      document.querySelector('.s-auth-google').style.display = '';
+      document.querySelector('.s-auth-divider').style.display = '';
+      document.querySelector('.s-auth-switch').style.display = '';
+      document.querySelector('.s-auth-left h1').style.display = '';
+      document.getElementById('forgot-password-form').style.display = 'none';
+      document.getElementById('reset-success').style.display = 'none';
+      document.getElementById('new-password-form').style.display = 'none';
+    }
+
+    async function handleForgotPassword(e) {
+      e.preventDefault();
+      hideAuthError();
+      var btn = document.getElementById('reset-btn');
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours...';
+      var email = document.getElementById('reset-email').value;
+      var ok = await resetPassword(email);
+      btn.disabled = false;
+      btn.textContent = 'Envoyer le lien';
+      if (ok) {
+        document.getElementById('forgot-password-form').style.display = 'none';
+        document.getElementById('reset-success').style.display = 'block';
+      }
+    }
+
+    async function handleNewPassword(e) {
+      e.preventDefault();
+      hideAuthError();
+      var pw = document.getElementById('new-password').value;
+      var confirm = document.getElementById('confirm-password').value;
+      if (pw !== confirm) {
+        showAuthError('Les mots de passe ne correspondent pas.');
+        return;
+      }
+      var btn = document.getElementById('new-pwd-btn');
+      btn.disabled = true;
+      btn.textContent = 'Mise à jour...';
+      var result = await changePassword(pw);
+      btn.disabled = false;
+      btn.textContent = 'Changer le mot de passe';
+      if (result.error) {
+        showAuthError(result.error);
+      } else {
+        window.location.href = 'dashboard.html';
+      }
+    }
+
+    // Check if this is a password reset callback
+    _skipAuthRedirect = true;
+    (async function() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.has('reset') || window.location.hash.includes('type=recovery')) {
+        document.getElementById('signin-form').style.display = 'none';
+        document.querySelector('.s-auth-google').style.display = 'none';
+        document.querySelector('.s-auth-divider').style.display = 'none';
+        document.querySelector('.s-auth-switch').style.display = 'none';
+        document.querySelector('.s-auth-left h1').style.display = 'none';
+        document.getElementById('new-password-form').style.display = 'block';
+      } else {
+        _skipAuthRedirect = false;
+      }
+    })();
   </script>
 </body>
 </html>
